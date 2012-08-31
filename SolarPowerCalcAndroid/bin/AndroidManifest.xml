@@ -6,13 +6,21 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="15" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:targetPackage="au.edu.qut.inn372.greenhat.activity" />
 
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <uses-library android:name="android.test.runner" />
+
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login" >
@@ -21,6 +29,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".BasicInputActivity"
+            android:label="@string/title_activity_basic_input" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity" />
         </activity>
     </application>
 

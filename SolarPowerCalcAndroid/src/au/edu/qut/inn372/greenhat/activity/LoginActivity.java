@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -30,6 +31,7 @@ public class LoginActivity extends Activity {
     
     /** Called when the user clicks the Send button */
     public void calculate(View view) {
+    	/*
     	TextView textView = (TextView)findViewById(R.id.textView1);
     	EditText inputSize = (EditText)findViewById(R.id.editText1);
     	EditText inputCost = (EditText)findViewById(R.id.editText2);
@@ -44,5 +46,11 @@ public class LoginActivity extends Activity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
+    }
+    
+    public void login (View view){
+    	Intent intent = new Intent(this, BasicInputActivity.class);
+    	startActivity(intent);
     }
 }
