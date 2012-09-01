@@ -40,7 +40,10 @@
         <activity
             android:name=".PowerGeneration"
             android:label="@string/title_power_generation">
-                       
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.BasicInputActivity"/>
+                
         </activity>
     </application>
 

@@ -268,7 +268,8 @@
         android:layout_height="34dp"
         android:layout_x="20dp"
         android:layout_y="460dp"
-        android:text="Calculate" />
+        android:text="Calculate" 
+        android:onClick="Calculate"/>
     
     <Button
         android:id="@+id/buttonReset"

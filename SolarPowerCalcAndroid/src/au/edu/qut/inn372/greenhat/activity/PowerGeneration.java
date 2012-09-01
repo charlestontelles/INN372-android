@@ -21,28 +21,60 @@ public class PowerGeneration extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.power_generation);
-        generateView();
-    }
+        //generateView();
+	}   
 	
 	public void generateView() {
     	
     	//TextView daily= (TextView)findViewById(R.id.TextViewAnnualCurrentField);
-    	TextView daily = (TextView)findViewById(R.id.TextViewDaily);
-    	TextView annual = (TextView)findViewById(R.id.TextViewAnnual);
-    	TextView quaterly = (TextView)findViewById(R.id.TextViewQuaterly);
-    	TextView net = (TextView)findViewById(R.id.TextViewNet);
+    	TextView dailyField = (TextView)findViewById(R.id.TextViewDailyField);
+    	//TextView annualField = (TextView)findViewById(R.id.TextViewAnnualField);
+    	//TextView quaterlyField = (TextView)findViewById(R.id.TextViewQuaterlyField);
+    	//TextView netField = (TextView)findViewById(R.id.TextViewNetField);
     	
     	//Retrieve Values
-    	Intent intent = getIntent();
+    	//Intent intent = getIntent();
     	//String message = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
+    	//String cost = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE);
+    	
+    	
+    	//String size =
+    	
     	
     	//Send for calculation
     	
+    	/*
+    	try {
+			Calculator calculator = new Calculator();
+			calculator.getEquipment().setCost(new Double(inputCost.getText().toString()));
+			calculator.getEquipment().setSize(new Double(inputSize.getText().toString()));
+			CalculatorRemoteController controller = new CalculatorRemoteController();
+			calculator = controller.calcEnergyProduction(calculator);
+			textView.setText("Daily Soler Power =" + calculator.getResult() + " KW(p)");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+    	/*
+    	Calculator calculator = new Calculator();
+    	calculator.getEquipment().setCost(Double.parseDouble(cost));
+		//calculator.getEquipment().setSize(new Double(inputSize.getText().toString()));
+		CalculatorRemoteController controller = new CalculatorRemoteController();
+		calculator = controller.calcEnergyProduction(calculator);
     	
     	//Set Text for the table
-    	//daily.setText();
-    	//annual.setText();
-    	//quaterly.setText();
-    	//net.setText();
+    	dailyField.setText(""+calculator.getResult());
+    	//annualField.setText();
+    	//quaterlyField.setText();
+    	//netField.setText();
+    	
+    	*/
+    	
+    	setContentView(dailyField);
+    	//setContentView(annualField);
+    	//setContentView(quaterlyField);
+    	//setContentView(netField);
     }
+	
+	
+	
 }

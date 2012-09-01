@@ -13,6 +13,7 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.controller.CalculatorRemoteController;
 
 public class LoginActivity extends Activity {
+	
 
 	@SuppressLint({ "NewApi", "NewApi", "NewApi" })
 	@Override
@@ -51,6 +52,7 @@ public class LoginActivity extends Activity {
     
     public void login (View view){
     	Intent intent = new Intent(this, BasicInputActivity.class);
+    	
     	startActivity(intent);
     }
 }
