@@ -37,6 +37,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity" />
         </activity>
+        <activity
+            android:name=".PowerGeneration"
+            android:label="@string/title_power_generation">
+                       
+        </activity>
     </application>
 
 </manifest>
