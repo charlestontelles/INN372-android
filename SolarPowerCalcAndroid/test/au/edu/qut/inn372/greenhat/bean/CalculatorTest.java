@@ -18,13 +18,18 @@ public class CalculatorTest extends TestCase {
 	}
 
 	public void testGetEquipment() {
-		calculator.setResult(10);
-		assertTrue(calculator.getResult()==10);
+		Equipment equipment = new Equipment();
+		equipment.setCost(20);
+		calculator.setEquipment(equipment);
+		assertTrue(calculator.getEquipment().getCost()==20);
 	}
 
 	public void testSetEquipment() {
-		calculator.setResult(10);
-		assertTrue(calculator.getResult()==10);
+		Equipment equipment = new Equipment();
+		equipment.setCost(10);
+		calculator.setEquipment(equipment);
+		assertTrue(calculator.getEquipment().getCost()==10);
+	
 	}
 
 	public void testGetResult() {
