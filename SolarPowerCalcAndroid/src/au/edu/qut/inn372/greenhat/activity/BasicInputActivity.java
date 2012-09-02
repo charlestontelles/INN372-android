@@ -10,11 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.support.v4.app.NavUtils;
+import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.controller.CalculatorRemoteController;
 
 public class BasicInputActivity extends Activity {
 
 	//add this 
 	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity";
+	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity2";
 		
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,13 +45,32 @@ public class BasicInputActivity extends Activity {
     
     public void Calculate(View view){
     	Intent intent = new Intent(this, PowerGeneration.class);
-    	//add this (Joachim) to receive the intent in the output page
-    	EditText equipmentCost = (EditText) findViewById(R.id.editEquipmentCost);
-    	EditText equipmentSize = (EditText)findViewById(R.id.editEquipmentSize);
-    	String cost = equipmentCost.getText().toString();
-    	String size = equipmentSize.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, cost);
-        //intent.putExtra(EXTRA_MESSAGE, size);
+    	
+    	
+    	try {
+			Calculator calculator = new Calculator();
+			// Equipment
+			calculator.getEquipment().setSize(new Double(((EditText)findViewById(R.id.editEquipmentSize)).getText().toString()));
+			calculator.getEquipment().getInverter().setEfficiency(new Double(((EditText)findViewById(R.id.editEquimentInverterEfficiency)).getText().toString()));
+			// Roof
+			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossNorth(new Double(((EditText)findViewById(R.id.editRoofLossNorth)).getText().toString()));
+			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossWest(new Double(((EditText)findViewById(R.id.editRoofLossWest)).getText().toString()));
+			calculator.getCustomer().getLocation().getRoof().setPercentageNorth(new Double(((EditText)findViewById(R.id.editRoofNorth)).getText().toString()));
+			calculator.getCustomer().getLocation().getRoof().setPercentageWest(new Double(((EditText)findViewById(R.id.editRoofWest)).getText().toString()));
+			// Location (day light hours)
+			calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editDayLight)).getText().toString()));
+			// Current usage
+			calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUsagePerDay)).getText().toString()));
+			
+			CalculatorRemoteController controller = new CalculatorRemoteController();
+			intent.putExtra(EXTRA_MESSAGE2, ""+calculator.getCustomer().getElectricityUsage().getDailyAverageUsage());
+			calculator = controller.calcEnergyProduction(calculator);
+			
+			intent.putExtra(EXTRA_MESSAGE, ""+calculator.getSolarPower());
+			
+    	} catch (Exception e) {
+			// TODO: handle exception
+		}	
     	
     	startActivity(intent);
     

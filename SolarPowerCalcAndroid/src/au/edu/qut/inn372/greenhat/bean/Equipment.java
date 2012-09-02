@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.bean;
 
 import org.ksoap2.serialization.SoapObject;
 /**
+ * Equipment Bean
  * 
  * @author Charleston Telles
  *
@@ -9,8 +10,19 @@ import org.ksoap2.serialization.SoapObject;
 public class Equipment extends AndroidAbstractBean{
 	private double cost;
 	private double size;
+	
+	private Inverter inverter;
 		
+	public Inverter getInverter() {
+		return inverter;
+	}
+
+	public void setInverter(Inverter inverter) {
+		this.inverter = inverter;
+	}
+
 	public Equipment(){
+		inverter = new Inverter();
 	}
 	
 	public Equipment(SoapObject soapObject, int soapOperation){
@@ -52,6 +64,10 @@ public class Equipment extends AndroidAbstractBean{
 			this.soapObject.addSoapObject(child);
 			break;
 		default:
+			this.soapObject = new SoapObject("", "equipment");
+			this.soapObject.addProperty("cost", ""+this.cost);
+			this.soapObject.addProperty("size", ""+this.size);
+			this.soapObject.addSoapObject(this.inverter.getSoapObject(-1));
 			break;
 		}
 		
