@@ -194,10 +194,10 @@
   	</TableRow>
     
     <TableRow>
-  	    <TextView
+  	    <TextView
   	        android:id="@+id/TextViewAnnualNet"
   	        android:gravity="left"
-  	        android:text="Quaterly Net"
+  	        android:text="Annual Net"
   	        android:textSize="10dp"
   	        android:textStyle="bold"
   	        android:typeface="serif" >
