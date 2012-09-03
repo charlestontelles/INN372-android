@@ -24,11 +24,21 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
     <TextView
+        android:id="@+id/textEquipmentTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1dp"
+        android:layout_y="35dp"
+        android:text="Equipment Details"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold|italic" />
+    
+    <TextView
         android:id="@+id/textEquipmentSize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="96dp"
+        android:layout_y="65dp"
         android:text="System Size (KWh):" />
     
     <TextView
@@ -36,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="124dp"
+        android:layout_y="94dp"
         android:text="Inverter Efficiency %:" />
 
     <EditText
@@ -44,7 +54,7 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="81dp"
+        android:layout_y="51dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" />
@@ -54,18 +64,28 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="109dp"
+        android:layout_y="79dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" >
     </EditText>
 
     <TextView
+        android:id="@+id/textRoofTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1dp"
+        android:layout_y="123dp"
+        android:text="Roof Details"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold|italic" />
+    
+    <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="201dp"
+        android:layout_y="155dp"
         android:text="Percentage on North Roof:" />
 
     <TextView
@@ -73,7 +93,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="231dp"
+        android:layout_y="185dp"
         android:text="Percentage on West Roof:" />
 
     <TextView
@@ -81,7 +101,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="263dp"
+        android:layout_y="217dp"
         android:text="Efficiency Loss (North Roof):" />
 
     <TextView
@@ -89,7 +109,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="293dp"
+        android:layout_y="247dp"
         android:text="Efficiency Loss (West Roof):" />
     
     <EditText
@@ -97,7 +117,7 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="186dp"
+        android:layout_y="141dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" />
@@ -107,7 +127,7 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="220dp"
+        android:layout_y="175dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" />
@@ -117,7 +137,7 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="248dp"
+        android:layout_y="203dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" />
@@ -127,44 +147,56 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="278dp"
+        android:layout_y="233dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" />
+     
+   <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="0dp"
+        android:layout_y="277dp"
+        android:text="Sunlight Details"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="358dp"
+        android:layout_y="305dp"
         android:text="Average Daily Hours of Sunlight:" />
+    
+   <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="1dp"
+        android:layout_y="328dp"
+        android:textStyle="bold|italic"
+        android:text="Current Energy Usage Details" />
     
     <EditText
         android:id="@+id/editDayLight"
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="343dp"
+        android:layout_y="290dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="1dp"
-        android:layout_y="387dp"
-        android:textStyle="bold|italic"
-        android:text="Current Energy Usage Details" />
+
     
    <TextView
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_x="1dp"
-        android:layout_y="412dp"
+        android:layout_y="352dp"
         android:text="Energy Used Per Day:" />
 
       <EditText
@@ -172,7 +204,7 @@
         android:layout_width="75dp"
         android:layout_height="wrap_content"
         android:layout_x="200dp"
-        android:layout_y="398dp"
+        android:layout_y="332dp"
         android:ems="10"
         android:inputType="numberDecimal"
         android:text="0.0" />
@@ -183,9 +215,9 @@
         android:layout_width="95dp"
         android:layout_height="34dp"
         android:layout_x="20dp"
-        android:layout_y="430dp"
+        android:layout_y="370dp"
         android:text="Calculate" 
-        android:onClick="Calculate"/>
+        android:onClick="calculate"/>
     
     <Button
         android:id="@+id/buttonReset"
@@ -193,38 +225,9 @@
         android:layout_width="95dp"
         android:layout_height="34dp"
         android:layout_x="180dp"
-        android:layout_y="430dp"
-        android:text="Reset" />
-
-    <TextView
-        android:id="@+id/textEquipmentTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="5dp"
-        android:layout_y="49dp"
-        android:text="EquipmentDetails"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:id="@+id/textRoofTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="1dp"
-        android:layout_y="158dp"
-        android:text="Roof Details"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textStyle="bold|italic" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_x="0dp"
-        android:layout_y="322dp"
-        android:text="Sunlight Details"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textStyle="bold|italic" />
+        android:layout_y="370dp"
+        android:text="Reset" 
+        android:onClick="reset"/>
 
         </AbsoluteLayout>
     </ScrollView>

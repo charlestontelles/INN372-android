@@ -43,7 +43,7 @@ public class BasicInputActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     
-    public void Calculate(View view){
+    public void calculate(View view){
     	Intent intent = new Intent(this, PowerGeneration.class);
     	
     	
@@ -74,6 +74,21 @@ public class BasicInputActivity extends Activity {
     	
     	startActivity(intent);
     
+    }
+    
+    public void reset(View view){
+		// Equipment
+		((EditText)findViewById(R.id.editEquipmentSize)).setText("");
+		((EditText)findViewById(R.id.editEquimentInverterEfficiency)).setText("");
+		// Roof
+		((EditText)findViewById(R.id.editRoofLossNorth)).setText("");
+		((EditText)findViewById(R.id.editRoofLossWest)).setText("");
+		((EditText)findViewById(R.id.editRoofNorth)).setText("");
+		((EditText)findViewById(R.id.editRoofWest)).setText("");
+		// Location (day light hours)
+		((EditText)findViewById(R.id.editDayLight)).setText("");
+		// Current usage
+		((EditText)findViewById(R.id.editUsagePerDay)).setText("");
     }
 
 }
