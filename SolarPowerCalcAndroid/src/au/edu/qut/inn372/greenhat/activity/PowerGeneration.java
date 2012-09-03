@@ -14,7 +14,7 @@ public class PowerGeneration extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.power_generation);
         generateView();
-;
+
         
 	}   
 	
@@ -23,19 +23,24 @@ public class PowerGeneration extends Activity{
     	TextView annualField = (TextView)findViewById(R.id.TextViewAnnualField);
     	TextView quaterlyField = (TextView)findViewById(R.id.TextViewQuaterlyField);
     	TextView netField = (TextView)findViewById(R.id.TextViewNetField);
+        TextView quaterlyNet = (TextView)findViewById(R.id.TextViewQuaterlyNetField);
+        TextView annualNet = (TextView)findViewById(R.id.TextViewAnnualNetField);
         
+    	
     	Intent intent = getIntent();
         String solarPower = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE);
         String daily = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE2);
         
+        
         DecimalFormat df = new DecimalFormat("#.##");
 
         
-        dailyField.setText(solarPower);
+        dailyField.setText(""+df.format(new Double(solarPower)));
         annualField.setText(""+df.format(new Double(solarPower)*365));
         quaterlyField.setText(""+df.format(new Double(solarPower)*91));
         netField.setText(""+(df.format(new Double(solarPower).doubleValue() - new Double(daily).doubleValue())));
-    
+        annualNet.setText(""+ new Double(daily) * 365);
+        quaterlyNet.setText(""+ new Double(daily) * 365 / 4);
     }	
 	
 }

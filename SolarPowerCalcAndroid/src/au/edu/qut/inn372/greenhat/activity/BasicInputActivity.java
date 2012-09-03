@@ -78,17 +78,17 @@ public class BasicInputActivity extends Activity {
     
     public void reset(View view){
 		// Equipment
-		((EditText)findViewById(R.id.editEquipmentSize)).setText("");
-		((EditText)findViewById(R.id.editEquimentInverterEfficiency)).setText("");
+		((EditText)findViewById(R.id.editEquipmentSize)).setText("0.0");
+		((EditText)findViewById(R.id.editEquimentInverterEfficiency)).setText("0.0");
 		// Roof
-		((EditText)findViewById(R.id.editRoofLossNorth)).setText("");
-		((EditText)findViewById(R.id.editRoofLossWest)).setText("");
-		((EditText)findViewById(R.id.editRoofNorth)).setText("");
-		((EditText)findViewById(R.id.editRoofWest)).setText("");
+		((EditText)findViewById(R.id.editRoofLossNorth)).setText("0.0");
+		((EditText)findViewById(R.id.editRoofLossWest)).setText("0.0");
+		((EditText)findViewById(R.id.editRoofNorth)).setText("0.0");
+		((EditText)findViewById(R.id.editRoofWest)).setText("0.0");
 		// Location (day light hours)
-		((EditText)findViewById(R.id.editDayLight)).setText("");
+		((EditText)findViewById(R.id.editDayLight)).setText("0.0");
 		// Current usage
-		((EditText)findViewById(R.id.editUsagePerDay)).setText("");
+		((EditText)findViewById(R.id.editUsagePerDay)).setText("0.0");
     }
 
 }
