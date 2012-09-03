@@ -40,30 +40,5 @@ public class BasicInputActivityTest extends TestCase {
 		assertTrue(BasicInputActivity.EXTRA_MESSAGE.length() >0);
 	}
 	
-	public void testCalculateDailyAv(){
-		
-		assertEquals(calc.getCustomer().getElectricityUsage().getDailyAverageUsage() == 10, true);
-	}
 	
-	public void testCalculateGetSolarPower(){
-		
-		calc = controller.calcEnergyProduction(calc);
-		//System.out.println(calc.getSolarPower());
-		assertEquals(calc.getSolarPower() == 3.6000000000000005, true);
-	}
-	
-	/* only working when doing an Android Junit test
-	public void testIntentExtraMessage(){
-		Intent intent = new Intent();
-		intent.putExtra(EXTRA_MESSAGE, ""+calc.getCustomer().getElectricityUsage().getDailyAverageUsage());
-		assertTrue(BasicInputActivity.EXTRA_MESSAGE.length() >0);
-	} */
-	
-	/*
-	public void testIntentExtraMessage2(){
-		Intent intent = new Intent();
-		intent.putExtra(EXTRA_MESSAGE2, ""+calc.getCustomer().getElectricityUsage().getDailyAverageUsage());
-		assertTrue(BasicInputActivity.EXTRA_MESSAGE2.length() >0);
-		
-	}*/
 }
