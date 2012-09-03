@@ -37,10 +37,10 @@ public class PowerGeneration extends Activity{
         
         dailyField.setText(""+df.format(new Double(solarPower)));
         annualField.setText(""+df.format(new Double(solarPower)*365));
-        quaterlyField.setText(""+df.format(new Double(solarPower)*91));
+        quaterlyField.setText(""+df.format(new Double(solarPower)*365/4));
         netField.setText(""+(df.format(new Double(solarPower).doubleValue() - new Double(daily).doubleValue())));
-        annualNet.setText(""+ new Double(daily) * 365);
-        quaterlyNet.setText(""+ new Double(daily) * 365 / 4);
+        annualNet.setText(""+(df.format((new Double(solarPower).doubleValue() - new Double(daily).doubleValue())*365)));
+        quaterlyNet.setText(""+(df.format((new Double(solarPower).doubleValue() - new Double(daily).doubleValue())*365/4)));
     }	
 	
 }
