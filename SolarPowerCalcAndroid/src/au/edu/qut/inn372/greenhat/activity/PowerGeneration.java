@@ -1,5 +1,7 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.text.DecimalFormat;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -23,13 +25,17 @@ public class PowerGeneration extends Activity{
     	TextView netField = (TextView)findViewById(R.id.TextViewNetField);
         
     	Intent intent = getIntent();
-        String message = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE);
-        String message2 = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE2);
+        String solarPower = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE);
+        String daily = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE2);
         
-        dailyField.setText(message);
-        annualField.setText(""+new Double(message)*365);
-        quaterlyField.setText(""+new Double(message)*91);
-        netField.setText(""+(new Double(message).doubleValue() - new Double(message2).doubleValue()));
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        
+        dailyField.setText(solarPower);
+        annualField.setText(""+df.format(new Double(solarPower)*365));
+        quaterlyField.setText(""+df.format(new Double(solarPower)*91));
+        netField.setText(""+(df.format(new Double(solarPower).doubleValue() - new Double(daily).doubleValue())));
+    
     }	
 	
 }

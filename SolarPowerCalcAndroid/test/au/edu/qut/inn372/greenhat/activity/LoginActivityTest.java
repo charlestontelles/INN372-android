@@ -17,6 +17,7 @@ public class LoginActivityTest extends TestCase {
 	}
 
 	public void testOnCreate(){
-		assertTrue(LoginActivity.class.getName().length() > 0);
+		//assertTrue(LoginActivity.class.getName().length() > 0);
+		
 	}
 }

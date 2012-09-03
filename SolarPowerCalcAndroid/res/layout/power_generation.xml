@@ -22,30 +22,7 @@
         </TextView>
     </TableRow>
     
-    <TableRow
-        android:id="@+id/tableRow1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        
-        <TextView
-            android:id="@+id/TextViewAvSolarPower"
-            android:text="Average Solar Power Generation"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:typeface="serif"
-            android:textSize="10dp" >   
-        </TextView>
-        
-        <TextView
-            android:id="@+id/TextViewAvSolarPowerKwh"
-            android:gravity="center"
-            android:text="KWH"
-            android:textStyle="bold"
-            android:typeface="serif"
-            android:textSize="10dp" >
-        </TextView>
-        
-    </TableRow>
+    
     
     <TableRow>
      
@@ -70,7 +47,15 @@
             
         </TextView>
         
-        
+        <TextView
+            android:id="@+id/TextViewKwh1"
+            android:gravity="center"
+            android:text="KWh"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:typeface="serif" >
+            
+        </TextView>
        
     </TableRow>
     <TableRow>
@@ -95,7 +80,15 @@
             
         </TextView>
         
-       
+       <TextView
+            android:id="@+id/TextViewKwh2"
+            android:gravity="center"
+            android:text="KWh"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:typeface="serif" >
+            
+        </TextView>
         
     </TableRow>
     
@@ -121,6 +114,16 @@
   	        android:typeface="serif" >
   	        
   	    </TextView>
+  	    
+  	    <TextView
+            android:id="@+id/TextViewKwh3"
+            android:gravity="center"
+            android:text="KWh"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:typeface="serif" >
+            
+        </TextView>
   	</TableRow>
   		
   	<TableRow>
@@ -144,6 +147,16 @@
   	        android:typeface="serif" >
   	        
   	    </TextView>
+  	    
+  	    <TextView
+            android:id="@+id/TextViewKwh4"
+            android:gravity="center"
+            android:text="KWh"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:typeface="serif" >
+            
+        </TextView>
   	    
   	</TableRow>
     
