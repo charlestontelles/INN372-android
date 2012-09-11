@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <!-- Author: Fabian -->
+
+
+    <!-- Textview for "city" entry field -->
+
+
+    <!-- "city" entry field -->
+    
+    <LinearLayout 
+  		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView 
+            android:id="@+id/textLocation_Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/location_title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textLocation_City"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:text="@string/city_text" />
+
+        <EditText
+            android:id="@+id/editLocation_City"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="@string/entryfieldlength"
+            android:inputType="text" >
+
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+            android:id="@+id/textLocation_Postcode"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:text="@string/postcode_text" />
+
+        <EditText
+            android:id="@+id/editLocation_Postcode"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="@string/entryfieldlength"
+            android:inputType="number" />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+    <Button
+	        android:id="@+id/buttonLocation_Back"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/button_navigation_back" 
+	        android:onClick="viewLogin"/>        
+        
+	    <Button
+	        android:id="@+id/buttonLocation_Next"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/button_navigation_next" 
+	        android:onClick="viewEquipment"/>
+    </LinearLayout>
+
+</LinearLayout>

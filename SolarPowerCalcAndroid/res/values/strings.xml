@@ -1,9 +1,42 @@
 <resources>
 
     <string name="app_name">SolarPowerCalcAndroid</string>
-    <string name="hello_world">Hello world!</string>
     <string name="menu_settings">Settings</string>
+    <string name="entryfieldlength">10</string>
+    <string name="button_navigation_next">Next >></string>
+    <string name="button_navigation_back">&lt;&lt; Back</string>
+    
+    <!-- Activity Titles -->
     <string name="title_activity_login">Solar Power Calc</string>
     <string name="title_activity_basic_input">Solar Power Calc</string>
 	<string name="title_power_generation">PowerGeneration</string>
+	<string name="title_activity_location">Location</string>
+	<string name="title_activity_equipment">Equipment</string>
+	<string name="title_activity_roof">Roof</string>
+	
+	
+	
+	<!-- Location View -->
+	<string name="location_title">Location</string>
+	<string name="city_text">City:</string>
+	<string name="postcode_text">Postcode:</string>
+	
+	<!-- Equipment -->
+	<string name="equipment_title">Equipment</string>
+	<string name="equipment_panelnumber">Number of Panels:</string>
+	<string name="equipment_panelcost">Costs of Panels:</string>
+	<string name="equipment_panelefficiency">Efficiency of Panels:</string>
+	<string name="equipment_panelsize">Size of Panels:</string>
+	
+	<!-- Roof -->
+	<string name="roof_title">Roof</string>
+	<string name="roof_bank1">Bank 1</string>
+	<string name="roof_bank2">Bank 2</string>
+	<string name="roof_numberofpanelbank1">Number of Panels for Bank 1</string>
+	<string name="roof_numberofpanelbank2">Number of Panels for Bank 2</string>
+	<string name="roof_anglebank1">Angle of Bank 1</string>
+	<string name="roof_anglebank2">Angle of Bank 2</string>
+	<string name="roof_directionbank1">Direction of Bank 1</string>
+	<string name="roof_directionbank2">Direction of Bank 2</string>
+	
 </resources>

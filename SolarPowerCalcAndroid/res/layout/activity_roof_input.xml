@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView 
+            android:id="@+id/textRoof_Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           	android:text="@string/roof_title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="5dp"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+	    <TextView
+	        android:id="@+id/textRoof_Bank1"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_bank1" 
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textStyle="bold|italic" />
+    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    
+	    <TextView
+	        android:id="@+id/textRoof_Bank1_NumberOfPanels"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_numberofpanelbank1" 
+	        />
+	    
+	    <EditText
+	            android:id="@+id/editRoof_Bank1_NumberOfPanels"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" />
+            
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    
+	    <TextView
+	        android:id="@+id/textRoof_Bank1_AngleOfPanels"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_anglebank1" 
+	        />
+	    
+	    <EditText
+	            android:id="@+id/editRoof_Bank1_AngleOfPanels"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" />
+	    
+	</LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    
+	    <TextView
+	        android:id="@+id/textRoof_Bank1_DirectionOfPanels"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_directionbank1" 
+	        />
+	    
+	    <EditText
+	            android:id="@+id/editRoof__Bank1_DirectionOfPanels"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" />
+    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+	    <TextView
+	        android:id="@+id/textRoof_Bank2"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_bank2" 
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textStyle="bold|italic" />
+    
+    </LinearLayout>
+    
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    
+	    <TextView
+	        android:id="@+id/textRoof_Bank2_NumberOfPanels"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_numberofpanelbank2" />
+	    
+	    <EditText
+	            android:id="@+id/editRoof_Bank2_NumberOfPanels"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" />
+	    
+	</LinearLayout>
+	
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    
+	    <TextView
+	        android:id="@+id/textRoof_Bank2_AngleOfPanels"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_anglebank2" />
+	    
+	    <EditText
+	            android:id="@+id/editRoof_Bank2_AngleOfPanels"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" />
+	    
+	    
+	    
+	</LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    
+	    <TextView
+	        android:id="@+id/textRoof_Bank2_DirectionOfPanels"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_directionbank2" 
+	        />
+	    
+	    <EditText
+	            android:id="@+id/editRoof__Bank2_DirectionOfPanels"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" />
+    
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+	    <Button
+	        android:id="@+id/buttonEquipment_Back"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/button_navigation_back" 
+	        android:onClick="viewEquipment"/>
+	    
+	    <Button
+	        android:id="@+id/buttonEquipment_Next"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/button_navigation_next" 
+	        android:onClick="viewBasicInputActivity"/>
+    </LinearLayout>
+
+</LinearLayout>

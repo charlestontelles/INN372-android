@@ -45,6 +45,31 @@
                 android:value="au.edu.qut.inn372.greenhat.activity.BasicInputActivity"/>
                 
         </activity>
+        <activity
+            android:name=".LocationActivity"
+            android:label="@string/title_activity_location">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity"/>
+                
+        </activity>
+        <activity
+            android:name=".EquipmentActivity"
+            android:label="@string/title_activity_equipment">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.LocationActivity"/>
+                
+        </activity>
+        
+        <activity
+            android:name=".RoofActivity"
+            android:label="@string/title_activity_roof">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.EquipmentActivity"/>
+                
+        </activity>        
     </application>
 	
     <instrumentation android:name="android.test.InstrumentationTestRunner"
