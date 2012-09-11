@@ -51,7 +51,7 @@ public class LoginActivity extends Activity {
     }
     
     public void login (View view){
-    	Intent intent = new Intent(this, LocationActivity.class);
+    	Intent intent = new Intent(this, TabbedActivity.class);
     	
     	startActivity(intent);
     }

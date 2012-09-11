@@ -69,9 +69,18 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.EquipmentActivity"/>
                 
-        </activity>        
+        </activity>    
+        
+        <activity
+            android:name="TabbedActivity"
+            android:label="@string/title_activity_tabbed">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity"/>
+            
+        </activity>
     </application>
-	
+
     <instrumentation android:name="android.test.InstrumentationTestRunner"
        android:targetPackage="au.edu.qut.inn372.greenhat.activity" android:label="Tests for My App" />
     
