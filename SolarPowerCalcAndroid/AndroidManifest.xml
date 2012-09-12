@@ -72,7 +72,7 @@
         </activity>    
         
         <activity
-            android:name="TabbedActivity"
+            android:name=".TabbedActivity"
             android:label="@string/title_activity_tabbed">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
