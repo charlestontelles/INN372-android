@@ -15,6 +15,9 @@ public class TabbedActivity extends TabActivity {
 	public static final int ROOF_ID = 2;
 	public static final int INPUT_ID = 3;
 	
+	/**
+	 * Constructor - sets up tabs
+	 */
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
@@ -27,6 +30,12 @@ public class TabbedActivity extends TabActivity {
         addTab("Input", this, BasicInputActivity.class);
     }
 	
+	/**
+	 * Creates a new tab
+	 * @param tabName The name to be displayed for the tab
+	 * @param context The context (should be 'this')
+	 * @param newActivity The activity class to start (eg 'LocationActivity.class')
+	 */
 	private void addTab(String tabName, Context context, Class<?> newActivity) {
 		TabSpec newSpec = tabHost.newTabSpec(tabName);
 		newSpec.setIndicator(tabName);
@@ -35,6 +44,10 @@ public class TabbedActivity extends TabActivity {
 		tabHost.addTab(newSpec);
 	}
 	
+	/**
+	 * Switches to the specified tab
+	 * @param tabID ID of the tab to be switched to - ID's are public fields for this class
+	 */
 	public void switchTab(int tabID) {
 		tabHost.setCurrentTab(tabID);
 	}

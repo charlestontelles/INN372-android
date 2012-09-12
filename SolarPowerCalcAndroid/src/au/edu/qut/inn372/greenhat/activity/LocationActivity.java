@@ -44,14 +44,9 @@ public class LocationActivity extends Activity{
 	     * @param view
 	     */
 	    public void viewEquipment(View view){
-	    	
 	    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 	    	int targetActivity = TabbedActivity.EQUIPMENT_ID;
 	    	parentTabbedActivity.switchTab(targetActivity);
-	    	
-	    	//Intent intent = new Intent(this, EquipmentActivity.class);
-	    	
-	    	//startActivity(intent);
 	    }
 	    
 	    /**

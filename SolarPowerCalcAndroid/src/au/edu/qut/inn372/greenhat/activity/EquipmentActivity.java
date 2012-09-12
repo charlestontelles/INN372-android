@@ -23,9 +23,9 @@ public class EquipmentActivity extends Activity{
 	 * @param view
 	 */
 	public void viewRoof(View view){
-		Intent intent = new Intent(this, RoofActivity.class);
-    	
-    	startActivity(intent);
+    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+    	int targetActivity = TabbedActivity.ROOF_ID;
+    	parentTabbedActivity.switchTab(targetActivity);
 	}
 	
 	/**
@@ -33,8 +33,8 @@ public class EquipmentActivity extends Activity{
 	 * @param view
 	 */
 	public void viewLocation(View view){
-		Intent intent = new Intent(this, LocationActivity.class);
-    	
-    	startActivity(intent);
+    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+    	int targetActivity = TabbedActivity.LOCATION_ID;
+    	parentTabbedActivity.switchTab(targetActivity);
 	}
 }
