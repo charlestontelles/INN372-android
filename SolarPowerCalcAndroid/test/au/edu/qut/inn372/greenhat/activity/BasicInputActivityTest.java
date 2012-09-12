@@ -1,7 +1,5 @@
 package au.edu.qut.inn372.greenhat.activity;
 
-import android.content.Intent;
-import android.widget.EditText;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.controller.CalculatorRemoteController;
 import junit.framework.TestCase;
