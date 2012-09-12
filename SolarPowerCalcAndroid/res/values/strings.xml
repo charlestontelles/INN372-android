@@ -19,15 +19,17 @@
 	
 	<!-- Location View -->
 	<string name="location_title">Location</string>
-	<string name="city_text">City:</string>
-	<string name="postcode_text">Postcode:</string>
+	<string name="location_city">City:</string>
+	<string name="location_postcode">Postcode:</string>
+	<string name="location_sunlight">Average Daily Hours of Sunlight:</string>
 	
 	<!-- Equipment -->
 	<string name="equipment_title">Equipment</string>
 	<string name="equipment_panelnumber">Number of Panels:</string>
-	<string name="equipment_panelcost">Costs of Panels:</string>
-	<string name="equipment_panelefficiency">Efficiency of Panels:</string>
-	<string name="equipment_panelsize">Size of Panels:</string>
+	<string name="equipment_panelcost">System Cost:</string>
+	<string name="equipment_panelsize">System Size (KWh):</string>
+	<string name="equipment_panelefficiency">Inverter Efficiency (%):</string>
+	
 	
 	<!-- Roof -->
 	<string name="roof_title">Roof</string>
@@ -39,5 +41,18 @@
 	<string name="roof_anglebank2">Angle of Bank 2</string>
 	<string name="roof_directionbank1">Direction of Bank 1</string>
 	<string name="roof_directionbank2">Direction of Bank 2</string>
+	
+	<!-- Basic Input -->
+	<string name="basicinput_title">Summary of Provided Details</string>
+	<string name="basicinput_equipment_title">Equipment Details:</string>
+	<string name="basicinput_roof_title">Roof Details:</string>
+	<string name="basicinput_roof_size_width">Roof Size Width (cm):</string>
+	<string name="basicinput_roof_size_height">Roof Size Height (cm):</string>
+	<string name="basicinput_roof_percentage_north">Percentage on North Roof:</string>
+	<string name="basicinput_roof_percentage_west">Percentage on West Roof:</string>
+	<string name="basicinput_roof_efficiency_north">Efficiency Loss on North Roof:</string>
+	<string name="basicinput_roof_efficiency_west">Efficiency Loss on West Roof:</string>
+	<string name="basicinput_sunlight_title">Sunlight Details:</string>
+	<string name="basicinput_user_title">Current Energy User Details:</string>
 	
 </resources>
