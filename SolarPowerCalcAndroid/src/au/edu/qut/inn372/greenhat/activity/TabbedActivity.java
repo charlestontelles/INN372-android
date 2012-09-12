@@ -1,6 +1,7 @@
 package au.edu.qut.inn372.greenhat.activity;
 
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
@@ -19,37 +20,20 @@ public class TabbedActivity extends TabActivity {
         setContentView(R.layout.activity_tabbed);
  
         tabHost = getTabHost();
- 
-        // Tab for Location
-        TabSpec locationSpec = tabHost.newTabSpec("Location");
-        locationSpec.setIndicator("Location");
-        Intent locationIntent = new Intent(this, LocationActivity.class);
-        locationSpec.setContent(locationIntent);
- 
-        // Tab for Equipment
-        TabSpec equipmentSpec = tabHost.newTabSpec("Equipment");
-        equipmentSpec.setIndicator("Equipment");
-        Intent equipmentIntent = new Intent(this, EquipmentActivity.class);
-        equipmentSpec.setContent(equipmentIntent);
- 
-        // Tab for Roof
-        TabSpec roofSpec = tabHost.newTabSpec("Roof");
-        roofSpec.setIndicator("Roof");
-        Intent roofIntent = new Intent(this, RoofActivity.class);
-        roofSpec.setContent(roofIntent);
         
-        // Tab for Input
-        TabSpec inputSpec = tabHost.newTabSpec("Input");
-        inputSpec.setIndicator("Input");
-        Intent inputIntent = new Intent(this, BasicInputActivity.class);
-        inputSpec.setContent(inputIntent);
- 
-        // Adding all TabSpec to TabHost
-        tabHost.addTab(locationSpec);
-        tabHost.addTab(equipmentSpec);
-        tabHost.addTab(roofSpec);
-        tabHost.addTab(inputSpec);
+        addTab("Location", this, LocationActivity.class);
+        addTab("Equipment", this, EquipmentActivity.class);
+        addTab("Roof", this, RoofActivity.class);
+        addTab("Input", this, BasicInputActivity.class);
     }
+	
+	private void addTab(String tabName, Context context, Class<?> newActivity) {
+		TabSpec newSpec = tabHost.newTabSpec(tabName);
+		newSpec.setIndicator(tabName);
+		Intent newIntent = new Intent(context, newActivity);
+		newSpec.setContent(newIntent);
+		tabHost.addTab(newSpec);
+	}
 	
 	public void switchTab(int tabID) {
 		tabHost.setCurrentTab(tabID);
