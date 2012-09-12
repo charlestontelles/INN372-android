@@ -7,11 +7,18 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 
 public class TabbedActivity extends TabActivity {
+	
+	private TabHost tabHost;
+	public static final int LOCATION_ID = 0;
+	public static final int EQUIPMENT_ID = 1;
+	public static final int ROOF_ID = 2;
+	public static final int INPUT_ID = 3;
+	
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
  
-        TabHost tabHost = getTabHost();
+        tabHost = getTabHost();
  
         // Tab for Location
         TabSpec locationSpec = tabHost.newTabSpec("Location");
@@ -43,4 +50,8 @@ public class TabbedActivity extends TabActivity {
         tabHost.addTab(roofSpec);
         tabHost.addTab(inputSpec);
     }
+	
+	public void switchTab(int tabID) {
+		tabHost.setCurrentTab(tabID);
+	}
 }
