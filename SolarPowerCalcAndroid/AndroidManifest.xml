@@ -69,7 +69,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.EquipmentActivity"/>
                 
-        </activity>    
+        </activity> 
+        
+        <activity
+            android:name=".CustomerUsageActivity"
+            android:label="@string/title_activity_customerusage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.RoofActivity"/>
+            
+        </activity>
         
         <activity
             android:name=".TabbedActivity"
@@ -79,6 +88,8 @@
                 android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity"/>
             
         </activity>
+        
+        
     </application>
 
     <instrumentation android:name="android.test.InstrumentationTestRunner"

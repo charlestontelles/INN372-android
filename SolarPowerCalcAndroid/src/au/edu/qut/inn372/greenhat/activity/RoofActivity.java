@@ -19,20 +19,21 @@ public class RoofActivity extends Activity{
     }
 	
 	/**
-	 * Go forward to basic input screen
+	 *
+	 * Refers to the succeding tab
 	 * @param view
 	 */
-	public void viewBasicInputActivity(View view){
+	public void viewNext(View view){
     	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.INPUT_ID;
+    	int targetActivity = TabbedActivity.LOCATION_ID;
     	parentTabbedActivity.switchTab(targetActivity);
 	}
 	
 	/**
-	 * Go back to equipment
+	 * Refers to the preceding Tab
 	 * @param view
 	 */
-	public void viewEquipment(View view){
+	public void viewBack(View view){
     	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
     	int targetActivity = TabbedActivity.EQUIPMENT_ID;
     	parentTabbedActivity.switchTab(targetActivity);

@@ -10,10 +10,12 @@ import android.widget.TabHost.TabSpec;
 public class TabbedActivity extends TabActivity {
 	
 	private TabHost tabHost;
-	public static final int LOCATION_ID = 0;
+	public static final int USAGE_ID = 0;
 	public static final int EQUIPMENT_ID = 1;
 	public static final int ROOF_ID = 2;
-	public static final int INPUT_ID = 3;
+	public static final int LOCATION_ID = 3;
+	public static final int INPUT_ID = 4;
+	
 	
 	/**
 	 * Constructor - sets up tabs
@@ -24,10 +26,12 @@ public class TabbedActivity extends TabActivity {
  
         tabHost = getTabHost();
         
-        addTab("Location", this, LocationActivity.class);
+        addTab("Personal Usage", this, CustomerUsageActivity.class);
         addTab("Equipment", this, EquipmentActivity.class);
         addTab("Roof", this, RoofActivity.class);
+        addTab("Location", this, LocationActivity.class);  
         addTab("Input", this, BasicInputActivity.class);
+        
     }
 	
 	/**

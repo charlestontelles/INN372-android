@@ -13,6 +13,7 @@
 	<string name="title_activity_location">Location</string>
 	<string name="title_activity_equipment">Equipment</string>
 	<string name="title_activity_roof">Roof</string>
+	<string name="title_activity_customerusage">Customer Usage</string>
 	<string name="title_activity_tabbed">Tabbed</string>
 	
 	
@@ -29,6 +30,12 @@
 	<string name="equipment_panelcost">System Cost:</string>
 	<string name="equipment_panelsize">System Size (KWh):</string>
 	<string name="equipment_panelefficiency">Inverter Efficiency (%):</string>
+	<string name="equipment_list_equipment">List of Equipment</string>
+	<string name="equipment_list_equipment_prompt">Choose an Equipment</string>
+	<string-array name="equipment_list_equipment_array">
+	    <item>Solarpanel "Supersonic"</item>
+	    <item>Sunpower Panel</item>
+	</string-array>
 	
 	
 	<!-- Roof -->
@@ -41,18 +48,38 @@
 	<string name="roof_anglebank2">Angle of Bank 2</string>
 	<string name="roof_directionbank1">Direction of Bank 1</string>
 	<string name="roof_directionbank2">Direction of Bank 2</string>
+	<string name="roof_banks">Banks</string>
+	<string name="roof_banks_array_prompt">Choose a Bank</string>
+	<string-array name="roof_banks_array">
+	    <item>Bank 1</item>
+	    <item>Bank 2</item>
+	</string-array>
+	<string name="roof_numberofpanels">Number of Panels</string>
+	<string name="roof_angleofbank">Angle of Bank (degrees)</string>
+	<string name="roof_orientationofbank">Orientation of Bank (degrees)</string>
 	
 	<!-- Basic Input -->
+	<string name="basicinput_textview_width">166</string>
 	<string name="basicinput_title">Summary of Provided Details</string>
-	<string name="basicinput_equipment_title">Equipment Details:</string>
-	<string name="basicinput_roof_title">Roof Details:</string>
+	<string name="basicinput_equipment_title">Equipment Details</string>
+	<string name="basicinput_roof_title">Roof Details</string>
 	<string name="basicinput_roof_size_width">Roof Size Width (cm):</string>
 	<string name="basicinput_roof_size_height">Roof Size Height (cm):</string>
 	<string name="basicinput_roof_percentage_north">Percentage on North Roof:</string>
 	<string name="basicinput_roof_percentage_west">Percentage on West Roof:</string>
 	<string name="basicinput_roof_efficiency_north">Efficiency Loss on North Roof:</string>
 	<string name="basicinput_roof_efficiency_west">Efficiency Loss on West Roof:</string>
-	<string name="basicinput_sunlight_title">Sunlight Details:</string>
+	<string name="basicinput_sunlight_title">Sunlight Details</string>
 	<string name="basicinput_user_title">Current Energy User Details:</string>
+	<string name="basicinput_button_calculate">Calculate</string>
+	<string name="basicinput_button_reset">Reset</string>
 	
+	<!-- Customer Usage -->
+	<string name="customerusage_title">Customer Usage</string>
+	<string name="customerusage_currentusage_title">Current Usage</string>
+	<string name="customerusage_currentusage_usageperday">Energy Used per Day (KWh):</string>
+	<string name="customerusage_currentusage_usageperhour">Energy Used per Daylight Hours (KWh):</string>
+	<string name="customerusage_currenttariff_title">Current Tariff</string>
+	<string name="customerusage_currenttariff_fee">Tariff 11	 Fee:</string>
+	<string name="customerusage_currenttariff_feedin">Feed in Fee:</string>
 </resources>

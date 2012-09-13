@@ -24,6 +24,7 @@ public class BasicInputActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_input);
         //getActionBar().setDisplayHomeAsUpEnabled(true);
+        
     }
 
     @Override
@@ -50,17 +51,17 @@ public class BasicInputActivity extends Activity {
     	try {
 			Calculator calculator = new Calculator();
 			// Equipment
-			calculator.getEquipment().setSize(new Double(((EditText)findViewById(R.id.editEquipmentSize)).getText().toString()));
-			calculator.getEquipment().getInverter().setEfficiency(new Double(((EditText)findViewById(R.id.editEquimentInverterEfficiency)).getText().toString()));
+			calculator.getEquipment().setSize(new Double(((EditText)findViewById(R.id.editEquipment_Size)).getText().toString()));
+			calculator.getEquipment().getInverter().setEfficiency(new Double(((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).getText().toString()));
 			// Roof
-			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossNorth(new Double(((EditText)findViewById(R.id.editRoofLossNorth)).getText().toString()));
-			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossWest(new Double(((EditText)findViewById(R.id.editRoofLossWest)).getText().toString()));
-			calculator.getCustomer().getLocation().getRoof().setPercentageNorth(new Double(((EditText)findViewById(R.id.editRoofNorth)).getText().toString()));
-			calculator.getCustomer().getLocation().getRoof().setPercentageWest(new Double(((EditText)findViewById(R.id.editRoofWest)).getText().toString()));
+			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossNorth(new Double(((EditText)findViewById(R.id.editRoof_LossNorth)).getText().toString()));
+			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossWest(new Double(((EditText)findViewById(R.id.editRoof_LossWest)).getText().toString()));
+			calculator.getCustomer().getLocation().getRoof().setPercentageNorth(new Double(((EditText)findViewById(R.id.editRoof_PercentageNorth)).getText().toString()));
+			calculator.getCustomer().getLocation().getRoof().setPercentageWest(new Double(((EditText)findViewById(R.id.editRoof_PercentageWest)).getText().toString()));
 			// Location (day light hours)
-			calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editDayLight)).getText().toString()));
+			calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editSunlight_Daylight)).getText().toString()));
 			// Current usage
-			calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUsagePerDay)).getText().toString()));
+			calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUser_UsagePerDay)).getText().toString()));
 			
 			CalculatorRemoteController controller = new CalculatorRemoteController();
 			intent.putExtra(EXTRA_MESSAGE2, ""+calculator.getCustomer().getElectricityUsage().getDailyAverageUsage());
@@ -78,17 +79,17 @@ public class BasicInputActivity extends Activity {
     
     public void reset(View view){
 		// Equipment
-		((EditText)findViewById(R.id.editEquipmentSize)).setText("0.0");
-		((EditText)findViewById(R.id.editEquimentInverterEfficiency)).setText("0.0");
+		((EditText)findViewById(R.id.editEquipment_Size)).setText("0.0");
+		((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).setText("0.0");
 		// Roof
-		((EditText)findViewById(R.id.editRoofLossNorth)).setText("0.0");
-		((EditText)findViewById(R.id.editRoofLossWest)).setText("0.0");
-		((EditText)findViewById(R.id.editRoofNorth)).setText("0.0");
-		((EditText)findViewById(R.id.editRoofWest)).setText("0.0");
+		((EditText)findViewById(R.id.editRoof_LossNorth)).setText("0.0");
+		((EditText)findViewById(R.id.editRoof_LossWest)).setText("0.0");
+		((EditText)findViewById(R.id.editRoof_PercentageNorth)).setText("0.0");
+		((EditText)findViewById(R.id.editRoof_PercentageWest)).setText("0.0");
 		// Location (day light hours)
-		((EditText)findViewById(R.id.editDayLight)).setText("0.0");
+		((EditText)findViewById(R.id.editSunlight_Daylight)).setText("0.0");
 		// Current usage
-		((EditText)findViewById(R.id.editUsagePerDay)).setText("0.0");
+		((EditText)findViewById(R.id.editUser_UsagePerDay)).setText("0.0");
     }
 
 }

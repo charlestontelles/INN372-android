@@ -180,7 +180,7 @@
 	        android:layout_width="95dp"
 	        android:layout_height="34dp"
 	        android:text="@string/button_navigation_back" 
-	        android:onClick="viewEquipment"/>
+	        android:onClick="viewBack"/>
 	    
 	    <Button
 	        android:id="@+id/buttonEquipment_Next"
@@ -188,7 +188,7 @@
 	        android:layout_width="95dp"
 	        android:layout_height="34dp"
 	        android:text="@string/button_navigation_next" 
-	        android:onClick="viewBasicInputActivity"/>
+	        android:onClick="viewNext"/>
     </LinearLayout>
 
 </LinearLayout>

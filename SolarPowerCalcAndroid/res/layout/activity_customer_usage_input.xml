@@ -8,15 +8,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         
-        <TextView 
-            android:id="@+id/textEquipment_Title"
+        <TextView
+            android:id="@+id/textCustomerUsage_Title"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-           	android:text="@string/equipment_title"
+        	android:layout_height="wrap_content"
+            android:text="@string/customerusage_title"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:gravity="center"
             android:paddingBottom="10dp"
-            android:paddingTop="5dp"/>
+            android:paddingTop="5dp"
+            />
+        
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView
+	        android:id="@+id/textCustomerUsage_CurrentUsage_Title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/customerusage_currentusage_title"
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textStyle="bold|italic" />
+        
     </LinearLayout>
     
     <LinearLayout
@@ -24,99 +40,94 @@
         android:layout_height="wrap_content" >
         
         <TextView 
-            android:id="@+id/textEquipment_List"
-            android:text="@string/equipment_list_equipment"
-            android:layout_width="146dp"
-            android:layout_height="wrap_content"/>
-        
-        <Spinner
-        android:id="@+id/spinnerEquipment_List"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/equipment_list_equipment_array"
-        android:prompt="@string/equipment_list_equipment_prompt" />
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        
-        <TextView 
-            android:id="@+id/textEquipment_Panelnumber"
-            android:text="@string/equipment_panelnumber"
+            android:id="@+id/textCustomerUsage_CurrentUsage_UsagePerDay"
+            android:text="@string/customerusage_currentusage_usageperday"
             android:layout_width="146dp"
             android:layout_height="wrap_content"/>
         
         <EditText
-            android:id="@+id/editEquipment_Panelnumber"
+            android:id="@+id/editCustomerUsage_CurrentUsage_UsagePerDay"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:ems="@string/entryfieldlength"
             android:inputType="number"/>
     </LinearLayout>
     
-   	<LinearLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         
         <TextView 
-            android:id="@+id/textEquipment_PanelCosts"
-            android:text="@string/equipment_panelcost"
+            android:id="@+id/textCustomerUsage_CurrentUsage_UsagePerHour"
+            android:text="@string/customerusage_currentusage_usageperhour"
             android:layout_width="146dp"
             android:layout_height="wrap_content"/>
         
         <EditText
-            android:id="@+id/editEquipment_PanelCosts"
+            android:id="@+id/editCustomerUsage_CurrentUsage_UsagePerHour"
             android:layout_width="75dp"
             android:layout_height="wrap_content"
             android:ems="@string/entryfieldlength"
-            android:inputType="number" />
+            android:inputType="number"/>
     </LinearLayout>
     
-    
-   	<LinearLayout
+    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         
-        <TextView 
-            android:id="@+id/textEquipment_PanelSize"
-            android:text="@string/equipment_panelsize"
-            android:layout_width="146dp"
-            android:layout_height="wrap_content"/>
-        
-        <EditText
-            android:id="@+id/editEquipment_PanelSize"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:ems="@string/entryfieldlength"
-            android:inputType="number" />
-    </LinearLayout>  
-    
-   	<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-        
-        <TextView 
-            android:id="@+id/textEquipment_PanelEfficiency"
-            android:text="@string/equipment_panelefficiency"
-            android:layout_width="146dp"
-            android:layout_height="wrap_content"/>
-        
-        <EditText
-            android:id="@+id/editEquipment_PanelEfficieny"
-            android:layout_width="75dp"
-            android:layout_height="wrap_content"
-            android:ems="@string/entryfieldlength"
-            android:inputType="number" />
+        <TextView
+	        android:id="@+id/textCustomerUsage_CurrentTariff_Title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/customerusage_currenttariff_title"
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textStyle="bold|italic"
+	        android:paddingTop="5dp" />
     </LinearLayout>
     
-   	<LinearLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView 
+            android:id="@+id/textCustomerUsage_CurrentTariff_Tariff"
+            android:text="@string/customerusage_currenttariff_fee"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"/>
+        
+        <EditText
+            android:id="@+id/editCustomerUsage_CurrentTariff_Tariff"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="@string/entryfieldlength"
+            android:inputType="number"/>
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView 
+            android:id="@+id/textCustomerUsage_CurrentTariff_FeedIn"
+            android:text="@string/customerusage_currenttariff_feedin"
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"/>
+        
+        <EditText
+            android:id="@+id/editCustomerUsage_CurrentTariff_FeedIn"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="@string/entryfieldlength"
+            android:inputType="number"/>
+    </LinearLayout>
+    
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
         
 	    <Button
-	        android:id="@+id/buttonEquipment_Back"
+	        android:id="@+id/buttonCustomerUsage_Back"
 	        style="?android:attr/buttonStyleSmall"
 	        android:layout_width="95dp"
 	        android:layout_height="34dp"
@@ -124,13 +135,12 @@
 	        android:onClick="viewBack"/>
 	    
 	    <Button
-	        android:id="@+id/buttonEquipment_Next"
+	        android:id="@+id/buttonCustomerUsage_Next"
 	        style="?android:attr/buttonStyleSmall"
 	        android:layout_width="95dp"
 	        android:layout_height="34dp"
 	        android:text="@string/button_navigation_next" 
 	        android:onClick="viewNext"/>
     </LinearLayout>
-        
 
 </LinearLayout>

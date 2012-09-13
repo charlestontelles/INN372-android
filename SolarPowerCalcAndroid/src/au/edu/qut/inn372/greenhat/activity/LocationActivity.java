@@ -40,23 +40,23 @@ public class LocationActivity extends Activity{
 	    }*/
 	    
 	    /**
-	     * Forward to equipment
+	     * Refers to the succeding tab
 	     * @param view
 	     */
-	    public void viewEquipment(View view){
+	    public void viewNext(View view){
 	    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-	    	int targetActivity = TabbedActivity.EQUIPMENT_ID;
+	    	int targetActivity = TabbedActivity.INPUT_ID;
 	    	parentTabbedActivity.switchTab(targetActivity);
 	    }
 	    
 	    /**
-	     * Back to login
+	     * Refers to the preceding Tab
 	     * @param view
 	     */
-	    public void viewLogin(View view){
-	    	Intent intent = new Intent(this, LoginActivity.class);
-	    	
-	    	startActivity(intent);
+	    public void viewBack(View view){
+	    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+	    	int targetActivity = TabbedActivity.ROOF_ID;
+	    	parentTabbedActivity.switchTab(targetActivity);
 	    }
 }
 
