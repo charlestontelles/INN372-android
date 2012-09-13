@@ -10,8 +10,28 @@ import au.edu.qut.inn372.greenhat.ws.CalculatorSoapClient;
  */
 public class CalculatorMediator {
 	private CalculatorSoapClient soapClient = new CalculatorSoapClient();
+	private Calculator calculator;
 	
-	public Calculator calcEnergyProduction(Calculator calculator){
-		return new Calculator(soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION)),AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION);
+	/**
+	 * Constructor which initialises the calculator bean object
+	 */
+	public CalculatorMediator() {
+		calculator = new Calculator();
+	}
+	
+	/**
+	 * Returns the calculator bean object in the calculator mediator
+	 * @return The calculator bean object
+	 */
+	public Calculator getCalculator() {
+		return calculator;
+	}
+	
+	/**
+	 * Performs remote soap call to perform calculations on the bean object
+	 */
+	public void calcEnergyProduction(){
+		Calculator resultCalculator = new Calculator(soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION)),AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION);
+		calculator.setSolarPower(resultCalculator.getSolarPower());
 	}
 }
