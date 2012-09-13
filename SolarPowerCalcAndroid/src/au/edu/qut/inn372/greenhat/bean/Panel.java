@@ -2,8 +2,6 @@ package au.edu.qut.inn372.greenhat.bean;
 
 import org.ksoap2.serialization.SoapObject;
 
-
-
 /**
  * 
  * Panel Bean
@@ -14,115 +12,176 @@ import org.ksoap2.serialization.SoapObject;
 
 public class Panel extends AndroidAbstractBean{
 	
-	//Attributes
+	private int id;
 	private double width;
 	private double height;
-	private String position;
-	private double efficiency_loss;
-	private double power;
+	private double efficiency;
+	private double efficiencyLoss = 0.7;
 	
-	//Constructor
+	private double powerRating;
+	private double size; 
+	private double cost;
+	
+	
 	/**
-	 * added this empty constructor because the jUnit-test needed it, FK
+	 * Get the id
+	 * @return id of the panel
 	 */
-	public Panel(){
-		super();
+	public int getId() {
+		return id;
 	}
 	
-	
-	public Panel(SoapObject soapObject, int soapOperation){
-		if (soapObject != null)
-			switch (soapOperation) {
-			case AndroidAbstractBean.OPERATION_CALC_EQUIPMENT:
-				this.width = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("width").toString());
-				this.height = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("height").toString());
-				this.position = new String(((SoapObject)soapObject.getProperty(0)).getProperty("position").toString());
-				this.efficiency_loss = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("efficiency_loss").toString());
-				this.power = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("power").toString());
-				break;
-			default:
-				break;
-			}		
+	/**
+	 * Set the id
+	 * @param id new value for the panel id
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 	
-	//Getter and Setter
+	/**
+	 * Get the width
+	 * @return width of the panel
+	 */
 	public double getWidth() {
 		return width;
 	}
-
+	
+	/**
+	 * Set the width
+	 * @param width new width for the panel
+	 */
 	public void setWidth(double width) {
 		this.width = width;
 	}
-
+	
+	/**
+	 * Get the height
+	 * @return height of the panel
+	 */
 	public double getHeight() {
 		return height;
 	}
-
+	
+	/**
+	 * Set the height
+	 * @param height new height for the panel
+	 */
 	public void setHeight(double height) {
 		this.height = height;
 	}
-
-	public String getPosition() {
-		return position;
-	}
-
-	public void setPosition(String position) {
-		this.position = position;
-	}
-
-	public double getEfficiency_loss() {
-		return efficiency_loss;
-	}
-
-	public void setEfficiency_loss(double efficiency_loss) {
-		this.efficiency_loss = efficiency_loss;
+	
+	/**
+	 * Get the efficiency
+	 * @return efficiency of the panel
+	 */
+	public double getEfficiency() {
+		return efficiency;
 	}
 	
-	public double getPower() {
-		return power;
-	}
-
-
-	public void setPower(double power) {
-		this.power = power;
-	}
-
-
-	/**TODO Complete implementation of getPanelEfficiency, at the moment it is just a getter-method
-	 * 		for efficiency loss
-	 * @return efficiency_loss
+	/**
+	 * Set the efficiency
+	 * @param efficiency new panel efficiency
 	 */
-	public double getPanelEfficiency(){
-		return this.efficiency_loss;
+	public void setEfficiency(double efficiency) {
+		this.efficiency = efficiency;
+	}
+	
+	/**
+	 * Get the efficiency
+	 * @return efficiencyLoss of the panel
+	 */
+	public double getEfficiencyLoss() {
+		return efficiencyLoss;
+	}
+	
+	/**
+	 * Set the efficiency loss
+	 * @param efficiencyLoss new efficiency loss of the panel
+	 */
+	public void setEfficiencyLoss(double efficiencyLoss) {
+		this.efficiencyLoss = efficiencyLoss;
 	}
 
 	/**
-	 * Marshalling Method
-	 * 
+	 * @return the panelPower
+	 */
+	public double getPowerRating() {
+		return powerRating;
+	}
+
+	/**
+	 * @param panelPower the panelPower to set
+	 */
+	public void setPowerRating(double panelPower) {
+		this.powerRating = panelPower;
+	}
+
+
+
+	/**
+	 * @return the size
+	 */
+	public double getSize() {
+		return size;
+	}
+
+	/**
+	 * @param size the size to set
+	 */
+	public void setSize(double size) {
+		this.size = size;
+	}
+
+	/**
+	 * @return the cost
+	 */
+	public double getCost() {
+		return cost;
+	}
+
+	/**
+	 * @param cost the cost to set
+	 */
+	public void setCost(double cost) {
+		this.cost = cost;
+	}
+
+	/**
 	 * ATTENTION: ALL VALUES MUST BE CONVERTED TO STRING
 	 */
 	@Override
 	protected void setSoapObject(int soapOperation) {
-		// TODO Auto-generated method stub
 		switch (soapOperation) {
-		// "AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION" is an int-value for the switch-case statement 
 		case AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION:
-			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE, AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION_NAME);
-			SoapObject child = new SoapObject ("", "panel");
-			child.addProperty("width", ""+this.width);
-			child.addProperty("height", ""+this.height);
-			child.addProperty("position", ""+this.position);
-			child.addProperty("efficiency_loss", ""+this.efficiency_loss);
-			child.addProperty("power", ""+this.power);
-			this.soapObject.addSoapObject(child);
+			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION_NAME);
+			this.soapObject = setDefaultSoapObject(this.soapObject);
+			break;
+		case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
+			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_SAVE_CALCULATION_NAME);
+			this.soapObject = setDefaultSoapObject(this.soapObject);
 			break;
 		default:
 			this.soapObject = new SoapObject("", "panel");
-			this.soapObject.addProperty("width", ""+this.width);
-			this.soapObject.addProperty("height", ""+this.height);
-			this.soapObject.addProperty("position", ""+this.position);
-			this.soapObject.addProperty("efficiency_loss", ""+this.efficiency_loss);
-			this.soapObject.addProperty("power", ""+this.power);
+			this.soapObject = setDefaultSoapObject(this.soapObject);
+			break;
 		}
+	}
+	
+	/**
+	 * Adds all object properties to the given soap object and returns it
+	 * @param currentSoapObject Soap object that fields are added to
+	 * @return Amended soap object with fields
+	 */
+	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
+		currentSoapObject.addProperty("id", ""+this.id);
+		currentSoapObject.addProperty("width", ""+this.width);
+		currentSoapObject.addProperty("height", ""+this.height);
+		currentSoapObject.addProperty("efficiency", ""+this.efficiency);
+		currentSoapObject.addProperty("efficiencyLoss", ""+this.efficiencyLoss);
+		currentSoapObject.addProperty("powerRating", ""+this.powerRating);
+		currentSoapObject.addProperty("size", ""+this.size);
+		currentSoapObject.addProperty("cost", ""+this.cost);
+		return currentSoapObject;
 	}
 }
