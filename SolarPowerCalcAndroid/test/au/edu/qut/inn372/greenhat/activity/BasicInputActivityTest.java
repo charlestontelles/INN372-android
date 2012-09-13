@@ -1,12 +1,12 @@
 package au.edu.qut.inn372.greenhat.activity;
 
 import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.controller.CalculatorRemoteController;
+import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 import junit.framework.TestCase;
 
 public class BasicInputActivityTest extends TestCase {
 	Calculator calc = new Calculator();
-	CalculatorRemoteController controller = new CalculatorRemoteController();
+	CalculatorMediator controller = new CalculatorMediator();
 	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity";
 	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity2";
 	

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.support.v4.app.NavUtils;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.controller.CalculatorRemoteController;
+import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
 public class BasicInputActivity extends Activity {
 
@@ -63,7 +63,7 @@ public class BasicInputActivity extends Activity {
 			// Current usage
 			calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUser_UsagePerDay)).getText().toString()));
 			
-			CalculatorRemoteController controller = new CalculatorRemoteController();
+			CalculatorMediator controller = new CalculatorMediator();
 			intent.putExtra(EXTRA_MESSAGE2, ""+calculator.getCustomer().getElectricityUsage().getDailyAverageUsage());
 			calculator = controller.calcEnergyProduction(calculator);
 			

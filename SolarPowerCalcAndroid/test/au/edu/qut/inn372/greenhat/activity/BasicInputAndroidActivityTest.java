@@ -2,7 +2,7 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.controller.CalculatorRemoteController;
+import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 import android.content.Intent;
 
 public class BasicInputAndroidActivityTest extends
@@ -10,7 +10,7 @@ public class BasicInputAndroidActivityTest extends
 	
 	BasicInputActivity activity;
 	Calculator calc;
-	CalculatorRemoteController controller = new CalculatorRemoteController();
+	CalculatorMediator controller = new CalculatorMediator();
 	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity";
 	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity2";
 	

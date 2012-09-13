@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.controller.CalculatorRemoteController;
+import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
 public class LoginActivity extends Activity {
 	
@@ -41,7 +41,7 @@ public class LoginActivity extends Activity {
 			Calculator calculator = new Calculator();
 			calculator.getEquipment().setCost(new Double(inputCost.getText().toString()));
 			calculator.getEquipment().setSize(new Double(inputSize.getText().toString()));
-			CalculatorRemoteController controller = new CalculatorRemoteController();
+			CalculatorMediator controller = new CalculatorMediator();
 			calculator = controller.calcEnergyProduction(calculator);
 			textView.setText("Daily Soler Power =" + calculator.getResult() + " KW(p)");
 		} catch (Exception e) {

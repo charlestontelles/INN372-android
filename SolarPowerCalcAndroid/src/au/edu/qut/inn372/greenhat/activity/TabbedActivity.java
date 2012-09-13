@@ -16,6 +16,8 @@ public class TabbedActivity extends TabActivity {
 	public static final int LOCATION_ID = 3;
 	public static final int INPUT_ID = 4;
 	
+
+	
 	
 	/**
 	 * Constructor - sets up tabs
