@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
 public class TabbedActivity extends TabActivity {
 	
@@ -16,7 +18,7 @@ public class TabbedActivity extends TabActivity {
 	public static final int LOCATION_ID = 3;
 	public static final int INPUT_ID = 4;
 	
-
+	private CalculatorMediator calcMediator;
 	
 	
 	/**
@@ -25,6 +27,8 @@ public class TabbedActivity extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
+        
+        calcMediator = new CalculatorMediator();
  
         tabHost = getTabHost();
         
@@ -48,6 +52,18 @@ public class TabbedActivity extends TabActivity {
 		Intent newIntent = new Intent(context, newActivity);
 		newSpec.setContent(newIntent);
 		tabHost.addTab(newSpec);
+	}
+	
+	/**
+	 * Retrieves the calculator bean object
+	 * @return The calculator bean
+	 */
+	public Calculator getCalculator() {
+		return calcMediator.getCalculator();
+	}
+	
+	public void calcEnergyProduction() {
+		calcMediator.calcEnergyProduction();
 	}
 	
 	/**

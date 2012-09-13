@@ -19,6 +19,7 @@ public class PowerGeneration extends Activity{
 	}   
 	
 	public void generateView() {
+		
     	TextView dailyField = (TextView)findViewById(R.id.TextViewDailyField);
     	TextView annualField = (TextView)findViewById(R.id.TextViewAnnualField);
     	TextView quaterlyField = (TextView)findViewById(R.id.TextViewQuaterlyField);
@@ -30,17 +31,19 @@ public class PowerGeneration extends Activity{
     	Intent intent = getIntent();
         String solarPower = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE);
         String daily = intent.getStringExtra(BasicInputActivity.EXTRA_MESSAGE2);
+        Double dailyDouble = Double.valueOf(daily);
+        Double solarPowerDouble = Double.valueOf(solarPower);
         
         
         DecimalFormat df = new DecimalFormat("#.##");
 
         
-        dailyField.setText(""+df.format(new Double(solarPower)));
-        annualField.setText(""+df.format(new Double(solarPower)*365));
-        quaterlyField.setText(""+df.format(new Double(solarPower)*365/4));
-        netField.setText(""+(df.format(new Double(solarPower).doubleValue() - new Double(daily).doubleValue())));
-        annualNet.setText(""+(df.format((new Double(solarPower).doubleValue() - new Double(daily).doubleValue())*365)));
-        quaterlyNet.setText(""+(df.format((new Double(solarPower).doubleValue() - new Double(daily).doubleValue())*365/4)));
+        dailyField.setText(""+df.format(solarPowerDouble));
+        annualField.setText(""+df.format(solarPowerDouble*365));
+        quaterlyField.setText(""+df.format(solarPowerDouble*365/4));
+        netField.setText(""+(df.format(solarPowerDouble - dailyDouble)));
+        annualNet.setText(""+(df.format((solarPowerDouble - dailyDouble)*365)));
+        quaterlyNet.setText(""+(df.format((solarPowerDouble - dailyDouble)*365/4)));
     }	
 	
 }
