@@ -32,6 +32,7 @@ public class CalculatorTest extends TestCase {
 	
 	}
 
+	/*
 	public void testGetResult() {
 		calculator.setResult(10);
 		assertTrue(calculator.getResult()==10);
@@ -41,5 +42,6 @@ public class CalculatorTest extends TestCase {
 		calculator.setResult(10);
 		assertTrue(calculator.getResult()==10);
 	}
+	*/
 
 }
