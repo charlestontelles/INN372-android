@@ -83,14 +83,14 @@ public class BasicInputActivity extends Activity {
 		System.out.println(calculator.getEquipment().getSize());
     	calculator.getEquipment().getInverter().setEfficiency(new Double(((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).getText().toString()));
 		// Roof
-		calculator.getCustomer().getLocation().getRoof().setEfficiencyLossNorth((double)(new Double(((EditText)findViewById(R.id.editRoof_LossNorth)).getText().toString())));
+		/*calculator.getCustomer().getLocation().getRoof().setEfficiencyLossNorth((double)(new Double(((EditText)findViewById(R.id.editRoof_LossNorth)).getText().toString())));
 		calculator.getCustomer().getLocation().getRoof().setEfficiencyLossWest((double)(new Double(((EditText)findViewById(R.id.editRoof_LossWest)).getText().toString())));
 		calculator.getCustomer().getLocation().getRoof().setPercentageNorth((double)(new Double(((EditText)findViewById(R.id.editRoof_PercentageNorth)).getText().toString())));
-		calculator.getCustomer().getLocation().getRoof().setPercentageWest((double)(new Double(((EditText)findViewById(R.id.editRoof_PercentageWest)).getText().toString())));
+		calculator.getCustomer().getLocation().getRoof().setPercentageWest((double)(new Double(((EditText)findViewById(R.id.editRoof_PercentageWest)).getText().toString())));*/
 		// Location (day light hours)
-		calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editSunlight_Daylight)).getText().toString()));
+		calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editRoof_Sunlight_Daylight)).getText().toString()));
 		// Current usage
-		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUser_UsagePerDay)).getText().toString()));
+		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDay)).getText().toString()));
 
 		intent.putExtra(EXTRA_MESSAGE2, ""+parentTabbedActivity.getCalculator().getCustomer().getElectricityUsage().getDailyAverageUsage());
 		
@@ -103,7 +103,7 @@ public class BasicInputActivity extends Activity {
     
     }
     
-    public void reset(View view){
+    /*public void reset(View view){
 		// Equipment
 		((EditText)findViewById(R.id.editEquipment_Size)).setText("4.5");
 		((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).setText("90.0");
@@ -116,14 +116,14 @@ public class BasicInputActivity extends Activity {
 		((EditText)findViewById(R.id.editSunlight_Daylight)).setText("4.5");
 		// Current usage
 		((EditText)findViewById(R.id.editUser_UsagePerDay)).setText("50");
-    }
+    }*/
 
 	/**
 	 * Saves current input data to the calculator bean
 	 */
 	private void saveData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
-		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUser_UsagePerDay)).getText().toString()));
+		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDay)).getText().toString()));
 	}
 	
 	/**
@@ -131,7 +131,7 @@ public class BasicInputActivity extends Activity {
 	 */
 	private void loadData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
-		EditText inputDailyAverage = (EditText)findViewById(R.id.editUser_UsagePerDay);
+		EditText inputDailyAverage = (EditText)findViewById(R.id.editRoof_Usage_UsagePerDay);
 		inputDailyAverage.setText(new Double(calculator.getCustomer().getElectricityUsage().getDailyAverageUsage()).toString());
 	}
 	

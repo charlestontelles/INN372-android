@@ -71,12 +71,20 @@
 	<string name="basicinput_roof_title">Roof Details</string>
 	<string name="basicinput_roof_size_width">Roof Size Width (cm):</string>
 	<string name="basicinput_roof_size_height">Roof Size Height (cm):</string>
-	<string name="basicinput_roof_percentage_north">Percentage on North Roof:</string>
-	<string name="basicinput_roof_percentage_west">Percentage on West Roof:</string>
+	<string name="basicinput_roof_bank1_orientationloss">Bank 1 Orientation Efficiency Loss:</string>
+	<string name="basicinput_roof_bank1_angleloss">Bank 1 Angle Efficiency Loss:</string>
+	<string name="basicinput_roof_bank2_orientationloss">Bank 2 Orientation Efficiency Loss</string>
+	<string name="basicinput_roof_bank2_angleloss">Bank 2 Angle Efficiency Loss:</string>
 	<string name="basicinput_roof_efficiency_north">Efficiency Loss on North Roof:</string>
 	<string name="basicinput_roof_efficiency_west">Efficiency Loss on West Roof:</string>
 	<string name="basicinput_sunlight_title">Sunlight Details</string>
-	<string name="basicinput_user_title">Current Energy User Details:</string>
+	<string name="basicinput_sunlight_dailyhours">Average daliy Hours of Sunlight:</string>
+	<string name="basicinput_usage_title">Current Energy User Details</string>
+	<string name="basicinput_usage_energyperday">Energy Used Per Day:</string>
+	<string name="basicinput_usage_energyperdaylight">Energy Used Per Daylight Hour:</string>
+	<string name="basicinput_usage_tariff">Tariff 11 Fee:</string>
+	<string name="basicinput_usage_feedinfee">Feed in Fee:</string>
+	<string name="basicinput_usage_feeincrease">Annual Tariff Fee Increase:</string>
 	<string name="basicinput_button_calculate">Calculate</string>
 	<string name="basicinput_button_reset">Reset</string>
 	
