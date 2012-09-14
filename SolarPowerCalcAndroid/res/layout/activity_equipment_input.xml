@@ -30,11 +30,11 @@
             android:layout_height="wrap_content"/>
         
         <Spinner
-        android:id="@+id/spinnerEquipment_List"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/equipment_list_equipment_array"
-        android:prompt="@string/equipment_list_equipment_prompt" />
+	        android:id="@+id/spinnerEquipment_List"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:entries="@array/equipment_list_equipment_array"
+	        android:prompt="@string/equipment_list_equipment_prompt" />
     </LinearLayout>
     
     <LinearLayout
