@@ -42,7 +42,7 @@ public class PowerGeneration extends Activity{
 		TextView paybackPeriodField = (TextView)findViewById(R.id.TextViewPaybackPeriodField);
 		
 		systemSizeField.setText(""+df.format(calculator.getEquipment().getSize()));
-		systemCostField.setText(""+df.format(calculator.getEquipment().getCost()));
+		systemCostField.setText("$"+df.format(calculator.getEquipment().getCost()));
 		paybackPeriodField.setText(""+df.format(paybackPeriod));
 	}
 	
@@ -65,22 +65,30 @@ public class PowerGeneration extends Activity{
 	private void generateFinancialView(Calculation[] resultCalculations) {
 		TableLayout table = (TableLayout)findViewById(R.id.TableLayoutOutput);
 		
-		//Incomplete
-		//add table rows and views to the table
+		//add a new table row for each year of calculation data
 		for(Calculation curCalculation: resultCalculations) {
-			//New Row 
 			TableRow newRow = new TableRow(this);
+			
 			//Add entries to the row
-			TextView yearView = new TextView(this);
-			yearView.setText(""+df.format(curCalculation.getYear()));
+			TextView yearView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
+			yearView.setText(""+df.format(curCalculation.getYear()+1));
 			newRow.addView(yearView);
+			
+			TextView savingsView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
+			savingsView.setText(""+df.format(curCalculation.getCumulativeSaving()));
+			newRow.addView(savingsView);
+			
+			TextView ROIView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
+			ROIView.setText(""+df.format(curCalculation.getCumulativeSaving()/calculator.getEquipment().getCost()));
+			newRow.addView(ROIView);
+			
 			table.addView(newRow);
 		}
 		
 	}
 	
 	/**
-	 * Test data for formulating the output screen
+	 * Test data for formulating the output screen - this will be removed when the WS call is implemented properly (and working)
 	 */
 	private void testCalculationsSetup() {
 		testCalculations = new Calculation[25];
@@ -98,7 +106,7 @@ public class PowerGeneration extends Activity{
 				testCalculations[year].setCumulativeSaving(testCalculations[year].getAnnualSaving());
 			}
 			else {
-				testCalculations[year].setCumulativeSaving(testCalculations[year].getAnnualSaving()+testCalculations[year-1].getAnnualSaving());
+				testCalculations[year].setCumulativeSaving(testCalculations[year].getAnnualSaving()+testCalculations[year-1].getCumulativeSaving());
 			}
 		}
 		
