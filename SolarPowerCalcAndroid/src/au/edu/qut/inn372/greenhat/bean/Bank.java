@@ -1,10 +1,13 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
+
 import org.ksoap2.serialization.SoapObject;
 
 
-public class Bank extends AndroidAbstractBean{
+public class Bank extends AndroidAbstractBean implements Serializable {
 	
+	private static final long serialVersionUID = 295341398887435456L;
 	private int bankId;
 	private double angle;
 	private String selectedOrientation;

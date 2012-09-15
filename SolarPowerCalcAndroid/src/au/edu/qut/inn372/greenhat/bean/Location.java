@@ -1,5 +1,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
+
 import org.ksoap2.serialization.SoapObject;
 
 /**
@@ -8,8 +10,9 @@ import org.ksoap2.serialization.SoapObject;
  * @author Charleston Telles
  *
  */
-public class Location extends AndroidAbstractBean{
+public class Location extends AndroidAbstractBean implements Serializable {
 
+	private static final long serialVersionUID = 4817475946932075809L;
 	private double sunLightHours; //average daily hours of sunlight
 	private String region;
 	private String city;

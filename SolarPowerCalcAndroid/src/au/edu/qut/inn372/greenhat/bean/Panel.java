@@ -1,5 +1,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
+
 import org.ksoap2.serialization.SoapObject;
 
 /**
@@ -10,8 +12,9 @@ import org.ksoap2.serialization.SoapObject;
  *
  */
 
-public class Panel extends AndroidAbstractBean{
+public class Panel extends AndroidAbstractBean implements Serializable {
 	
+	private static final long serialVersionUID = -3846338865698898556L;
 	private int id;
 	private double width;
 	private double height;

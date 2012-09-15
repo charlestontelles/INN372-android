@@ -1,11 +1,14 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 
 import org.ksoap2.serialization.SoapObject;
 
-public class Calculator extends AndroidAbstractBean{
+public class Calculator extends AndroidAbstractBean implements Serializable {
 	
+	private static final long serialVersionUID = 5951374471213496241L;
+
 	private Equipment equipment;
 	
 	private Customer customer;

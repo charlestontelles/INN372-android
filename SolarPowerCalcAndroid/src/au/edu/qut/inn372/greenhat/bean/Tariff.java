@@ -1,9 +1,13 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
+
 import org.ksoap2.serialization.SoapObject;
 
-public class Tariff extends AndroidAbstractBean{
+public class Tariff extends AndroidAbstractBean implements Serializable {
 	
+	private static final long serialVersionUID = 3164471752108986206L;
+
 	private double tariff11Fee;
 
 	private double annualTariffIncrease = 5;

@@ -1,9 +1,15 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
+
 import org.ksoap2.serialization.SoapObject;
 
-public class Calculation extends AndroidAbstractBean {
+public class Calculation extends AndroidAbstractBean implements Serializable {
 	
+	private static final long serialVersionUID = -6841951699058445777L;
+	/**
+	 * 
+	 */
 	Integer year;
 	Double tariff11Fee;
 	Double dailySolarPower;
@@ -12,6 +18,10 @@ public class Calculation extends AndroidAbstractBean {
 	Double dailySaving;
 	Double annualSaving;
 	Double cumulativeSaving;
+	
+	public Calculation() {
+		
+	}
 		
 	/**
 	 * A calculation object contains info about year, tariff, solar power generation and savings.

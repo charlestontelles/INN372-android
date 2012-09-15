@@ -1,5 +1,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
+
 import org.ksoap2.serialization.SoapObject;
 
 /**
@@ -8,8 +10,12 @@ import org.ksoap2.serialization.SoapObject;
  * @author Charleston Telles
  *
  */
-public class Inverter extends AndroidAbstractBean{
+public class Inverter extends AndroidAbstractBean implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2926103358171541087L;
 	private double efficiency;
 	private double lifespan;
 	private double replacementCost;

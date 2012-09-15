@@ -1,5 +1,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
+import java.io.Serializable;
+
 import org.ksoap2.serialization.SoapObject;
 
 /**
@@ -8,8 +10,9 @@ import org.ksoap2.serialization.SoapObject;
  * @author Charleston Telles
  *
  */
-public class ElectricityUsage extends AndroidAbstractBean{
+public class ElectricityUsage extends AndroidAbstractBean implements Serializable {
 
+	private static final long serialVersionUID = -6790457982418909069L;
 	private double dailyAverageUsage; //current electricity usage
 	private double dayTimeHourlyUsage;
 	
