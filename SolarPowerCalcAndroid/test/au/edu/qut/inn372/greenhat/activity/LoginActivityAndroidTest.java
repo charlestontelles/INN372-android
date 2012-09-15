@@ -1,15 +1,9 @@
 package au.edu.qut.inn372.greenhat.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.EditText;
-import android.widget.TextView;
-import au.edu.qut.inn372.greenhat.activity.*;
-import au.edu.qut.inn372.greenhat.activity.R;
-import au.edu.qut.inn372.greenhat.bean.Calculator;
-import android.os.Bundle;
+import android.widget.Button;
 import android.app.Activity;
-import android.content.Intent;
-import android.widget.TextView;
+import android.app.Instrumentation.ActivityMonitor;
 
 public class LoginActivityAndroidTest extends
 		ActivityInstrumentationTestCase2<LoginActivity> {
@@ -17,27 +11,34 @@ public class LoginActivityAndroidTest extends
 	LoginActivity activity;
 	
 	public LoginActivityAndroidTest(){
-		super("au.edu.qut.inn372.greenhat.activity", LoginActivity.class);
+		super(LoginActivity.class);
 	}
 	
 	protected void setUp() throws Exception{
 		super.setUp();
-		 activity = getActivity();
-		
+		activity = getActivity();
 	}
 	
-	public void testLogin(){
-		
-		EditText login = (EditText)activity.findViewById(R.id.editUser);
-		assertNotNull(login);
-	}
-	
-	public void testPWD(){
-		EditText pwd = (EditText)activity.findViewById(R.id.editPassword);
-		assertNotNull(pwd);
-	}
-	
+	/**
+	 * Test that the activity starts up
+	 */
 	public void testStartUp(){
 		assertTrue(LoginActivity.class.getName().length() > 0);
+	}
+	
+	/**
+	 * Tests that the login button launches a tabbedActivity
+	 */
+	public void testLogin() {
+		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(TabbedActivity.class.getName(), null, false);
+		final Button button = (Button) activity.findViewById(R.id.buttonLogin);
+		activity.runOnUiThread(new Runnable() {
+			public void run() {
+				button.performClick();
+			}
+		});
+		Activity nextActivity = activityMonitor.waitForActivity();
+		assertNotNull(nextActivity);
+		nextActivity.finish();
 	}
 }

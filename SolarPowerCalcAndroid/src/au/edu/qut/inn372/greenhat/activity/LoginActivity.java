@@ -30,29 +30,8 @@ public class LoginActivity extends Activity {
         return true;
     }
     
-    /** Called when the user clicks the Send button */
-    public void calculate(View view) {
-    	/*
-    	TextView textView = (TextView)findViewById(R.id.textView1);
-    	EditText inputSize = (EditText)findViewById(R.id.editText1);
-    	EditText inputCost = (EditText)findViewById(R.id.editText2);
-    	textView.setText("calculated");
-    	try {
-			Calculator calculator = new Calculator();
-			calculator.getEquipment().setCost(new Double(inputCost.getText().toString()));
-			calculator.getEquipment().setSize(new Double(inputSize.getText().toString()));
-			CalculatorMediator controller = new CalculatorMediator();
-			calculator = controller.calcEnergyProduction(calculator);
-			textView.setText("Daily Soler Power =" + calculator.getResult() + " KW(p)");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		*/
-    }
-    
     public void login (View view){
     	Intent intent = new Intent(this, TabbedActivity.class);
-    	
     	startActivity(intent);
     }
 }
