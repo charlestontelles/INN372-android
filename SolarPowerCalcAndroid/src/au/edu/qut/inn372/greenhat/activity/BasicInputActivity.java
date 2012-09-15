@@ -100,8 +100,8 @@ public class BasicInputActivity extends Activity {
 	
 	@Override
 	public void onResume() {
-		loadData();
 		super.onResume();
+		loadData();
 	}
     
 }

@@ -67,7 +67,7 @@ public class CustomerUsageActivity extends Activity {
 		
 		@Override
 		public void onResume() {
-			loadData();
 			super.onResume();
+			loadData();
 		}
 }
