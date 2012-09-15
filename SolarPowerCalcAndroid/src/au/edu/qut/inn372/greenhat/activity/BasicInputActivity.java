@@ -60,7 +60,7 @@ public class BasicInputActivity extends Activity {
     
     }
     
-    public void reset(View view){
+    /*public void reset(View view){
 		// Equipment
 		((EditText)findViewById(R.id.editEquipment_Size)).setText("4.5");
 		((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).setText("90.0");
@@ -73,14 +73,14 @@ public class BasicInputActivity extends Activity {
 		((EditText)findViewById(R.id.editSunlight_Daylight)).setText("4.5");
 		// Current usage
 		((EditText)findViewById(R.id.editUser_UsagePerDay)).setText("50");
-    }
+    }*/
 
 	/**
 	 * Saves current input data to the calculator bean
 	 */
 	private void saveData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
-		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUser_UsagePerDay)).getText().toString()));
+		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDay)).getText().toString()));
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class BasicInputActivity extends Activity {
 	 */
 	private void loadData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
-		EditText inputDailyAverage = (EditText)findViewById(R.id.editUser_UsagePerDay);
+		EditText inputDailyAverage = (EditText)findViewById(R.id.editRoof_Usage_UsagePerDay);
 		inputDailyAverage.setText(new Double(calculator.getCustomer().getElectricityUsage().getDailyAverageUsage()).toString());
 	}
 	

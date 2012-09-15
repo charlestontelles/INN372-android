@@ -110,13 +110,13 @@
         android:orientation="horizontal" >
     
 	    <TextView
-	        android:id="@+id/textRoof_PercentageNorth"
+	        android:id="@+id/textRoof_Bank1_OrientationLoss"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"	        
-	        android:text="@string/basicinput_roof_percentage_north" />
+	        android:text="@string/basicinput_roof_bank1_orientationloss" />
 	    
 	    <EditText
-	        android:id="@+id/editRoof_PercentageNorth"
+	        android:id="@+id/editRoof_Bank1_OrientationLoss"
 	        android:layout_width="75dp"
 	        android:layout_height="wrap_content"	        
 	        android:ems="10"
@@ -131,13 +131,13 @@
         android:orientation="horizontal" >
 
 	    <TextView
-	        android:id="@+id/textRoof_PercentageWest"
+	        android:id="@+id/textRoof_Bank1_AngleLoss"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"	        
-	        android:text="Percentage on West Roof:" />
+	        android:text="@string/basicinput_roof_bank1_angleloss" />
 	    
 	    <EditText
-	        android:id="@+id/editRoof_PercentageWest"
+	        android:id="@+id/editRoof_Bank1_AngleLoss"
 	        android:layout_width="75dp"
 	        android:layout_height="wrap_content"	        
 	        android:ems="10"
@@ -152,13 +152,13 @@
         android:orientation="horizontal" >
 
 	    <TextView
-	        android:id="@+id/textRoof_LossNorth"
+	        android:id="@+id/textRoof_Bank2_OrientationLoss"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"	        
-	        android:text="Efficiency Loss (North Roof):" />
+	        android:text="@string/basicinput_roof_bank2_orientationloss"/>
 	    
 	    <EditText
-	        android:id="@+id/editRoof_LossNorth"
+	        android:id="@+id/editRoof_Bank2_OrientationLoss"
 	        android:layout_width="75dp"
 	        android:layout_height="wrap_content"	        
 	        android:ems="10"
@@ -173,13 +173,13 @@
         android:orientation="horizontal" >
 
 	   	<TextView
-	        android:id="@+id/textRoof_LossWest"
+	        android:id="@+id/textRoof_Bank2_AngleLoss"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"	        
-	        android:text="Efficiency Loss (West Roof):" />
+	        android:text="@string/basicinput_roof_bank2_angleloss" />
 	    
 	     <EditText
-	        android:id="@+id/editRoof_LossWest"
+	        android:id="@+id/editRoof_Bank2_AngleLoss"
 	        android:layout_width="75dp"
 	        android:layout_height="wrap_content"	        
 	        android:ems="10"
@@ -194,10 +194,10 @@
         android:orientation="horizontal" >
      
 	   <TextView
-	        android:id="@+id/textSunlight_Title"
+	        android:id="@+id/textRoof_Sunlight_Title"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"	        
-	        android:text="Sunlight Details"
+	        android:text="@string/basicinput_sunlight_title"
 	        android:textAppearance="?android:attr/textAppearanceSmall"
 	        android:textStyle="bold|italic" />
    
@@ -209,13 +209,13 @@
         android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/textSunlight_Daylight"
+        android:id="@+id/textRoof_Sunlight_Daylight"
         android:layout_width="166dp"
         android:layout_height="wrap_content"        
-        android:text="Average Daily Hours of Sunlight:" />
+        android:text="@string/basicinput_sunlight_dailyhours" />
     
     <EditText
-        android:id="@+id/editSunlight_Daylight"
+        android:id="@+id/editRoof_Sunlight_Daylight"
         android:layout_width="75dp"
         android:layout_height="wrap_content"        
         android:ems="10"
@@ -230,11 +230,11 @@
         android:orientation="horizontal" >
     
 	   <TextView
-	        android:id="@+id/textUser_Title"
+	        android:id="@+id/textRoof_Usage_Title"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"	        
 	        android:textStyle="bold|italic"
-	        android:text="Current Energy Usage Details" />
+	        android:text="@string/basicinput_usage_title" />
 	  
 	</LinearLayout>
 	   
@@ -244,13 +244,13 @@
         android:orientation="horizontal" >
     
 	   <TextView
-	        android:id="@+id/textUser_UsagePerDay"
+	        android:id="@+id/textRoof_Usage_UsagePerDay"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"	        
-	        android:text="Energy Used Per Day:" />
+	        android:text="@string/basicinput_usage_energyperday" />
 	   
 	    <EditText
-	        android:id="@+id/editUser_UsagePerDay"
+	    	android:id="@+id/editRoof_Usage_UsagePerDay"
 	        android:layout_width="75dp"
 	        android:layout_height="wrap_content"	        
 	        android:ems="10"
@@ -258,6 +258,94 @@
 	        android:text="0.0" />
     
     </LinearLayout>
+    
+   	<LinearLayout 
+  		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    
+	   <TextView
+	        android:id="@+id/textRoof_Usage_UsagePerDaylight"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/basicinput_usage_energyperdaylight"/>
+	   
+	    <EditText
+	        android:id="@+id/editRoof_Usage_UsagePerDaylight"
+	        android:layout_width="75dp"
+	        android:layout_height="wrap_content"	        
+	        android:ems="10"
+	        android:inputType="numberDecimal"
+	        android:text="0.0" />
+    
+    </LinearLayout>
+    
+   	<LinearLayout 
+  		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    
+	   <TextView
+	        android:id="@+id/textRoof_Usage_FeedInFee"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/basicinput_usage_feedinfee"/>
+	   
+	    <EditText
+	        android:id="@+id/editRoof_Usage_FeedInFee"
+	        android:layout_width="75dp"
+	        android:layout_height="wrap_content"	        
+	        android:ems="10"
+	        android:inputType="numberDecimal"
+	        android:text="0.0" />
+    
+    </LinearLayout>
+    
+   	<LinearLayout 
+  		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    
+	   <TextView
+	        android:id="@+id/textRoof_Usage_FeeIncrease"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/basicinput_usage_feeincrease"/>
+	   
+	    <EditText
+	        android:id="@+id/editRoof_Usage_FeeIncrease"
+	        android:layout_width="75dp"
+	        android:layout_height="wrap_content"	        
+	        android:ems="10"
+	        android:inputType="numberDecimal"
+	        android:text="0.0" />
+    
+    </LinearLayout>
+   		
+   	
+    
+   	<LinearLayout 
+  		android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+    
+	   <TextView
+	        android:id="@+id/textRoof_Usage_Tariff"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/basicinput_usage_tariff"/>
+	   
+	    <EditText
+	        android:id="@+id/editRoof_Usage_Tariff"
+	        android:layout_width="75dp"
+	        android:layout_height="wrap_content"	        
+	        android:ems="10"
+	        android:inputType="numberDecimal"
+	        android:text="0.0" />
+    
+    </LinearLayout>
+    
+   	
     
 	
    	<LinearLayout 

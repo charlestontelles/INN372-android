@@ -20,8 +20,8 @@
 	
 	<!-- Location View -->
 	<string name="location_title">Location</string>
-	<string name="location_city">City:</string>
-	<string name="location_postcode">Postcode:</string>
+	<string name="location_region">Region:</string>
+	<string name="location_city">City:</string>	
 	<string name="location_sunlight">Average Daily Hours of Sunlight:</string>
 	
 	<!-- Equipment -->
@@ -40,23 +40,29 @@
 	
 	<!-- Roof -->
 	<string name="roof_title">Roof</string>
-	<string name="roof_bank1">Bank 1</string>
-	<string name="roof_bank2">Bank 2</string>
-	<string name="roof_numberofpanelbank1">Number of Panels for Bank 1</string>
-	<string name="roof_numberofpanelbank2">Number of Panels for Bank 2</string>
-	<string name="roof_anglebank1">Angle of Bank 1</string>
-	<string name="roof_anglebank2">Angle of Bank 2</string>
-	<string name="roof_directionbank1">Direction of Bank 1</string>
-	<string name="roof_directionbank2">Direction of Bank 2</string>
+	<string name="roof_size_width">Roof Size Width (cm):</string>
+	<string name="roof_size_height">Roof Size Height (cm):</string>
+	<string name="roof_numberofpanels">Number of Panels</string>
+	<string name="roof_shownumberofpanels">0</string>
 	<string name="roof_banks">Banks</string>
 	<string name="roof_banks_array_prompt">Choose a Bank</string>
 	<string-array name="roof_banks_array">
 	    <item>Bank 1</item>
 	    <item>Bank 2</item>
 	</string-array>
-	<string name="roof_numberofpanels">Number of Panels</string>
 	<string name="roof_angleofbank">Angle of Bank (degrees)</string>
 	<string name="roof_orientationofbank">Orientation of Bank (degrees)</string>
+	<string-array name="roof_orientation_array">
+	    <item>North</item>
+	    <item>North East</item>
+	    <item>North West</item>
+	    <item>South</item>
+	    <item>South East</item>
+	    <item>South West</item>
+	    <item>East</item>
+	    <item>West</item>
+	</string-array>
+	<string name="roof_orientation_array_prompt">Choose the Orientation</string>
 	
 	<!-- Basic Input -->
 	<string name="basicinput_textview_width">166</string>
@@ -65,12 +71,20 @@
 	<string name="basicinput_roof_title">Roof Details</string>
 	<string name="basicinput_roof_size_width">Roof Size Width (cm):</string>
 	<string name="basicinput_roof_size_height">Roof Size Height (cm):</string>
-	<string name="basicinput_roof_percentage_north">Percentage on North Roof:</string>
-	<string name="basicinput_roof_percentage_west">Percentage on West Roof:</string>
+	<string name="basicinput_roof_bank1_orientationloss">Bank 1 Orientation Efficiency Loss:</string>
+	<string name="basicinput_roof_bank1_angleloss">Bank 1 Angle Efficiency Loss:</string>
+	<string name="basicinput_roof_bank2_orientationloss">Bank 2 Orientation Efficiency Loss</string>
+	<string name="basicinput_roof_bank2_angleloss">Bank 2 Angle Efficiency Loss:</string>
 	<string name="basicinput_roof_efficiency_north">Efficiency Loss on North Roof:</string>
 	<string name="basicinput_roof_efficiency_west">Efficiency Loss on West Roof:</string>
 	<string name="basicinput_sunlight_title">Sunlight Details</string>
-	<string name="basicinput_user_title">Current Energy User Details:</string>
+	<string name="basicinput_sunlight_dailyhours">Average daliy Hours of Sunlight:</string>
+	<string name="basicinput_usage_title">Current Energy User Details</string>
+	<string name="basicinput_usage_energyperday">Energy Used Per Day:</string>
+	<string name="basicinput_usage_energyperdaylight">Energy Used Per Daylight Hour:</string>
+	<string name="basicinput_usage_tariff">Tariff 11 Fee:</string>
+	<string name="basicinput_usage_feedinfee">Feed in Fee:</string>
+	<string name="basicinput_usage_feeincrease">Annual Tariff Fee Increase:</string>
 	<string name="basicinput_button_calculate">Calculate</string>
 	<string name="basicinput_button_reset">Reset</string>
 	
@@ -80,6 +94,6 @@
 	<string name="customerusage_currentusage_usageperday">Energy Used per Day (KWh):</string>
 	<string name="customerusage_currentusage_usageperhour">Energy Used per Daylight Hours (KWh):</string>
 	<string name="customerusage_currenttariff_title">Current Tariff</string>
-	<string name="customerusage_currenttariff_fee">Tariff 11	 Fee:</string>
+	<string name="customerusage_currenttariff_fee">Tariff 11 Fee:</string>
 	<string name="customerusage_currenttariff_feedin">Feed in Fee:</string>
 </resources>
