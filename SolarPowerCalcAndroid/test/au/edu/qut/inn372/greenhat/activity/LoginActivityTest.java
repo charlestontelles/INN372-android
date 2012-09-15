@@ -8,6 +8,7 @@ import android.app.Instrumentation.ActivityMonitor;
 public class LoginActivityTest extends
 		ActivityInstrumentationTestCase2<LoginActivity> {
 	
+	private static final int TIMEOUT = 10000;
 	LoginActivity activity;
 	
 	public LoginActivityTest(){
@@ -37,7 +38,7 @@ public class LoginActivityTest extends
 				button.performClick();
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivity();
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 		nextActivity.finish();
 	}

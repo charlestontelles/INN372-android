@@ -8,6 +8,7 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 public class TabbedActivityTest extends
 		ActivityInstrumentationTestCase2<TabbedActivity> {
 	
+	private static final int TIMEOUT = 10000;
 	TabbedActivity activity;
 	ActivityMonitor startupTabMonitor;
 	
@@ -23,7 +24,7 @@ public class TabbedActivityTest extends
 	
 	public void testStartUp(){
 		assertTrue(TabbedActivity.class.getName().length() > 0);
-		Activity startupTab = startupTabMonitor.waitForActivity();
+		Activity startupTab = startupTabMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(startupTab);
 	}
 	
@@ -37,7 +38,7 @@ public class TabbedActivityTest extends
 				activity.switchTab(TabbedActivity.EQUIPMENT_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivity();
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	
@@ -51,7 +52,7 @@ public class TabbedActivityTest extends
 				activity.switchTab(TabbedActivity.ROOF_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivity();
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	
@@ -65,7 +66,7 @@ public class TabbedActivityTest extends
 				activity.switchTab(TabbedActivity.LOCATION_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivity();
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	
@@ -79,7 +80,7 @@ public class TabbedActivityTest extends
 				activity.switchTab(TabbedActivity.INPUT_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivity();
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	
@@ -94,7 +95,8 @@ public class TabbedActivityTest extends
 				activity.switchTab(TabbedActivity.EQUIPMENT_ID);
 			}
 		});
-		switchActivityMonitor.waitForActivity();
+		Activity switchActivity = switchActivityMonitor.waitForActivityWithTimeout(TIMEOUT);
+		assertNotNull(switchActivity);
 		
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(CustomerUsageActivity.class.getName(), null, false);
 		activity.runOnUiThread(new Runnable() {
@@ -102,7 +104,7 @@ public class TabbedActivityTest extends
 				activity.switchTab(TabbedActivity.USAGE_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivity();
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	

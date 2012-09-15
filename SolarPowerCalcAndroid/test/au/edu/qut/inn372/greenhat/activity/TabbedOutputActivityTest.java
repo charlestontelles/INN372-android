@@ -9,6 +9,7 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 public class TabbedOutputActivityTest extends
 		ActivityInstrumentationTestCase2<TabbedOutputActivity> {
 	
+	private static final int TIMEOUT = 10000;
 	TabbedOutputActivity activity;
 	ActivityMonitor startupTabMonitor;
 	
@@ -27,7 +28,7 @@ public class TabbedOutputActivityTest extends
 	
 	public void testStartUp(){
 		assertTrue(TabbedActivity.class.getName().length() > 0);
-		Activity startupTab = startupTabMonitor.waitForActivityWithTimeout(10);
+		Activity startupTab = startupTabMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(startupTab);
 	}
 	
@@ -41,7 +42,7 @@ public class TabbedOutputActivityTest extends
 				activity.switchTab(TabbedOutputActivity.POWER_GEN_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(10);
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	
@@ -55,7 +56,7 @@ public class TabbedOutputActivityTest extends
 				activity.switchTab(TabbedOutputActivity.FINANCIAL_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(10);
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	
@@ -70,7 +71,8 @@ public class TabbedOutputActivityTest extends
 				activity.switchTab(TabbedOutputActivity.POWER_GEN_ID);
 			}
 		});
-		switchActivityMonitor.waitForActivity();
+		Activity switchActivity = switchActivityMonitor.waitForActivityWithTimeout(TIMEOUT);
+		assertNotNull(switchActivity);
 		
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(OutputSummaryActivity.class.getName(), null, false);
 		activity.runOnUiThread(new Runnable() {
@@ -78,7 +80,7 @@ public class TabbedOutputActivityTest extends
 				activity.switchTab(TabbedOutputActivity.SUMMARY_ID);
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(10);
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 	}
 	

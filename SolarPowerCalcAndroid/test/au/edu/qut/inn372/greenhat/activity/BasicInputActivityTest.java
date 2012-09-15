@@ -16,6 +16,7 @@ import android.content.Intent;
 public class BasicInputActivityTest extends
 		ActivityInstrumentationTestCase2<BasicInputActivity> {
 	
+	private static final int TIMEOUT = 10000;
 	private static final String DAILY_USAGE = "4.5";
 	BasicInputActivity activity;
 	TabbedActivity parentActivity;
@@ -37,7 +38,7 @@ public class BasicInputActivityTest extends
 				parentActivity.switchTab(TabbedActivity.INPUT_ID);
 			}
 		});
-		activity = (BasicInputActivity) activityMonitor.waitForActivity();
+		activity = (BasicInputActivity) activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 	}
 	
 	/**
@@ -50,6 +51,7 @@ public class BasicInputActivityTest extends
 	
 	public void testStartUp(){
 		assertTrue(BasicInputActivity.class.getName().length() > 0);
+		assertNotNull(activity);
 	}
 	
 	private void populateTestData() {
@@ -90,14 +92,14 @@ public class BasicInputActivityTest extends
 	 * Tests that the calculate button launches a powerGeneration Activity
 	 */
 	public void testCalculateActivityLaunch() {
-		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(PowerGeneration.class.getName(), null, false);
+		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(TabbedOutputActivity.class.getName(), null, false);
 		final Button button = (Button) activity.findViewById(R.id.buttonCalculate);
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
 				button.performClick();
 			}
 		});
-		Activity nextActivity = activityMonitor.waitForActivity();
+		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(nextActivity);
 		nextActivity.finish();
 	}
