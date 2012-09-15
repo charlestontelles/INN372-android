@@ -13,8 +13,9 @@ import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 public class TabbedOutputActivity extends TabActivity {
 	
 	private TabHost tabHost;
-	public static final int SUMMARY_ID = 1;
+	public static final int SUMMARY_ID = 0;
 	public static final int POWER_GEN_ID = 1;
+	public static final int FINANCIAL_ID = 2;
 	
 	private Calculator calculator;
 	private Calculation[] testCalculations;
