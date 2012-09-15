@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TableLayout
+        android:id="@+id/TableLayoutOutput"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"
+        android:stretchColumns="*" >
+
+        <TableRow
+            android:id="@+id/tableRowGeneralOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <TextView
+                android:id="@+id/textViewGeneralOutput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_span="4"
+                android:gravity="center"
+                android:text="General System Description"
+                android:textSize="18dp"
+                android:textStyle="bold" >
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextViewSystemSize"
+                android:gravity="left"
+                android:text="System Size"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewSystemSizeField"
+                android:gravity="right"
+                android:text=""
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewSystemSizeUnits"
+                android:gravity="left"
+                android:text="kW"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextViewSystemCost"
+                android:gravity="left"
+                android:text="System Cost"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewSystemCostField"
+                android:gravity="right"
+                android:text=""
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewSystemCostUnits"
+                android:gravity="left"
+                android:text=" "
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextViewPaybackPeriod"
+                android:gravity="left"
+                android:text="Payback Period"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewPaybackPeriodField"
+                android:gravity="right"
+                android:text=""
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewPaybackPeriodUnits"
+                android:gravity="left"
+                android:text="years"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:typeface="serif"
+                android:width="1dp" >
+            </TextView>
+        </TableRow>
+    </TableLayout>
+
+</ScrollView>

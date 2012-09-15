@@ -39,60 +39,66 @@
         </activity>
         <activity
             android:name=".PowerGeneration"
-            android:label="@string/title_power_generation">
+            android:label="@string/title_power_generation" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="au.edu.qut.inn372.greenhat.activity.BasicInputActivity"/>
-                
+                android:value="au.edu.qut.inn372.greenhat.activity.BasicInputActivity" />
         </activity>
         <activity
             android:name=".LocationActivity"
-            android:label="@string/title_activity_location">
+            android:label="@string/title_activity_location" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity"/>
-                
+                android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity" />
         </activity>
         <activity
             android:name=".EquipmentActivity"
-            android:label="@string/title_activity_equipment">
+            android:label="@string/title_activity_equipment" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="au.edu.qut.inn372.greenhat.activity.LocationActivity"/>
-                
+                android:value="au.edu.qut.inn372.greenhat.activity.LocationActivity" />
         </activity>
-        
         <activity
             android:name=".RoofActivity"
-            android:label="@string/title_activity_roof">
+            android:label="@string/title_activity_roof" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="au.edu.qut.inn372.greenhat.activity.EquipmentActivity"/>
-                
-        </activity> 
-        
+                android:value="au.edu.qut.inn372.greenhat.activity.EquipmentActivity" />
+        </activity>
         <activity
             android:name=".CustomerUsageActivity"
-            android:label="@string/title_activity_customerusage">
+            android:label="@string/title_activity_customerusage" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="au.edu.qut.inn372.greenhat.activity.RoofActivity"/>
-            
+                android:value="au.edu.qut.inn372.greenhat.activity.RoofActivity" />
         </activity>
-        
         <activity
             android:name=".TabbedActivity"
-            android:label="@string/title_activity_tabbed">
+            android:label="@string/title_activity_tabbed" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity"/>
-            
+                android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity" />
         </activity>
-        
-        
+        <activity
+            android:name=".TabbedOutputActivity"
+            android:label="@string/title_activity_tabbed_output" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
+        </activity>
+        <activity
+            android:name=".OutputSummaryActivity"
+            android:label="@string/title_activity_output_summary" >
+        </activity>
+        <activity
+            android:name=".FinancialOutputActivity"
+            android:label="@string/title_activity_output_financial" >
+        </activity>
     </application>
 
-    <instrumentation android:name="android.test.InstrumentationTestRunner"
-       android:targetPackage="au.edu.qut.inn372.greenhat.activity" android:label="Tests for My App" />
-    
+    <instrumentation
+        android:name="android.test.InstrumentationTestRunner"
+        android:label="Tests for My App"
+        android:targetPackage="au.edu.qut.inn372.greenhat.activity" />
+
 </manifest>

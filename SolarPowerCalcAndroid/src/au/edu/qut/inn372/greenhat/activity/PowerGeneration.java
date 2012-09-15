@@ -11,109 +11,47 @@ import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 
-public class PowerGeneration extends Activity{
-	
+public class PowerGeneration extends Activity {
+
 	private Calculation[] testCalculations;
 	private Calculator calculator;
 	private int paybackPeriod = 20;
 	DecimalFormat df = new DecimalFormat("#.##");
-	
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.power_generation);
-        calculator = (Calculator)getIntent().getSerializableExtra("Calculator");
-        testCalculationsSetup();
-        generateView();
+	private TabbedOutputActivity parentTabbedActivity;
 
-        
-	}   
-	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.power_generation);
+		parentTabbedActivity = (TabbedOutputActivity) getParent();
+		calculator = parentTabbedActivity.getCalculator();
+		generateView();
+
+	}
+
 	private void generateView() {
-		generateGeneralOutputView();
-		generateAverageSolarPowerGenerationView();
-		generateFinancialView(testCalculations);
-    }
-	
-	private void generateGeneralOutputView() {
-		
-		TextView systemSizeField = (TextView)findViewById(R.id.TextViewSystemSizeField);
-		TextView systemCostField = (TextView)findViewById(R.id.TextViewSystemCostField);
-		TextView paybackPeriodField = (TextView)findViewById(R.id.TextViewPaybackPeriodField);
-		
-		systemSizeField.setText(""+df.format(calculator.getEquipment().getSize()));
-		systemCostField.setText("$"+df.format(calculator.getEquipment().getCost()));
-		paybackPeriodField.setText(""+df.format(paybackPeriod));
+		TextView dailyField = (TextView) findViewById(R.id.TextViewDailyField);
+		TextView annualField = (TextView) findViewById(R.id.TextViewAnnualField);
+		TextView quaterlyField = (TextView) findViewById(R.id.TextViewQuaterlyField);
+		TextView netField = (TextView) findViewById(R.id.TextViewNetField);
+		TextView quaterlyNet = (TextView) findViewById(R.id.TextViewQuaterlyNetField);
+		TextView annualNet = (TextView) findViewById(R.id.TextViewAnnualNetField);
+
+		dailyField.setText("" + df.format(calculator.getSolarPower()));
+		annualField.setText("" + df.format(calculator.getSolarPower() * 365));
+		quaterlyField.setText(""
+				+ df.format(calculator.getSolarPower() * 365 / 4));
+		netField.setText(""
+				+ (df.format(calculator.getSolarPower()
+						- calculator.getCustomer().getElectricityUsage()
+								.getDailyAverageUsage())));
+		annualNet.setText(""
+				+ (df.format((calculator.getSolarPower() - calculator
+						.getCustomer().getElectricityUsage()
+						.getDailyAverageUsage()) * 365)));
+		quaterlyNet.setText(""
+				+ (df.format((calculator.getSolarPower() - calculator
+						.getCustomer().getElectricityUsage()
+						.getDailyAverageUsage()) * 365 / 4)));
 	}
-	
-	private void generateAverageSolarPowerGenerationView() {
-		TextView dailyField = (TextView)findViewById(R.id.TextViewDailyField);
-    	TextView annualField = (TextView)findViewById(R.id.TextViewAnnualField);
-    	TextView quaterlyField = (TextView)findViewById(R.id.TextViewQuaterlyField);
-    	TextView netField = (TextView)findViewById(R.id.TextViewNetField);
-        TextView quaterlyNet = (TextView)findViewById(R.id.TextViewQuaterlyNetField);
-        TextView annualNet = (TextView)findViewById(R.id.TextViewAnnualNetField);
-        
-        dailyField.setText(""+df.format(calculator.getSolarPower()));
-        annualField.setText(""+df.format(calculator.getSolarPower()*365));
-        quaterlyField.setText(""+df.format(calculator.getSolarPower()*365/4));
-        netField.setText(""+(df.format(calculator.getSolarPower() - calculator.getCustomer().getElectricityUsage().getDailyAverageUsage())));
-        annualNet.setText(""+(df.format((calculator.getSolarPower() - calculator.getCustomer().getElectricityUsage().getDailyAverageUsage())*365)));
-        quaterlyNet.setText(""+(df.format((calculator.getSolarPower() - calculator.getCustomer().getElectricityUsage().getDailyAverageUsage())*365/4)));
-	}
-	
-	private void generateFinancialView(Calculation[] resultCalculations) {
-		TableLayout table = (TableLayout)findViewById(R.id.TableLayoutOutput);
-		
-		//add a new table row for each year of calculation data
-		for(Calculation curCalculation: resultCalculations) {
-			TableRow newRow = new TableRow(this);
-			
-			//Add entries to the row
-			TextView yearView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
-			yearView.setText(""+df.format(curCalculation.getYear()+1));
-			newRow.addView(yearView);
-			
-			TextView savingsView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
-			savingsView.setText(""+df.format(curCalculation.getCumulativeSaving()));
-			newRow.addView(savingsView);
-			
-			TextView ROIView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
-			ROIView.setText(""+df.format(curCalculation.getCumulativeSaving()/calculator.getEquipment().getCost()));
-			newRow.addView(ROIView);
-			
-			table.addView(newRow);
-		}
-		
-	}
-	
-	/**
-	 * Test data for formulating the output screen - this will be removed when the WS call is implemented properly (and working)
-	 */
-	private void testCalculationsSetup() {
-		testCalculations = new Calculation[25];
-		for(int year=0; year<25; year++) {
-			double growthIndex = java.lang.Math.pow(1.05,year);
-			testCalculations[year] = new Calculation();
-			testCalculations[year].setYear(year);
-			testCalculations[year].setTariff11Fee(new Double(0.1*growthIndex));
-			testCalculations[year].setDailySolarPower(new Double(15*(2-growthIndex)));
-			testCalculations[year].setReplacementGeneration(3.0);
-			testCalculations[year].setExportedGeneration(testCalculations[year].getDailySolarPower()-testCalculations[year].getReplacementGeneration());
-			testCalculations[year].setDailySaving(testCalculations[year].getTariff11Fee()*testCalculations[year].getReplacementGeneration() + 0.5*testCalculations[year].getExportedGeneration());
-			testCalculations[year].setAnnualSaving(testCalculations[year].getDailySaving()*365);
-			if (year==0) {
-				testCalculations[year].setCumulativeSaving(testCalculations[year].getAnnualSaving());
-			}
-			else {
-				testCalculations[year].setCumulativeSaving(testCalculations[year].getAnnualSaving()+testCalculations[year-1].getCumulativeSaving());
-			}
-		}
-		
-		calculator.setSolarPower(18.0);
-		calculator.getEquipment().setSize(4.5);
-		calculator.getEquipment().setCost(15000);
-		
-	}
-	
 }

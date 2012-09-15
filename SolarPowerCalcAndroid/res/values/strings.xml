@@ -14,7 +14,10 @@
 	<string name="title_activity_equipment">Equipment</string>
 	<string name="title_activity_roof">Roof</string>
 	<string name="title_activity_customerusage">Customer Usage</string>
-	<string name="title_activity_tabbed">Tabbed</string>
+	<string name="title_activity_tabbed">Input</string>
+	<string name="title_activity_tabbed_output">Calculation Results</string>
+	<string name="title_activity_output_summary">Summary</string>
+	<string name="title_activity_output_financial">Financial</string>
 	
 	
 	

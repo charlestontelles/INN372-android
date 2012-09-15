@@ -23,6 +23,7 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 		equipment = new Equipment();
 		customer = new Customer();
 		panel = new Panel();
+		calculations = new Calculation[25];
 	}
 	
 	/*

@@ -53,7 +53,7 @@ public class BasicInputActivity extends Activity {
     	
     	parentTabbedActivity.calcEnergyProduction();
     	
-    	Intent intent = new Intent(this, PowerGeneration.class);
+    	Intent intent = new Intent(this, TabbedOutputActivity.class);
     	intent.putExtra("Calculator", parentTabbedActivity.getCalculator());
     	
     	startActivity(intent);
