@@ -1,42 +1,105 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import android.test.ActivityInstrumentationTestCase2;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.Spinner;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
-import junit.framework.TestCase;
+import android.app.Activity;
+import android.app.Instrumentation;
+import android.app.Instrumentation.ActivityMonitor;
+import android.content.Context;
+import android.content.Intent;
 
-public class BasicInputActivityTest extends TestCase {
-	Calculator calc = new Calculator();
-	CalculatorMediator controller = new CalculatorMediator();
-	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity";
-	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity2";
+public class BasicInputActivityTest extends
+		ActivityInstrumentationTestCase2<BasicInputActivity> {
 	
-	@Override
-	protected void setUp() throws Exception {
-		// TODO Auto-generated method stub
-		super.setUp();
-		calc.getEquipment().setSize(20);
-		
-		calc.getEquipment().getInverter().setEfficiency(10);
-		// Roof
-		calc.getCustomer().getLocation().getRoof().setEfficiencyLossNorth(10);
-		calc.getCustomer().getLocation().getRoof().setEfficiencyLossWest(10);
-		calc.getCustomer().getLocation().getRoof().setPercentageNorth(10);
-		calc.getCustomer().getLocation().getRoof().setPercentageWest(10);
-		// Location (day light hours)
-		calc.getCustomer().getLocation().setSunLightHours(10);
-		// Current usage
-		calc.getCustomer().getElectricityUsage().setDailyAverageUsage(10);
+	private static final String DAILY_USAGE = "4.5";
+	BasicInputActivity activity;
+	TabbedActivity parentActivity;
+	
+	public BasicInputActivityTest(){
+		super(BasicInputActivity.class);
 	}
-
-	@Override
+	
+	protected void setUp() throws Exception {
+		super.setUp();
+		
+		//Need to set up the parent (TabbedActivity) as well as the activity depends upon it (otherwise would get null pointer exceptions)
+		parentActivity = launchActivity("au.edu.qut.inn372.greenhat.activity", TabbedActivity.class, null);
+		
+		//Need to use an activityMonitor to get the activity since we are starting it in a thread
+		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(BasicInputActivity.class.getName(), null, false);
+		parentActivity.runOnUiThread(new Runnable() {
+			public void run() {
+				parentActivity.switchTab(TabbedActivity.INPUT_ID);
+			}
+		});
+		activity = (BasicInputActivity) activityMonitor.waitForActivity();
+	}
+	
+	/**
+	 * Explicitly destroy (finish) the parent tabbed activity to prevent exceptions with multiple tests
+	 */
 	protected void tearDown() throws Exception {
-		// TODO Auto-generated method stub
+		parentActivity.finish();
 		super.tearDown();
 	}
-
-	public void testOnCreate(){
-		assertTrue(BasicInputActivity.EXTRA_MESSAGE.length() >0);
+	
+	public void testStartUp(){
+		assertTrue(BasicInputActivity.class.getName().length() > 0);
 	}
 	
+	private void populateTestData() {
+		((EditText)activity.findViewById(R.id.editRoof_Usage_UsagePerDay)).setText(DAILY_USAGE);
+	}
+	
+	/**
+	 * Test that data is saved when the activity is paused
+	 */
+	public void testSaveData() {
+		populateTestData();
+		Instrumentation myInstr = getInstrumentation();
+		myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
+		
+		//Check that the data used in the populateTestData method has been saved to the bean hierarchy
+		assertEquals(new Double(parentActivity.getCalculator().getCustomer().getElectricityUsage().getDailyAverageUsage()).toString(), DAILY_USAGE);
+	}
+	
+	/**
+	 * Test that the data is loaded when the activity is paused
+	 */
+	public void testLoadData() {
+		populateTestData();
+		Instrumentation myInstr = getInstrumentation();
+		myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
+		
+		//Change values here to check that they are loaded from the calculator and not just the same as they were before pausing
+		Double newDailyUsage = 5.5;
+		parentActivity.getCalculator().getCustomer().getElectricityUsage().setDailyAverageUsage(newDailyUsage);
+		
+		myInstr.callActivityOnResume(activity); //This 'resumes' the activity which causes the loadData method to be called
+		
+		//Asserts here for all values to check they are being loaded
+		assertEquals(((EditText)(activity.findViewById(R.id.editRoof_Usage_UsagePerDay))).getText().toString(), newDailyUsage.toString());
+	}
+	
+	/**
+	 * Tests that the calculate button launches a powerGeneration Activity
+	 */
+	public void testCalculateActivityLaunch() {
+		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(PowerGeneration.class.getName(), null, false);
+		final Button button = (Button) activity.findViewById(R.id.buttonCalculate);
+		activity.runOnUiThread(new Runnable() {
+			public void run() {
+				button.performClick();
+			}
+		});
+		Activity nextActivity = activityMonitor.waitForActivity();
+		assertNotNull(nextActivity);
+		nextActivity.finish();
+	}
 	
 }
