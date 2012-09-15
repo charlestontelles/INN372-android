@@ -32,6 +32,14 @@ public class CalculatorMediator {
 	 */
 	public void calcEnergyProduction(){
 		Calculator resultCalculator = new Calculator(soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION)),AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION);
+		updateCalculator(resultCalculator);
+	}
+	
+	/**
+	 * Puts all results in the received result object into the existing calculator object
+	 * @param resultCalculator The result object returns from the WS call
+	 */
+	private void updateCalculator(Calculator resultCalculator) {
 		calculator.setSolarPower(resultCalculator.getSolarPower());
 	}
 }

@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.support.v4.app.NavUtils;
+import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
@@ -48,56 +49,12 @@ public class BasicInputActivity extends Activity {
     }
     
     public void calculate(View view){
-    	Intent intent = new Intent(this, PowerGeneration.class);
+    	saveData();
     	
-    	/*
-    	try {
-			Calculator calculator = new Calculator();
-			// Equipment
-			calculator.getEquipment().setSize(new Double(((EditText)findViewById(R.id.editEquipment_Size)).getText().toString()));
-			calculator.getEquipment().getInverter().setEfficiency(new Double(((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).getText().toString()));
-			// Roof
-			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossNorth(new Double(((EditText)findViewById(R.id.editRoof_LossNorth)).getText().toString()));
-			calculator.getCustomer().getLocation().getRoof().setEfficiencyLossWest(new Double(((EditText)findViewById(R.id.editRoof_LossWest)).getText().toString()));
-			calculator.getCustomer().getLocation().getRoof().setPercentageNorth(new Double(((EditText)findViewById(R.id.editRoof_PercentageNorth)).getText().toString()));
-			calculator.getCustomer().getLocation().getRoof().setPercentageWest(new Double(((EditText)findViewById(R.id.editRoof_PercentageWest)).getText().toString()));
-			// Location (day light hours)
-			calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editSunlight_Daylight)).getText().toString()));
-			// Current usage
-			calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUser_UsagePerDay)).getText().toString()));
-			
-			CalculatorMediator controller = new CalculatorMediator();
-			intent.putExtra(EXTRA_MESSAGE2, ""+calculator.getCustomer().getElectricityUsage().getDailyAverageUsage());
-			calculator = controller.calcEnergyProduction(calculator);
-			
-			intent.putExtra(EXTRA_MESSAGE, ""+calculator.getSolarPower());
-			
-    	} catch (Exception e) {
-			// TODO: handle exception
-		}	
-		*/
-    	
-    	Calculator calculator = parentTabbedActivity.getCalculator();
-    	System.out.println(calculator.getEquipment().getSize());
-    	calculator.getEquipment().setSize(new Double(((EditText)findViewById(R.id.editEquipment_Size)).getText().toString()));
-		System.out.println(calculator.getEquipment().getSize());
-    	calculator.getEquipment().getInverter().setEfficiency(new Double(((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).getText().toString()));
-		// Roof
-		calculator.getCustomer().getLocation().getRoof().setEfficiencyLossNorth((double)(new Double(((EditText)findViewById(R.id.editRoof_LossNorth)).getText().toString())));
-		calculator.getCustomer().getLocation().getRoof().setEfficiencyLossWest((double)(new Double(((EditText)findViewById(R.id.editRoof_LossWest)).getText().toString())));
-		calculator.getCustomer().getLocation().getRoof().setPercentageNorth((double)(new Double(((EditText)findViewById(R.id.editRoof_PercentageNorth)).getText().toString())));
-		calculator.getCustomer().getLocation().getRoof().setPercentageWest((double)(new Double(((EditText)findViewById(R.id.editRoof_PercentageWest)).getText().toString())));
-		// Location (day light hours)
-		calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editSunlight_Daylight)).getText().toString()));
-		// Current usage
-		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editUser_UsagePerDay)).getText().toString()));
-
-		intent.putExtra(EXTRA_MESSAGE2, ""+parentTabbedActivity.getCalculator().getCustomer().getElectricityUsage().getDailyAverageUsage());
-		
     	parentTabbedActivity.calcEnergyProduction();
-    	intent.putExtra(EXTRA_MESSAGE,  ""+parentTabbedActivity.getCalculator().getSolarPower());
     	
-    	
+    	Intent intent = new Intent(this, PowerGeneration.class);
+    	intent.putExtra("Calculator", parentTabbedActivity.getCalculator());
     	
     	startActivity(intent);
     
