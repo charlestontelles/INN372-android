@@ -5,6 +5,7 @@
     <string name="entryfieldlength">10</string>
     <string name="button_navigation_next">Next >></string>
     <string name="button_navigation_back">&lt;&lt; Back</string>
+    <string name="button_navigation_logout">&lt;&lt; Logout</string>
     
     <!-- Activity Titles -->
     <string name="title_activity_login">Solar Power Calc</string>
