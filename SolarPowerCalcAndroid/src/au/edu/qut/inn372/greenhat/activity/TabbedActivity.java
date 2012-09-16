@@ -1,5 +1,7 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.util.ArrayList;
+
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,7 +9,9 @@ import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
+import au.edu.qut.inn372.greenhat.mediator.EquipmentKitsMediator;
 
 public class TabbedActivity extends TabActivity {
 	
@@ -19,6 +23,7 @@ public class TabbedActivity extends TabActivity {
 	public static final int INPUT_ID = 4;
 	
 	private CalculatorMediator calcMediator;
+	private EquipmentKitsMediator equipKitsMediator;
 	
 	
 	/**
@@ -29,6 +34,8 @@ public class TabbedActivity extends TabActivity {
         setContentView(R.layout.activity_tabbed);
         
         calcMediator = new CalculatorMediator();
+        equipKitsMediator = new EquipmentKitsMediator();
+        equipKitsMediator.getEquipments(); //This is a WS call - might be better to move it to be part of the login process later
  
         tabHost = getTabHost();
         
@@ -60,6 +67,10 @@ public class TabbedActivity extends TabActivity {
 	 */
 	public Calculator getCalculator() {
 		return calcMediator.getCalculator();
+	}
+	
+	public ArrayList<Equipment> getEquipmentKits() {
+		return equipKitsMediator.getEquipmentKits();
 	}
 	
 	public void calcEnergyProduction() {

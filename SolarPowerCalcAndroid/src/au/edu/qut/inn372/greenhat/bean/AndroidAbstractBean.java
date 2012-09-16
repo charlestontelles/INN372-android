@@ -8,7 +8,7 @@ import org.ksoap2.serialization.SoapObject;
  */
 public abstract class AndroidAbstractBean {
     protected static final String NAMESPACE = "http://ws.greenhat.inn372.qut.edu.au/";
-    protected static final String OPERATION_CALC_EQUIPMENT_NAME = "getEquipments";
+    protected static final String OPERATION_GET_EQUIPMENTS_NAME = "getEquipments";
     public static final int OPERATION_GET_EQUIPMENTS = 0;
     protected static final String OPERATION_CALC_ENERGY_PRODUCTION_NAME = "calcEnergyProduction";
     public static final int OPERATION_CALC_ENERGY_PRODUCTION = 1;

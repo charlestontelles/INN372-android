@@ -1,9 +1,14 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import au.edu.qut.inn372.greenhat.bean.Equipment;
 
 public class EquipmentActivity extends Activity{
 	
@@ -45,14 +50,23 @@ public class EquipmentActivity extends Activity{
 	 * Saves current input data to the calculator bean
 	 */
 	private void saveData() {
-		
+
 	}
 	
 	/**
 	 * Populates input fields with data in the calculator bean
 	 */
 	private void loadData() {
+		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
+		Spinner equipList = (Spinner)findViewById(R.id.spinnerEquipment_List);
 		
+		ArrayList<String> spinnerArray = new ArrayList<String>();
+		for(Equipment curEquipmentKit : equipmentKits) {
+			spinnerArray.add(curEquipmentKit.getKitName());
+		}
+		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
+		equipList.setAdapter(spinnerArrayAdapter);
 	}
 	
 	@Override

@@ -20,7 +20,27 @@ public class Inverter extends AndroidAbstractBean implements Serializable {
 	private double lifespan;
 	private double replacementCost;
 	private double cost;
+	private double efficiencyLoss;
 	
+	public Inverter(SoapObject inverterSoap, int soapOperation) {
+		if (soapObject != null)
+			switch (soapOperation) {
+			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
+				this.cost = new Double(((SoapObject)(inverterSoap.getProperty("cost"))).toString());
+				this.efficiency = new Double(((SoapObject)(inverterSoap.getProperty("efficiency"))).toString());
+				this.efficiencyLoss = new Double(((SoapObject)(inverterSoap.getProperty("efficiencyLoss"))).toString());
+				this.efficiency = new Double(((SoapObject)(inverterSoap.getProperty("efficiency"))).toString());
+				this.lifespan = new Double(((SoapObject)(inverterSoap.getProperty("lifespan"))).toString());
+				this.replacementCost = new Double(((SoapObject)(inverterSoap.getProperty("replacementCost"))).toString());
+				break;
+			default:
+				break;
+			}		
+	}
+	
+	public Inverter() {
+	}
+
 	/**
 	 * Get the efficiency
 	 * @return efficiency value of the inverter efficiency
@@ -84,6 +104,20 @@ public class Inverter extends AndroidAbstractBean implements Serializable {
 	}
 	
 	/**
+	 * @return the efficiencyLoss
+	 */
+	public double getEfficiencyLoss() {
+		return efficiencyLoss;
+	}
+
+	/**
+	 * @param efficiencyLoss to set
+	 */
+	public void setEfficiencyLoss(double efficiencyLoss) {
+		this.efficiencyLoss = efficiencyLoss;
+	}
+	
+	/**
 	 * ATTENTION: ALL VALUES MUST BE CONVERTED TO STRING
 	 */
 	@Override
@@ -114,6 +148,7 @@ public class Inverter extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addProperty("lifespan", ""+this.lifespan);
 		currentSoapObject.addProperty("replacementCost", ""+this.replacementCost);
 		currentSoapObject.addProperty("cost", ""+this.cost);
+		currentSoapObject.addProperty("efficiencyLoss", ""+this.efficiencyLoss);
 		return currentSoapObject;
 	}
 }
