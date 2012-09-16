@@ -92,8 +92,6 @@ public class TabbedOutputActivity extends TabActivity {
 			}
 		}
 		
-		calculator.setSolarPower(18.0);
-		
 	}
 	
 }
