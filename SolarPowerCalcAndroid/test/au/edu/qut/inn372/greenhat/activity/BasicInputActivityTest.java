@@ -63,8 +63,13 @@ public class BasicInputActivityTest extends
 	 */
 	public void testSaveData() {
 		populateTestData();
-		Instrumentation myInstr = getInstrumentation();
-		myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
+		final Instrumentation myInstr = getInstrumentation();
+		activity.runOnUiThread(new Runnable() {
+			public void run() {
+				myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
+			}
+		});
+		myInstr.waitForIdleSync(); //Wait for the above threaded method to complete
 		
 		//Check that the data used in the populateTestData method has been saved to the bean hierarchy
 		assertEquals(new Double(parentActivity.getCalculator().getCustomer().getElectricityUsage().getDailyAverageUsage()).toString(), DAILY_USAGE);
@@ -76,15 +81,25 @@ public class BasicInputActivityTest extends
 	 */
 	public void testLoadData() {
 		populateTestData();
-		Instrumentation myInstr = getInstrumentation();
-		myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
+		final Instrumentation myInstr = getInstrumentation();
+		activity.runOnUiThread(new Runnable() {
+			public void run() {
+				myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
+			}
+		});
+		myInstr.waitForIdleSync(); //Wait for the above threaded method to complete
 		
 		//Change values here to check that they are loaded from the calculator and not just the same as they were before pausing
 		Double newDailyUsage = 5.5;
 		parentActivity.getCalculator().getCustomer().getElectricityUsage().setDailyAverageUsage(newDailyUsage);
 		//TODO add the rest of the fields
 		
-		myInstr.callActivityOnResume(activity); //This 'resumes' the activity which causes the loadData method to be called
+		activity.runOnUiThread(new Runnable() {
+			public void run() {
+				myInstr.callActivityOnResume(activity); //This 'resumes' the activity which causes the loadData method to be called
+			}
+		});
+		myInstr.waitForIdleSync(); //Wait for the above threaded method to complete
 		
 		//Asserts here for all values to check they are being loaded
 		assertEquals(((EditText)(activity.findViewById(R.id.editRoof_Usage_UsagePerDay))).getText().toString(), newDailyUsage.toString());
