@@ -10,25 +10,32 @@ public class TabbedOutputActivityTest extends
 		ActivityInstrumentationTestCase2<TabbedOutputActivity> {
 	
 	private static final int TIMEOUT = 10000;
-	TabbedOutputActivity activity;
-	ActivityMonitor startupTabMonitor;
+	private TabbedOutputActivity activity;
+	private ActivityMonitor startupTabMonitor;
 	
 	public TabbedOutputActivityTest(){
 		super(TabbedOutputActivity.class);
 	}
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		startupTabMonitor = getInstrumentation().addMonitor(OutputSummaryActivity.class.getName(), null, false);
+		
+		//An intent object needs to be created to pass calculator to the activity
 		Intent activityIntent = new Intent();
 		activityIntent.putExtra("Calculator", new Calculator());
 		setActivityIntent(activityIntent);
 		activity = getActivity();
 	}
 	
+	/**
+	 * Test that the activity and the first tab starts up correctly
+	 */
 	public void testStartUp(){
 		assertTrue(TabbedActivity.class.getName().length() > 0);
 		Activity startupTab = startupTabMonitor.waitForActivityWithTimeout(TIMEOUT);
+		assertNotNull(activity);
 		assertNotNull(startupTab);
 	}
 	
@@ -74,6 +81,7 @@ public class TabbedOutputActivityTest extends
 		Activity switchActivity = switchActivityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(switchActivity);
 		
+		//Now we can try switching back to the original summary tab
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(OutputSummaryActivity.class.getName(), null, false);
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
@@ -84,6 +92,9 @@ public class TabbedOutputActivityTest extends
 		assertNotNull(nextActivity);
 	}
 	
+	/**
+	 * Test that the get calculator method returns a calculator object
+	 */
 	public void testGetCalculator() {
 		Calculator calculator = activity.getCalculator();
 		assertNotNull(calculator);

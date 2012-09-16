@@ -9,22 +9,27 @@ public class TabbedActivityTest extends
 		ActivityInstrumentationTestCase2<TabbedActivity> {
 	
 	private static final int TIMEOUT = 10000;
-	TabbedActivity activity;
-	ActivityMonitor startupTabMonitor;
+	private TabbedActivity activity;
+	private ActivityMonitor startupTabMonitor;
 	
 	public TabbedActivityTest(){
 		super(TabbedActivity.class);
 	}
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		startupTabMonitor = getInstrumentation().addMonitor(CustomerUsageActivity.class.getName(), null, false);
 		activity = getActivity();
 	}
 	
+	/**
+	 * Test that the activity starts up and that the first tab loads correctly
+	 */
 	public void testStartUp(){
 		assertTrue(TabbedActivity.class.getName().length() > 0);
 		Activity startupTab = startupTabMonitor.waitForActivityWithTimeout(TIMEOUT);
+		assertNotNull(activity);
 		assertNotNull(startupTab);
 	}
 	
@@ -98,6 +103,7 @@ public class TabbedActivityTest extends
 		Activity switchActivity = switchActivityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		assertNotNull(switchActivity);
 		
+		//Now try switching back to the tab we are testing (Customer usage)
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(CustomerUsageActivity.class.getName(), null, false);
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
@@ -108,6 +114,9 @@ public class TabbedActivityTest extends
 		assertNotNull(nextActivity);
 	}
 	
+	/**
+	 * Test that the get calculator method returns a calculator
+	 */
 	public void testGetCalculator() {
 		Calculator calculator = activity.getCalculator();
 		assertNotNull(calculator);

@@ -3,28 +3,23 @@ package au.edu.qut.inn372.greenhat.activity;
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.Spinner;
-import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 import android.app.Activity;
 import android.app.Instrumentation;
 import android.app.Instrumentation.ActivityMonitor;
-import android.content.Context;
-import android.content.Intent;
 
 public class BasicInputActivityTest extends
 		ActivityInstrumentationTestCase2<BasicInputActivity> {
 	
 	private static final int TIMEOUT = 10000;
 	private static final String DAILY_USAGE = "4.5";
-	BasicInputActivity activity;
-	TabbedActivity parentActivity;
+	private BasicInputActivity activity;
+	private TabbedActivity parentActivity;
 	
 	public BasicInputActivityTest(){
 		super(BasicInputActivity.class);
 	}
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		
@@ -41,21 +36,26 @@ public class BasicInputActivityTest extends
 		activity = (BasicInputActivity) activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 	}
 	
-	/**
-	 * Explicitly destroy (finish) the parent tabbed activity to prevent exceptions with multiple tests
-	 */
+	@Override
 	protected void tearDown() throws Exception {
-		parentActivity.finish();
+		parentActivity.finish(); //Explicitly destroy (finish) the parent tabbed activity to prevent exceptions with multiple tests
 		super.tearDown();
 	}
 	
+	/**
+	 * Tests that the activity starts up correctly
+	 */
 	public void testStartUp(){
 		assertTrue(BasicInputActivity.class.getName().length() > 0);
 		assertNotNull(activity);
 	}
 	
+	/**
+	 * Populates fields with appropriate test data
+	 */
 	private void populateTestData() {
 		((EditText)activity.findViewById(R.id.editRoof_Usage_UsagePerDay)).setText(DAILY_USAGE);
+		//TODO Add the rest of the input fields
 	}
 	
 	/**
@@ -68,6 +68,7 @@ public class BasicInputActivityTest extends
 		
 		//Check that the data used in the populateTestData method has been saved to the bean hierarchy
 		assertEquals(new Double(parentActivity.getCalculator().getCustomer().getElectricityUsage().getDailyAverageUsage()).toString(), DAILY_USAGE);
+		//TODO Add the rest of the fields
 	}
 	
 	/**
@@ -81,11 +82,13 @@ public class BasicInputActivityTest extends
 		//Change values here to check that they are loaded from the calculator and not just the same as they were before pausing
 		Double newDailyUsage = 5.5;
 		parentActivity.getCalculator().getCustomer().getElectricityUsage().setDailyAverageUsage(newDailyUsage);
+		//TODO add the rest of the fields
 		
 		myInstr.callActivityOnResume(activity); //This 'resumes' the activity which causes the loadData method to be called
 		
 		//Asserts here for all values to check they are being loaded
 		assertEquals(((EditText)(activity.findViewById(R.id.editRoof_Usage_UsagePerDay))).getText().toString(), newDailyUsage.toString());
+		//TODO Add the rest of the fields
 	}
 	
 	/**

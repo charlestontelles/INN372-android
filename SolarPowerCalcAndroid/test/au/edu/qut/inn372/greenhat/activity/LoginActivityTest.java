@@ -9,12 +9,13 @@ public class LoginActivityTest extends
 		ActivityInstrumentationTestCase2<LoginActivity> {
 	
 	private static final int TIMEOUT = 10000;
-	LoginActivity activity;
+	private LoginActivity activity;
 	
 	public LoginActivityTest(){
 		super(LoginActivity.class);
 	}
 	
+	@Override
 	protected void setUp() throws Exception{
 		super.setUp();
 		activity = getActivity();
@@ -25,6 +26,7 @@ public class LoginActivityTest extends
 	 */
 	public void testStartUp(){
 		assertTrue(LoginActivity.class.getName().length() > 0);
+		assertNotNull(activity);
 	}
 	
 	/**

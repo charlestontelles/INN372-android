@@ -3,11 +3,7 @@ package au.edu.qut.inn372.greenhat.activity;
 import java.text.DecimalFormat;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-import android.app.Activity;
-import android.app.Instrumentation;
 import android.app.Instrumentation.ActivityMonitor;
 import android.content.Intent;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
@@ -18,15 +14,16 @@ public class OutputSummaryActivityTest extends
 	private static final int TIMEOUT = 10000;
 	private static final Double SYSTEM_COST = new Double(45000);
 	private static final Double SYSTEM_SIZE = new Double(4.5);
-	OutputSummaryActivity activity;
-	TabbedOutputActivity parentActivity;
-	Calculator calculator;
-	DecimalFormat df = new DecimalFormat("#.##");
+	private OutputSummaryActivity activity;
+	private TabbedOutputActivity parentActivity;
+	private Calculator calculator;
+	private DecimalFormat df = new DecimalFormat("#.##");
 	
 	public OutputSummaryActivityTest(){
 		super(OutputSummaryActivity.class);
 	}
 	
+	@Override
 	protected void setUp() throws Exception {
 		super.setUp();
 		
@@ -44,14 +41,15 @@ public class OutputSummaryActivityTest extends
 		activity = (OutputSummaryActivity) activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 	}
 	
-	/**
-	 * Explicitly destroy (finish) the parent tabbed activity to prevent exceptions with multiple tests
-	 */
+	@Override
 	protected void tearDown() throws Exception {
-		parentActivity.finish();
+		parentActivity.finish(); //Explicitly destroy (finish) the parent tabbed activity to prevent exceptions with multiple tests
 		super.tearDown();
 	}
 	
+	/**
+	 * Test that the activity started up correctly
+	 */
 	public void testStartUp(){
 		assertTrue(OutputSummaryActivity.class.getName().length() > 0);
 		assertNotNull(activity);
