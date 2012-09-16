@@ -10,8 +10,9 @@ import org.ksoap2.transport.HttpTransportSE;
  *
  */
 public class CalculatorSoapClient {
-    //private final String URL = "http://solarpowercalcwebtest.appspot.com/hellosoapserver";
-	private final String URL = "http://solarpowercalcweb.appspot.com/calculatorsoapserver";
+    private final String URL = "http://solarpowercalcwebtest.appspot.com/hellosoapserver";
+	// TODO Swap out these lines for release version
+	//private final String URL = "http://solarpowercalcweb.appspot.com/calculatorsoapserver";
     private final String SOAP_ACTION = "";
     
     private SoapSerializationEnvelope envelope;
