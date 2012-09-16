@@ -19,6 +19,9 @@ public class BasicInputActivity extends Activity {
 	//add this 
 	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity";
 	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity2";
+	public final static int STATE_NORMAL = 0;
+	public final static int STATE_PAUSED = 1;
+	private int state;
 	
 	private TabbedActivity parentTabbedActivity;
 	
@@ -27,7 +30,7 @@ public class BasicInputActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_basic_input);
         parentTabbedActivity = (TabbedActivity)this.getParent();
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        state = STATE_NORMAL;
         
     }
 
@@ -60,7 +63,8 @@ public class BasicInputActivity extends Activity {
     
     }
     
-    /*public void reset(View view){
+    public void reset(View view){
+    	/*
 		// Equipment
 		((EditText)findViewById(R.id.editEquipment_Size)).setText("4.5");
 		((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).setText("90.0");
@@ -73,7 +77,8 @@ public class BasicInputActivity extends Activity {
 		((EditText)findViewById(R.id.editSunlight_Daylight)).setText("4.5");
 		// Current usage
 		((EditText)findViewById(R.id.editUser_UsagePerDay)).setText("50");
-    }*/
+		*/
+    }
 
 	/**
 	 * Saves current input data to the calculator bean
@@ -94,14 +99,24 @@ public class BasicInputActivity extends Activity {
 	
 	@Override
 	public void onPause() {
-		saveData();
 		super.onPause();
+		saveData();
+		state = STATE_PAUSED;
 	}
 	
 	@Override
 	public void onResume() {
 		super.onResume();
 		loadData();
+		state = STATE_NORMAL;
 	}
     
+	/**
+	 * Retrieves the state of the activity
+	 * @return
+	 */
+	public int getState() {
+		return state;
+	}
+	
 }

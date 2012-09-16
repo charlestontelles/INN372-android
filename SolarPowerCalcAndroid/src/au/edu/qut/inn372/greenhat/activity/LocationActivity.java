@@ -14,6 +14,9 @@ public class LocationActivity extends Activity{
 	//add this 
 		public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.LocationActivity";
 		public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.LocationActivity2";
+		public final static int STATE_NORMAL = 0;
+		public final static int STATE_PAUSED = 1;
+		private int state;
 			
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -58,5 +61,41 @@ public class LocationActivity extends Activity{
 	    	int targetActivity = TabbedActivity.ROOF_ID;
 	    	parentTabbedActivity.switchTab(targetActivity);
 	    }
+	    
+		/**
+		 * Saves current input data to the calculator bean
+		 */
+		private void saveData() {
+			
+		}
+		
+		/**
+		 * Populates input fields with data in the calculator bean
+		 */
+		private void loadData() {
+			
+		}
+		
+		@Override
+		public void onPause() {
+			super.onPause();
+			saveData();
+			state = STATE_PAUSED;
+		}
+		
+		@Override
+		public void onResume() {
+			super.onResume();
+			loadData();
+			state = STATE_NORMAL;
+		}
+		
+		/**
+		 * Retrieves the state of the activity
+		 * @return
+		 */
+		public int getState() {
+			return state;
+		}
 }
 

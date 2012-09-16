@@ -12,6 +12,9 @@ public class CustomerUsageActivity extends Activity {
 	//add this 
 		public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.CustomerUsageActivity";
 		public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.CustomerUsageActivity2";
+		public final static int STATE_NORMAL = 0;
+		public final static int STATE_PAUSED = 1;
+		private int state;
 		
 		private TabbedActivity parentTabbedActivity;
 
@@ -61,13 +64,23 @@ public class CustomerUsageActivity extends Activity {
 		
 		@Override
 		public void onPause() {
-			saveData();
 			super.onPause();
+			saveData();
+			state = STATE_PAUSED;
 		}
 		
 		@Override
 		public void onResume() {
 			super.onResume();
 			loadData();
+			state = STATE_NORMAL;
+		}
+		
+		/**
+		 * Retrieves the state of the activity
+		 * @return
+		 */
+		public int getState() {
+			return state;
 		}
 }
