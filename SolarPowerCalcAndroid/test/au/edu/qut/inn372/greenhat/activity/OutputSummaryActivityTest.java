@@ -60,7 +60,7 @@ public class OutputSummaryActivityTest extends
 	/**
 	 * Tests that the correct data is displayed
 	 */
-	public void testDisplayData() throws InterruptedException {
+	public void testDisplayData() {
 		assertEquals(SYSTEM_SIZE.toString(), ((TextView)activity.findViewById(R.id.TextViewSystemSizeField)).getText().toString());
 		assertEquals("$"+df.format(SYSTEM_COST), ((TextView)activity.findViewById(R.id.TextViewSystemCostField)).getText().toString());
 		//TODO Need to add payback period test
