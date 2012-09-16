@@ -186,7 +186,7 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 			this.soapObject = setDefaultSoapObject(this.soapObject);
 			break;
 		default:
-			this.soapObject = new SoapObject("", "panel");
+			this.soapObject = new SoapObject("", "panels");
 			this.soapObject = setDefaultSoapObject(this.soapObject);
 			break;
 		}

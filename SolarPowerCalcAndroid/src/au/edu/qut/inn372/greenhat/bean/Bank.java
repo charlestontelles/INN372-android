@@ -173,7 +173,7 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 			this.soapObject = setDefaultSoapObject(this.soapObject);
 			break;
 		default:
-			this.soapObject = new SoapObject("", "bank");
+			this.soapObject = new SoapObject("", "banks");
 			this.soapObject = setDefaultSoapObject(this.soapObject);
 			break;
 		}

@@ -27,21 +27,25 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	
 	
 	public Calculator(SoapObject soapObject, int soapOperation){
+		System.out.println(soapObject.toString());
+		calculations = new Calculation[25];
 		if (soapObject != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION:
 				//this.solarPower = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("solarPower").toString());
 				//Iterate through soap objects
+				soapObject = (SoapObject)soapObject.getProperty(0);
 				int calculationsCount = 0;
 				for(int i=0; i<soapObject.getPropertyCount(); i++) {
 					SoapObject curSoapObject = (SoapObject)soapObject.getProperty(i);
-					if (curSoapObject.getName().compareTo("calculations")==0) {
+					if (i<25) {
 						//calculations
 						this.calculations[calculationsCount] = new Calculation(curSoapObject, soapOperation);
 						calculationsCount++;
 					}
 					else {
-						if (curSoapObject.getName().compareTo("customer")==0) {
+						if (i<26) {
+							i++;
 							//customer
 							//this.customer = new Customer(curSoapObject, soapOperation) //Should implement this but can save time by doing this later
 						}
