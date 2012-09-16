@@ -19,7 +19,6 @@ public class OutputSummaryActivity extends Activity {
         setContentView(R.layout.activity_output_summary);
         parentTabbedActivity = (TabbedOutputActivity)getParent();
         calculator = parentTabbedActivity.getCalculator();
-        //testCalculationsSetup();
         generateView();
 
 	}
