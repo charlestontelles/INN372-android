@@ -77,14 +77,14 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 	/**
 	 * @return the efficiency
 	 */
-	public Double getEfficiency() {
+	public double getEfficiency() {
 		return efficiency;
 	}
 
 	/**
 	 * @param efficiency the efficiency to set
 	 */
-	public void setEfficiency(Double efficiency) {
+	public void setEfficiency(double efficiency) {
 		this.efficiency = efficiency;
 	}
 
@@ -189,7 +189,7 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addProperty("bankId", ""+this.bankId);
 		currentSoapObject.addProperty("angle", ""+this.angle);
 		currentSoapObject.addProperty("selectedOrientation", ""+this.selectedOrientation);
-		currentSoapObject.addProperty("efficiency", this.efficiency);
+		//currentSoapObject.addProperty("efficiency", this.efficiency);
 		currentSoapObject.addProperty("numberOfPanels", ""+this.numberOfPanels);
 		currentSoapObject.addProperty("orientationEfficiencyLoss", ""+this.orientationEfficiencyLoss);
 		currentSoapObject.addProperty("angleEfficiencyLoss", ""+this.angleEfficiencyLoss);

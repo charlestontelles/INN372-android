@@ -169,9 +169,9 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
 		currentSoapObject.addSoapObject(equipment.getSoapObject(-1));
 		currentSoapObject.addSoapObject(customer.getSoapObject(-1));
-		for(Calculation curCalculation : this.getCalculations()) {
-			currentSoapObject.addSoapObject(curCalculation.getSoapObject(-1));
-		}
+		//for(Calculation curCalculation : this.getCalculations()) {
+		//	currentSoapObject.addSoapObject(curCalculation.getSoapObject(-1));
+		//}
 		return currentSoapObject;
 	}
 	

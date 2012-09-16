@@ -18,7 +18,7 @@ public class TabbedOutputActivity extends TabActivity {
 	public static final int FINANCIAL_ID = 2;
 	
 	private Calculator calculator;
-	private Calculation[] testCalculations;
+	//private Calculation[] testCalculations;
 	
 	/**
 	 * Constructor - sets up tabs
@@ -29,7 +29,7 @@ public class TabbedOutputActivity extends TabActivity {
         
         calculator = (Calculator)getIntent().getSerializableExtra("Calculator");
         
-        testCalculationsSetup();
+        //testCalculationsSetup();
  
         tabHost = getTabHost();
         
@@ -69,10 +69,12 @@ public class TabbedOutputActivity extends TabActivity {
 	}
 	
 	
+	
 	/**
 	 * Test data for formulating the output screen - this will be removed when the WS call is implemented properly (and working)
 	 */
 	private void testCalculationsSetup() {
+		/*
 		testCalculations = calculator.getCalculations();
 		for(int year=0; year<25; year++) {
 			double growthIndex = java.lang.Math.pow(1.05,year);
@@ -92,6 +94,8 @@ public class TabbedOutputActivity extends TabActivity {
 			}
 		}
 		
+		*/
 	}
+	
 	
 }

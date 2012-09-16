@@ -40,6 +40,6 @@ public class CalculatorMediator {
 	 * @param resultCalculator The result object returns from the WS call
 	 */
 	private void updateCalculator(Calculator resultCalculator) {
-		//calculator.setSolarPower(resultCalculator.getSolarPower());
+		calculator.setCalculations(resultCalculator.getCalculations());
 	}
 }

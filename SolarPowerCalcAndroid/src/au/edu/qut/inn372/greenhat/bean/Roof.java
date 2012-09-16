@@ -1,6 +1,7 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -20,26 +21,26 @@ public class Roof extends AndroidAbstractBean implements Serializable {
 	private double efficiencyLossNorth;
 	private double efficiencyLossWest;
 	
-	private Bank [] banks;
+	private ArrayList<Bank> banks;
 	
 	public Roof(){
-		banks = new Bank[3];
-		for (int i=0; i < banks.length; i++){
-			banks[i] = new Bank();
+		banks = new ArrayList<Bank>();
+		for (int i=0; i < 3; i++){
+			banks.add(new Bank());
 		}
 	}
 	
 	/**
 	 * @return the banks
 	 */
-	public Bank[] getBanks() {
+	public ArrayList<Bank> getBanks() {
 		return banks;
 	}
 
 	/**
 	 * @param banks the banks to set
 	 */
-	public void setBanks(Bank [] banks) {
+	public void setBanks(ArrayList<Bank> banks) {
 		this.banks = banks;
 	}
 	
@@ -167,9 +168,9 @@ public class Roof extends AndroidAbstractBean implements Serializable {
 	 * @return Amended soap object with fields
 	 */
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
-		currentSoapObject.addSoapObject(this.banks[0].getSoapObject(-1));
-		currentSoapObject.addSoapObject(this.banks[1].getSoapObject(-1));
-		currentSoapObject.addSoapObject(this.banks[2].getSoapObject(-1));
+		currentSoapObject.addSoapObject(this.banks.get(0).getSoapObject(-1));
+		currentSoapObject.addSoapObject(this.banks.get(0).getSoapObject(-1));
+		currentSoapObject.addSoapObject(this.banks.get(0).getSoapObject(-1));
 		currentSoapObject.addProperty("efficiencyLossNorth", ""+this.efficiencyLossNorth);
 		currentSoapObject.addProperty("efficiencyLossWest", ""+this.efficiencyLossWest);
 		currentSoapObject.addProperty("height", ""+this.height);
