@@ -13,33 +13,44 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	
 	private Customer customer;
 	
-	//This property will be removed later....
-	private Panel panel;
-	
-	private double solarPower;
 	private Calculation [] calculations;
+	
+	private Calculation calculation;
+	
 	
 	public Calculator() {
 		equipment = new Equipment();
 		customer = new Customer();
-		panel = new Panel();
 		calculations = new Calculation[25];
+		calculation = new Calculation();
 	}
 	
-	/*
-	 * 
-	 * THIS CONSTRUCTOR NEEDS TO CHANGE
-	 * 
-	 * 
-	 */
 	
 	public Calculator(SoapObject soapObject, int soapOperation){
-		
-		equipment = new Equipment();
 		if (soapObject != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION:
-				this.solarPower = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("solarPower").toString());
+				//this.solarPower = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("solarPower").toString());
+				//Iterate through soap objects
+				int calculationsCount = 0;
+				for(int i=0; i<soapObject.getPropertyCount(); i++) {
+					SoapObject curSoapObject = (SoapObject)soapObject.getProperty(i);
+					if (curSoapObject.getName().compareTo("calculations")==0) {
+						//calculations
+						this.calculations[calculationsCount] = new Calculation(curSoapObject, soapOperation);
+						calculationsCount++;
+					}
+					else {
+						if (curSoapObject.getName().compareTo("customer")==0) {
+							//customer
+							//this.customer = new Customer(curSoapObject, soapOperation) //Should implement this but can save time by doing this later
+						}
+						else {
+							//equipment
+							//this.equipment = new Equipment(curSoapObject, soapOperation) //Should implement this but can save time by doing this later
+						}
+					}
+				}
 				//System.out.println(soapObject.getProperty(0)); //Use this code to view the soap object that you receive back from the server
 				break;
 			case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
@@ -49,6 +60,7 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 			}		
 		
 	}
+	
 	
 	
 	/**
@@ -65,22 +77,6 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-	
-	/**
-	 * Get the daily solar power
-	 * @return solarPower value of the solarPower property
-	 */
-	public double getSolarPower() {
-		return solarPower;
-	}
-
-	/**
-	 * Set the daily solar power
-	 * @param solarPower value for the solarPower property
-	 */
-	public void setSolarPower(double solarPower) {
-		this.solarPower = solarPower;
 	}
 
 	/**
@@ -100,19 +96,19 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	}
 
 	/**
-	 * Get the panel
-	 * @return the panel
+	 * Get the calculation
+	 * @return the calculation
 	 */
-	public Panel getPanel() {
-		return panel;
+	public Calculation getCalculation() {
+		return calculation;
 	}
 
 	/**
-	 * Set the panel
-	 * @param panel the panel to set
+	 * Set the calculation
+	 * @param calculation the calculation to set
 	 */
-	public void setPanel(Panel panel) {
-		this.panel = panel;
+	public void setCalculation(Calculation calculation) {
+		this.calculation = calculation;
 	}
 
 	/**
@@ -121,6 +117,13 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	 */
 	public Calculation[] getCalculations() {
 		return calculations;
+	}
+	/**
+	 * Sets the calculations 
+	 * @param calculations
+	 */
+	public void setCalculations(Calculation[] calculations) {
+		this.calculations = calculations;
 	}
 	
 
@@ -164,11 +167,11 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	 * @return Amended soap object with fields
 	 */
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
-		currentSoapObject.addProperty("solarPower", ""+this.solarPower);
 		currentSoapObject.addSoapObject(equipment.getSoapObject(-1));
 		currentSoapObject.addSoapObject(customer.getSoapObject(-1));
-		currentSoapObject.addSoapObject(panel.getSoapObject(-1));
-		//Add Calculations
+		for(Calculation curCalculation : this.getCalculations()) {
+			currentSoapObject.addSoapObject(curCalculation.getSoapObject(-1));
+		}
 		return currentSoapObject;
 	}
 	

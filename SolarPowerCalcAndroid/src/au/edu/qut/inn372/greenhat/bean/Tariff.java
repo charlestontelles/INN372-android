@@ -103,6 +103,7 @@ public class Tariff extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addProperty("tariff11Fee", ""+this.tariff11Fee);
 		currentSoapObject.addProperty("annualTariffIncrease", ""+this.annualTariffIncrease);
 		currentSoapObject.addProperty("feedInFee", ""+this.feedInfee);
+		currentSoapObject.addProperty("tariffFeePerYear", ""+this.tariffFeePerYear);
 		return currentSoapObject;
 	}
 

@@ -28,7 +28,7 @@ public class PowerGenerationActivityTest extends
 		super.setUp();
 		
 		calculator = new Calculator();
-		calculator.setSolarPower(SOLAR_POWER);
+		//calculator.setSolarPower(SOLAR_POWER);
 		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(DAILY_USAGE);
 		
 		//Need to use an activityMonitor to get the activity since we are starting it in a thread

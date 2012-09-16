@@ -20,26 +20,27 @@ public class Roof extends AndroidAbstractBean implements Serializable {
 	private double efficiencyLossNorth;
 	private double efficiencyLossWest;
 	
-	private Bank bank;
+	private Bank [] banks;
 	
-	public Roof() {
-		bank = new Bank();
+	public Roof(){
+		banks = new Bank[3];
+		for (int i=0; i < banks.length; i++){
+			banks[i] = new Bank();
+		}
 	}
 	
 	/**
-	 * Get the bank
-	 * @return bank value on bank property
+	 * @return the banks
 	 */
-	public Bank getBank() {
-		return bank;
+	public Bank[] getBanks() {
+		return banks;
 	}
-	
+
 	/**
-	 * Set the bank
-	 * @param bank new value for the bank property
+	 * @param banks the banks to set
 	 */
-	public void setBank(Bank bank) {
-		this.bank = bank;
+	public void setBanks(Bank [] banks) {
+		this.banks = banks;
 	}
 	
 	
@@ -166,7 +167,9 @@ public class Roof extends AndroidAbstractBean implements Serializable {
 	 * @return Amended soap object with fields
 	 */
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
-		currentSoapObject.addSoapObject(this.bank.getSoapObject(-1));
+		currentSoapObject.addSoapObject(this.banks[0].getSoapObject(-1));
+		currentSoapObject.addSoapObject(this.banks[1].getSoapObject(-1));
+		currentSoapObject.addSoapObject(this.banks[2].getSoapObject(-1));
 		currentSoapObject.addProperty("efficiencyLossNorth", ""+this.efficiencyLossNorth);
 		currentSoapObject.addProperty("efficiencyLossWest", ""+this.efficiencyLossWest);
 		currentSoapObject.addProperty("height", ""+this.height);

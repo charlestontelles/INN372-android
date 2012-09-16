@@ -11,42 +11,12 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 	private int bankId;
 	private double angle;
 	private String selectedOrientation;
-	private int panelNo;
-	
-	//Added by Martin
-	private Double efficiency;
-	private Integer numberOfPanels;
-
-	private Equipment equipment;
-	
-	public Bank() {
-		equipment = new Equipment();
-	}
-	
-	/**
-	 * Get the selected panel
-	 * @return selected panel value of the selected panel property
-	 */
-	public Equipment getEquipment(){
-		return equipment;
-	}
-	
-	/**
-	 * Set the selected panel
-	 * @param selected panel new value for the selected panel property
-	 */
-	public void setEquipment(Equipment equipment){
-		this.equipment = equipment;
-	}
-	
-	
-	public int getPanelNo(){
-		return panelNo;
-	}
-	
-	public void setPanelNo(int panelNo){
-		this.panelNo = panelNo;
-	}
+	private double efficiency;
+	private int numberOfPanels;
+	private double orientationEfficiencyLoss;
+	private double angleEfficiencyLoss;
+	private double powerOutput;
+	private double orientation;
 	
 	/**
 	 * Get the bankId
@@ -79,6 +49,14 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 	public void setAngle(double angle){
 		this.angle = angle;
 	}
+
+	/**
+	 * Set the orientation list
+	 * @param orientation list new value for the orientation list property
+	 */
+	//public void setListOfOrientation(List<SelectItem> listOfOrientation) {
+	//	this.listOfOrientation = listOfOrientation;
+	//}
 	
 	/**
 	 * Get the selected orientation
@@ -113,15 +91,71 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 	/**
 	 * @return the numberOfPanels
 	 */
-	public Integer getNumberOfPanels() {
+	public int getNumberOfPanels() {
 		return numberOfPanels;
 	}
 
 	/**
 	 * @param numberOfPanels the numberOfPanels to set
 	 */
-	public void setNumberOfPanels(Integer numberOfPanels) {
+	public void setNumberOfPanels(int numberOfPanels) {
 		this.numberOfPanels = numberOfPanels;
+	}
+
+	/**
+	 * @return the orientationEfficiencyLoss
+	 */
+	public double getOrientationEfficiencyLoss() {
+		return orientationEfficiencyLoss;
+	}
+
+	/**
+	 * @param orientationEfficiencyLoss the orientationEfficiencyLoss to set
+	 */
+	public void setOrientationEfficiencyLoss(double orientationEfficiencyLoss) {
+		this.orientationEfficiencyLoss = orientationEfficiencyLoss;
+	}
+
+	/**
+	 * @return the angleEfficiencyLoss
+	 */
+	public double getAngleEfficiencyLoss() {
+		return angleEfficiencyLoss;
+	}
+
+	/**
+	 * @param angleEfficiencyLoss the angleEfficiencyLoss to set
+	 */
+	public void setAngleEfficiencyLoss(double angleEfficiencyLoss) {
+		this.angleEfficiencyLoss = angleEfficiencyLoss;
+	}
+
+	/**
+	 * @return the powerOutput
+	 */
+	public double getPowerOutput() {
+		return powerOutput;
+	}
+
+	/**
+	 * @param powerOutput the powerOutput to set
+	 */
+	public void setPowerOutput(double powerOutput){
+		this.powerOutput = powerOutput;
+	}
+
+	/**
+	 * @return the orientation
+	 */
+	public double getOrientation() {
+		return orientation;
+	}
+
+	/**
+	 * @param orientation the orientation to set
+	 */
+	public void setOrientation(double orientation) {
+		this.orientation = orientation;
 	}
 	
 	/**
@@ -152,13 +186,15 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 	 * @return Amended soap object with fields
 	 */
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
-		currentSoapObject.addSoapObject(this.equipment.getSoapObject(-1));
-		currentSoapObject.addProperty("panelNo", ""+this.panelNo);
 		currentSoapObject.addProperty("bankId", ""+this.bankId);
 		currentSoapObject.addProperty("angle", ""+this.angle);
 		currentSoapObject.addProperty("selectedOrientation", ""+this.selectedOrientation);
 		currentSoapObject.addProperty("efficiency", this.efficiency);
 		currentSoapObject.addProperty("numberOfPanels", ""+this.numberOfPanels);
+		currentSoapObject.addProperty("orientationEfficiencyLoss", ""+this.orientationEfficiencyLoss);
+		currentSoapObject.addProperty("angleEfficiencyLoss", ""+this.angleEfficiencyLoss);
+		currentSoapObject.addProperty("powerOutput", ""+this.powerOutput);
+		currentSoapObject.addProperty("orientation", ""+this.orientation);
 		return currentSoapObject;
 	}
 }

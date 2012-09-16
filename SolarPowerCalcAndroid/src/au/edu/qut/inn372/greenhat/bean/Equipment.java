@@ -26,6 +26,7 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 	
 	public Equipment(SoapObject equipmentSoap, int soapOperation) {
 		if (soapObject != null)
+			System.out.println("Test");
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
 				this.cost = new Double(((equipmentSoap.getProperty("cost"))).toString());

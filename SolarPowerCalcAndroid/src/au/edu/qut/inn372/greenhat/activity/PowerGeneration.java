@@ -37,6 +37,7 @@ public class PowerGeneration extends Activity {
 		TextView quaterlyNet = (TextView) findViewById(R.id.TextViewQuaterlyNetField);
 		TextView annualNet = (TextView) findViewById(R.id.TextViewAnnualNetField);
 
+		/*
 		dailyField.setText("" + df.format(calculator.getSolarPower()));
 		annualField.setText("" + df.format(calculator.getSolarPower() * 365));
 		quaterlyField.setText(""
@@ -53,5 +54,6 @@ public class PowerGeneration extends Activity {
 				+ (df.format((calculator.getSolarPower() - calculator
 						.getCustomer().getElectricityUsage()
 						.getDailyAverageUsage()) * 365 / 4)));
+		*/
 	}
 }

@@ -15,6 +15,7 @@ public class ElectricityUsage extends AndroidAbstractBean implements Serializabl
 	private static final long serialVersionUID = -6790457982418909069L;
 	private double dailyAverageUsage; //current electricity usage
 	private double dayTimeHourlyUsage;
+	private double dayLightElectricityUsage; //electricity used during day light hours	
 	
 	/**
 	 * Get the daily electricity usage
@@ -49,6 +50,20 @@ public class ElectricityUsage extends AndroidAbstractBean implements Serializabl
 	}
 	
 	/**
+	 * @return the dayTimeElectricityUsage
+	 */
+	public double getDayLightElectricityUsage() {
+		return dayLightElectricityUsage;
+	}
+
+	/**
+	 * @param dayTimeElectricityUsage the dayTimeElectricityUsage to set
+	 */
+	public void setDayLightElectricityUsage(double dayLightElectricityUsage) {
+		this.dayLightElectricityUsage = dayLightElectricityUsage;
+	}
+	
+	/**
 	 * ATTENTION: ALL VALUES MUST BE CONVERTED TO STRING
 	 */
 	@Override
@@ -76,7 +91,8 @@ public class ElectricityUsage extends AndroidAbstractBean implements Serializabl
 	 */
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
 		currentSoapObject.addProperty("dailyAverageUsage",""+this.dailyAverageUsage);
-		currentSoapObject.addProperty("dayTimeHourlyUsage",""+this.dayTimeHourlyUsage);		
+		currentSoapObject.addProperty("dayTimeHourlyUsage",""+this.dayTimeHourlyUsage);	
+		currentSoapObject.addProperty("dayLightElectricityUsage",""+this.dayLightElectricityUsage);
 		return currentSoapObject;
 	}
 }
