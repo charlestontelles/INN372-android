@@ -93,8 +93,6 @@ public class TabbedOutputActivity extends TabActivity {
 		}
 		
 		calculator.setSolarPower(18.0);
-		calculator.getEquipment().setSize(4.5);
-		calculator.getEquipment().setCost(15000);
 		
 	}
 	
