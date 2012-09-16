@@ -55,6 +55,7 @@ public class FinancialOutputActivityTest extends
 	
 	@Override
 	protected void tearDown() throws Exception {
+		activity.finish();
 		parentActivity.finish(); //Explicitly destroy (finish) the parent tabbed activity to prevent exceptions with multiple tests
 		super.tearDown();
 	}

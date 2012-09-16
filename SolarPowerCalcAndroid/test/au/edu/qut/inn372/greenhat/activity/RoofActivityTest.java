@@ -37,6 +37,18 @@ public class RoofActivityTest extends
 	
 	@Override
 	protected void tearDown() throws Exception {
+		if(activity.getState() == RoofActivity.STATE_PAUSED){
+			//Need to return it to a 'resumed' state so it can shut down cleanly
+			final Instrumentation myInstr = getInstrumentation();
+			activity.runOnUiThread(new Runnable() {
+				public void run() {
+					myInstr.callActivityOnResume(activity); //This 'resumes' the activity which causes the loadData method to be called
+				}
+			});
+			//The following loop waits until the state has paused before proceeding (since it is in a separate thread)
+			while(activity.getState() == RoofActivity.STATE_PAUSED) {};
+		}
+		activity.finish();
 		parentActivity.finish(); //Explicitly destroy (finish) the parent tabbed activity to prevent exceptions with multiple tests
 		super.tearDown();
 	}
@@ -62,15 +74,15 @@ public class RoofActivityTest extends
 	 * Test that data is saved when the activity is paused
 	 */
 	public void testSaveData() {
-		populateTestData();
 		final Instrumentation myInstr = getInstrumentation();
-		
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
+				populateTestData();
 				myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
 			}
 		});
-		myInstr.waitForIdleSync(); //Wait for the above threaded method to complete
+		//The following loop waits until the state has paused before proceeding (since it is in a separate thread)
+		while(activity.getState() == RoofActivity.STATE_NORMAL) {};
 		
 		//Check that the data used in the populateTestData method has been saved to the bean hierarchy
 		//Example is from basic input activity test:
@@ -82,14 +94,15 @@ public class RoofActivityTest extends
 	 * Test that the data is loaded when the activity is paused
 	 */
 	public void testLoadData() {
-		populateTestData();
 		final Instrumentation myInstr = getInstrumentation();
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
+				populateTestData();
 				myInstr.callActivityOnPause(activity); //This 'pauses' the activity which causes the saveData method to be called
 			}
 		});
-		myInstr.waitForIdleSync(); //Wait for the above threaded method to complete
+		//The following loop waits until the state has paused before proceeding (since it is in a separate thread)
+		while(activity.getState() == RoofActivity.STATE_NORMAL) {};
 		
 		//Change values here to check that they are loaded from the calculator and not just the same as they were before pausing
 		//Example is from basic input activity test:
@@ -102,7 +115,8 @@ public class RoofActivityTest extends
 				myInstr.callActivityOnResume(activity); //This 'resumes' the activity which causes the loadData method to be called
 			}
 		});
-		myInstr.waitForIdleSync(); //Wait for the above threaded method to complete
+		//The following loop waits until the state has paused before proceeding (since it is in a separate thread)
+		while(activity.getState() == RoofActivity.STATE_PAUSED) {};
 		
 		//Asserts here for all values to check they are being loaded
 		//Example is from basic input activity test:
@@ -130,7 +144,7 @@ public class RoofActivityTest extends
 	/**
 	 * Tests that the back button returns to the previous activity
 	 */
-	public void testLogoutActivity() {
+	public void testBackActivity() {
 		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(EquipmentActivity.class.getName(), null, false);
 		final Button button = (Button) activity.findViewById(R.id.buttonRoof_Back);
 		activity.runOnUiThread(new Runnable() {
