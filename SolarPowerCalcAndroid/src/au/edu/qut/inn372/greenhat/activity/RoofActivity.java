@@ -1,22 +1,15 @@
 package au.edu.qut.inn372.greenhat.activity;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.bean.Equipment;
 
 public class RoofActivity extends Activity{
 	
-	//add this 
-	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.RoofActivity";
-	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.RoofActivity2";
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
 	private int state;
@@ -27,7 +20,6 @@ public class RoofActivity extends Activity{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roof_input);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
         parentTabbedActivity = (TabbedActivity)this.getParent();
     }
 	
@@ -65,7 +57,6 @@ public class RoofActivity extends Activity{
 		
 		Spinner bank1Orientation = (Spinner)findViewById(R.id.spinnerRoof__OrientationOfBank1);
 		Spinner bank2Orientation = (Spinner)findViewById(R.id.spinnerRoof__OrientationOfBank2);
-		
 		
 		calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setSelectedOrientation(bank1Orientation.getSelectedItem().toString());
 		calculator.getCustomer().getLocation().getRoof().getBanks().get(1).setSelectedOrientation(bank2Orientation.getSelectedItem().toString());

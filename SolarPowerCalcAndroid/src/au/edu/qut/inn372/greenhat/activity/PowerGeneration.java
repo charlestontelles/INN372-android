@@ -4,18 +4,12 @@ import java.text.DecimalFormat;
 
 import android.os.Bundle;
 import android.app.Activity;
-import android.content.Intent;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
-import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 
 public class PowerGeneration extends Activity {
 
-	private Calculation[] testCalculations;
 	private Calculator calculator;
-	private int paybackPeriod = 20;
 	DecimalFormat df = new DecimalFormat("#.##");
 	private TabbedOutputActivity parentTabbedActivity;
 
@@ -29,6 +23,9 @@ public class PowerGeneration extends Activity {
 
 	}
 
+	/**
+	 * Updates views with data from calculator bean
+	 */
 	private void generateView() {
 		TextView dailyField = (TextView) findViewById(R.id.TextViewDailyField);
 		TextView annualField = (TextView) findViewById(R.id.TextViewAnnualField);

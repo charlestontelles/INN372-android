@@ -1,31 +1,19 @@
 package au.edu.qut.inn372.greenhat.activity;
 
-import java.util.ArrayList;
-
 import android.os.Bundle;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.support.v4.app.NavUtils;
-import au.edu.qut.inn372.greenhat.bean.Bank;
-import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.bean.Customer;
-import au.edu.qut.inn372.greenhat.bean.Location;
 import au.edu.qut.inn372.greenhat.bean.Roof;
-import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
 public class BasicInputActivity extends Activity {
 
-	//add this 
-	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity";
-	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.BasicInputActivity2";
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
 	private int state;
@@ -58,6 +46,10 @@ public class BasicInputActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     
+    /**
+     * Performs the calculations (Soap call) and changed to output activity
+     * @param view
+     */
     public void calculate(View view){
     	saveData();
     	
@@ -70,6 +62,11 @@ public class BasicInputActivity extends Activity {
     
     }
     
+    /**
+     * Performed when the reset button is pressed
+     * This functionality should be changed to reset all values to defaults rather than just reloading data
+     * @param view
+     */
     public void reset(View view){
     	loadData();
     }
@@ -80,12 +77,14 @@ public class BasicInputActivity extends Activity {
 	private void saveData() {
 		
 		Calculator calculator = parentTabbedActivity.getCalculator();
+		
 		//Current Energy User Details
 		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDay)).getText().toString()));
 		calculator.getCustomer().getElectricityUsage().setDayTimeHourlyUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDaylight)).getText().toString()));
 		calculator.getCustomer().getTariff().setFeedInfee(new Double(((EditText)findViewById(R.id.editRoof_Usage_FeedInFee)).getText().toString()));
 		calculator.getCustomer().getTariff().setTariff11Fee(new Double(((EditText)findViewById(R.id.editRoof_Usage_Tariff)).getText().toString()));
 		//Roof
+		
 		EditText bank1AngleView = (EditText)findViewById(R.id.editRoof_Bank1_Angle);
 		TextView bank1OrientationView = (TextView)findViewById(R.id.editRoof_Bank1_Orientaton);
 		EditText bank2AngleView = (EditText)findViewById(R.id.editRoof_Bank2_Angle);
@@ -147,7 +146,6 @@ public class BasicInputActivity extends Activity {
 		bank2NumPanelsView.setText(new Integer(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getNumberOfPanels()).toString());
 		bank2AngleView.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getAngle()).toString());
 		bank2OrientationView.setText(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getSelectedOrientation());
-		//Location
 		
 		//Sunlight Details
 		EditText inputDailyHours = (EditText)findViewById(R.id.editRoof_Sunlight_Daylight);

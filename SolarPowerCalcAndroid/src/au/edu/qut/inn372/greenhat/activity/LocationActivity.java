@@ -1,6 +1,5 @@
 package au.edu.qut.inn372.greenhat.activity;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +17,6 @@ import au.edu.qut.inn372.greenhat.bean.Location;
 
 public class LocationActivity extends Activity implements OnItemSelectedListener {
 	
-	//add this 
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
 		private int state;
@@ -33,7 +31,6 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	        setupSpinner();
 	        TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 	        calculator = parentTabbedActivity.getCalculator();
-	        //getActionBar().setDisplayHomeAsUpEnabled(true);
 	    }
 	    
 	    /**
@@ -190,7 +187,7 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		}
 		
 		/**
-		 * Unused method
+		 * Unused method required by interface
 		 */
 		public void onNothingSelected(AdapterView<?> arg0) {
 			// TODO Auto-generated method stub

@@ -50,7 +50,7 @@ public class TabbedActivity extends TabActivity {
     }
 	
 	/**
-	 * Initialised default values
+	 * Initialise default values - In future this will become a WS call that loads an extra calculator bean filled with defaults
 	 */
 	private void setupCalculatorDefaults() {
 		getCalculator().getCustomer().getLocation().setCity("Brisbane");
@@ -62,8 +62,8 @@ public class TabbedActivity extends TabActivity {
 		getCalculator().getCustomer().getTariff().setTariff11Fee(0.1941);
 		getCalculator().getCustomer().getTariff().setFeedInfee(0.50);
 		getCalculator().setEquipment(getEquipmentKits().get(0));
-		getCalculator().getCustomer().getTariff().setAnnualTariffIncrease(1); //Shouldn't need this
-		getCalculator().getCustomer().getTariff().setTariffFeePerYear(1); //Shouldn't need this
+		getCalculator().getCustomer().getTariff().setAnnualTariffIncrease(1); // Probably shouldn't need this
+		getCalculator().getCustomer().getTariff().setTariffFeePerYear(1); //Probably shouldn't need this
 		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(1);
 		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(1).setNumberOfPanels(1);
 		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setAngle(45);
@@ -94,10 +94,17 @@ public class TabbedActivity extends TabActivity {
 		return calcMediator.getCalculator();
 	}
 	
+	/**
+	 * Retrieve the list of equipments obtained from the WS call
+	 * @return
+	 */
 	public ArrayList<Equipment> getEquipmentKits() {
 		return equipKitsMediator.getEquipmentKits();
 	}
 	
+	/**
+	 * Perform the WS call to calculate energy production (and financial output)
+	 */
 	public void calcEnergyProduction() {
 		calcMediator.calcEnergyProduction();
 	}

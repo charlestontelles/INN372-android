@@ -26,12 +26,10 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	
 	
 	public Calculator(SoapObject soapObject, int soapOperation){
-		//System.out.println(soapObject.toString());
 		calculations = new Calculation[25];
 		if (soapObject != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION:
-				//this.solarPower = new Double(((SoapObject)soapObject.getProperty(0)).getProperty("solarPower").toString());
 				//Iterate through soap objects
 				soapObject = (SoapObject)soapObject.getProperty(0);
 				int calculationsCount = 0;
@@ -54,7 +52,6 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 						}
 					}
 				}
-				//System.out.println(soapObject.getProperty(0)); //Use this code to view the soap object that you receive back from the server
 				break;
 			case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 				break;

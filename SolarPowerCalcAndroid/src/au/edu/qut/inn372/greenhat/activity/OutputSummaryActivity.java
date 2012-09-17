@@ -22,6 +22,10 @@ public class OutputSummaryActivity extends Activity {
         generateView();
 
 	}
+	
+	/**
+	 * Updates views with information from calculator bean
+	 */
     private void generateView() {
 		TextView systemSizeField = (TextView)findViewById(R.id.TextViewSystemSizeField);
 		TextView systemCostField = (TextView)findViewById(R.id.TextViewSystemCostField);

@@ -7,10 +7,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-import au.edu.qut.inn372.greenhat.bean.Calculator;
-import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
 public class LoginActivity extends Activity {
 	

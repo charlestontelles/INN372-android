@@ -10,10 +10,11 @@ import org.ksoap2.transport.HttpTransportSE;
  *
  */
 public class CalculatorSoapClient {
-	//private final String URL = "http://10.0.2.2:8888/calculatorsoapserver"; //This endpoint can be used when you are running the web server on localhost but running android through avd
-	//private final String URL = "http://solarpowercalcwebtest.appspot.com/hellosoapserver";
+	//This endpoint can be used when you are running the web server on localhost but running android through avd
+	//private final String URL = "http://10.0.2.2:8888/calculatorsoapserver";
+	//Endpoint for test server
 	//private final String URL = "http://solarpowercalcwebtest.appspot.com/calculatorsoapserver";
-	// TODO Swap out these lines for release version
+	//Endpoint for release server
 	private final String URL = "http://solarpowercalcweb.appspot.com/calculatorsoapserver";
     private final String SOAP_ACTION = "";
     

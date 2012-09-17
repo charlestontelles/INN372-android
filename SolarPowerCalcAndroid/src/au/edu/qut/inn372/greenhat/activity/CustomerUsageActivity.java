@@ -1,7 +1,6 @@
 package au.edu.qut.inn372.greenhat.activity;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,9 +8,6 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 
 public class CustomerUsageActivity extends Activity {
 	
-	//add this 
-		public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.CustomerUsageActivity";
-		public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.CustomerUsageActivity2";
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
 		private int state;

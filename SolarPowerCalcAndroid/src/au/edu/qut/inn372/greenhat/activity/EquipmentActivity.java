@@ -3,13 +3,11 @@ package au.edu.qut.inn372.greenhat.activity;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
@@ -18,14 +16,9 @@ import au.edu.qut.inn372.greenhat.bean.Roof;
 
 public class EquipmentActivity extends Activity implements OnItemSelectedListener{
 	
-	//add this 
-	public final static String EXTRA_MESSAGE = "au.edu.qut.inn372.inn372.greenhat.activity.EquipmentActivity";
-	public final static String EXTRA_MESSAGE2 = "au.edu.qut.inn372.inn372.greenhat.activity.EquipmentActivity2";
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
 	private int state;
-	
-	
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +26,6 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
         setContentView(R.layout.activity_equipment_input);
         Spinner spinner = (Spinner)findViewById(R.id.spinnerEquipment_List);
 		spinner.setOnItemSelectedListener(this); 
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 	
 	/**
@@ -64,19 +56,21 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 		
 		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
-        // An item was selected. You can retrieve the selected item using
-        // parent.getItemAtPosition(pos)
 		Calculator calculator = parentTabbedActivity.getCalculator();
+		
         //Number of Panels
         TextView numberOfPanels = (TextView)findViewById(R.id.textEquipment_ViewPanelNumber);
         numberOfPanels.setText(new Integer(equipmentKits.get(pos).getTotalPanels()).toString());
+        
         //System Cost
         TextView systemCost = (TextView)findViewById(R.id.textEquipment_ViewSystemCost);
         systemCost.setText(new Double(equipmentKits.get(pos).getCost()).toString());
+        
         //System Size
         TextView systemSize = (TextView)findViewById(R.id.textEquipment_ViewSystemSize);
         systemSize.setText(new Double(equipmentKits.get(pos).getSize()).toString());
-        //Inverter Efficieny
+        
+        //Inverter Efficiency
         TextView inverterEfficieny = (TextView)findViewById(R.id.textEquipment_ViewInverterEfficieny);
         inverterEfficieny.setText(new Double(equipmentKits.get(pos).getInverter().getEfficiency()).toString());
         
@@ -85,7 +79,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
     }
 	
 	/**
-	 * Must be implemented because of the interface
+	 * Must be implemented because of the interface - unused
 	 */
 	public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
@@ -111,6 +105,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
 		Spinner equipList = (Spinner)findViewById(R.id.spinnerEquipment_List);
 		
+		//Set spinner to correct position
 		ArrayList<String> spinnerArray = new ArrayList<String>();
 		for(Equipment curEquipmentKit : equipmentKits) {
 			spinnerArray.add(curEquipmentKit.getKitName());
