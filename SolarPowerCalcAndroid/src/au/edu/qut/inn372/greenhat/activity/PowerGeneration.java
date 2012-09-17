@@ -36,24 +36,21 @@ public class PowerGeneration extends Activity {
 		TextView netField = (TextView) findViewById(R.id.TextViewNetField);
 		TextView quaterlyNet = (TextView) findViewById(R.id.TextViewQuaterlyNetField);
 		TextView annualNet = (TextView) findViewById(R.id.TextViewAnnualNetField);
+		
+		Double dailySolar = new Double(calculator.getCalculations()[0].getDailySolarPower());
+		Double dailyNet = new Double(dailySolar - calculator.getCustomer().getElectricityUsage().getDailyAverageUsage());
 
-		/*
-		dailyField.setText("" + df.format(calculator.getSolarPower()));
-		annualField.setText("" + df.format(calculator.getSolarPower() * 365));
+		
+		dailyField.setText("" + df.format(dailySolar));
+		annualField.setText("" + df.format(dailySolar * 365));
 		quaterlyField.setText(""
-				+ df.format(calculator.getSolarPower() * 365 / 4));
+				+ df.format(dailySolar * 365 / 4));
 		netField.setText(""
-				+ (df.format(calculator.getSolarPower()
-						- calculator.getCustomer().getElectricityUsage()
-								.getDailyAverageUsage())));
+				+ (df.format(dailyNet)));
 		annualNet.setText(""
-				+ (df.format((calculator.getSolarPower() - calculator
-						.getCustomer().getElectricityUsage()
-						.getDailyAverageUsage()) * 365)));
+				+ (df.format((dailyNet) * 365)));
 		quaterlyNet.setText(""
-				+ (df.format((calculator.getSolarPower() - calculator
-						.getCustomer().getElectricityUsage()
-						.getDailyAverageUsage()) * 365 / 4)));
-		*/
+				+ (df.format((dailyNet) * 365 / 4)));
+		
 	}
 }

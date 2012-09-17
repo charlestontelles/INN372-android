@@ -18,7 +18,6 @@ public class TabbedOutputActivity extends TabActivity {
 	public static final int FINANCIAL_ID = 2;
 	
 	private Calculator calculator;
-	//private Calculation[] testCalculations;
 	
 	/**
 	 * Constructor - sets up tabs
@@ -28,8 +27,6 @@ public class TabbedOutputActivity extends TabActivity {
         setContentView(R.layout.activity_tabbed_output);
         
         calculator = (Calculator)getIntent().getSerializableExtra("Calculator");
-        
-        //testCalculationsSetup();
  
         tabHost = getTabHost();
         
@@ -67,35 +64,4 @@ public class TabbedOutputActivity extends TabActivity {
 	public void switchTab(int tabID) {
 		tabHost.setCurrentTab(tabID);
 	}
-	
-	
-	
-	/**
-	 * Test data for formulating the output screen - this will be removed when the WS call is implemented properly (and working)
-	 */
-	private void testCalculationsSetup() {
-		/*
-		testCalculations = calculator.getCalculations();
-		for(int year=0; year<25; year++) {
-			double growthIndex = java.lang.Math.pow(1.05,year);
-			testCalculations[year] = new Calculation();
-			testCalculations[year].setYear(year);
-			testCalculations[year].setTariff11Fee(new Double(0.1*growthIndex));
-			testCalculations[year].setDailySolarPower(new Double(15*(2-growthIndex)));
-			testCalculations[year].setReplacementGeneration(3.0);
-			testCalculations[year].setExportedGeneration(testCalculations[year].getDailySolarPower()-testCalculations[year].getReplacementGeneration());
-			testCalculations[year].setDailySaving(testCalculations[year].getTariff11Fee()*testCalculations[year].getReplacementGeneration() + 0.5*testCalculations[year].getExportedGeneration());
-			testCalculations[year].setAnnualSaving(testCalculations[year].getDailySaving()*365);
-			if (year==0) {
-				testCalculations[year].setCumulativeSaving(testCalculations[year].getAnnualSaving());
-			}
-			else {
-				testCalculations[year].setCumulativeSaving(testCalculations[year].getAnnualSaving()+testCalculations[year-1].getCumulativeSaving());
-			}
-		}
-		
-		*/
-	}
-	
-	
 }

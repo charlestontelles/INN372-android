@@ -89,7 +89,7 @@ public class BasicInputActivity extends Activity {
 	 * Saves current input data to the calculator bean
 	 */
 	private void saveData() {
-		testData();
+		
 		Calculator calculator = parentTabbedActivity.getCalculator();
 		//Current Energy User Details
 		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDay)).getText().toString()));
@@ -98,7 +98,7 @@ public class BasicInputActivity extends Activity {
 		calculator.getCustomer().getTariff().setAnnualTariffIncrease(new Double(((EditText)findViewById(R.id.editRoof_Usage_FeeIncrease)).getText().toString()));
 		calculator.getCustomer().getTariff().setTariff11Fee(new Double(((EditText)findViewById(R.id.editRoof_Usage_Tariff)).getText().toString()));
 		//Roof
-		
+		testData();
 	}
 	
 	/**
@@ -152,6 +152,7 @@ public class BasicInputActivity extends Activity {
 	}
 	
 	private void testData() {
+		
 		Calculator calculator = parentTabbedActivity.getCalculator();
 		calculator.setEquipment(parentTabbedActivity.getEquipmentKits().get(0));
 		Customer customer = calculator.getCustomer();
@@ -183,19 +184,8 @@ public class BasicInputActivity extends Activity {
 		bank2.setOrientationEfficiencyLoss(10);
 		bank2.setPowerOutput(500);
 		bank2.setSelectedOrientation("West");
-		Bank bank3 = new Bank();
-		bank3.setAngle(45);
-		bank3.setAngleEfficiencyLoss(5);
-		bank3.setBankId(0);
-		bank3.setEfficiency(6);
-		bank3.setNumberOfPanels(3);
-		bank3.setOrientation(10);
-		bank3.setOrientationEfficiencyLoss(10);
-		bank3.setPowerOutput(500);
-		bank3.setSelectedOrientation("North");
 		banks.add(bank1);
 		banks.add(bank2);
-		banks.add(bank3);
 		location.getRoof().setBanks(banks);
 		location.getRoof().setEfficiencyLossNorth(50);
 		location.getRoof().setEfficiencyLossWest(30);
@@ -207,7 +197,7 @@ public class BasicInputActivity extends Activity {
 		customer.getTariff().setFeedInfee(2);
 		customer.getTariff().setTariff11Fee(3);
 		customer.getTariff().setTariffFeePerYear(4);
-	
+		
 	}
 	
 }

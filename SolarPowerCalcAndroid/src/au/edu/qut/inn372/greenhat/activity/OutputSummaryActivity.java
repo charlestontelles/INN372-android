@@ -29,7 +29,7 @@ public class OutputSummaryActivity extends Activity {
 		
 		systemSizeField.setText(""+df.format(calculator.getEquipment().getSize()));
 		systemCostField.setText("$"+df.format(calculator.getEquipment().getCost()));
-		paybackPeriodField.setText(""+df.format(10.0));
+		paybackPeriodField.setText(""+df.format(calculator.getCalculations()[0].getPaybackPeriod()));
     }
 
 }

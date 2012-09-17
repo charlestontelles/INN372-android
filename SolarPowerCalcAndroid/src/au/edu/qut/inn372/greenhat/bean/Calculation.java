@@ -55,7 +55,7 @@ public class Calculation extends AndroidAbstractBean implements Serializable {
 	}
 
 	public Calculation(SoapObject calculationSoap, int soapOperation) {
-		if (soapObject != null)
+		if (calculationSoap != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION:
 				this.year = new Integer(calculationSoap.getProperty("year").toString());
@@ -75,6 +75,7 @@ public class Calculation extends AndroidAbstractBean implements Serializable {
 				this.annualSaving = new Double(calculationSoap.getProperty("annualSaving").toString());
 				this.cumulativeSaving = new Double(calculationSoap.getProperty("cumulativeSaving").toString());
 				this.returnOnInvestment = new Double(calculationSoap.getProperty("returnOnInvestment").toString());
+				this.paybackPeriod = new Double(calculationSoap.getProperty("paybackPeriod").toString());
 				break;
 			case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 				break;
