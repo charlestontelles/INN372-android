@@ -61,6 +61,7 @@ public class TabbedActivity extends TabActivity {
 		getCalculator().getCustomer().getElectricityUsage().setDayTimeHourlyUsage(1);
 		getCalculator().getCustomer().getTariff().setTariff11Fee(0.1941);
 		getCalculator().getCustomer().getTariff().setFeedInfee(0.50);
+		getCalculator().setEquipment(getEquipmentKits().get(0));
 		getCalculator().getCustomer().getTariff().setAnnualTariffIncrease(1); //Shouldn't need this
 		getCalculator().getCustomer().getTariff().setTariffFeePerYear(1); //Shouldn't need this
 		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(1);
@@ -68,7 +69,7 @@ public class TabbedActivity extends TabActivity {
 		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setAngle(45);
 		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(1).setAngle(45);
 		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setSelectedOrientation("North");
-		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setSelectedOrientation("West");
+		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(1).setSelectedOrientation("West");
 	}
 	
 	/**
