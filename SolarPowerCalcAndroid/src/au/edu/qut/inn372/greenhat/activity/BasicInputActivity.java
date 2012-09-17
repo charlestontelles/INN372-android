@@ -100,9 +100,7 @@ public class BasicInputActivity extends Activity {
 		//Roof
 		
 		//Sunlight Details
-		calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewByIds(R.id.editRoof_Sunlight_Daylight)).getText().toString()));
-		
-		testData();
+		//calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewByIds(R.id.editRoof_Sunlight_Daylight)).getText().toString()));
 	}
 	
 	/**
@@ -161,55 +159,6 @@ public class BasicInputActivity extends Activity {
 	 */
 	public int getState() {
 		return state;
-	}
-	
-	private void testData() {
-		
-		Calculator calculator = parentTabbedActivity.getCalculator();
-		calculator.setEquipment(parentTabbedActivity.getEquipmentKits().get(0));
-		Customer customer = calculator.getCustomer();
-		customer.getElectricityUsage().setDailyAverageUsage(3);
-		customer.getElectricityUsage().setDayLightElectricityUsage(3);
-		customer.getElectricityUsage().setDayTimeHourlyUsage(3);
-		Location location = customer.getLocation();
-		location.setCity("Brisbane");
-		location.setRegion("QLD");
-		location.setSunLightHours(8);
-		ArrayList<Bank> banks = new ArrayList<Bank>();
-		Bank bank1 = new Bank();
-		bank1.setAngle(45);
-		bank1.setAngleEfficiencyLoss(5);
-		bank1.setBankId(0);
-		bank1.setEfficiency(6);
-		bank1.setNumberOfPanels(3);
-		bank1.setOrientation(10);
-		bank1.setOrientationEfficiencyLoss(10);
-		bank1.setPowerOutput(500);
-		bank1.setSelectedOrientation("North");
-		Bank bank2 = new Bank();
-		bank2.setAngle(45);
-		bank2.setAngleEfficiencyLoss(5);
-		bank2.setBankId(0);
-		bank2.setEfficiency(6);
-		bank2.setNumberOfPanels(3);
-		bank2.setOrientation(10);
-		bank2.setOrientationEfficiencyLoss(10);
-		bank2.setPowerOutput(500);
-		bank2.setSelectedOrientation("West");
-		banks.add(bank1);
-		banks.add(bank2);
-		location.getRoof().setBanks(banks);
-		location.getRoof().setEfficiencyLossNorth(50);
-		location.getRoof().setEfficiencyLossWest(30);
-		location.getRoof().setHeight(3);
-		location.getRoof().setPercentageNorth(90);
-		location.getRoof().setPercentageWest(10);
-		location.getRoof().setWidth(2);
-		customer.getTariff().setAnnualTariffIncrease(1);
-		customer.getTariff().setFeedInfee(2);
-		customer.getTariff().setTariff11Fee(3);
-		customer.getTariff().setTariffFeePerYear(4);
-		
 	}
 	
 }

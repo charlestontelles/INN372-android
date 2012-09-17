@@ -135,10 +135,12 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 	 * @return selected panel value of the selected panel property
 	 */
 	public int getTotalPanels() { 
-		if (this.panels != null)
+		if (this.panels != null) {
 			return this.panels.size();
-		else
+		}
+		else {
 			return 0;
+		}
 		//return totalPanels;
 	} 
 	

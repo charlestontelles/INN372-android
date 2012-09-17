@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Roof;
 
 public class EquipmentActivity extends Activity implements OnItemSelectedListener{
 	
@@ -78,6 +79,9 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
         //Inverter Efficieny
         TextView inverterEfficieny = (TextView)findViewById(R.id.textEquipment_ViewInverterEfficieny);
         inverterEfficieny.setText(new Double(equipmentKits.get(pos).getInverter().getEfficiency()).toString());
+        
+        TextView roofSizeCheck = (TextView)findViewById(R.id.textEquipment_RoofSizeCheck);
+        roofSizeCheck.setText(panelsMessage(equipmentKits.get(pos).getTotalPanels()));
     }
 	
 	/**
@@ -147,6 +151,24 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 			}
 		}
 		return 0;
+	}
+	
+	/**
+	 * Returns a message stating whether all the panels fit on the roof or not
+	 */
+	private String panelsMessage(int numPanels) {
+		saveData();
+		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+		Calculator calculator = parentTabbedActivity.getCalculator();
+		Roof roof = calculator.getCustomer().getLocation().getRoof();
+		double roofSize = (roof.getHeight() * roof.getWidth())/10000;
+		double totalPanelSize = calculator.getEquipment().getPanels().get(0).getSize()*calculator.getEquipment().getTotalPanels();
+		if(roofSize > totalPanelSize) {
+			return "Panels will fit on your roof";
+		}
+		else {
+			return "Panels will NOT fit on your roof";
+		}
 	}
 	
 	@Override
