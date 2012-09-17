@@ -16,7 +16,6 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 	private static final long serialVersionUID = 5455126267096688150L;
 	private double cost;
 	private double size;
-	//private int isSelectedID;
 	private String kitName = "";
 	
 	private List<Panel> panels = new ArrayList<Panel>();
@@ -31,7 +30,6 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
 				this.cost = new Double(((equipmentSoap.getProperty("cost"))).toString());
 				this.size = new Double(((equipmentSoap.getProperty("size"))).toString());
-				//this.isSelectedID = new Integer(((equipmentSoap.getProperty("isSelectedID"))).toString());
 				this.kitName = new String(((equipmentSoap.getProperty("kitName"))).toString());
 				this.inverter = new Inverter((SoapObject)equipmentSoap.getProperty("inverter"), soapOperation);
 				this.battery = new Battery((SoapObject)equipmentSoap.getProperty("battery"), soapOperation);
@@ -182,15 +180,6 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 	public void setSize(double size) {
 		this.size = size; 
 	}
-	
-
-	/*public int getIsSelectedID() {
-		return isSelectedID;
-	}
-
-	public void setIsSelectedID(int isSelectedID) {
-		this.isSelectedID = isSelectedID;
-	}*/
 
 	/**
 	 * ATTENTION: ALL VALUES MUST BE CONVERTED TO STRING
@@ -225,7 +214,6 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
 		currentSoapObject.addProperty("cost", ""+this.cost);
 		currentSoapObject.addProperty("size", ""+this.size);
-		//currentSoapObject.addProperty("isSelectedID", ""+this.isSelectedID);
 		currentSoapObject.addProperty("kitName", ""+this.kitName);
 		for(Panel curPanel : this.panels) {
 			currentSoapObject.addSoapObject(curPanel.getSoapObject(-1));

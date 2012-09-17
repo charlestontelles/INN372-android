@@ -91,7 +91,12 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	 * Saves current input data to the calculator bean
 	 */
 	private void saveData() {
+		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
+		Calculator calculator = parentTabbedActivity.getCalculator();
+		Spinner equipList = (Spinner)findViewById(R.id.spinnerEquipment_List);
 		
+		calculator.setEquipment(equipmentKits.get(equipList.getSelectedItemPosition()));
 	}
 	
 	/**
@@ -108,6 +113,8 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 		}
 		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
 		equipList.setAdapter(spinnerArrayAdapter);
+		
+		equipList.setSelection(getEquipmentKitPosition(parentTabbedActivity.getCalculator().getEquipment().getKitName()));
 		
 		
         //Number of Panels
@@ -126,6 +133,20 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
         TextView inverterEfficieny = (TextView)findViewById(R.id.textEquipment_ViewInverterEfficieny);
         inverterEfficieny.setText(new Double(equipmentKits.get(equipList.getSelectedItemPosition()).getInverter().getEfficiency()).toString());
         
+	}
+	
+	/**
+	 * Returns the position in equipmentKits for the kit with the provided name
+	 */
+	private int getEquipmentKitPosition(String kitName) {
+		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
+		for(int i = 0; i < equipmentKits.size(); i++) {
+			if(equipmentKits.get(i).getKitName().compareTo(kitName)==0) {
+				return i;
+			}
+		}
+		return 0;
 	}
 	
 	@Override
