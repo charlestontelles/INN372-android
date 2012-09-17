@@ -50,7 +50,7 @@
 	        />
 	    
 	    <EditText
-	            android:id="@+id/editRoof_Size_Heigth"
+	            android:id="@+id/editRoof_Size_Height"
 	            android:layout_width="75dp"
 	            android:layout_height="wrap_content"
 	            android:ems="@string/entryfieldlength"

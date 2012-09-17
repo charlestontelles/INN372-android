@@ -91,7 +91,14 @@ public class BasicInputActivity extends Activity {
 	private void saveData() {
 		testData();
 		Calculator calculator = parentTabbedActivity.getCalculator();
+		//Current Energy User Details
 		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDay)).getText().toString()));
+		calculator.getCustomer().getElectricityUsage().setDayTimeHourlyUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDaylight)).getText().toString()));
+		calculator.getCustomer().getTariff().setFeedInfee(new Double(((EditText)findViewById(R.id.editRoof_Usage_FeedInFee)).getText().toString()));
+		calculator.getCustomer().getTariff().setAnnualTariffIncrease(new Double(((EditText)findViewById(R.id.editRoof_Usage_FeeIncrease)).getText().toString()));
+		calculator.getCustomer().getTariff().setTariff11Fee(new Double(((EditText)findViewById(R.id.editRoof_Usage_Tariff)).getText().toString()));
+		//Roof
+		
 	}
 	
 	/**
@@ -99,8 +106,27 @@ public class BasicInputActivity extends Activity {
 	 */
 	private void loadData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
+		//Current Energy User Details
 		EditText inputDailyAverage = (EditText)findViewById(R.id.editRoof_Usage_UsagePerDay);
 		inputDailyAverage.setText(new Double(calculator.getCustomer().getElectricityUsage().getDailyAverageUsage()).toString());
+		
+		EditText inputTimeHourlyUsage = (EditText)findViewById(R.id.editRoof_Usage_UsagePerDaylight);
+		inputTimeHourlyUsage.setText(new Double(calculator.getCustomer().getElectricityUsage().getDayTimeHourlyUsage()).toString());
+		
+		EditText inputFeedInFee = (EditText)findViewById(R.id.editRoof_Usage_FeedInFee);
+		inputFeedInFee.setText(new Double(calculator.getCustomer().getTariff().getFeedInfee()).toString());
+		
+		EditText inputAnnualTariffIncrease = (EditText)findViewById(R.id.editRoof_Usage_FeeIncrease);
+		inputAnnualTariffIncrease.setText(new Double(calculator.getCustomer().getTariff().getAnnualTariffIncrease()).toString());
+		
+		EditText inputAnnualTariff11Cost = (EditText)findViewById(R.id.editRoof_Usage_Tariff);
+		inputAnnualTariff11Cost.setText(new Double(calculator.getCustomer().getTariff().getTariff11Fee()).toString());
+		
+		//Equipment
+		
+		//Roof
+		
+		//Location
 	}
 	
 	@Override

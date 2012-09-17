@@ -87,7 +87,7 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 	public List<Panel> getPanels() {
 		return panels;
 	}
-	
+		
 	/**
 	 * Set the panels
 	 * @param panels new value for the panels property
@@ -109,6 +109,7 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 	public void removePanel (Panel panel){
 		this.panels.remove(panel);
 	}
+		
 	/**
 	 * Gets Kit name
 	 * @return kit name

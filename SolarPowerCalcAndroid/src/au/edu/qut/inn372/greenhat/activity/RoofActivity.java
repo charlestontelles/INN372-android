@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import au.edu.qut.inn372.greenhat.bean.Calculator;
 
 public class RoofActivity extends Activity{
 	
@@ -13,12 +15,15 @@ public class RoofActivity extends Activity{
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
 	private int state;
+	
+	private TabbedActivity parentTabbedActivity;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roof_input);
         //getActionBar().setDisplayHomeAsUpEnabled(true);
+        parentTabbedActivity = (TabbedActivity)this.getParent();
     }
 	
 	/**
@@ -28,7 +33,7 @@ public class RoofActivity extends Activity{
 	 */
 	public void viewNext(View view){
     	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.LOCATION_ID;
+    	int targetActivity = TabbedActivity.INPUT_ID;
     	parentTabbedActivity.switchTab(targetActivity);
 	}
 	
@@ -46,6 +51,9 @@ public class RoofActivity extends Activity{
 	 * Saves current input data to the calculator bean
 	 */
 	private void saveData() {
+		Calculator calculator = parentTabbedActivity.getCalculator();
+		calculator.getCustomer().getLocation().getRoof().setWidth(new Double(((EditText)findViewById(R.id.editRoof_Size_Width)).getText().toString()));
+		calculator.getCustomer().getLocation().getRoof().setHeight(new Double(((EditText)findViewById(R.id.editRoof_Size_Height)).getText().toString()));
 		
 	}
 	
@@ -53,6 +61,13 @@ public class RoofActivity extends Activity{
 	 * Populates input fields with data in the calculator bean
 	 */
 	private void loadData() {
+		Calculator calculator = parentTabbedActivity.getCalculator();
+		
+		EditText inputWidth = (EditText)findViewById(R.id.editRoof_Size_Width);
+		inputWidth.setText(new Double(calculator.getCustomer().getLocation().getRoof().getWidth()).toString());
+		
+		EditText inputHeigth = (EditText)findViewById(R.id.editRoof_Size_Height);
+		inputHeigth.setText(new Double(calculator.getCustomer().getLocation().getRoof().getHeight()).toString());
 		
 	}
 	

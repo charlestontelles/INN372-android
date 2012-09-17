@@ -40,9 +40,9 @@ public class CustomerUsageActivity extends Activity {
 		 * @param view
 		 */
 		public void viewBack(View view){
-			Intent intent = new Intent(this, LoginActivity.class);
-	    	
-	    	startActivity(intent);
+			TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+	    	int targetActivity = TabbedActivity.LOCATION_ID;
+	    	parentTabbedActivity.switchTab(targetActivity);
 		}
 		
 		/**
@@ -51,6 +51,10 @@ public class CustomerUsageActivity extends Activity {
 		private void saveData() {
 			Calculator calculator = parentTabbedActivity.getCalculator();
 			calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editCustomerUsage_CurrentUsage_UsagePerDay)).getText().toString()));
+			calculator.getCustomer().getElectricityUsage().setDayTimeHourlyUsage(new Double(((EditText)findViewById(R.id.editCustomerUsage_CurrentUsage_UsagePerHour)).getText().toString()));
+			calculator.getCustomer().getTariff().setTariff11Fee(new Double(((EditText)findViewById(R.id.editCustomerUsage_CurrentTariff_Tariff)).getText().toString()));
+			calculator.getCustomer().getTariff().setFeedInfee(new Double(((EditText)findViewById(R.id.editCustomerUsage_CurrentTariff_FeedIn)).getText().toString()));
+			//TODO Insert input fields for other information
 		}
 		
 		/**
@@ -60,6 +64,16 @@ public class CustomerUsageActivity extends Activity {
 			Calculator calculator = parentTabbedActivity.getCalculator();
 			EditText inputDailyAverage = (EditText)findViewById(R.id.editCustomerUsage_CurrentUsage_UsagePerDay);
 			inputDailyAverage.setText(new Double(calculator.getCustomer().getElectricityUsage().getDailyAverageUsage()).toString());
+			
+			EditText inputDayTimeHourly = (EditText)findViewById(R.id.editCustomerUsage_CurrentUsage_UsagePerHour);
+			inputDayTimeHourly.setText(new Double(calculator.getCustomer().getElectricityUsage().getDayTimeHourlyUsage()).toString());
+			
+			EditText inputTariff11Fee = (EditText)findViewById(R.id.editCustomerUsage_CurrentTariff_Tariff);
+			inputTariff11Fee.setText(new Double(calculator.getCustomer().getTariff().getTariff11Fee()).toString());
+			
+			EditText inputFeedInFee = (EditText)findViewById(R.id.editCustomerUsage_CurrentTariff_FeedIn);
+			inputFeedInFee.setText(new Double(calculator.getCustomer().getTariff().getFeedInfee()).toString());
+			
 		}
 		
 		@Override

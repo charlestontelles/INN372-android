@@ -27,19 +27,23 @@
 	<string name="location_region">Region:</string>
 	<string name="location_city">City:</string>	
 	<string name="location_sunlight">Average Daily Hours of Sunlight:</string>
+	<string name="location_width">Roof Size Width (cm):</string>
+	<string name="location_height">Roof Size Height (cm):</string>
 	
 	<!-- Equipment -->
 	<string name="equipment_title">Equipment</string>
 	<string name="equipment_panelnumber">Number of Panels:</string>
-	<string name="equipment_panelcost">System Cost:</string>
-	<string name="equipment_panelsize">System Size (KWh):</string>
-	<string name="equipment_panelefficiency">Inverter Efficiency (%):</string>
+	<string name="equipment_systemcost">System Cost:</string>
+	<string name="equipment_systemsize">System Size (KWh):</string>
+	<string name="equipment_inverterefficiency">Inverter Efficiency (%):</string>
 	<string name="equipment_list_equipment">List of Equipment</string>
 	<string name="equipment_list_equipment_prompt">Choose an Equipment</string>
 	<string-array name="equipment_list_equipment_array">
 	    <item>Solarpanel "Supersonic"</item>
 	    <item>Sunpower Panel</item>
 	</string-array>
+	<string name="equipment_defaultnumberofpanels">10000</string>
+	<string name="equipment_defaultsystemsize">20000</string>
 	
 	
 	<!-- Roof -->

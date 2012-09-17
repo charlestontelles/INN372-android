@@ -48,7 +48,7 @@ public class LocationActivity extends Activity{
 	     */
 	    public void viewNext(View view){
 	    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-	    	int targetActivity = TabbedActivity.INPUT_ID;
+	    	int targetActivity = TabbedActivity.USAGE_ID;
 	    	parentTabbedActivity.switchTab(targetActivity);
 	    }
 	    
@@ -56,10 +56,10 @@ public class LocationActivity extends Activity{
 	     * Refers to the preceding Tab
 	     * @param view
 	     */
-	    public void viewBack(View view){
-	    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-	    	int targetActivity = TabbedActivity.ROOF_ID;
-	    	parentTabbedActivity.switchTab(targetActivity);
+	    public void viewBack(View view){	    	
+	    	Intent intent = new Intent(this, LoginActivity.class);
+	    	
+	    	startActivity(intent);
 	    }
 	    
 		/**

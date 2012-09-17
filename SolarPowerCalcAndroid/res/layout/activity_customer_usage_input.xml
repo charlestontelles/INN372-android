@@ -132,7 +132,7 @@
 	        android:layout_width="95dp"
 	        android:layout_height="34dp"
 	        android:onClick="viewBack"
-	        android:text="@string/button_navigation_logout" />
+	        android:text="@string/button_navigation_back" />
 	    
 	    <Button
 	        android:id="@+id/buttonCustomerUsage_Next"
