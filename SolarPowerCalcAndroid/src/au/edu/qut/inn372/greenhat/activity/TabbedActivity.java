@@ -39,6 +39,8 @@ public class TabbedActivity extends TabActivity {
  
         tabHost = getTabHost();
         
+        setupCalculatorDefaults();
+        
         addTab("Location", this, LocationActivity.class); 
         addTab("Personal Usage", this, CustomerUsageActivity.class);
         addTab("Equipment", this, EquipmentActivity.class);
@@ -46,6 +48,16 @@ public class TabbedActivity extends TabActivity {
         addTab("Input", this, BasicInputActivity.class);
         
     }
+	
+	/**
+	 * Initialised default values
+	 */
+	private void setupCalculatorDefaults() {
+		getCalculator().getCustomer().getLocation().setCity("Brisbane");
+		getCalculator().getCustomer().getLocation().setSunLightHours(4.5);
+		getCalculator().getCustomer().getLocation().getRoof().setWidth(1000);
+		getCalculator().getCustomer().getLocation().getRoof().setHeight(1500);
+	}
 	
 	/**
 	 * Creates a new tab

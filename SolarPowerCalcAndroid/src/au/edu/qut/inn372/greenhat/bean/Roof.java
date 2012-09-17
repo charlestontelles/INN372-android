@@ -25,7 +25,7 @@ public class Roof extends AndroidAbstractBean implements Serializable {
 	
 	public Roof(){
 		banks = new ArrayList<Bank>();
-		for (int i=0; i < 3; i++){
+		for (int i=0; i < 2; i++){
 			banks.add(new Bank());
 		}
 	}
