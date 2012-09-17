@@ -34,7 +34,11 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 				this.kitName = new String(((equipmentSoap.getProperty("kitName"))).toString());
 				this.inverter = new Inverter((SoapObject)equipmentSoap.getProperty("inverter"), soapOperation);
 				this.battery = new Battery((SoapObject)equipmentSoap.getProperty("battery"), soapOperation);
-				this.panels.add(new Panel((SoapObject)equipmentSoap.getProperty("panels"), soapOperation)); //Only add the first one
+				SoapObject panels = ((SoapObject)(equipmentSoap.getProperty("panels"))); //this is only the first panel object!
+				//There are 5 properties besides the panel, so total number of properties - 5 = number of panels - this should change later as it is a bit of a hack
+				for (int curPanelIndex = 0; curPanelIndex < equipmentSoap.getPropertyCount() - 5; curPanelIndex++) {
+					this.panels.add(new Panel(panels, soapOperation));
+				}
 				break;
 			default:
 				break;
