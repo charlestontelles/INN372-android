@@ -23,8 +23,9 @@
                 android:layout_span="4"
                 android:gravity="center"
                 android:text="Average Solar Power Generation"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold" >
+
             </TextView>
         </TableRow>
 
@@ -34,16 +35,17 @@
                 android:id="@+id/TextViewDaily"
                 android:gravity="left"
                 android:text="Daily"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
+
             </TextView>
 
             <TextView
                 android:id="@+id/TextViewDailyField"
                 android:gravity="right"
                 android:text=""
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -52,7 +54,7 @@
                 android:id="@+id/TextViewKwh1"
                 android:gravity="left"
                 android:text="KWh"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -64,7 +66,7 @@
                 android:id="@+id/TextViewAnnual"
                 android:gravity="left"
                 android:text="Annual"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -73,7 +75,7 @@
                 android:id="@+id/TextViewAnnualField"
                 android:gravity="right"
                 android:text=""
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -82,7 +84,7 @@
                 android:id="@+id/TextViewKwh2"
                 android:gravity="left"
                 android:text="KWh"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -94,7 +96,7 @@
                 android:id="@+id/TextViewQuaterly"
                 android:gravity="left"
                 android:text="Quaterly"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -103,7 +105,7 @@
                 android:id="@+id/TextViewQuaterlyField"
                 android:gravity="right"
                 android:text=""
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -112,7 +114,7 @@
                 android:id="@+id/TextViewKwh3"
                 android:gravity="left"
                 android:text="KWh"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -124,7 +126,7 @@
                 android:id="@+id/TextViewNet"
                 android:gravity="left"
                 android:text="Daily Net"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -133,7 +135,7 @@
                 android:id="@+id/TextViewNetField"
                 android:gravity="right"
                 android:text=""
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -142,7 +144,7 @@
                 android:id="@+id/TextViewKwh4"
                 android:gravity="left"
                 android:text="KWh"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -154,7 +156,7 @@
                 android:id="@+id/TextViewQuaterlyNet"
                 android:gravity="left"
                 android:text="Quaterly Net"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -163,7 +165,7 @@
                 android:id="@+id/TextViewQuaterlyNetField"
                 android:gravity="right"
                 android:text=""
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -172,7 +174,7 @@
                 android:id="@+id/TextViewKwh5"
                 android:gravity="left"
                 android:text="KWh"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -184,7 +186,7 @@
                 android:id="@+id/TextViewAnnualNet"
                 android:gravity="left"
                 android:text="Annual Net"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -193,7 +195,7 @@
                 android:id="@+id/TextViewAnnualNetField"
                 android:gravity="right"
                 android:text=""
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -202,7 +204,7 @@
                 android:id="@+id/TextViewKwh6"
                 android:gravity="left"
                 android:text="KWh"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>

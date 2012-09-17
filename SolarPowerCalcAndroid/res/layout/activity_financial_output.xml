@@ -23,7 +23,7 @@
                 android:layout_span="4"
                 android:gravity="center"
                 android:text="Financial Calculations"
-                android:textSize="18dp"
+                android:textSize="20dp"
                 android:textStyle="bold" >
             </TextView>
         </TableRow>
@@ -34,7 +34,7 @@
                 android:id="@+id/TextViewYearHeading"
                 android:gravity="left"
                 android:text="Year"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -43,7 +43,7 @@
                 android:id="@+id/TextViewCumulativeSavings"
                 android:gravity="left"
                 android:text="Cumulative Savings ($)"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
@@ -52,7 +52,7 @@
                 android:id="@+id/TextViewROI"
                 android:gravity="left"
                 android:text="ROI"
-                android:textSize="10dp"
+                android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
             </TextView>
