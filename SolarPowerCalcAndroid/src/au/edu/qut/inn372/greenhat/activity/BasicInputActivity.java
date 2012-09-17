@@ -98,6 +98,10 @@ public class BasicInputActivity extends Activity {
 		calculator.getCustomer().getTariff().setAnnualTariffIncrease(new Double(((EditText)findViewById(R.id.editRoof_Usage_FeeIncrease)).getText().toString()));
 		calculator.getCustomer().getTariff().setTariff11Fee(new Double(((EditText)findViewById(R.id.editRoof_Usage_Tariff)).getText().toString()));
 		//Roof
+		
+		//Sunlight Details
+		calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewByIds(R.id.editRoof_Sunlight_Daylight)).getText().toString()));
+		
 		testData();
 	}
 	
@@ -123,10 +127,18 @@ public class BasicInputActivity extends Activity {
 		inputAnnualTariff11Cost.setText(new Double(calculator.getCustomer().getTariff().getTariff11Fee()).toString());
 		
 		//Equipment
+		EditText inputSystemSize = (EditText)findViewById(R.id.editEquipment_Size);
+		//TODO loading functionality
+		EditText inputInverterEfficiency = (EditText)findViewById(R.id.editEquiment_InverterEfficiency);
+		//TODO loading functionality
 		
 		//Roof
 		
 		//Location
+		
+		//Sunlight Details
+		EditText inputDailyHours = (EditText)findViewById(R.id.editRoof_Sunlight_Daylight);
+		inputDailyHours.setText(new Double(calculator.getCustomer().getLocation().getSunLightHours()).toString());
 	}
 	
 	@Override

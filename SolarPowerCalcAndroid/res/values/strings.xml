@@ -48,18 +48,23 @@
 	
 	<!-- Roof -->
 	<string name="roof_title">Roof</string>
-	<string name="roof_size_width">Roof Size Width (cm):</string>
-	<string name="roof_size_height">Roof Size Height (cm):</string>
 	<string name="roof_numberofpanels">Number of Panels</string>
 	<string name="roof_shownumberofpanels">0</string>
-	<string name="roof_banks">Banks</string>
+	<string name="roof_banks1">Bank 1</string>
+	<string name="roof_banks2">Bank 2</string>
+	<string name="roof_banks_bank1_title">Bank 1</string>
+	<string name="roof_banks_bank2_title">Bank 2</string>
+	<string name="roof_banks_panelsbank1">Assign Number of Panels to Bank 1:</string>
+	<string name="roof_banks_panelsbank2">Assign Number of Panels to Bank 2:</string>
 	<string name="roof_banks_array_prompt">Choose a Bank</string>
 	<string-array name="roof_banks_array">
 	    <item>Bank 1</item>
 	    <item>Bank 2</item>
 	</string-array>
-	<string name="roof_angleofbank">Angle of Bank (degrees)</string>
-	<string name="roof_orientationofbank">Orientation of Bank (degrees)</string>
+	<string name="roof_angleofbank1">Angle of Bank 1(degrees)</string>
+	<string name="roof_orientationofbank1">Orientation of Bank 1(degrees)</string>
+	<string name="roof_angleofbank2">Angle of Bank 2(degrees)</string>
+	<string name="roof_orientationofbank2">Orientation of Bank 2(degrees)</string>
 	<string-array name="roof_orientation_array">
 	    <item>North</item>
 	    <item>North East</item>
@@ -71,6 +76,7 @@
 	    <item>West</item>
 	</string-array>
 	<string name="roof_orientation_array_prompt">Choose the Orientation</string>
+	<string name="default_integer">0</string>
 	
 	<!-- Basic Input -->
 	<string name="basicinput_textview_width">166</string>

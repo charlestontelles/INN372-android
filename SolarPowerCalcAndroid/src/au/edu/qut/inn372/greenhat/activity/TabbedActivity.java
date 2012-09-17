@@ -57,6 +57,14 @@ public class TabbedActivity extends TabActivity {
 		getCalculator().getCustomer().getLocation().setSunLightHours(4.5);
 		getCalculator().getCustomer().getLocation().getRoof().setWidth(1000);
 		getCalculator().getCustomer().getLocation().getRoof().setHeight(1500);
+		getCalculator().getCustomer().getElectricityUsage().setDailyAverageUsage(40);
+		getCalculator().getCustomer().getElectricityUsage().setDayTimeHourlyUsage(1);
+		getCalculator().getCustomer().getTariff().setTariff11Fee(0.1941);
+		getCalculator().getCustomer().getTariff().setFeedInfee(0.50);
+		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(1);
+		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(1).setNumberOfPanels(1);
+		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(0).setAngle(45);
+		getCalculator().getCustomer().getLocation().getRoof().getBanks().get(1).setAngle(45);
 	}
 	
 	/**

@@ -91,7 +91,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	 * Saves current input data to the calculator bean
 	 */
 	private void saveData() {
-
+		
 	}
 	
 	/**
@@ -110,7 +110,6 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 		equipList.setAdapter(spinnerArrayAdapter);
 		
 		
-        Calculator calculator = parentTabbedActivity.getCalculator();
         //Number of Panels
         TextView numberOfPanels = (TextView)findViewById(R.id.textEquipment_ViewPanelNumber);
         numberOfPanels.setText(new Integer(equipmentKits.get(equipList.getSelectedItemPosition()).getTotalPanels()).toString());

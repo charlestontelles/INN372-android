@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollview1"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    >
+
+
+<LinearLayout 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -22,45 +29,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        
-	    <TextView
-	        android:id="@+id/textRoof_Size_Width"
-	        android:layout_width="166dp"
-	        android:layout_height="wrap_content"
-	        android:text="@string/roof_size_width"/>
-	    
-	    <EditText
-	            android:id="@+id/editRoof_Size_Width"
-	            android:layout_width="75dp"
-	            android:layout_height="wrap_content"
-	            android:ems="@string/entryfieldlength"
-	            android:inputType="number" />
-    
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        
-	    <TextView
-	        android:id="@+id/textRoof_Size_Height"
-	        android:layout_width="166dp"
-	        android:layout_height="wrap_content"
-	        android:text="@string/roof_size_height" 
-	        />
-	    
-	    <EditText
-	            android:id="@+id/editRoof_Size_Height"
-	            android:layout_width="75dp"
-	            android:layout_height="wrap_content"
-	            android:ems="@string/entryfieldlength"
-	            android:inputType="number" />
-    
-    </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
     
 	    <TextView
 	        android:id="@+id/textRoof_NumberOfPanels"
@@ -74,44 +42,57 @@
 	            android:layout_width="75dp"
 	            android:layout_height="wrap_content"
 	            android:text="@string/roof_shownumberofpanels"
-	            />
-            
+	            />     
     </LinearLayout>
     
-    <LinearLayout
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView
+	        android:id="@+id/textRoof_Banks_Bank1_Title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/roof_banks_bank1_title"
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textStyle="bold|italic"
+	        android:paddingTop="3dp" />
+        
+    </LinearLayout>
+    
+    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    
-	    <TextView
-	        android:id="@+id/textRoof_Banks"
-	        android:layout_width="166dp"
-	        android:layout_height="wrap_content"
-	        android:text="@string/roof_banks" 
-	        />
 	    
-	    <Spinner
-	        android:id="@+id/spinnerRoof_Banks"
-	        android:layout_width="match_parent"
-	        android:layout_height="wrap_content"
-	        android:entries="@array/roof_banks_array"
-	        android:prompt="@string/roof_banks_array_prompt"
-	        />
-	    
-	</LinearLayout>
+		<TextView
+		        android:id="@+id/textRoof_Banks_PanelsBank1"
+		        android:layout_width="166dp"
+		        android:layout_height="wrap_content"
+		        android:text="@string/roof_banks_panelsbank1" 
+		        />
+		    
+		<EditText
+	            android:id="@+id/editRoof_Banks_PanelsBank1"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" 
+	            android:text="@string/default_integer"/>    
+	   	</LinearLayout>
     
    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 	    
 	    <TextView
-	        android:id="@+id/textRoof_AngleOfBank"
+	        android:id="@+id/textRoof_AngleOfBank1"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"
-	        android:text="@string/roof_angleofbank" 
+	        android:text="@string/roof_angleofbank1" 
 	        />
 	    
 	    <EditText
-	            android:id="@+id/editRoof__AngleOfBank"
+	            android:id="@+id/editRoof__AngleOfBank1"
 	            android:layout_width="75dp"
 	            android:layout_height="wrap_content"
 	            android:ems="@string/entryfieldlength"
@@ -123,21 +104,91 @@
         android:layout_height="wrap_content">
 	    
 	    <TextView
-	        android:id="@+id/textRoof_OrientationOfBank"
+	        android:id="@+id/textRoof_OrientationOfBank1"
 	        android:layout_width="166dp"
 	        android:layout_height="wrap_content"
-	        android:text="@string/roof_orientationofbank" 
+	        android:text="@string/roof_orientationofbank1" 
 	        />
 	    
 	    <Spinner
-	            android:id="@+id/spinnerRoof__OrientationOfBank"
+	            android:id="@+id/spinnerRoof__OrientationOfBank1"
 	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
 	            android:entries="@array/roof_orientation_array"
 	            android:prompt="@string/roof_orientation_array_prompt"/>
 	        </LinearLayout>
     
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+        
+        <TextView
+	        android:id="@+id/textRoof_Banks_Bank2_Title"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"	        
+	        android:text="@string/roof_banks_bank2_title"
+	        android:textAppearance="?android:attr/textAppearanceSmall"
+	        android:textStyle="bold|italic" 
+	        android:paddingTop="3dp"/>
+        
+    </LinearLayout>
+	
     
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"> 
+    <TextView
+	        android:id="@+id/textRoof_Banks_PanelsBank2"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_banks_panelsbank2" 
+	        />
+	    
+	<EditText
+            android:id="@+id/editRoof_Banks_PanelsBank2"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:ems="@string/entryfieldlength"
+            android:inputType="number" />    
+   	</LinearLayout>
+    
+   <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    
+	    <TextView
+	        android:id="@+id/textRoof_AngleOfBank2"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_angleofbank2" 
+	        />
+	    
+	    <EditText
+	            android:id="@+id/editRoof__AngleOfBank2"
+	            android:layout_width="75dp"
+	            android:layout_height="wrap_content"
+	            android:ems="@string/entryfieldlength"
+	            android:inputType="number" />    
+   	</LinearLayout>
+    
+   	<LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    
+	    <TextView
+	        android:id="@+id/textRoof_OrientationOfBank2"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/roof_orientationofbank2" 
+	        />
+	    
+	    <Spinner
+	            android:id="@+id/spinnerRoof__OrientationOfBank2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:entries="@array/roof_orientation_array"
+	            android:prompt="@string/roof_orientation_array_prompt"/>
+	        </LinearLayout>
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -162,3 +213,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

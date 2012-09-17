@@ -1,11 +1,16 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.Equipment;
 
 public class RoofActivity extends Activity{
 	
@@ -52,8 +57,12 @@ public class RoofActivity extends Activity{
 	 */
 	private void saveData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
-		calculator.getCustomer().getLocation().getRoof().setWidth(new Double(((EditText)findViewById(R.id.editRoof_Size_Width)).getText().toString()));
-		calculator.getCustomer().getLocation().getRoof().setHeight(new Double(((EditText)findViewById(R.id.editRoof_Size_Height)).getText().toString()));
+		
+		//calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(new Integer(((EditText)findViewById(R.id.editRoof_Banks_PanelsBank1)).getText().toString()));
+		calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setAngle(new Double(((EditText)findViewById(R.id.editRoof__AngleOfBank1)).getText().toString()));
+		//calculator.getCustomer().getLocation().getRoof().getBanks().get(1).setNumberOfPanels(new Integer(((EditText)findViewById(R.id.editRoof_Banks_PanelsBank2)).getText().toString()));
+		calculator.getCustomer().getLocation().getRoof().getBanks().get(1).setAngle(new Double(((EditText)findViewById(R.id.editRoof__AngleOfBank2)).getText().toString()));
+		
 		
 	}
 	
@@ -63,12 +72,17 @@ public class RoofActivity extends Activity{
 	private void loadData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
 		
-		EditText inputWidth = (EditText)findViewById(R.id.editRoof_Size_Width);
-		inputWidth.setText(new Double(calculator.getCustomer().getLocation().getRoof().getWidth()).toString());
+		EditText numberOfPanels1 = (EditText)findViewById(R.id.editRoof_Banks_PanelsBank1);
+		numberOfPanels1.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(0).getNumberOfPanels()).toString());
 		
-		EditText inputHeigth = (EditText)findViewById(R.id.editRoof_Size_Height);
-		inputHeigth.setText(new Double(calculator.getCustomer().getLocation().getRoof().getHeight()).toString());
+		EditText angle1 = (EditText)findViewById(R.id.editRoof__AngleOfBank1);
+		angle1.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(0).getAngle()).toString());
 		
+		EditText numberOfPanels2 = (EditText)findViewById(R.id.editRoof_Banks_PanelsBank2);
+		numberOfPanels2.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getNumberOfPanels()).toString());
+		
+		EditText angle2 = (EditText)findViewById(R.id.editRoof__AngleOfBank2);
+		angle2.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getAngle()).toString());
 	}
 	
 	@Override
