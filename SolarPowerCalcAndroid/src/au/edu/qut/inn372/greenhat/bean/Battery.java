@@ -21,10 +21,10 @@ public class Battery extends AndroidAbstractBean implements Serializable{
 	 */
 	private double cost;
 	public Battery(SoapObject batterySoap, int soapOperation) {
-		if (soapObject != null)
+		if (batterySoap != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
-				this.cost = new Double(((SoapObject)(batterySoap.getProperty("cost"))).toString());
+				this.cost = new Double(batterySoap.getProperty("cost").toString());
 				break;
 			default:
 				break;
