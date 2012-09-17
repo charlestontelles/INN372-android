@@ -11,12 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import au.edu.qut.inn372.greenhat.bean.Bank;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Customer;
 import au.edu.qut.inn372.greenhat.bean.Location;
+import au.edu.qut.inn372.greenhat.bean.Roof;
 import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
 public class BasicInputActivity extends Activity {
@@ -69,20 +71,7 @@ public class BasicInputActivity extends Activity {
     }
     
     public void reset(View view){
-    	/*
-		// Equipment
-		((EditText)findViewById(R.id.editEquipment_Size)).setText("4.5");
-		((EditText)findViewById(R.id.editEquiment_InverterEfficiency)).setText("90.0");
-		// Roof
-		((EditText)findViewById(R.id.editRoof_LossNorth)).setText("5.0");
-		((EditText)findViewById(R.id.editRoof_LossWest)).setText("15.0");
-		((EditText)findViewById(R.id.editRoof_PercentageNorth)).setText("90.0");
-		((EditText)findViewById(R.id.editRoof_PercentageWest)).setText("10.0");
-		// Location (day light hours)
-		((EditText)findViewById(R.id.editSunlight_Daylight)).setText("4.5");
-		// Current usage
-		((EditText)findViewById(R.id.editUser_UsagePerDay)).setText("50");
-		*/
+    	loadData();
     }
 
 	/**
@@ -95,12 +84,22 @@ public class BasicInputActivity extends Activity {
 		calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDay)).getText().toString()));
 		calculator.getCustomer().getElectricityUsage().setDayTimeHourlyUsage(new Double(((EditText)findViewById(R.id.editRoof_Usage_UsagePerDaylight)).getText().toString()));
 		calculator.getCustomer().getTariff().setFeedInfee(new Double(((EditText)findViewById(R.id.editRoof_Usage_FeedInFee)).getText().toString()));
-		calculator.getCustomer().getTariff().setAnnualTariffIncrease(new Double(((EditText)findViewById(R.id.editRoof_Usage_FeeIncrease)).getText().toString()));
 		calculator.getCustomer().getTariff().setTariff11Fee(new Double(((EditText)findViewById(R.id.editRoof_Usage_Tariff)).getText().toString()));
 		//Roof
+		EditText bank1AngleView = (EditText)findViewById(R.id.editRoof_Bank1_Angle);
+		TextView bank1OrientationView = (TextView)findViewById(R.id.editRoof_Bank1_Orientaton);
+		EditText bank2AngleView = (EditText)findViewById(R.id.editRoof_Bank2_Angle);
+		TextView bank2OrientationView = (TextView)findViewById(R.id.editRoof_Bank2_Orientation);
+		
+		Roof roof = calculator.getCustomer().getLocation().getRoof();
+		roof.getBanks().get(0).setNumberOfPanels(new Integer((int)Math.round(new Double(((EditText)findViewById(R.id.editRoof_Bank1_NumPanels)).getText().toString()))));
+		roof.getBanks().get(0).setAngle(new Double(bank1AngleView.getText().toString()));
+		
+		roof.getBanks().get(1).setNumberOfPanels(new Integer((int)Math.round(new Double(((EditText)findViewById(R.id.editRoof_Bank2_NumPanels)).getText().toString()))));
+		roof.getBanks().get(1).setAngle(new Double(bank2AngleView.getText().toString()));
 		
 		//Sunlight Details
-		//calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewByIds(R.id.editRoof_Sunlight_Daylight)).getText().toString()));
+		calculator.getCustomer().getLocation().setSunLightHours(new Double(((EditText)findViewById(R.id.editRoof_Sunlight_Daylight)).getText().toString()));
 	}
 	
 	/**
@@ -108,7 +107,18 @@ public class BasicInputActivity extends Activity {
 	 */
 	private void loadData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
-		//Current Energy User Details
+		
+		
+		//Equipment
+		TextView systemSizeView = (TextView)findViewById(R.id.editEquipment_Size);
+		systemSizeView.setText(new Double(calculator.getEquipment().getSize()).toString());
+		
+		TextView inverterEfficiencyView = (TextView)findViewById(R.id.editEquiment_InverterEfficiency);
+		inverterEfficiencyView.setText(new Double(calculator.getEquipment().getInverter().getEfficiency()).toString());
+		
+		
+		
+		//Usage
 		EditText inputDailyAverage = (EditText)findViewById(R.id.editRoof_Usage_UsagePerDay);
 		inputDailyAverage.setText(new Double(calculator.getCustomer().getElectricityUsage().getDailyAverageUsage()).toString());
 		
@@ -117,21 +127,26 @@ public class BasicInputActivity extends Activity {
 		
 		EditText inputFeedInFee = (EditText)findViewById(R.id.editRoof_Usage_FeedInFee);
 		inputFeedInFee.setText(new Double(calculator.getCustomer().getTariff().getFeedInfee()).toString());
-		
-		EditText inputAnnualTariffIncrease = (EditText)findViewById(R.id.editRoof_Usage_FeeIncrease);
-		inputAnnualTariffIncrease.setText(new Double(calculator.getCustomer().getTariff().getAnnualTariffIncrease()).toString());
-		
+			
 		EditText inputAnnualTariff11Cost = (EditText)findViewById(R.id.editRoof_Usage_Tariff);
 		inputAnnualTariff11Cost.setText(new Double(calculator.getCustomer().getTariff().getTariff11Fee()).toString());
 		
-		//Equipment
-		EditText inputSystemSize = (EditText)findViewById(R.id.editEquipment_Size);
-		//TODO loading functionality
-		EditText inputInverterEfficiency = (EditText)findViewById(R.id.editEquiment_InverterEfficiency);
-		//TODO loading functionality
 		
 		//Roof
+		EditText bank1NumPanelsView = (EditText)findViewById(R.id.editRoof_Bank1_NumPanels);
+		EditText bank1AngleView = (EditText)findViewById(R.id.editRoof_Bank1_Angle);
+		TextView bank1OrientationView = (TextView)findViewById(R.id.editRoof_Bank1_Orientaton);
+		EditText bank2NumPanelsView = (EditText)findViewById(R.id.editRoof_Bank2_NumPanels);
+		EditText bank2AngleView = (EditText)findViewById(R.id.editRoof_Bank2_Angle);
+		TextView bank2OrientationView = (TextView)findViewById(R.id.editRoof_Bank2_Orientation);
 		
+		bank1NumPanelsView.setText(new Integer(calculator.getCustomer().getLocation().getRoof().getBanks().get(0).getNumberOfPanels()).toString());
+		bank1AngleView.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(0).getAngle()).toString());
+		bank1OrientationView.setText(calculator.getCustomer().getLocation().getRoof().getBanks().get(0).getSelectedOrientation());
+		
+		bank2NumPanelsView.setText(new Integer(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getNumberOfPanels()).toString());
+		bank2AngleView.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getAngle()).toString());
+		bank2OrientationView.setText(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getSelectedOrientation());
 		//Location
 		
 		//Sunlight Details

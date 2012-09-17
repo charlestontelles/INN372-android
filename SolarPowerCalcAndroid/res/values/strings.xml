@@ -34,7 +34,7 @@
 	<string name="equipment_title">Equipment</string>
 	<string name="equipment_panelnumber">Number of Panels:</string>
 	<string name="equipment_systemcost">System Cost:</string>
-	<string name="equipment_systemsize">System Size (KWh):</string>
+	<string name="equipment_systemsize">System Size (KW):</string>
 	<string name="equipment_inverterefficiency">Inverter Efficiency (%):</string>
 	<string name="equipment_list_equipment">List of Equipment</string>
 	<string name="equipment_list_equipment_prompt">Choose an Equipment</string>
@@ -85,10 +85,12 @@
 	<string name="basicinput_roof_title">Roof Details</string>
 	<string name="basicinput_roof_size_width">Roof Size Width (cm):</string>
 	<string name="basicinput_roof_size_height">Roof Size Height (cm):</string>
-	<string name="basicinput_roof_bank1_orientationloss">Bank 1 Orientation Efficiency Loss:</string>
-	<string name="basicinput_roof_bank1_angleloss">Bank 1 Angle Efficiency Loss:</string>
-	<string name="basicinput_roof_bank2_orientationloss">Bank 2 Orientation Efficiency Loss</string>
-	<string name="basicinput_roof_bank2_angleloss">Bank 2 Angle Efficiency Loss:</string>
+	<string name="basicinput_roof_bank1_numpanels">Bank 1 Number Panels:</string>
+	<string name="basicinput_roof_bank1_angle">Bank 1 Angle:</string>
+	<string name="basicinput_roof_bank2_numpanels">Bank 2 Number Panels</string>
+	<string name="basicinput_roof_bank2_angle">Bank 2 Angle:</string>
+	<string name="basicinput_roof_bank1_orientation">Bank 1 Orientation:</string>
+	<string name="basicinput_roof_bank2_orientation">Bank 2 Orientation:</string>
 	<string name="basicinput_roof_efficiency_north">Efficiency Loss on North Roof:</string>
 	<string name="basicinput_roof_efficiency_west">Efficiency Loss on West Roof:</string>
 	<string name="basicinput_sunlight_title">Sunlight Details</string>
