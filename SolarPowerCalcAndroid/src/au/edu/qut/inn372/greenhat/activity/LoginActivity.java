@@ -30,4 +30,9 @@ public class LoginActivity extends Activity {
     	Intent intent = new Intent(this, TabbedActivity.class);
     	startActivity(intent);
     }
+    
+    public void register (View view) {
+    	Intent intent = new Intent(this, RegistrationActivity.class);
+    	startActivity(intent);
+    }
 }

@@ -19,6 +19,7 @@
 	<string name="title_activity_tabbed_output">Calculation Results</string>
 	<string name="title_activity_output_summary">Summary</string>
 	<string name="title_activity_output_financial">Financial</string>
+	<string name="title_activity_registration">Register</string>
 	
 	
 	
@@ -112,4 +113,11 @@
 	<string name="customerusage_currenttariff_title">Current Tariff</string>
 	<string name="customerusage_currenttariff_fee">Tariff 11 Fee:</string>
 	<string name="customerusage_currenttariff_feedin">Feed in Fee:</string>
+	
+	<!--  Registration -->
+	<string name="registration_back">Back</string>
+	<string name="registration_register">Submit Registration</string>
+	<string name="registration_username">User Name:</string>
+	<string name="registration_password">Password:</string>
+	<string name="registration_email">Email:</string>
 </resources>

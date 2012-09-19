@@ -94,6 +94,10 @@
             android:name=".FinancialOutputActivity"
             android:label="@string/title_activity_output_financial" >
         </activity>
+        <activity
+            android:name=".RegistrationActivity"
+            android:label="@string/title_activity_registration" >
+        </activity>
     </application>
 
     <instrumentation
