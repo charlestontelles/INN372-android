@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +25,6 @@ public class TabbedActivity extends TabActivity {
 	
 	private CalculatorMediator calcMediator;
 	private EquipmentKitsMediator equipKitsMediator;
-	
 	
 	/**
 	 * Constructor - sets up tabs

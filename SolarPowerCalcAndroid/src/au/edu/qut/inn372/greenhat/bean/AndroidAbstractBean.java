@@ -15,6 +15,13 @@ public abstract class AndroidAbstractBean {
     protected static final String OPERATION_SAVE_CALCULATION_NAME = "saveCalculation";
     public static final int OPERATION_SAVE_CALCULATION = 2;
     
+    //added by Martins
+    public static final String OPERATION_VALIDATE_CREDENTIALS_NAME = "validateCredentials";
+    public static final int OPERATION_VALIDATE_CREDENTIALS = 3;
+    
+    public static final String OPERATION_SAVE_USER_PROFILE_NAME = "saveUserProfile";
+    public static final int OPERATION_SAVE_USER_PROFILE = 4;
+    
     protected SoapObject soapObject = null;
     
 	public SoapObject getSoapObject(int soapOperation){

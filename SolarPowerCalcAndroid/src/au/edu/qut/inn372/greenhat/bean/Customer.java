@@ -7,7 +7,7 @@ import org.ksoap2.serialization.SoapObject;
 /**
  * Customer Bean
  * 
- * @author Charleston Telles
+ * @author Charleston Telles - Modified by Martins
  *
  */
 public class Customer extends AndroidAbstractBean implements Serializable {
@@ -20,10 +20,13 @@ public class Customer extends AndroidAbstractBean implements Serializable {
 	
 	private ElectricityUsage electricityUsage;
 	
+	private UserProfile userProfile;
+	
 	public Customer() {
 		location = new Location();
 		tariff = new Tariff();
 		electricityUsage = new ElectricityUsage();
+		userProfile = new UserProfile();
 	}
 	
 	/**
@@ -75,6 +78,20 @@ public class Customer extends AndroidAbstractBean implements Serializable {
 	}
 	
 	/**
+	 * @return the userProfile
+	 */
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	/**
+	 * @param userProfile the userProfile to set
+	 */
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
+	}
+
+	/**
 	 * ATTENTION: ALL VALUES MUST BE CONVERTED TO STRING
 	 */
 	@Override
@@ -104,6 +121,7 @@ public class Customer extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addSoapObject(this.electricityUsage.getSoapObject(-1));
 		currentSoapObject.addSoapObject(this.location.getSoapObject(-1));
 		currentSoapObject.addSoapObject(this.tariff.getSoapObject(-1));
+		currentSoapObject.addSoapObject(this.userProfile.getSoapObject(-1));
 		return currentSoapObject;
 	}
 }

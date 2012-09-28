@@ -23,7 +23,7 @@ public class CustomerUsageActivity extends Activity {
 	    }
 		
 		/**
-		 * Refers to the succeding tab
+		 * Refers to the succeeding tab
 		 * @param view
 		 */
 		public void viewNext(View view){
