@@ -116,8 +116,16 @@
 	
 	<!--  Registration -->
 	<string name="registration_back">Back</string>
-	<string name="registration_register">Submit Registration</string>
-	<string name="registration_username">User Name:</string>
+	<string name="registration_register">Register and Login</string>
+	<string name="registration_username">Name:</string>
 	<string name="registration_password">Password:</string>
+	<string name="registration_password_repeat">Repeat Password:</string>
 	<string name="registration_email">Email:</string>
+	<string name="registration_user_type">User Type:</string>
+	
+    <string-array name="user_type_array">
+        <item>Customer</item>
+        <item>Sales Person</item>
+        <item>Administrator</item>
+    </string-array>
 </resources>

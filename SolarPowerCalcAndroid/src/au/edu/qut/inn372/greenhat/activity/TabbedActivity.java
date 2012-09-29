@@ -11,6 +11,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 import au.edu.qut.inn372.greenhat.mediator.EquipmentKitsMediator;
 
@@ -37,6 +38,9 @@ public class TabbedActivity extends TabActivity {
         equipKitsMediator = new EquipmentKitsMediator();
         equipKitsMediator.getEquipments(); //This is a WS call - might be better to move it to be part of the login process later
  
+        UserProfile userProfile = (UserProfile)getIntent().getSerializableExtra("UserProfile");
+        calcMediator.getCalculator().getCustomer().setUserProfile(userProfile);
+        
         tabHost = getTabHost();
         
         setupCalculatorDefaults();

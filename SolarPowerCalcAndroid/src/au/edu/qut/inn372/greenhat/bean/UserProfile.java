@@ -31,18 +31,18 @@ public class UserProfile extends AndroidAbstractBean implements Serializable {
 			SoapObject user = (SoapObject)userSoap.getProperty(0);
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_VALIDATE_CREDENTIALS:
-				this.name = new String(userSoap.getProperty("name").toString());
-				
-				this.email = new String(userSoap.getProperty("email").toString());
-				this.password = new String(userSoap.getProperty("password").toString());
-				this.type = new Integer(userSoap.getProperty("type").toString());
+				this.name = new String(user.getProperty("name").toString());
+				this.email = new String(user.getProperty("email").toString());
+				this.password = new String(user.getProperty("password").toString());
+				this.key = new String(user.getProperty("key").toString());
+				this.type = new Integer(user.getProperty("type").toString());
 				break;
 			case AndroidAbstractBean.OPERATION_SAVE_USER_PROFILE:
 				this.name = new String(user.getProperty("name").toString());
-				this.name = new String( ( (userSoap.getProperty("name")) ).toString() );
-				this.email = new String(userSoap.getProperty("email").toString());
-				this.password = new String(userSoap.getProperty("password").toString());
-				this.type = new Integer(userSoap.getProperty("type").toString());
+				this.email = new String(user.getProperty("email").toString());
+				this.password = new String(user.getProperty("password").toString());
+				this.key = new String(user.getProperty("key").toString());
+				this.type = new Integer(user.getProperty("type").toString());
 				break;
 			default:
 				break;
@@ -162,7 +162,7 @@ public class UserProfile extends AndroidAbstractBean implements Serializable {
 	 * @return Amended soap object with fields
 	 */
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
-		//currentSoapObject.addProperty("key", ""+this.key);
+		currentSoapObject.addProperty("key", ""+this.key);
 		currentSoapObject.addProperty("name", ""+this.name);
 		currentSoapObject.addProperty("email", ""+this.email);
 		currentSoapObject.addProperty("password", ""+this.password);
