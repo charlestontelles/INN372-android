@@ -27,7 +27,7 @@ public class LoginActivity extends Activity {
         StrictMode.setThreadPolicy(policy);
         
         //Added by Martins
-        calculatorMediator = new CalculatorMediator(); //creates a new calculator
+        //calculatorMediator = new CalculatorMediator(); //creates a new calculator
     	
     }
 
@@ -42,7 +42,7 @@ public class LoginActivity extends Activity {
     	
     	//Added by Martin
     	//intent.putExtra("CalculatorMediator", getCalculatorMediator());
-    	calculatorMediator.validateCredentials();
+    	//calculatorMediator.validateCredentials();
     	
     	startActivity(intent);
     	
