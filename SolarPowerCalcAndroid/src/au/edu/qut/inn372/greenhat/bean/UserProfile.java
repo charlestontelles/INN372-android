@@ -141,7 +141,8 @@ public class UserProfile extends AndroidAbstractBean implements Serializable {
 			break;
 		case AndroidAbstractBean.OPERATION_VALIDATE_CREDENTIALS:
 			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_VALIDATE_CREDENTIALS_NAME);
-			this.soapObject = setDefaultSoapObject(this.soapObject);
+			this.soapObject.addProperty("email", ""+this.email);
+			this.soapObject.addProperty("password", ""+this.password);
 			break;
 		case AndroidAbstractBean.OPERATION_SAVE_USER_PROFILE:
 			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_SAVE_USER_PROFILE_NAME);

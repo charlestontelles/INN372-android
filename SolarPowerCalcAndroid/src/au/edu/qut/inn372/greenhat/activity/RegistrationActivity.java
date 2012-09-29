@@ -65,6 +65,9 @@ public class RegistrationActivity extends Activity {
 		userProfile.setType(((Spinner)findViewById(R.id.user_type_spinner)).getSelectedItemPosition()+1);
 	}
 	
+	/**
+	 * Checks that both password fields match
+	 */
 	private boolean passwordCheck() {
 		String passwordFieldOne = ((EditText)findViewById(R.id.Edit_Registration_Password)).getText().toString();
 		String passwordFieldTwo = ((EditText)findViewById(R.id.Edit_Registration_Password_Repeat)).getText().toString();
@@ -76,6 +79,9 @@ public class RegistrationActivity extends Activity {
 		}
 	}
 	
+	/**
+	 * Checks that all inputs are valid for registration submissions
+	 */
 	private boolean validationCheck() {
 		boolean valid = true;
 		if(!passwordCheck()) { 
@@ -93,7 +99,7 @@ public class RegistrationActivity extends Activity {
 		case PASSWORD_ERROR_DIALOG:
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Passwords do not match. Please try again.");
-			builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog, int id) {
 					dialog.cancel();
 				}

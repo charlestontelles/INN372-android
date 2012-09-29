@@ -40,12 +40,20 @@ public class UserProfileMediator implements Serializable{
 		userProfile = new UserProfile( soapClient.synchronousRequest(soap), AndroidAbstractBean.OPERATION_SAVE_USER_PROFILE);
 	}
 	
-	/*
-	public void validateCredentials(){
-		//Calculator resultCalculator = new Calculator(soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION)),AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION);
-		//updateCalculator(resultCalculator);
-		//UserProfile userProfile = new UserProfile(soapClient.synchronousRequest(calculator.getCustomer().getUserProfile().getSoapObject(AndroidAbstractBean.OPERATION_VALIDATE_CREDENTIALS)),AndroidAbstractBean.OPERATION_VALIDATE_CREDENTIALS);
-		//calculator.getCustomer().setUserProfile(userProfile);
+	/**
+	 * Validates user profile credentials (email and password fields required)
+	 * @return True if the fields correspond to a user profile
+	 */
+	public boolean validateCredentials(){
+		SoapObject soap = userProfile.getSoapObject(AndroidAbstractBean.OPERATION_VALIDATE_CREDENTIALS);
+		SoapObject validateResponse = soapClient.synchronousRequest(soap);
+		String response = validateResponse.getProperty("result").toString();
+		if (response.equals("valid")) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-	*/
+	
 }
