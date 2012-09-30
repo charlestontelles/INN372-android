@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -54,6 +55,15 @@ public class FinancialOutputActivity extends Activity {
    			table.addView(newRow);
         }
 
-        
+	}
+    
+    /**
+	 * Refers to the preceding Tab
+	 * @param view
+	 */
+	public void viewBackOutput(View view){
+    	TabbedOutputActivity parentOutputTabbedActivity = (TabbedOutputActivity)this.getParent();
+    	int targetActivity = TabbedOutputActivity.POWER_GEN_ID;
+    	parentOutputTabbedActivity.switchTab(targetActivity);
 	}
 }

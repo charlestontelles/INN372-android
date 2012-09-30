@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.view.View;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 
@@ -49,5 +50,21 @@ public class PowerGeneration extends Activity {
 		quaterlyNet.setText(""
 				+ (df.format((dailyNet) * 365 / 4)));
 		
+	}
+	
+	public void viewMoreInfo(View view){
+    	TabbedOutputActivity parentTabbedOutputActivity = (TabbedOutputActivity)this.getParent();
+    	int targetActivity = TabbedOutputActivity.FINANCIAL_ID;
+    	parentTabbedOutputActivity.switchTab(targetActivity);
+    }
+	
+	/**
+	 * Refers to the preceding Tab
+	 * @param view
+	 */
+	public void viewBackOutput(View view){
+    	TabbedOutputActivity parentOutputTabbedActivity = (TabbedOutputActivity)this.getParent();
+    	int targetActivity = TabbedOutputActivity.SUMMARY_ID;
+    	parentTabbedActivity.switchTab(targetActivity);
 	}
 }

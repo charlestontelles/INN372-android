@@ -9,6 +9,18 @@
         android:layout_height="match_parent"
         android:shrinkColumns="*"
         android:stretchColumns="*" >
+        
+        <TableRow>
+            
+            <Button
+	        android:id="@+id/buttonFinancial_Back"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/outputBack_button_navigation_back" 
+	        android:onClick="viewBackOutput"/>
+
+        </TableRow>
 
         <TableRow
             android:id="@+id/tableRowFinancialOutput"
@@ -57,6 +69,12 @@
                 android:typeface="serif" >
             </TextView>
         </TableRow>
+
     </TableLayout>
+
+   
+	    
+	    
+   
 
 </ScrollView>

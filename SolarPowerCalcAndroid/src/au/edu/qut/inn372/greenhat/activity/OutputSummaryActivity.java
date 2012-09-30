@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 
@@ -34,6 +35,12 @@ public class OutputSummaryActivity extends Activity {
 		systemSizeField.setText(""+df.format(calculator.getEquipment().getSize()));
 		systemCostField.setText("$"+df.format(calculator.getEquipment().getCost()));
 		paybackPeriodField.setText(""+df.format(calculator.getCalculations()[0].getPaybackPeriod()));
+    }
+    
+    public void viewMoreInfo(View view){
+    	TabbedOutputActivity parentTabbedOutputActivity = (TabbedOutputActivity)this.getParent();
+    	int targetActivity = TabbedOutputActivity.POWER_GEN_ID;
+    	parentTabbedOutputActivity.switchTab(targetActivity);
     }
 
 }

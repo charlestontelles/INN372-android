@@ -209,6 +209,25 @@
                 android:typeface="serif" >
             </TextView>
         </TableRow>
+        
+        <TableRow>
+            
+            <Button
+	        android:id="@+id/buttonPower_Back"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/outputBack_button_navigation_back" 
+	        android:onClick="viewBackOutput"/>
+            
+            <Button
+	        android:id="@+id/buttonPower_Next"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/output_button_navigation_next" 
+	        android:onClick="viewMoreInfo"/>
+        </TableRow>
     </TableLayout>
 
 </ScrollView>

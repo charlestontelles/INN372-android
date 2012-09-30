@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+    
     <TableLayout
         android:id="@+id/TableLayoutOutput"
         android:layout_width="match_parent"
@@ -87,7 +88,7 @@
             <TextView
                 android:id="@+id/TextViewSystemCostUnits"
                 android:gravity="left"
-                android:text=" "
+                android:text="  "
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:typeface="serif" >
@@ -128,6 +129,23 @@
 
             </TextView>
         </TableRow>
+        
+        <TableRow>
+            
+            
+            
+            <Button
+	        android:id="@+id/buttonSummary_Next"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/output_button_navigation_next" 
+	        android:onClick="viewMoreInfo"/>
+        </TableRow>
+        
     </TableLayout>
 
+ 
+    
 </ScrollView>
+
