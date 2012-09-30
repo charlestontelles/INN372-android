@@ -99,7 +99,9 @@ public class Customer extends AndroidAbstractBean implements Serializable {
 		switch (soapOperation) {
 		case AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION:
 			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION_NAME);
-			this.soapObject = setDefaultSoapObject(this.soapObject);
+			this.soapObject.addSoapObject(this.electricityUsage.getSoapObject(-1));
+			this.soapObject.addSoapObject(this.location.getSoapObject(-1));
+			this.soapObject.addSoapObject(this.tariff.getSoapObject(-1));
 			break;
 		case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_SAVE_CALCULATION_NAME);

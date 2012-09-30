@@ -34,15 +34,14 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 				soapObject = (SoapObject)soapObject.getProperty(0);
 				int calculationsCount = 0;
 				for(int i=0; i<soapObject.getPropertyCount(); i++) {
-					SoapObject curSoapObject = (SoapObject)soapObject.getProperty(i);
 					if (i<25) {
 						//calculations
+						SoapObject curSoapObject = (SoapObject)soapObject.getProperty(i);
 						this.calculations[calculationsCount] = new Calculation(curSoapObject, soapOperation);
 						calculationsCount++;
 					}
 					else {
 						if (i<26) {
-							i++;
 							//customer
 							//this.customer = new Customer(curSoapObject, soapOperation) //Should implement this but can save time by doing this later
 						}
