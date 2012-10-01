@@ -47,12 +47,16 @@ public class UserProfileMediator implements Serializable{
 	public boolean validateCredentials(){
 		SoapObject soap = userProfile.getSoapObject(AndroidAbstractBean.OPERATION_VALIDATE_CREDENTIALS);
 		SoapObject validateResponse = soapClient.synchronousRequest(soap);
-		String response = validateResponse.getProperty("result").toString();
-		if (response.equals("valid")) {
-			return true;
+		SoapObject response = (SoapObject)validateResponse.getProperty("result");
+		if (response.getProperty("type").toString().equals("0")) {
+			return false;
 		}
 		else {
-			return false;
+			//Save the returned user profile details
+			userProfile.setKey(response.getProperty("key").toString());
+			userProfile.setName(response.getProperty("name").toString());
+			userProfile.setType(new Integer(response.getProperty("type").toString()));
+			return true;
 		}
 	}
 	
