@@ -114,6 +114,13 @@ public class TabbedActivity extends TabActivity {
 	}
 	
 	/**
+	 * Perform the WS call to save the calculation
+	 */
+	public String saveCalculation() {
+		return calcMediator.saveCalculation();
+	}
+	
+	/**
 	 * Switches to the specified tab
 	 * @param tabID ID of the tab to be switched to - ID's are public fields for this class
 	 */

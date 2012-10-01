@@ -6,6 +6,7 @@ import org.ksoap2.serialization.SoapObject;
 
 import au.edu.qut.inn372.greenhat.bean.AndroidAbstractBean;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.ws.CalculatorSoapClient;
 /**
  * 
@@ -40,6 +41,15 @@ public class CalculatorMediator implements Serializable{
 	public void calcEnergyProduction(){
 		Calculator resultCalculator = new Calculator(soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION)),AndroidAbstractBean.OPERATION_CALC_ENERGY_PRODUCTION);
 		updateCalculator(resultCalculator);
+	}
+	
+	/**
+	 * Performs remote soap call to save a calculation
+	 */
+	public String saveCalculation(){
+		SoapObject soap = soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_SAVE_CALCULATION));
+		String result = soap.getProperty("result").toString();
+		return result;
 	}
 	
 	/**

@@ -398,6 +398,14 @@
 	        android:layout_height="34dp"	        
 	        android:text="@string/basicinput_button_reset" 
 	        android:onClick="reset"/>
+	    
+	   	<Button
+	        android:id="@+id/buttonSave"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"	        
+	        android:text="@string/basicinput_button_save" 
+	        android:onClick="save"/>
     
     </LinearLayout>
 

@@ -116,6 +116,7 @@
 	<string name="basicinput_usage_feeincrease">Annual Tariff Fee Increase:</string>
 	<string name="basicinput_button_calculate">Calculate</string>
 	<string name="basicinput_button_reset">Reset</string>
+	<string name="basicinput_button_save">Save</string>
 	
 	<!-- Customer Usage -->
 	<string name="customerusage_title">Customer Usage</string>
