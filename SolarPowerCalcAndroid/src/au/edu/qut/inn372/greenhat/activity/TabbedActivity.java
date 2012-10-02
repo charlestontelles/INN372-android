@@ -49,7 +49,7 @@ public class TabbedActivity extends TabActivity {
         addTab("Personal Usage", this, CustomerUsageActivity.class);
         addTab("Equipment", this, EquipmentActivity.class);
         addTab("Banks", this, RoofActivity.class); 
-        addTab("Input", this, BasicInputActivity.class);
+        addTab("Summary", this, BasicInputActivity.class);
         
     }
 	

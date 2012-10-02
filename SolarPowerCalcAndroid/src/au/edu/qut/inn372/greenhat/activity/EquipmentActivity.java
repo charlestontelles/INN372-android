@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
@@ -18,6 +19,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
+	public final static int DEFAULT = 0;
 	private int state;
 
 	@Override
@@ -49,7 +51,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	}
 	
 	/**
-	 * Refresh the values of Systemcost, -size & Inverterefficiency after the Spinner was used
+	 * Refresh the values of Systemcost, -size & Inverter efficiency after the Spinner was used
 	 */
 	public void onItemSelected(AdapterView<?> parent, View view, 
             int pos, long id) {
@@ -76,6 +78,13 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
         
         TextView roofSizeCheck = (TextView)findViewById(R.id.textEquipment_RoofSizeCheck);
         roofSizeCheck.setText(panelsMessage(equipmentKits.get(pos).getTotalPanels()));
+
+        
+        String bank1AssignPanelsNumber = (new Integer(calculator.getEquipment().getTotalPanels()).toString());
+		int panelConversionToInt = Integer.parseInt(bank1AssignPanelsNumber);
+
+		calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(panelConversionToInt);
+		calculator.getCustomer().getLocation().getRoof().getBanks().get(1).setNumberOfPanels(DEFAULT);
     }
 	
 	/**
@@ -120,6 +129,14 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
         TextView numberOfPanels = (TextView)findViewById(R.id.textEquipment_ViewPanelNumber);
         numberOfPanels.setText(new Integer(equipmentKits.get(equipList.getSelectedItemPosition()).getTotalPanels()).toString());
         
+        //int number = equipList.getSelectedItemPosition();
+        
+        //EditText bank1NumberOfPanels = (EditText)findViewById(R.id.editRoof_Banks_PanelsBank1);
+        //bank1NumberOfPanels.setText(new Integer(equipmentKits.get(equipList.getSelectedItemPosition()).getTotalPanels()).toString());
+        //Calculator calculator = parentTabbedActivity.getCalculator();
+        //calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(number);
+        
+        
         //System Cost
         TextView systemCost = (TextView)findViewById(R.id.textEquipment_ViewSystemCost);
         systemCost.setText(new Double(equipmentKits.get(equipList.getSelectedItemPosition()).getCost()).toString());
@@ -131,6 +148,8 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
         //Inverter Efficieny
         TextView inverterEfficieny = (TextView)findViewById(R.id.textEquipment_ViewInverterEfficieny);
         inverterEfficieny.setText(new Double(equipmentKits.get(equipList.getSelectedItemPosition()).getInverter().getEfficiency()).toString());
+        
+        
         
 	}
 	

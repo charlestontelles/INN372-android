@@ -33,6 +33,7 @@
             android:id="@+id/spinnerEquipment_List"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            
             android:entries="@array/equipment_list_equipment_array"
             android:prompt="@string/equipment_list_equipment_prompt" />
 
@@ -143,6 +144,25 @@
 	            android:layout_height="wrap_content"
 	            android:entries="@array/equipment_panelBrand_array"
 	            android:prompt="@string/equipment_panel_array_prompt"/>
+	</LinearLayout>
+	
+   	<LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+	    
+	    <TextView
+	        android:id="@+id/textEquipment_inverterBrand"
+	        android:layout_width="166dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/equipment_inverterBrand" 
+	        />
+	    
+	    <Spinner
+	            android:id="@+id/spinnerRoof_inverterBrand"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:entries="@array/equipment_inverterBrand_array"
+	            android:prompt="@string/equipment_inverter_array_prompt"/>
 	</LinearLayout>
     
    	<LinearLayout

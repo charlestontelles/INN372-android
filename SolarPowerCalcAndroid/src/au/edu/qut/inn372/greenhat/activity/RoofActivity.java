@@ -74,8 +74,6 @@ public class RoofActivity extends Activity{
 		TextView numberOfTotalPanels = (TextView)findViewById(R.id.textRoof_ShowNumberOfPanels);
 		numberOfTotalPanels.setText(new Integer(calculator.getEquipment().getTotalPanels()).toString());
 		
-		
-		
 		//Edit fields
 		EditText numberOfPanels1 = (EditText)findViewById(R.id.editRoof_Banks_PanelsBank1);
 		numberOfPanels1.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(0).getNumberOfPanels()).toString());
@@ -89,6 +87,8 @@ public class RoofActivity extends Activity{
 		EditText angle2 = (EditText)findViewById(R.id.editRoof__AngleOfBank2);
 		angle2.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getAngle()).toString());
 	
+	
+		
 		//TODO Load spinner state
 		
 	}

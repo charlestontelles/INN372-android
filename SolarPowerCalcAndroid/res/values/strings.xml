@@ -58,6 +58,12 @@
 	    <item>Solarfun</item>
 	    <item>RC Solar Panels</item>
 	</string-array>
+	<string name="equipment_inverterBrand">Inverter Brands</string>
+	<string name="equipment_inverter_array_prompt">Select the brand</string>
+	<string-array name="equipment_inverterBrand_array">
+	    <item>Empty</item>
+	    
+	</string-array>
 	
 	<!-- Roof -->
 	<string name="roof_title">Banks</string>
