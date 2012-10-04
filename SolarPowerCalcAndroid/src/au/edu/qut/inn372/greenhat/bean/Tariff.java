@@ -9,9 +9,8 @@ public class Tariff extends AndroidAbstractBean implements Serializable {
 	private static final long serialVersionUID = 3164471752108986206L;
 
 	private double tariff11Fee;
-
-	private double annualTariffIncrease = 5;
-	private double feedInfee = 0.5;
+	private double annualTariffIncrease = 5; //TODO Hardcoded Value
+	private double feedInfee = 0.5; //TODO Hardcoded Value
 	private double tariffFeePerYear;
 
 	/**

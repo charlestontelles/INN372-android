@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.ksoap2.serialization.SoapObject;
 
 /**
- * Bean that represents an Equipment
+ * Bean that represents an Battery
  * 
  * @author Charleston Telles
  * @version 1.0
@@ -20,6 +20,7 @@ public class Battery extends AndroidAbstractBean implements Serializable{
 	 * Battery Cost
 	 */
 	private double cost;
+	
 	public Battery(SoapObject batterySoap, int soapOperation) {
 		if (batterySoap != null)
 			switch (soapOperation) {

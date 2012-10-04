@@ -16,10 +16,10 @@ public class Roof extends AndroidAbstractBean implements Serializable {
 	private static final long serialVersionUID = 5693650139345709242L;
 	private double width;
 	private double height;
-	private double percentageNorth;
-	private double percentageWest;
-	private double efficiencyLossNorth;
-	private double efficiencyLossWest;
+	private double percentageNorth; //TODO still necessary?
+	private double percentageWest; //TODO still necessary?
+	private double efficiencyLossNorth; //TODO still necessary?
+	private double efficiencyLossWest;  //TODO still necessary?
 	
 	private ArrayList<Bank> banks;
 	

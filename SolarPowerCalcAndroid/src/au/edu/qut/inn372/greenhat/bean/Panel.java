@@ -19,7 +19,7 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 	private double width;
 	private double height;
 	private double efficiency;
-	private double efficiencyLoss = 0.7;
+	private double efficiencyLoss = 0.7;  //TODO: Hardcoded Value!
 	
 	private double powerRating;
 	private double size; 
