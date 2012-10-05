@@ -22,6 +22,9 @@ public abstract class AndroidAbstractBean {
     public static final String OPERATION_SAVE_USER_PROFILE_NAME = "saveUserProfile";
     public static final int OPERATION_SAVE_USER_PROFILE = 4;
     
+    public static final String OPERATION_GET_PANELS_NAME = "getPanels";
+    public static final int OPERATION_GET_PANELS = 5;
+    
     protected SoapObject soapObject = null;
     
 	public SoapObject getSoapObject(int soapOperation){

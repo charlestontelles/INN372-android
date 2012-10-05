@@ -11,9 +11,11 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 import au.edu.qut.inn372.greenhat.mediator.EquipmentKitsMediator;
+import au.edu.qut.inn372.greenhat.mediator.PanelMediator;
 
 public class TabbedActivity extends TabActivity {
 	
@@ -27,7 +29,7 @@ public class TabbedActivity extends TabActivity {
 	
 	private CalculatorMediator calcMediator;
 	private EquipmentKitsMediator equipKitsMediator;
-	
+	private PanelMediator panelMediator;
 	/**
 	 * Constructor - sets up tabs
 	 */
@@ -38,7 +40,9 @@ public class TabbedActivity extends TabActivity {
         calcMediator = new CalculatorMediator();
         equipKitsMediator = new EquipmentKitsMediator();
         equipKitsMediator.getEquipments(); //This is a WS call - might be better to move it to be part of the login process later
- 
+        panelMediator = new PanelMediator(); //WS call
+        panelMediator.getPanels();
+        
         UserProfile userProfile = (UserProfile)getIntent().getSerializableExtra("UserProfile");
         calcMediator.getCalculator().getCustomer().setUserProfile(userProfile);
         
@@ -128,5 +132,13 @@ public class TabbedActivity extends TabActivity {
 	 */
 	public void switchTab(int tabID) {
 		tabHost.setCurrentTab(tabID);
+	}
+	
+	/**
+	 * Retrieve the list of panels obtained from the WS call
+	 * @return
+	 */
+	public ArrayList<Panel> getPanels() {
+		return panelMediator.getPanelList();
 	}
 }

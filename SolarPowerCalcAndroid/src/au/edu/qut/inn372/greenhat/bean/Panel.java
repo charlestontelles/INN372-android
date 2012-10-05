@@ -24,12 +24,13 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 	private double powerRating;
 	private double size; 
 	private double cost;
+	private String brand;
 	
 	
 	public Panel(SoapObject panelSoap, int soapOperation) {
 		if (panelSoap != null)
 			switch (soapOperation) {
-			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
+			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS: case AndroidAbstractBean.OPERATION_GET_PANELS:
 				this.cost = new Double(panelSoap.getProperty("cost").toString());
 				this.efficiency = new Double(panelSoap.getProperty("efficiency").toString());
 				this.efficiencyLoss = new Double(panelSoap.getProperty("efficiencyLoss").toString());
@@ -38,6 +39,7 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 				this.powerRating = new Double(panelSoap.getProperty("powerRating").toString());
 				this.size = new Double(panelSoap.getProperty("size").toString());
 				this.width = new Double(panelSoap.getProperty("width").toString());
+				this.brand = new String(panelSoap.getProperty("brand").toString());
 				break;
 			default:
 				break;
@@ -172,6 +174,20 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 	}
 
 	/**
+	 * @return the brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * @param brand the brand to set
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
+	/**
 	 * ATTENTION: ALL VALUES MUST BE CONVERTED TO STRING
 	 */
 	@Override
@@ -183,6 +199,10 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 			break;
 		case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_SAVE_CALCULATION_NAME);
+			this.soapObject = setDefaultSoapObject(this.soapObject);
+			break;
+		case AndroidAbstractBean.OPERATION_GET_PANELS:
+			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_GET_PANELS_NAME);
 			this.soapObject = setDefaultSoapObject(this.soapObject);
 			break;
 		default:
@@ -206,6 +226,7 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addProperty("powerRating", ""+this.powerRating);
 		currentSoapObject.addProperty("size", ""+this.size);
 		currentSoapObject.addProperty("cost", ""+this.cost);
+		currentSoapObject.addProperty("brand", ""+this.brand);
 		return currentSoapObject;
 	}
 }
