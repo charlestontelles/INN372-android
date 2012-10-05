@@ -13,6 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.Roof;
 
 public class EquipmentActivity extends Activity implements OnItemSelectedListener{
@@ -21,6 +22,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	public final static int STATE_PAUSED = 1;
 	public final static int DEFAULT = 0;
 	private int state;
+	private int equipKitPos = 0;
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
         setContentView(R.layout.activity_equipment_input);
         Spinner spinner = (Spinner)findViewById(R.id.spinnerEquipment_List);
 		spinner.setOnItemSelectedListener(this); 
+		Spinner panelBrandSpinner = (Spinner)findViewById(R.id.spinnerRoof__panelBrand);
+		panelBrandSpinner.setOnItemSelectedListener(this);
     }
 	
 	/**
@@ -51,40 +55,62 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	}
 	
 	/**
-	 * Refresh the values of Systemcost, -size & Inverter efficiency after the Spinner was used
+	 * Refresh the values of System cost, -size & Inverter efficiency after the Spinner was used
 	 */
 	public void onItemSelected(AdapterView<?> parent, View view, 
             int pos, long id) {
 		
 		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
 		Calculator calculator = parentTabbedActivity.getCalculator();
+		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
 		
-        //Number of Panels
-        TextView numberOfPanels = (TextView)findViewById(R.id.textEquipment_ViewPanelNumber);
-        numberOfPanels.setText(new Integer(equipmentKits.get(pos).getTotalPanels()).toString());
-        
-        //System Cost
-        TextView systemCost = (TextView)findViewById(R.id.textEquipment_ViewSystemCost);
-        systemCost.setText(new Double(equipmentKits.get(pos).getCost()).toString());
-        
-        //System Size
-        TextView systemSize = (TextView)findViewById(R.id.textEquipment_ViewSystemSize);
-        systemSize.setText(new Double(equipmentKits.get(pos).getSize()).toString());
-        
-        //Inverter Efficiency
-        TextView inverterEfficieny = (TextView)findViewById(R.id.textEquipment_ViewInverterEfficieny);
-        inverterEfficieny.setText(new Double(equipmentKits.get(pos).getInverter().getEfficiency()).toString());
-        
-        TextView roofSizeCheck = (TextView)findViewById(R.id.textEquipment_RoofSizeCheck);
-        roofSizeCheck.setText(panelsMessage(equipmentKits.get(pos).getTotalPanels()));
+	    Spinner spnir = (Spinner)parent; 
+	    if(spnir.getId() == R.id.spinnerEquipment_List){ 
+	    	
+	    	equipKitPos = pos;
 
-        
-        String bank1AssignPanelsNumber = (new Integer(calculator.getEquipment().getTotalPanels()).toString());
-		int panelConversionToInt = Integer.parseInt(bank1AssignPanelsNumber);
-
-		calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(panelConversionToInt);
-		calculator.getCustomer().getLocation().getRoof().getBanks().get(1).setNumberOfPanels(DEFAULT);
+	        //Number of Panels
+	        TextView numberOfPanels = (TextView)findViewById(R.id.textEquipment_ViewPanelNumber);
+	        numberOfPanels.setText(new Integer(equipmentKits.get(equipKitPos).getTotalPanels()).toString());
+	        
+	        //System Cost
+	        TextView systemCost = (TextView)findViewById(R.id.textEquipment_ViewSystemCost);
+	        systemCost.setText(new Double(equipmentKits.get(equipKitPos).getCost()).toString());
+	        
+	        //System Size
+	        TextView systemSize = (TextView)findViewById(R.id.textEquipment_ViewSystemSize);
+	        systemSize.setText(new Double(equipmentKits.get(equipKitPos).getSize()).toString());
+	        
+	        //Inverter Efficiency
+	        TextView inverterEfficieny = (TextView)findViewById(R.id.textEquipment_ViewInverterEfficieny);
+	        inverterEfficieny.setText(new Double(equipmentKits.get(equipKitPos).getInverter().getEfficiency()).toString());
+	        
+	        TextView roofSizeCheck = (TextView)findViewById(R.id.textEquipment_RoofSizeCheck);
+	        roofSizeCheck.setText(panelsMessage(equipmentKits.get(equipKitPos).getTotalPanels()));
+	
+	        
+	        String bank1AssignPanelsNumber = (new Integer(calculator.getEquipment().getTotalPanels()).toString());
+			int panelConversionToInt = Integer.parseInt(bank1AssignPanelsNumber);
+	
+			calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(panelConversionToInt);
+			calculator.getCustomer().getLocation().getRoof().getBanks().get(1).setNumberOfPanels(DEFAULT);
+	    } 
+	    else if(spnir.getId() == R.id.spinnerRoof__panelBrand) {
+     		ArrayList<Panel> panels = parentTabbedActivity.getPanels();
+		 	
+     		for (Panel panel : panels) {
+     			if (panel.getBrand().equalsIgnoreCase(spnir.getSelectedItem().toString())){
+     				for(int index=0; index < panels.size(); index++){
+     					calculator.getEquipment().getPanels().set(index, panel);
+     				}
+     			calculator.getEquipment().setCost(calculator.getEquipment().getTotalPanels() * panel.getCost() + calculator.getEquipment().getInverter().getCost());
+     			}
+     		}
+     		
+	        //System Cost
+	        TextView systemCost = (TextView)findViewById(R.id.textEquipment_ViewSystemCost);
+	        systemCost.setText(new Double(equipmentKits.get(equipKitPos).getCost()).toString());
+	    }
     }
 	
 	/**
