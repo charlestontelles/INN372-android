@@ -18,11 +18,12 @@ import au.edu.qut.inn372.greenhat.mediator.EquipmentKitsMediator;
 public class TabbedActivity extends TabActivity {
 	
 	private TabHost tabHost;
-	public static final int LOCATION_ID = 0;
-	public static final int USAGE_ID = 1;
-	public static final int EQUIPMENT_ID = 2;
-	public static final int ROOF_ID = 3;
-	public static final int INPUT_ID = 4;
+	public static final int USERHOMEPAGE_ID = 0;
+	public static final int LOCATION_ID = 1;
+	public static final int USAGE_ID = 2;
+	public static final int EQUIPMENT_ID = 3;
+	public static final int ROOF_ID = 4;
+	public static final int INPUT_ID = 5;
 	
 	private CalculatorMediator calcMediator;
 	private EquipmentKitsMediator equipKitsMediator;
@@ -45,6 +46,7 @@ public class TabbedActivity extends TabActivity {
         
         setupCalculatorDefaults();
         
+        addTab("Home", this, UserHomepageActivity.class);
         addTab("Location", this, LocationActivity.class); 
         addTab("Personal Usage", this, CustomerUsageActivity.class);
         addTab("Equipment", this, EquipmentActivity.class);

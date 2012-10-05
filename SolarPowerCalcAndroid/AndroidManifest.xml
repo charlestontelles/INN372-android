@@ -98,6 +98,13 @@
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_registration" >
         </activity>
+        <activity
+            android:name=".UserHomepageActivity"
+            android:label="@string/title_activity_userhomepage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
+        </activity>
     </application>
 
     <instrumentation

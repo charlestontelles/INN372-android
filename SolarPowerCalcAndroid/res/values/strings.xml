@@ -49,14 +49,14 @@
 	<string name="equipment_panel_array_prompt">Select the brand</string>
 	<string-array name="equipment_panelBrand_array">
 	    <item>BP Solar Panels</item>
-	    <item>Sunlinq SPortable Solar Panels</item>
+	    <item>Sunlinq Portable Solar Panels</item>
 	    <item>SunPower Solar Panels</item>
 	    <item>SunTech Solar Panels</item>
 	    <item>Powerfilm Flexible Solar Panels</item>
 	    <item>Sanyo Solar Panels</item>
 	    <item>Global Solar Panels</item>
 	    <item>Solarfun</item>
-	    <item>RC Solar Panels</item>
+	    <item>REC Solar Panels</item>
 	</string-array>
 	<string name="equipment_inverterBrand">Inverter Brands</string>
 	<string name="equipment_inverter_array_prompt">Select the brand</string>

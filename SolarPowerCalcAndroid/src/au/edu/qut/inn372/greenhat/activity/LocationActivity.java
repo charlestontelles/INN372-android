@@ -95,14 +95,14 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	    }
 	    
 	    /**
-	     * Refers to the preceding Tab
-	     * @param view
-	     */
-	    public void viewBack(View view){	    	
-	    	Intent intent = new Intent(this, LoginActivity.class);
-	    	
-	    	startActivity(intent);
-	    }
+		 * Refers to the preceding Tab
+		 * @param view
+		 */
+		public void viewBack(View view){
+			TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+	    	int targetActivity = TabbedActivity.USERHOMEPAGE_ID;
+	    	parentTabbedActivity.switchTab(targetActivity);
+		}
 	    
 		/**
 		 * Saves current input data to the calculator bean
