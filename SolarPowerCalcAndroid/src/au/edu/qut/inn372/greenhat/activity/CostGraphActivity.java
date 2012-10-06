@@ -42,14 +42,10 @@ public class CostGraphActivity extends Activity {
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
 		Calculation[] calculations = calculator.getCalculations();
 		
-		XYSeries existingCosts = new XYSeries("Annual Electricity Cost without Solar");
-		XYSeries solarCosts = new XYSeries("Annual Electricity Cost with Solar");
+		XYSeries existingCosts = new XYSeries("Without Solar");
+		XYSeries solarCosts = new XYSeries("With Solar");
 		for(Calculation curCalculation : calculations) {
 			double annualCost = curCalculation.getTariff11Fee()*calculator.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;
-			System.out.println(curCalculation.getTariff11Fee());
-			System.out.println(calculator.getCustomer().getElectricityUsage().getDailyAverageUsage());
-			System.out.println(annualCost);
-			//System.out.println(annualCost - curCalculation.getAnnualSaving());
 			existingCosts.add(curCalculation.getYear(), annualCost);
 			solarCosts.add(curCalculation.getYear(), annualCost - curCalculation.getAnnualSaving());
 		}
@@ -63,16 +59,25 @@ public class CostGraphActivity extends Activity {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
 		XYSeriesRenderer existingCosts = new XYSeriesRenderer();
 		existingCosts.setColor(Color.RED);
-		existingCosts.setPointStyle(PointStyle.X);
-		existingCosts.setFillBelowLine(false);
-		existingCosts.setFillPoints(false);
+		existingCosts.setPointStyle(PointStyle.POINT);
+		existingCosts.setLineWidth(3.0f);
 		renderer.addSeriesRenderer(existingCosts);
 		XYSeriesRenderer solarCosts = new XYSeriesRenderer();
 		solarCosts.setColor(Color.BLUE);
-		solarCosts.setPointStyle(PointStyle.X);
+		solarCosts.setPointStyle(PointStyle.POINT);
+		solarCosts.setLineWidth(3.0f);
 		renderer.addSeriesRenderer(solarCosts);
-		//renderer.setAxesColor(Color.DKGRAY);
-		//renderer.setLabelsColor(Color.LTGRAY);
+		
+		renderer.setAxesColor(Color.BLACK);
+		renderer.setLabelsColor(Color.BLACK);
+		renderer.setXLabelsColor(Color.BLACK);
+		renderer.setYLabelsColor(0, Color.BLACK);
+		renderer.setMarginsColor(Color.WHITE);
+		renderer.setYLabels(16); //Needs to be about double what we want - not sure why...it works as expected on the other graph - TP
+		renderer.setXTitle("Year");
+		renderer.setYTitle("Annual Electricity Cost ($)");
+		renderer.setPanEnabled(false); //don't think this is working as expected
+		renderer.setZoomEnabled(false); //don't think this is working as expected
 		return renderer;
 	}
 }

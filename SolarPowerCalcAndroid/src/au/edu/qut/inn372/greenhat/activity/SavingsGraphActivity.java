@@ -46,19 +46,41 @@ public class SavingsGraphActivity extends Activity {
 			savings.add(curCalculation.getYear(), curCalculation.getCumulativeSaving());
 		}
 		dataset.addSeries(savings);
+		
+		//payback period
+		XYSeries paybackPeriod = new XYSeries("Initial Investment");
+		//start point
+		double systemCost = calculator.getEquipment().getCost();
+		paybackPeriod.add(calculations[0].getYear(), systemCost);
+		paybackPeriod.add(calculations[calculations.length-1].getYear(), systemCost);
+		dataset.addSeries(paybackPeriod);
 		return dataset;
 	}
 	
 	private XYMultipleSeriesRenderer getSavingsRenderer() {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		XYSeriesRenderer series1 = new XYSeriesRenderer();
-		series1.setColor(Color.BLUE);
-		series1.setPointStyle(PointStyle.X);
-		series1.setFillBelowLine(false);
-		series1.setFillPoints(false);
-		renderer.addSeriesRenderer(series1);
-		//renderer.setAxesColor(Color.DKGRAY);
-		//renderer.setLabelsColor(Color.LTGRAY);
+		XYSeriesRenderer savings = new XYSeriesRenderer();
+		savings.setColor(Color.BLUE);
+		savings.setPointStyle(PointStyle.POINT);
+		savings.setLineWidth(3.0f);
+		renderer.addSeriesRenderer(savings);
+		
+		XYSeriesRenderer paybackPeriod = new XYSeriesRenderer();
+		paybackPeriod.setColor(Color.GREEN);
+		paybackPeriod.setPointStyle(PointStyle.POINT);
+		paybackPeriod.setLineWidth(3.0f);
+		renderer.addSeriesRenderer(paybackPeriod);
+		
+		renderer.setAxesColor(Color.BLACK);
+		renderer.setLabelsColor(Color.BLACK);
+		renderer.setXLabelsColor(Color.BLACK);
+		renderer.setYLabelsColor(0, Color.BLACK);
+		renderer.setMarginsColor(Color.WHITE);
+		renderer.setYLabels(8);
+		renderer.setXTitle("Year");
+		renderer.setYTitle("Savings ($)");
+		renderer.setPanEnabled(false); //don't think this is working as expected
+		renderer.setZoomEnabled(false); //don't think this is working as expected
 		return renderer;
 	}
 }
