@@ -49,7 +49,9 @@ public class BasicInputActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-
+	/**
+	 * Customises the dialogs used in the Activity
+	 */
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -64,7 +66,10 @@ public class BasicInputActivity extends Activity {
 		}
 		return super.onCreateDialog(id);
 	}
-
+	/**
+	 * handle on click button in the dialog
+	 * 
+	 */
 	private final class OkOnClickListener implements
 			DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {

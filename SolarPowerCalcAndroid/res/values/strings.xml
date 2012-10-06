@@ -153,6 +153,7 @@
 
 	
 	<!--  Output -->
+	<string name="output_button_exportPDF">Create PDF</string>
 	<string name="output_button_navigation_next">Next Result</string>
 	<string name="outputBack_button_navigation_back">Back</string>
 	
