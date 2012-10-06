@@ -20,6 +20,8 @@
 	<string name="title_activity_output_summary">Summary</string>
 	<string name="title_activity_output_financial">Financial</string>
 	<string name="title_activity_registration">Register</string>
+	<string name="title_activity_userhomepage">Home Page</string>
+	<string name="title_activity_savings_graph">Savings</string>
 	
 	
 	
@@ -152,4 +154,8 @@
 	<!--  Output -->
 	<string name="output_button_navigation_next">Next Result</string>
 	<string name="outputBack_button_navigation_back">Back</string>
+	
+	<!--  User Homepage -->
+	<string name="userhomepage_title">Home</string>
+	<string name="userhomepage_welcome">Welcome</string>
 </resources>
