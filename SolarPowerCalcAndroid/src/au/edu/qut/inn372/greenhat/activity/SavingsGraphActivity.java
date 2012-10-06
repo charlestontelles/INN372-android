@@ -61,22 +61,4 @@ public class SavingsGraphActivity extends Activity {
 		//renderer.setLabelsColor(Color.LTGRAY);
 		return renderer;
 	}
-
-	private XYMultipleSeriesDataset getDateDemoDataset() {
-	    XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-	    final int nr = 10;
-	    long value = new Date().getTime() - 3 * TimeChart.DAY;
-	    Random r = new Random();
-	    boolean b=false;
-	    Calendar c = Calendar.getInstance();
-	    for (int i = 0; i < 30; i++) { // for each graph
-	      TimeSeries series = new TimeSeries("Demo series " + (i + 1));
-	      for (int k = 0; k < nr && b; k++) {
-	        series.add(new Date(value + k * TimeChart.DAY / 4), 20 + r.nextInt() % 100);
-	      }
-	      b=true;
-	      dataset.addSeries(series);
-	    }
-	    return dataset;
-	  }
 }

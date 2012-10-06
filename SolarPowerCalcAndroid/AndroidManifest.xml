@@ -112,6 +112,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
         </activity>
+        <activity
+            android:name=".CostGraphActivity"
+            android:label="@string/title_activity_cost_graph" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
+        </activity>
     </application>
 
     <instrumentation

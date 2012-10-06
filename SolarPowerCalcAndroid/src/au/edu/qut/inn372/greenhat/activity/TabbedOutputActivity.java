@@ -17,7 +17,7 @@ public class TabbedOutputActivity extends TabActivity {
 	public static final int POWER_GEN_ID = 1;
 	public static final int FINANCIAL_ID = 2;
 	public static final int SAVINGS_GRAPH_ID = 3;
-	//public static final int COST_GRAPH_ID = 4;
+	public static final int COST_GRAPH_ID = 4;
 	
 	private Calculator calculator;
 	
@@ -36,6 +36,7 @@ public class TabbedOutputActivity extends TabActivity {
         addTab("Power Generation", this, PowerGeneration.class);
         addTab("Financial", this, FinancialOutputActivity.class);
         addTab("Savings Chart", this, SavingsGraphActivity.class);
+        addTab("Cost Chart", this, CostGraphActivity.class);
     }
 	
 	/**
