@@ -105,6 +105,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
         </activity>
+        <activity
+            android:name=".SavingsGraphActivity"
+            android:label="@string/title_activity_savings_graph" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
+        </activity>
     </application>
 
     <instrumentation
