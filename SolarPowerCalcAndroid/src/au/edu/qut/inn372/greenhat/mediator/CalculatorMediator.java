@@ -6,7 +6,9 @@ import java.util.List;
 import org.ksoap2.serialization.SoapObject;
 
 import au.edu.qut.inn372.greenhat.bean.AndroidAbstractBean;
+import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.ws.CalculatorSoapClient;
 /**
@@ -62,12 +64,13 @@ public class CalculatorMediator implements Serializable{
 	}
 	
 	/**TODO: UNDER CONSTRUCTION by Fabian
-	 * Performs remote soap call to get the latest list of calculations
+	 * Performs remote soap call to return the latest list of calculations
 	 */
-	public List<Calculator> getAllCalculations(UserProfile userProfile){
+	public List<Calculation> getCalculationList(){
 		SoapObject soap = soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
-		List<Calculator> allCalculations = (List<Calculator>) soap.getProperty("calculators");
-		return allCalculations;		
+		
+		List<Calculation> calculations = (List<Calculation>) soap.getProperty("calculators"); //soap is null, gets no proper response
+		return calculations;		
 	}
 	
 	

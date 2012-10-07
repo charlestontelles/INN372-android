@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.TabActivity;
@@ -10,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
+import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.Panel;
@@ -141,6 +143,13 @@ public class TabbedActivity extends TabActivity {
 	 */
 	public ArrayList<Panel> getPanels() {
 		return panelMediator.getPanelList();
+	}
+	
+	/**
+	 * Retrieve the list of calculations obtained from the WS call
+	 */
+	public List<Calculation> getCalculations(){
+		return calcMediator.getCalculationList();
 	}
 	
 	

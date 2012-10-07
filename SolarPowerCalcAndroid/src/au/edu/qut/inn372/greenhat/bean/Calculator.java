@@ -54,6 +54,8 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 				break;
 			case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 				break;
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+				break;
 			default:
 				break;
 			}		

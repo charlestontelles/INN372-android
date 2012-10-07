@@ -163,6 +163,7 @@
 	<string name="userhomepage_button_new">New Calculation</string>
 	<string name="userhomepage_button_edit">Edit Calculation</string>
 	<string name="userhomepage_button_compare">Compare Calculations</string>
+	<string name="userhomepage_button_template">Template</string>
 	
 	
 </resources>
