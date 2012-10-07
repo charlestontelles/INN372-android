@@ -21,6 +21,9 @@
 	<string name="title_activity_output_financial">Financial</string>
 	<string name="title_activity_registration">Register</string>
 	<string name="title_activity_userhomepage">Home</string>
+	<string name="title_activity_userhomepage">Home Page</string>
+	<string name="title_activity_savings_graph">Savings</string>
+	<string name="title_activity_cost_graph">Cost</string>
 	
 	
 	
@@ -149,7 +152,9 @@
         <item>Administrator</item>
     </string-array>
 
+	
 	<!--  Output -->
+	<string name="output_button_exportPDF">Create PDF</string>
 	<string name="output_button_navigation_next">Next Result</string>
 	<string name="outputBack_button_navigation_back">Back</string>
 	

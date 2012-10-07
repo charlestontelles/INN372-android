@@ -8,7 +8,8 @@
         android:targetSdkVersion="15" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" >
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" >    
     </uses-permission>
 
     <instrumentation
@@ -101,6 +102,20 @@
         <activity
             android:name=".UserHomepageActivity"
             android:label="@string/title_activity_userhomepage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
+        </activity>
+        <activity
+            android:name=".SavingsGraphActivity"
+            android:label="@string/title_activity_savings_graph" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
+        </activity>
+        <activity
+            android:name=".CostGraphActivity"
+            android:label="@string/title_activity_cost_graph" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
