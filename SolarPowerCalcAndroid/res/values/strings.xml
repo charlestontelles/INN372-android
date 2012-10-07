@@ -20,6 +20,7 @@
 	<string name="title_activity_output_summary">Summary</string>
 	<string name="title_activity_output_financial">Financial</string>
 	<string name="title_activity_registration">Register</string>
+	<string name="title_activity_userhomepage">Home</string>
 	
 	
 	
@@ -148,8 +149,16 @@
         <item>Administrator</item>
     </string-array>
 
-	
 	<!--  Output -->
 	<string name="output_button_navigation_next">Next Result</string>
 	<string name="outputBack_button_navigation_back">Back</string>
+	
+	<!--  User Homepage -->
+	<string name="userhomepage_title">Home</string>
+	<string name="userhomepage_welcome">Welcome </string>
+	<string name="userhomepage_button_new">New Calculation</string>
+	<string name="userhomepage_button_edit">Edit Calculation</string>
+	<string name="userhomepage_button_compare">Compare Calculations</string>
+	
+	
 </resources>

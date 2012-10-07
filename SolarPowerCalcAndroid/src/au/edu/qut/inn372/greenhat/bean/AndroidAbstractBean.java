@@ -25,6 +25,10 @@ public abstract class AndroidAbstractBean {
     public static final String OPERATION_GET_PANELS_NAME = "getPanels";
     public static final int OPERATION_GET_PANELS = 5;
     
+    //added by Fabian
+    public static final String OPERATION_GET_CALCULATIONS_NAME = "getCalculations";
+    public static final int OPERATION_GET_CALCULATIONS = 6;
+    
     protected SoapObject soapObject = null;
     
 	public SoapObject getSoapObject(int soapOperation){

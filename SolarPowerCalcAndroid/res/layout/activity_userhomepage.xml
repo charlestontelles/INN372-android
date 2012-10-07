@@ -37,5 +37,57 @@
 
     </LinearLayout>
     
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+    	<Button
+	        android:id="@+id/buttonUserHomepage_New"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/userhomepage_button_new" 
+	        android:onClick="newCalculation"/>        
+        
+		<Button
+	        android:id="@+id/buttonUserHomepage_Edit"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/userhomepage_button_edit" 
+	        android:onClick="editCalculation"/>
+		
+		<Button
+	        android:id="@+id/buttonUserHomepage_Compare"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/userhomepage_button_compare" 
+	        android:onClick="compareCalculation"/>
+    </LinearLayout>
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+    	<Button
+	        android:id="@+id/buttonUserHomepage_Back"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/button_navigation_logout" 
+	        android:onClick="viewBack"/>        
+        
+		<Button
+	        android:id="@+id/buttonUserHomepage_Next"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="95dp"
+	        android:layout_height="34dp"
+	        android:text="@string/button_navigation_next" 
+	        android:onClick="viewNext"/>
+    </LinearLayout>
+    
     
 </LinearLayout>

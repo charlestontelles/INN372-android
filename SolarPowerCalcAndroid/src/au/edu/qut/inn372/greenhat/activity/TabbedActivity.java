@@ -1,6 +1,7 @@
 package au.edu.qut.inn372.greenhat.activity;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import android.app.Activity;
 import android.app.TabActivity;
@@ -62,7 +63,7 @@ public class TabbedActivity extends TabActivity {
 	/**
 	 * Initialise default values - In future this will become a WS call that loads an extra calculator bean filled with defaults
 	 */
-	private void setupCalculatorDefaults() {
+	public void setupCalculatorDefaults() {
 		getCalculator().getCustomer().getLocation().setCity("Brisbane");
 		getCalculator().getCustomer().getLocation().setSunLightHours(4.5);
 		getCalculator().getCustomer().getLocation().getRoof().setWidth(1000);
@@ -141,4 +142,6 @@ public class TabbedActivity extends TabActivity {
 	public ArrayList<Panel> getPanels() {
 		return panelMediator.getPanelList();
 	}
+	
+	
 }

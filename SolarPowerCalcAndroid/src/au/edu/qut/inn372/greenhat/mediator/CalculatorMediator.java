@@ -1,6 +1,7 @@
 package au.edu.qut.inn372.greenhat.mediator;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -59,4 +60,15 @@ public class CalculatorMediator implements Serializable{
 	private void updateCalculator(Calculator resultCalculator) {
 		calculator.setCalculations(resultCalculator.getCalculations());
 	}
+	
+	/**TODO: UNDER CONSTRUCTION by Fabian
+	 * Performs remote soap call to get the latest list of calculations
+	 */
+	public List<Calculator> getAllCalculations(UserProfile userProfile){
+		SoapObject soap = soapClient.synchronousRequest(calculator.getSoapObject(AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
+		List<Calculator> allCalculations = (List<Calculator>) soap.getProperty("calculators");
+		return allCalculations;		
+	}
+	
+	
 }

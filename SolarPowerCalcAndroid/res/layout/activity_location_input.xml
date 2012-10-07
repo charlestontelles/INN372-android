@@ -113,7 +113,7 @@
 	        style="?android:attr/buttonStyleSmall"
 	        android:layout_width="95dp"
 	        android:layout_height="34dp"
-	        android:text="@string/button_navigation_logout" 
+	        android:text="@string/button_navigation_back" 
 	        android:onClick="viewBack"/>        
         
 	    <Button
