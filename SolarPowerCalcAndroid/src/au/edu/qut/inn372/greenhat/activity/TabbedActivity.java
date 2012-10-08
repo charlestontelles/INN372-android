@@ -23,12 +23,12 @@ import au.edu.qut.inn372.greenhat.mediator.PanelMediator;
 public class TabbedActivity extends TabActivity {
 	
 	private TabHost tabHost;
-	public static final int USERHOMEPAGE_ID = 0;
-	public static final int LOCATION_ID = 1;
-	public static final int USAGE_ID = 2;
-	public static final int EQUIPMENT_ID = 3;
-	public static final int ROOF_ID = 4;
-	public static final int INPUT_ID = 5;
+	
+	public static final int LOCATION_ID = 0;
+	public static final int USAGE_ID = 1;
+	public static final int EQUIPMENT_ID = 2;
+	public static final int ROOF_ID = 3;
+	public static final int INPUT_ID = 4;
 	
 	private CalculatorMediator calcMediator;
 	private EquipmentKitsMediator equipKitsMediator;
@@ -40,7 +40,21 @@ public class TabbedActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
         
-        calcMediator = new CalculatorMediator();
+        //Switch to check for new or old calculator
+        int type = (Integer) getIntent().getSerializableExtra("Type");
+        switch(type){
+        	case 0: //new calculation
+        		calcMediator = new CalculatorMediator();
+        		break;
+        	case 1: //load a calculation
+        		calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
+        		break;
+        	case 2: //compare calcultions TODO: needs to be completed
+        		break;
+        	
+        }
+        
+        
         equipKitsMediator = new EquipmentKitsMediator();
         equipKitsMediator.getEquipments(); //This is a WS call - might be better to move it to be part of the login process later
         panelMediator = new PanelMediator(); //WS call
@@ -53,7 +67,7 @@ public class TabbedActivity extends TabActivity {
         
         setupCalculatorDefaults();
         
-        addTab("Home", this, UserHomepageActivity.class);
+        
         addTab("Location", this, LocationActivity.class); 
         addTab("Personal Usage", this, CustomerUsageActivity.class);
         addTab("Equipment", this, EquipmentActivity.class);
@@ -148,9 +162,9 @@ public class TabbedActivity extends TabActivity {
 	/**
 	 * Retrieve the list of calculations obtained from the WS call
 	 */
-	public List<Calculator> getCalculations(){
+	/*public List<Calculator> getCalculations(){ //getCalculationList migrated to UserHomepageActivity
 		return calcMediator.getCalculationList();
-	}
+	}*/
 	
 	
 }

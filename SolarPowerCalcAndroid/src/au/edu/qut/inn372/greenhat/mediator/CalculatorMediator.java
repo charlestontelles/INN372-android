@@ -39,6 +39,10 @@ public class CalculatorMediator implements Serializable{
 		return calculator;
 	}
 	
+	public void setCalculator(Calculator calculator){
+		this.calculator = calculator;
+	}
+	
 	/**
 	 * Performs remote soap call to perform calculations on the bean object
 	 */
@@ -74,7 +78,9 @@ public class CalculatorMediator implements Serializable{
 		return calculations;		
 	}
 	*/
-	public List<Calculator> getCalculationList(){
+	
+	//moved to UserHomepageActivity
+	/*public List<Calculator> getCalculationList(){ 
 		SoapObject soap = soapClient.synchronousRequest(calculator.getCustomer().getUserProfile().getSoapObject(AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
 		List<Calculator> calculations = new ArrayList<Calculator>(); //changed List to ArrayList
 		int numCalculations = soap.getPropertyCount();
@@ -83,5 +89,5 @@ public class CalculatorMediator implements Serializable{
 			calculations.add(new Calculator(curCalculation, AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
 		}
 		return calculations;	
-	}
+	}*/
 }

@@ -46,7 +46,7 @@ public class LoginActivity extends Activity {
     public void login (View view){
     	saveData();
     	if(userProfileMediator.validateCredentials()) {
-    		Intent intent = new Intent(this, TabbedActivity.class);
+    		Intent intent = new Intent(this, UserHomepageActivity.class);
     		intent.putExtra("UserProfile", userProfileMediator.getUserProfile());
         	startActivity(intent);
     	}

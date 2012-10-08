@@ -226,6 +226,7 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addProperty("size", ""+this.size);
 		currentSoapObject.addProperty("cost", ""+this.cost);
 		currentSoapObject.addProperty("brand", ""+this.brand);
+		
 		return currentSoapObject;
 	}
 }

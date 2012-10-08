@@ -69,20 +69,20 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 		
+	    <Button
+	        android:id="@+id/buttonUserHomepage_Delete"
+	        style="?android:attr/buttonStyleSmall"
+	        android:layout_width="wrap_content"
+	        android:layout_height="34dp"
+	        android:text="@string/userhomepage_button_delete" 
+	        android:onClick="compareCalculation"/>
+		
 		<Button
 	        android:id="@+id/buttonUserHomepage_Compare"
 	        style="?android:attr/buttonStyleSmall"
 	        android:layout_width="wrap_content"
 	        android:layout_height="34dp"
 	        android:text="@string/userhomepage_button_compare" 
-	        android:onClick="compareCalculation"/>
-		
-		<Button
-	        android:id="@+id/buttonUserHomepage_Template"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="34dp"
-	        android:text="@string/userhomepage_button_template" 
 	        android:onClick="compareCalculation"/>
     </LinearLayout>
     

@@ -3,11 +3,14 @@ package au.edu.qut.inn372.greenhat.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.ksoap2.serialization.SoapObject;
+
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,30 +19,37 @@ import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import au.edu.qut.inn372.greenhat.bean.AndroidAbstractBean;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
+import au.edu.qut.inn372.greenhat.bean.UserProfile;
+import au.edu.qut.inn372.greenhat.ws.CalculatorSoapClient;
 import android.graphics.Typeface;
 
 
 public class UserHomepageActivity extends Activity {
 	
-	
+	private CalculatorSoapClient soapClient = new CalculatorSoapClient();
+	private UserProfile userProfile;
+	private boolean[] checkBoxSelected;
+	private List<Calculator> allCalculations;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);           
         setContentView(R.layout.activity_userhomepage);
-        
+        userProfile = (UserProfile)getIntent().getSerializableExtra("UserProfile");
     }
 	
-	/**
-	 * Refers to the succeeding tab
-	 * @param view
-	 */
-	public void viewNext(View view){
-		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.LOCATION_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
+	public List<Calculator> getCalculationList(){
+		SoapObject soap = soapClient.synchronousRequest(userProfile.getSoapObject(AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
+		List<Calculator> calculations = new ArrayList<Calculator>(); //changed List to ArrayList
+		int numCalculations = soap.getPropertyCount()-1; //adding -1 resolved error with illegal brand-property
+		for(int i = 0; i< numCalculations ; i++) {
+			SoapObject curCalculation = (SoapObject)soap.getProperty(i);
+			calculations.add(new Calculator(curCalculation, AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
+		}
+		return calculations;	
 	}
 	
 	/**
@@ -55,28 +65,29 @@ public class UserHomepageActivity extends Activity {
     @Override
 	public void onResume() {
 		super.onResume();
-		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 		//adds the user name to the welcome message
 		TextView welcomeUserName = (TextView)findViewById(R.id.textUserHomepage_WelcomeName);
-		welcomeUserName.setText(new String(parentTabbedActivity.getCalculator().getCustomer().getUserProfile().getName()).toString());
+		welcomeUserName.setText(new String(userProfile.getName()).toString());
+		//Get the latest calculations list
+    	allCalculations = getCalculationList();
+    	checkBoxSelected = new boolean[allCalculations.size()];
 		
-		//buildCalculationTable(); 
+		buildCalculationTable(); 
 	}
     
     /**TODO: UNDER CONSTRUCTION by Fabian
      * Builds the table of calculations
      */
-    public void buildCalculationTable(){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	//Get the latest calculations list
-    	List<Calculator> allCalculations = parentTabbedActivity.getCalculations();
+    private void buildCalculationTable(){
+    	
+    	
     	
     	//Get the table
     	TableLayout calcTable = (TableLayout) findViewById(R.id.tableUserHomepage_Calulations);
     	
-    	//Create rows and fill the table with content 
+    	//Create rows and fill them with content
     	int i = 0;
-    	while (allCalculations.get(i) != null && i < 25){ // 25 is the size of the calculations-array
+    	while (allCalculations.get(i) != null){ 
     	
     		//Parameters for one row
     		TableRow tableRow = new TableRow(this);
@@ -87,14 +98,26 @@ public class UserHomepageActivity extends Activity {
     		ImageView line = new ImageView(this);
     		
     		//Fill in the content
-    		// columnName.setText(new String(allCalculations.get(i).getName())); TODO: Attribute "name" not yet implemented
-    		columnName.setText("Name "+i);
-    		//columnDateTime.setText(allCalculations.get(i).getDate()); TODO: Attribute "date" not yet implemented
-    		columnDateTime.setText("Date "+i);
-    		//columnStatus.setText(allCalculations.get(i).getStatus()); TODO: Attribute "status" not yet implemented
-    		columnStatus.setText("Status "+i);
+    		columnName.setText(new String(allCalculations.get(i).getName())); 
+    		//columnName.setText("Name "+i);
+    		columnDateTime.setText(allCalculations.get(i).getFormatedDateTime()); 
+    		//columnDateTime.setText("Date "+i);
+    		columnStatus.setText(allCalculations.get(i).getStatus()); 
+    		//columnStatus.setText("Status "+i);
     		
     		checkBox.setLayoutParams(new LayoutParams(30, 30));
+    		checkBox.setId(i);
+    		checkBox.setOnClickListener(new OnClickListener() {
+				public void onClick(View v) {
+					// TODO Auto-generated method stub
+					if (((CheckBox) v).isChecked()) {
+						if (checkBoxSelected[v.getId()]== true){
+							checkBoxSelected[v.getId()] = false;
+						}
+						else {checkBoxSelected[v.getId()] = true;}
+    				}
+				}
+			});
     		line.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, 2));
     		
     		
@@ -113,39 +136,63 @@ public class UserHomepageActivity extends Activity {
      * Begin with a new calculation
      */
     public void newCalculation(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	//Load default values, will be a ws-call in the future
-    	parentTabbedActivity.setupCalculatorDefaults();
-    	//switch to the next tab
-    	int targetActivity = TabbedActivity.LOCATION_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
+    	//Create intent to start TabbedActivity
+    	int type = 0; //0 = newCalculation
+    	Intent intent = new Intent(this, TabbedActivity.class);
+		intent.putExtra("UserProfile", userProfile);
+		intent.putExtra("Type", type);
+    	startActivity(intent);
     }
     
     /**TODO: Complete by Fabian
      * Loads the selected calculation
      */
     public void editCalculation(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.LOCATION_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
+    	//Create intent to start TabbedActivity
+    	int type = 1; //1 = editCalculation
+    	
+    	Intent intent = new Intent(this, TabbedActivity.class);
+		intent.putExtra("UserProfile", userProfile);
+		intent.putExtra("Type", type);
+		intent.putExtra("Calculator", allCalculations.get(getSelectedCalculator())); //passes the selected calculator from table 
+		
+    	startActivity(intent);
+    }
+    
+    /**TODO: Needs to be completed
+     * Let the user delete one calculation TODO: implement the possibility to delete several calculations
+     */
+    public void deleteCalculation(View view){
+    	allCalculations.remove(getSelectedCalculator());
+    	//update allCalculations and refresh the table 
+    	allCalculations = getCalculationList();
+    	buildCalculationTable();    	
     }
     
     /**TODO: Needs to be completed
      * Let the user compare different calculations with each other
      */
     public void compareCalculation(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.LOCATION_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
+    	//Create intent to start TabbedActivity
+    	int type = 2; //2 = compareCalculation
+    	
+    	Intent intent = new Intent(this, TabbedActivity.class);
+		intent.putExtra("UserProfile", userProfile);
+		intent.putExtra("Type", type);
+		
+    	startActivity(intent);
     }
     
-    /**TODO: Needs to be completetd
-     * Uses the selected calculation as template
+    
+    
+    /**
+     * Finds the ID of the checked calculation
+     * @return
      */
-    public void templateCalculation(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.LOCATION_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
+    private int getSelectedCalculator(){
+    	int selectedID = 0;
+    	while(checkBoxSelected[selectedID]== false){selectedID++;}
+    	return selectedID;
     }
 
 }

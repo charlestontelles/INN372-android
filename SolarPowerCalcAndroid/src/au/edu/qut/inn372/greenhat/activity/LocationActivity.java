@@ -99,9 +99,9 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		 * @param view
 		 */
 		public void viewBack(View view){
-			TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-	    	int targetActivity = TabbedActivity.USERHOMEPAGE_ID;
-	    	parentTabbedActivity.switchTab(targetActivity);
+			Intent intent = new Intent(this, UserHomepageActivity.class);
+		    
+		     startActivity(intent);
 		}
 	    
 		/**
