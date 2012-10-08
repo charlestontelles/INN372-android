@@ -153,7 +153,6 @@
 
 	
 	<!--  Output -->
-	<string name="output_button_exportPDF">Create PDF</string>
 	<string name="output_button_navigation_next">Next Result</string>
 	<string name="outputBack_button_navigation_back">Back</string>
 	
@@ -170,6 +169,9 @@
 	<string name="menu_input_save">Save</string>
 	<string name="menu_input_export">Export</string>
 	<string name="menu_input_print">Print</string>
+	<string name="menu_tabbed_save">Save Calculation Inputs</string>
+	<string name="menu_tabbed_output_save">Save Calculation</string>
+	<string name="menu_tabbed_output_generate_pdf">Generate Pdf</string>
 	
 	
 </resources>

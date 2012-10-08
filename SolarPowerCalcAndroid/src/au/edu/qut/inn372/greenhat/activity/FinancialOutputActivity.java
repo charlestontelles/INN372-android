@@ -30,8 +30,7 @@ public class FinancialOutputActivity extends Activity {
 	private Calculator calculator;
 	private TabbedOutputActivity parentTabbedActivity;
 	DecimalFormat df = new DecimalFormat("#.##");
-	// Constant for identifying the dialog
-	private static final int DIALOG_ALERT = 10;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,33 +41,8 @@ public class FinancialOutputActivity extends Activity {
 		generateView();
 
 	}
-	/**
-	 * Customises dialogs to be used within the activity
-	 */
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case DIALOG_ALERT:
-			// Create out AlterDialog
-			Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("SolarPowerReport.pdf created");
-			builder.setCancelable(false);
-			builder.setPositiveButton("OK", new OkOnClickListener());
-			AlertDialog dialog = builder.create();
-			dialog.show();
-		}
-		return super.onCreateDialog(id);
-	}
-	/**
-	 * handle on click button in the dialog
-	 * 
-	 */
-	private final class OkOnClickListener implements
-			DialogInterface.OnClickListener {
-		public void onClick(DialogInterface dialog, int which) {
-			dialog.dismiss();
-		}
-	}
+
+
 	/**
 	 * Generates the table of financial outputs (Programatically generating
 	 * views)
@@ -118,70 +92,10 @@ public class FinancialOutputActivity extends Activity {
 		parentOutputTabbedActivity.switchTab(targetActivity);
 	}
 
-	/**
-	 * Exports the financial calculation to a PDF
-	 * 
-	 * TODO: talk to customer to check which information he needs
-	 * in the report
-	 * 
-	 * @param view
-	 */
-	public void exportPDF(View view){
-		String FILE = "/SolarPowerReport.pdf";
-		try {
-			Document document = new Document();
-			boolean mExternalStorageAvailable = false;
-			boolean mExternalStorageWriteable = false;
-			String state = Environment.getExternalStorageState();
-			if (Environment.MEDIA_MOUNTED.equals(state)) {
-				// We can read and write the media
-				mExternalStorageAvailable = mExternalStorageWriteable = true;
-			} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-				// We can only read the media
-				mExternalStorageAvailable = true;
-				mExternalStorageWriteable = false;
-			} else {
-				// Something else is wrong. It may be one of many other states, but all we need
-				//  to know is we can neither read nor write
-				mExternalStorageAvailable = mExternalStorageWriteable = false;
-			}
-			String file = null;
-			if(mExternalStorageWriteable) {
-				file = Environment.getExternalStorageDirectory().getPath() + FILE;
-			}
-
-			PdfWriter.getInstance(document,new FileOutputStream(file));
-			document.open();
-			Paragraph p = new Paragraph("Calculation Report");
-			document.add(p);
-			p = new Paragraph("  ");
-			document.add(p);
-			PdfPTable table = new PdfPTable(3);
-		    PdfPCell c1 = new PdfPCell(new Phrase("Year"));
-		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		    table.addCell(c1);
-
-		    c1 = new PdfPCell(new Phrase("Cumulative Savings ($)"));
-		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		    table.addCell(c1);
-
-		    c1 = new PdfPCell(new Phrase("ROI"));
-		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		    table.addCell(c1);
-		    table.setHeaderRows(1);
-			for (Calculation curCalculation : calculator.getCalculations()) {
-			    table.addCell("" + df.format(curCalculation.getYear() + 1));
-			    table.addCell("" + df.format(curCalculation.getCumulativeSaving()));
-			    table.addCell("" + df.format(curCalculation.getCumulativeSaving() / calculator.getEquipment().getCost()));
-			}
-			document.add(table);
-			
-			document.close();
-
-			showDialog(DIALOG_ALERT);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void viewMoreInfo(View view){
+    	TabbedOutputActivity parentTabbedOutputActivity = (TabbedOutputActivity)this.getParent();
+    	int targetActivity = TabbedOutputActivity.SAVINGS_GRAPH_ID;
+    	parentTabbedOutputActivity.switchTab(targetActivity);
+    }
 		
-	}
 }

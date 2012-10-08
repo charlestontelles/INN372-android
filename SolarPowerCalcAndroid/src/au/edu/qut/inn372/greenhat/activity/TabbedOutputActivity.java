@@ -1,9 +1,28 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.TabActivity;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
@@ -18,7 +37,13 @@ public class TabbedOutputActivity extends TabActivity {
 	public static final int FINANCIAL_ID = 2;
 	public static final int SAVINGS_GRAPH_ID = 3;
 	public static final int COST_GRAPH_ID = 4;
+	DecimalFormat df = new DecimalFormat("#.##");
+	// Constant for identifying the dialog
+	private static final int DIALOG_ALERT = 10;
+	private static final int DIALOG_FAILED = 11;
+	private static final int DIALOG_GENERATE_PDF = 12;
 	
+	private CalculatorMediator calcMediator;
 	private Calculator calculator;
 	
 	/**
@@ -28,7 +53,9 @@ public class TabbedOutputActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed_output);
         
-        calculator = (Calculator)getIntent().getSerializableExtra("Calculator");
+        calcMediator = new CalculatorMediator();
+        calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
+        calculator = calcMediator.getCalculator();
  
         tabHost = getTabHost();
         
@@ -53,6 +80,158 @@ public class TabbedOutputActivity extends TabActivity {
 		tabHost.addTab(newSpec);
 	}
 	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_tabbed_output_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+        	case R.id.menu_tabbed_save:
+        		saveCalculations();
+        		return true;
+        	case R.id.menu_tabbed_output_save:
+        		saveCalculations();
+        		return true;
+        	case R.id.menu_tabbed_output_generate_pdf:
+        		generatePDF();
+        		return true;
+        	default:
+        		return super.onOptionsItemSelected(item);
+    	}
+    }
+    
+    private void saveCalculations() {
+		
+		String result = calcMediator.saveCalculation();
+		if(result.equals("ok")) {
+			showDialog(DIALOG_ALERT);
+		}
+		else {
+			showDialog(DIALOG_FAILED);
+		}
+    }
+    
+    private void generatePDF() {
+    	exportPDF();
+    }
+    
+	/**
+	 * Customises the dialogs used in the Activity
+	 */
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		Builder builder;
+		AlertDialog dialog;
+		switch (id) {
+		case DIALOG_ALERT:
+			// Create out AlterDialog
+			builder = new AlertDialog.Builder(this);
+			builder.setMessage("Calculation Saved.");
+			builder.setCancelable(false);
+			builder.setPositiveButton("OK", new OkOnClickListener());
+			dialog = builder.create();
+			dialog.show();
+			break;
+		case DIALOG_FAILED:
+			builder = new AlertDialog.Builder(this);
+			builder.setMessage("Error saving calculation");
+			builder.setCancelable(false);
+			builder.setPositiveButton("OK", new OkOnClickListener());
+			dialog = builder.create();
+			dialog.show();
+			break;
+		case DIALOG_GENERATE_PDF:
+			builder = new AlertDialog.Builder(this);
+			builder.setMessage("SolarPowerReport.pdf created");
+			builder.setCancelable(false);
+			builder.setPositiveButton("OK", new OkOnClickListener());
+			dialog = builder.create();
+			dialog.show();
+			break;
+		}
+		return super.onCreateDialog(id);
+	}
+	
+	/**
+	 * handle on click button in the dialog
+	 * 
+	 */
+	private final class OkOnClickListener implements
+			DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
+			dialog.dismiss();
+		}
+	}
+	
+	/**
+	 * Exports the financial calculation to a PDF
+	 * 
+	 * TODO: talk to customer to check which information he needs
+	 * in the report
+	 * 
+	 * @param view
+	 */
+	public void exportPDF(){
+		String FILE = "/SolarPowerReport.pdf";
+		try {
+			Document document = new Document();
+			boolean mExternalStorageAvailable = false;
+			boolean mExternalStorageWriteable = false;
+			String state = Environment.getExternalStorageState();
+			if (Environment.MEDIA_MOUNTED.equals(state)) {
+				// We can read and write the media
+				mExternalStorageAvailable = mExternalStorageWriteable = true;
+			} else if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+				// We can only read the media
+				mExternalStorageAvailable = true;
+				mExternalStorageWriteable = false;
+			} else {
+				// Something else is wrong. It may be one of many other states, but all we need
+				//  to know is we can neither read nor write
+				mExternalStorageAvailable = mExternalStorageWriteable = false;
+			}
+			String file = null;
+			if(mExternalStorageWriteable) {
+				file = Environment.getExternalStorageDirectory().getPath() + FILE;
+			}
+
+			PdfWriter.getInstance(document,new FileOutputStream(file));
+			document.open();
+			Paragraph p = new Paragraph("Calculation Report");
+			document.add(p);
+			p = new Paragraph("  ");
+			document.add(p);
+			PdfPTable table = new PdfPTable(3);
+		    PdfPCell c1 = new PdfPCell(new Phrase("Year"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+
+		    c1 = new PdfPCell(new Phrase("Cumulative Savings ($)"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+
+		    c1 = new PdfPCell(new Phrase("ROI"));
+		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		    table.addCell(c1);
+		    table.setHeaderRows(1);
+			for (Calculation curCalculation : calculator.getCalculations()) {
+			    table.addCell("" + df.format(curCalculation.getYear() + 1));
+			    table.addCell("" + df.format(curCalculation.getCumulativeSaving()));
+			    table.addCell("" + df.format(curCalculation.getCumulativeSaving() / calculator.getEquipment().getCost()));
+			}
+			document.add(table);
+			
+			document.close();
+
+			showDialog(DIALOG_GENERATE_PDF);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+    
 	/**
 	 * Retrieves the calculator bean object
 	 * @return The calculator bean

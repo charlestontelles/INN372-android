@@ -18,7 +18,7 @@ import au.edu.qut.inn372.greenhat.bean.Roof;
 
 public class BasicInputActivity extends Activity {
 	// Constant for identifying the dialog
-	private static final int DIALOG_ALERT = 10;
+	
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
 	private int state;
@@ -49,33 +49,7 @@ public class BasicInputActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	/**
-	 * Customises the dialogs used in the Activity
-	 */
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		switch (id) {
-		case DIALOG_ALERT:
-			// Create out AlterDialog
-			Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage("Calculation Saved.");
-			builder.setCancelable(false);
-			builder.setPositiveButton("OK", new OkOnClickListener());
-			AlertDialog dialog = builder.create();
-			dialog.show();
-		}
-		return super.onCreateDialog(id);
-	}
-	/**
-	 * handle on click button in the dialog
-	 * 
-	 */
-	private final class OkOnClickListener implements
-			DialogInterface.OnClickListener {
-		public void onClick(DialogInterface dialog, int which) {
-			dialog.dismiss();
-		}
-	}
+
 
 	/**
 	 * Performs the calculations (Soap call) and changed to output activity
@@ -91,19 +65,6 @@ public class BasicInputActivity extends Activity {
 		intent.putExtra("Calculator", parentTabbedActivity.getCalculator());
 
 		startActivity(intent);
-
-	}
-
-	/**
-	 * Performs the calculations (Soap call) and changed to output activity
-	 * 
-	 * @param view
-	 */
-	public void save(View view) {
-
-		String result = parentTabbedActivity.saveCalculation();
-
-		showDialog(DIALOG_ALERT);
 
 	}
 

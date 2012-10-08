@@ -5,10 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.TabActivity;
+import android.app.AlertDialog.Builder;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
@@ -29,6 +35,8 @@ public class TabbedActivity extends TabActivity {
 	public static final int EQUIPMENT_ID = 2;
 	public static final int ROOF_ID = 3;
 	public static final int INPUT_ID = 4;
+	private static final int DIALOG_ALERT = 10;
+	private static final int DIALOG_FAILED = 11;
 	
 	private CalculatorMediator calcMediator;
 	private EquipmentKitsMediator equipKitsMediator;
@@ -113,6 +121,62 @@ public class TabbedActivity extends TabActivity {
 		tabHost.addTab(newSpec);
 	}
 	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_tabbed_menu, menu);
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {
+        	case R.id.menu_tabbed_save:
+        		saveCalculation();
+        		return true;
+        	default:
+        		return super.onOptionsItemSelected(item);
+    	}
+    }
+	
+	/**
+	 * Customises the dialogs used in the Activity
+	 */
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		Builder builder;
+		AlertDialog dialog;
+		switch (id) {
+		case DIALOG_ALERT:
+			// Create out AlterDialog
+			builder = new AlertDialog.Builder(this);
+			builder.setMessage("Calculation Saved.");
+			builder.setCancelable(false);
+			builder.setPositiveButton("OK", new OkOnClickListener());
+			dialog = builder.create();
+			dialog.show();
+			break;
+		case DIALOG_FAILED:
+			builder = new AlertDialog.Builder(this);
+			builder.setMessage("Error saving calculation");
+			builder.setCancelable(false);
+			builder.setPositiveButton("OK", new OkOnClickListener());
+			dialog = builder.create();
+			dialog.show();
+			break;
+		}
+		return super.onCreateDialog(id);
+	}
+	/**
+	 * handle on click button in the dialog
+	 * 
+	 */
+	private final class OkOnClickListener implements
+			DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
+			dialog.dismiss();
+		}
+	}
+    
 	/**
 	 * Retrieves the calculator bean object
 	 * @return The calculator bean
@@ -139,8 +203,15 @@ public class TabbedActivity extends TabActivity {
 	/**
 	 * Perform the WS call to save the calculation
 	 */
-	public String saveCalculation() {
-		return calcMediator.saveCalculation();
+	public void saveCalculation() {
+		
+		String result = calcMediator.saveCalculation();
+		if(result.equals("ok")) {
+			showDialog(DIALOG_ALERT);
+		}
+		else {
+			showDialog(DIALOG_FAILED);
+		}
 	}
 	
 	/**

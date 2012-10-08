@@ -19,14 +19,14 @@
 	        android:layout_height="34dp"
 	        android:text="@string/outputBack_button_navigation_back" 
 	        android:onClick="viewBackOutput"/>
-            
+            
             <Button
-	        android:id="@+id/buttonFinancial_ExportPDF"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:text="@string/output_button_exportPDF" 
-	        android:onClick="exportPDF"/>
+                android:id="@+id/buttonFinancial_Next"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="95dp"
+                android:layout_height="34dp"
+                android:onClick="viewMoreInfo"
+                android:text="@string/output_button_navigation_next" />
 
         </TableRow>
 
