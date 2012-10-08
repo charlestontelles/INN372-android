@@ -220,7 +220,7 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addProperty("id", ""+this.id);
 		currentSoapObject.addProperty("width", ""+this.width);
 		currentSoapObject.addProperty("height", ""+this.height);
-		currentSoapObject.addProperty("efficiency", ""+this.efficiency);
+		//currentSoapObject.addProperty("efficiency", ""+this.efficiency);
 		currentSoapObject.addProperty("efficiencyLoss", ""+this.efficiencyLoss);
 		currentSoapObject.addProperty("powerRating", ""+this.powerRating);
 		currentSoapObject.addProperty("size", ""+this.size);
