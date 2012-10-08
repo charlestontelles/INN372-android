@@ -276,7 +276,6 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 			calculatorElement.addSoapObject(customer.getSoapObject(-1));
 			calculatorElement.addSoapObject(equipment.getSoapObject(-1));
 			this.soapObject.addSoapObject(calculatorElement);
-			System.out.println(this.soapObject.toString());
 			break;
 		case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_SAVE_CALCULATION_NAME);
