@@ -55,9 +55,9 @@ public class TabbedActivity extends TabActivity {
         		calcMediator = new CalculatorMediator();
         		break;
         	case 1: //load a calculation
-        		calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
+        		calcMediator = new CalculatorMediator((Calculator)getIntent().getSerializableExtra("Calculator"));
         		break;
-        	case 2: //compare calcultions TODO: needs to be completed
+        	case 2: //compare calculations TODO: needs to be completed
         		break;
         	
         }

@@ -100,8 +100,8 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		 */
 		public void viewBack(View view){
 			Intent intent = new Intent(this, UserHomepageActivity.class);
-		    
-		     startActivity(intent);
+			intent.putExtra("UserProfile", calculator.getCustomer().getUserProfile());
+		    startActivity(intent);
 		}
 	    
 		/**

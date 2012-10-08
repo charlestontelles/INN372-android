@@ -39,7 +39,30 @@
 	<TableLayout 
 	    android:id="@+id/tableUserHomepage_Calulations"
 	    android:layout_width="fill_parent"
-	    android:layout_height="wrap_content">  
+	    android:layout_height="wrap_content">
+        
+	    <TableRow >
+	        <TextView 
+	            android:id="@+id/textUserHomepage_TableHeadCheckbox"
+	            android:text="@string/userhomepage_tablehead_checkbox"
+	            android:layout_width="30dp"
+            	android:layout_height="wrap_content"/>
+	        <TextView 
+	            android:id="@+id/textUserHomepage_TableHeadName"
+	            android:text="@string/userhomepage_tablehead_name"
+	            android:layout_width="80dp"
+            	android:layout_height="wrap_content"/>
+	        <TextView 
+	            android:id="@+id/textUserHomepage_TableHeadDateTime"
+	            android:text="@string/userhomepage_tablehead_datetime"
+	            android:layout_width="80dp"
+            	android:layout_height="wrap_content"/>
+	        <TextView 
+	            android:id="@+id/textUserHomepage_TableHeadStatus"
+	            android:text="@string/userhomepage_tablehead_status"
+	            android:layout_width="80dp"
+            	android:layout_height="wrap_content"/>
+	    </TableRow>
 	</TableLayout>
     
 	<LinearLayout
@@ -75,7 +98,7 @@
 	        android:layout_width="wrap_content"
 	        android:layout_height="34dp"
 	        android:text="@string/userhomepage_button_delete" 
-	        android:onClick="compareCalculation"/>
+	        android:onClick="deleteCalculation"/>
 		
 		<Button
 	        android:id="@+id/buttonUserHomepage_Compare"

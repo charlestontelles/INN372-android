@@ -32,6 +32,13 @@ public class CalculatorMediator implements Serializable{
 	}
 	
 	/**
+	 * Constructor which initialises the calculator bean object
+	 */
+	public CalculatorMediator(Calculator calculator) {
+		this.calculator = calculator;
+	}
+	
+	/**
 	 * Returns the calculator bean object in the calculator mediator
 	 * @return The calculator bean object
 	 */

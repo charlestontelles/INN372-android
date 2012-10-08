@@ -39,15 +39,26 @@ public class UserHomepageActivity extends Activity {
         super.onCreate(savedInstanceState);           
         setContentView(R.layout.activity_userhomepage);
         userProfile = (UserProfile)getIntent().getSerializableExtra("UserProfile");
+        
+      //Get the latest calculations list
+    	allCalculations = getCalculationList();
+    	checkBoxSelected = new boolean[allCalculations.size()];
+		
+		buildCalculationTable(); 
     }
 	
 	public List<Calculator> getCalculationList(){
 		SoapObject soap = soapClient.synchronousRequest(userProfile.getSoapObject(AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
 		List<Calculator> calculations = new ArrayList<Calculator>(); //changed List to ArrayList
-		int numCalculations = soap.getPropertyCount()-1; //adding -1 resolved error with illegal brand-property
+		int numCalculations = soap.getPropertyCount();  
 		for(int i = 0; i< numCalculations ; i++) {
-			SoapObject curCalculation = (SoapObject)soap.getProperty(i);
-			calculations.add(new Calculator(curCalculation, AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
+			try {
+				SoapObject curCalculation = (SoapObject)soap.getProperty(i);
+				calculations.add(new Calculator(curCalculation, AndroidAbstractBean.OPERATION_GET_CALCULATIONS));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return calculations;	
 	}
@@ -58,7 +69,6 @@ public class UserHomepageActivity extends Activity {
      */
     public void viewBack(View view){	    	
     	Intent intent = new Intent(this, LoginActivity.class);
-    	
     	startActivity(intent);
     }
     
@@ -68,26 +78,19 @@ public class UserHomepageActivity extends Activity {
 		//adds the user name to the welcome message
 		TextView welcomeUserName = (TextView)findViewById(R.id.textUserHomepage_WelcomeName);
 		welcomeUserName.setText(new String(userProfile.getName()).toString());
-		//Get the latest calculations list
-    	allCalculations = getCalculationList();
-    	checkBoxSelected = new boolean[allCalculations.size()];
 		
-		buildCalculationTable(); 
 	}
     
-    /**TODO: UNDER CONSTRUCTION by Fabian
-     * Builds the table of calculations
+    /**
+     * Builds the table of calculators
      */
-    private void buildCalculationTable(){
-    	
-    	
-    	
+    private void buildCalculationTable(){    	
     	//Get the table
     	TableLayout calcTable = (TableLayout) findViewById(R.id.tableUserHomepage_Calulations);
     	
     	//Create rows and fill them with content
     	int i = 0;
-    	while (allCalculations.get(i) != null){ 
+    	while (i < allCalculations.size()){ 
     	
     		//Parameters for one row
     		TableRow tableRow = new TableRow(this);
@@ -95,17 +98,13 @@ public class UserHomepageActivity extends Activity {
     		TextView columnDateTime = new TextView(this);
     		TextView columnStatus = new TextView(this);
     		CheckBox checkBox = new CheckBox(this);
-    		ImageView line = new ImageView(this);
     		
     		//Fill in the content
     		columnName.setText(new String(allCalculations.get(i).getName())); 
-    		//columnName.setText("Name "+i);
     		columnDateTime.setText(allCalculations.get(i).getFormatedDateTime()); 
-    		//columnDateTime.setText("Date "+i);
-    		columnStatus.setText(allCalculations.get(i).getStatus()); 
-    		//columnStatus.setText("Status "+i);
+    		columnStatus.setText(allCalculations.get(i).getStatusName()); 
     		
-    		checkBox.setLayoutParams(new LayoutParams(30, 30));
+    		//Prepare checkboxes
     		checkBox.setId(i);
     		checkBox.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
@@ -118,8 +117,6 @@ public class UserHomepageActivity extends Activity {
     				}
 				}
 			});
-    		line.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, 2));
-    		
     		
     		tableRow.addView(checkBox);
     		tableRow.addView(columnName);
@@ -127,13 +124,14 @@ public class UserHomepageActivity extends Activity {
     		tableRow.addView(columnStatus);
     		
     		calcTable.addView(tableRow);
-    		calcTable.addView(line);
+    		
+    		i++;
   		
     	}
     }
     
-    /**TODO: Complete by Fabian
-     * Begin with a new calculation
+    /**
+     * Starts a new calculation
      */
     public void newCalculation(View view){
     	//Create intent to start TabbedActivity
@@ -144,7 +142,7 @@ public class UserHomepageActivity extends Activity {
     	startActivity(intent);
     }
     
-    /**TODO: Complete by Fabian
+    /**TODO: needs to be completed, is not working properly
      * Loads the selected calculation
      */
     public void editCalculation(View view){
@@ -154,7 +152,7 @@ public class UserHomepageActivity extends Activity {
     	Intent intent = new Intent(this, TabbedActivity.class);
 		intent.putExtra("UserProfile", userProfile);
 		intent.putExtra("Type", type);
-		intent.putExtra("Calculator", allCalculations.get(getSelectedCalculator())); //passes the selected calculator from table 
+		intent.putExtra("Calculator", allCalculations.get(getSelectedCalculator())); //passes the selected calculator from table to TabbedActivity
 		
     	startActivity(intent);
     }
@@ -163,7 +161,7 @@ public class UserHomepageActivity extends Activity {
      * Let the user delete one calculation TODO: implement the possibility to delete several calculations
      */
     public void deleteCalculation(View view){
-    	allCalculations.remove(getSelectedCalculator());
+    	soapClient.synchronousRequest(allCalculations.get(getSelectedCalculator()).getSoapObject(AndroidAbstractBean.OPERATION_DELETE_CALCULATION));
     	//update allCalculations and refresh the table 
     	allCalculations = getCalculationList();
     	buildCalculationTable();    	
@@ -182,7 +180,6 @@ public class UserHomepageActivity extends Activity {
 		
     	startActivity(intent);
     }
-    
     
     
     /**

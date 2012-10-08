@@ -39,7 +39,7 @@ public class RegistrationActivity extends Activity {
 	public void register(View view) {
 		if (validationCheck()) {
 			saveData();
-	    	Intent intent = new Intent(this, TabbedActivity.class);
+	    	Intent intent = new Intent(this, UserHomepageActivity.class);
 	    	userProfileMediator.saveUserProfile(); //Soap call to register user
 	    	intent.putExtra("UserProfile", userProfileMediator.getUserProfile());
 	    	startActivity(intent);

@@ -111,9 +111,9 @@
     <Button
 	        android:id="@+id/buttonLocation_Back"
 	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
+	        android:layout_width="wrap_content"
 	        android:layout_height="34dp"
-	        android:text="@string/button_navigation_back" 
+	        android:text="@string/button_navigation_back_home" 
 	        android:onClick="viewBack"/>        
         
 	    <Button

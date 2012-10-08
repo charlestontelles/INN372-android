@@ -29,6 +29,9 @@ public abstract class AndroidAbstractBean {
     public static final String OPERATION_GET_CALCULATIONS_NAME = "getCalculations";
     public static final int OPERATION_GET_CALCULATIONS = 6;
     
+    public static final String OPERATION_DELETE_CALCULATION_NAME = "deleteCalculation";
+    public static final int OPERATION_DELETE_CALCULATION = 7;
+    
     protected SoapObject soapObject = null;
     
 	public SoapObject getSoapObject(int soapOperation){

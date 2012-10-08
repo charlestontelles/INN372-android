@@ -28,21 +28,27 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 	
 	
 	public Panel(SoapObject panelSoap, int soapOperation) {
-		if (panelSoap != null)
-			switch (soapOperation) {
-			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS: case AndroidAbstractBean.OPERATION_GET_PANELS:
-			default:
-				this.cost = new Double(panelSoap.getProperty("cost").toString());
-				this.efficiency = new Double(panelSoap.getProperty("efficiency").toString());
-				this.efficiencyLoss = new Double(panelSoap.getProperty("efficiencyLoss").toString());
-				this.height = new Double(panelSoap.getProperty("height").toString());
-				this.id = new Integer(panelSoap.getProperty("id").toString());
-				this.powerRating = new Double(panelSoap.getProperty("powerRating").toString());
-				this.size = new Double(panelSoap.getProperty("size").toString());
-				this.width = new Double(panelSoap.getProperty("width").toString());
-				this.brand = new String(panelSoap.getProperty("brand").toString());
-				break;
-			}		
+		
+		try { //added try-catch to prevent the program to crash due to incomplete data
+			if (panelSoap != null)
+				switch (soapOperation) {
+				case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS: case AndroidAbstractBean.OPERATION_GET_PANELS:
+				default:
+					this.cost = new Double(panelSoap.getProperty("cost").toString());
+					this.efficiency = new Double(panelSoap.getProperty("efficiency").toString());
+					this.efficiencyLoss = new Double(panelSoap.getProperty("efficiencyLoss").toString());
+					this.height = new Double(panelSoap.getProperty("height").toString());
+					this.id = new Integer(panelSoap.getProperty("id").toString());
+					this.powerRating = new Double(panelSoap.getProperty("powerRating").toString());
+					this.size = new Double(panelSoap.getProperty("size").toString());
+					this.width = new Double(panelSoap.getProperty("width").toString());
+					this.brand = new String(panelSoap.getProperty("brand").toString());
+					break;
+				}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 	}
 
 	public Panel() {
@@ -217,15 +223,20 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 	 * @return Amended soap object with fields
 	 */
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
-		currentSoapObject.addProperty("id", ""+this.id);
-		currentSoapObject.addProperty("width", ""+this.width);
-		currentSoapObject.addProperty("height", ""+this.height);
-		//currentSoapObject.addProperty("efficiency", ""+this.efficiency);
-		currentSoapObject.addProperty("efficiencyLoss", ""+this.efficiencyLoss);
-		currentSoapObject.addProperty("powerRating", ""+this.powerRating);
-		currentSoapObject.addProperty("size", ""+this.size);
-		currentSoapObject.addProperty("cost", ""+this.cost);
-		currentSoapObject.addProperty("brand", ""+this.brand);
+		try {
+			currentSoapObject.addProperty("id", ""+this.id);
+			currentSoapObject.addProperty("width", ""+this.width);
+			currentSoapObject.addProperty("height", ""+this.height);
+			currentSoapObject.addProperty("efficiency", ""+this.efficiency);
+			currentSoapObject.addProperty("efficiencyLoss", ""+this.efficiencyLoss);
+			currentSoapObject.addProperty("powerRating", ""+this.powerRating);
+			currentSoapObject.addProperty("size", ""+this.size);
+			currentSoapObject.addProperty("cost", ""+this.cost);
+			currentSoapObject.addProperty("brand", ""+this.brand);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		return currentSoapObject;
 	}

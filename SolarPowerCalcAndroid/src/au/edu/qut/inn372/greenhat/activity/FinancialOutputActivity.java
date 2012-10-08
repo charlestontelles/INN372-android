@@ -86,8 +86,7 @@ public class FinancialOutputActivity extends Activity {
 	 * @param view
 	 */
 	public void viewBackOutput(View view) {
-		TabbedOutputActivity parentOutputTabbedActivity = (TabbedOutputActivity) this
-				.getParent();
+		TabbedOutputActivity parentOutputTabbedActivity = (TabbedOutputActivity) this.getParent();
 		int targetActivity = TabbedOutputActivity.POWER_GEN_ID;
 		parentOutputTabbedActivity.switchTab(targetActivity);
 	}

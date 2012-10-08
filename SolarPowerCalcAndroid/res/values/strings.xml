@@ -6,6 +6,7 @@
     <string name="button_navigation_next">Next >></string>
     <string name="button_navigation_back">&lt;&lt; Back</string>
     <string name="button_navigation_logout">&lt;&lt; Logout</string>
+    <string name="button_navigation_back_home">Back to Home</string>
     
     <!-- Activity Titles -->
     <string name="title_activity_login">Solar Power Calc</string>
@@ -156,14 +157,19 @@
 	<string name="output_button_navigation_next">Next Result</string>
 	<string name="outputBack_button_navigation_back">Back</string>
 	
+	
 	<!--  User Homepage -->
 	<string name="userhomepage_title">Home</string>
 	<string name="userhomepage_welcome">Welcome </string>
 	<string name="userhomepage_button_new">New Calculation</string>
-	<string name="userhomepage_button_edit">Edit Calculation</string>
+	<string name="userhomepage_button_edit">Load Calculation</string>
 	<string name="userhomepage_button_delete">Delete Calculation</string>
 	<string name="userhomepage_button_compare">Compare Calculations</string>
 	<string name="userhomepage_button_template">Template</string>
+	<string name="userhomepage_tablehead_checkbox"> </string>
+	<string name="userhomepage_tablehead_name">Name</string>
+	<string name="userhomepage_tablehead_datetime">Date</string>
+	<string name="userhomepage_tablehead_status">Status</string>
 	
 	<!-- Menu -->
 	<string name="menu_input_save">Save</string>

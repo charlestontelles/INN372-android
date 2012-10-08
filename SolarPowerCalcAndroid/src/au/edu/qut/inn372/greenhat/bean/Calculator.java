@@ -67,6 +67,8 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 		}
 	}
 	
+	
+	
 	/**
 	 * Formats the date time to Brisbane TimeZone
 	 * 
@@ -139,6 +141,8 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 				this.key = soapObject.getProperty("key").toString();
 				this.name = soapObject.getProperty("name").toString();
 				this.status = new Integer(soapObject.getProperty("status").toString());
+				break;
+			case AndroidAbstractBean.OPERATION_DELETE_CALCULATION:	
 				break;
 			default:
 				break;
@@ -285,6 +289,12 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 			break;
 		case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
 			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_GET_EQUIPMENTS_NAME);
+			calculatorElement = new SoapObject("", "calculator");
+			calculatorElement = setDefaultSoapObject(calculatorElement);
+			this.soapObject.addSoapObject(calculatorElement);
+			break;
+		case AndroidAbstractBean.OPERATION_DELETE_CALCULATION:
+			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_DELETE_CALCULATION_NAME);
 			calculatorElement = new SoapObject("", "calculator");
 			calculatorElement = setDefaultSoapObject(calculatorElement);
 			this.soapObject.addSoapObject(calculatorElement);
