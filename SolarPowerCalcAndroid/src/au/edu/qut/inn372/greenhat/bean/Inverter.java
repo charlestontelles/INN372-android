@@ -26,13 +26,12 @@ public class Inverter extends AndroidAbstractBean implements Serializable {
 		if (inverterSoap != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
+			default:
 				this.cost = new Double(inverterSoap.getProperty("cost").toString());
 				this.efficiency = new Double(inverterSoap.getProperty("efficiency").toString());
 				this.efficiencyLoss = new Double(inverterSoap.getProperty("efficiencyLoss").toString());
 				this.lifespan = new Double(inverterSoap.getProperty("lifespan").toString());
 				this.replacementCost = new Double(inverterSoap.getProperty("replacementCost").toString());
-				break;
-			default:
 				break;
 			}		
 	}

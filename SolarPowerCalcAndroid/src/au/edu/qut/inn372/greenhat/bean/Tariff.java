@@ -13,6 +13,21 @@ public class Tariff extends AndroidAbstractBean implements Serializable {
 	private double feedInfee = 0.5; //TODO Hardcoded Value
 	private double tariffFeePerYear;
 
+	public Tariff() {};
+	
+	public Tariff(SoapObject soapObject, int soapOperation){
+		if (soapObject != null)
+			switch (soapOperation) {
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+			default:
+				this.tariff11Fee = new Double(soapObject.getProperty("tariff11Fee").toString());
+				this.annualTariffIncrease = new Double(soapObject.getProperty("annualTariffIncrease").toString());
+				this.feedInfee = new Double(soapObject.getProperty("feedInFee").toString());
+				this.tariffFeePerYear = new Double(soapObject.getProperty("tariffFeePerYear").toString());
+				break;
+			}
+	}
+	
 	/**
 	 * Get tariff 11 fee
 	 * @return the tariff11Fee

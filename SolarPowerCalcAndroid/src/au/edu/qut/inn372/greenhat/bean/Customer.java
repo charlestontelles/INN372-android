@@ -33,7 +33,12 @@ public class Customer extends AndroidAbstractBean implements Serializable {
 		if (soapObject != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+			default:
 				this.electricityUsage = new ElectricityUsage((SoapObject)soapObject.getProperty("electricityUsage"), soapOperation);
+				this.location = new Location((SoapObject)soapObject.getProperty("location"), soapOperation);
+				this.tariff = new Tariff((SoapObject)soapObject.getProperty("tariff"), soapOperation);
+				this.userProfile = new UserProfile((SoapObject)soapObject.getProperty("userProfile"), soapOperation);
+				break;
 			}
 	}
 	

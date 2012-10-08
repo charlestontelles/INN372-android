@@ -31,6 +31,7 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 		if (panelSoap != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS: case AndroidAbstractBean.OPERATION_GET_PANELS:
+			default:
 				this.cost = new Double(panelSoap.getProperty("cost").toString());
 				this.efficiency = new Double(panelSoap.getProperty("efficiency").toString());
 				this.efficiencyLoss = new Double(panelSoap.getProperty("efficiencyLoss").toString());
@@ -40,8 +41,6 @@ public class Panel extends AndroidAbstractBean implements Serializable {
 				this.size = new Double(panelSoap.getProperty("size").toString());
 				this.width = new Double(panelSoap.getProperty("width").toString());
 				this.brand = new String(panelSoap.getProperty("brand").toString());
-				break;
-			default:
 				break;
 			}		
 	}

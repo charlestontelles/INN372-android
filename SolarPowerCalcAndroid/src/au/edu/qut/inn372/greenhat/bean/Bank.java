@@ -18,6 +18,25 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 	private double powerOutput;
 	private double orientation;
 	
+	public Bank() {}
+	
+	public Bank(SoapObject soapObject, int soapOperation){
+		if (soapObject != null)
+			switch (soapOperation) {
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+			default:
+				this.bankId = new Integer(soapObject.getProperty("bankId").toString());
+				this.angleEfficiencyLoss = new Double(soapObject.getProperty("angleEfficiencyLoss").toString());
+				this.angle = new Double(soapObject.getProperty("angle").toString());
+				this.efficiency = new Double(soapObject.getProperty("efficiency").toString());
+				this.numberOfPanels = new Integer(soapObject.getProperty("numberOfPanels").toString());
+				this.orientationEfficiencyLoss = new Double(soapObject.getProperty("orientationEfficiencyLoss").toString());
+				this.powerOutput = new Double(soapObject.getProperty("powerOutput").toString());
+				this.orientation = new Double(soapObject.getProperty("orientation").toString());
+				break;
+			}
+	}
+	
 	/**
 	 * Get the bankId
 	 * @return bankId value of the bankId property
@@ -189,7 +208,7 @@ public class Bank extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addProperty("bankId", ""+this.bankId);
 		currentSoapObject.addProperty("angle", ""+this.angle);
 		currentSoapObject.addProperty("selectedOrientation", ""+this.selectedOrientation);
-		//currentSoapObject.addProperty("efficiency", this.efficiency);
+		currentSoapObject.addProperty("efficiency", this.efficiency);
 		currentSoapObject.addProperty("numberOfPanels", ""+this.numberOfPanels);
 		currentSoapObject.addProperty("orientationEfficiencyLoss", ""+this.orientationEfficiencyLoss);
 		currentSoapObject.addProperty("angleEfficiencyLoss", ""+this.angleEfficiencyLoss);

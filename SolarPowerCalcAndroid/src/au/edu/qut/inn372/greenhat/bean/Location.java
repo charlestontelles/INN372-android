@@ -14,10 +14,21 @@ public class Location extends AndroidAbstractBean implements Serializable {
 
 	private static final long serialVersionUID = 4817475946932075809L;
 	private double sunLightHours; //average daily hours of sunlight
-	private String region;
 	private String city;
 	
 	private Roof roof;
+
+	public Location(SoapObject soapObject, int soapOperation){
+		if (soapObject != null)
+			switch (soapOperation) {
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+			default:
+				this.sunLightHours = new Double(soapObject.getProperty("sunLightHours").toString());
+				this.roof = new Roof((SoapObject)soapObject.getProperty("roof"), soapOperation);
+				break;
+			}
+		
+	}
 	
 	public Location() {
 		roof = new Roof();
@@ -55,34 +66,10 @@ public class Location extends AndroidAbstractBean implements Serializable {
 		this.sunLightHours = sunLightHours;
 	}
 	
-	/**
-	 * Get the region
-	 * @return region value 
-	 */
-	public String getRegion() {
-		return region;
-	}
-
-	/**
-	 * Set the region
-	 * @param region new value 
-	 */
-	public void setRegion(String region) {
-		this.region = region;
-	}
-	
-	/**
-	 * Get the city
-	 * @return city value
-	 */
 	public String getCity() {
 		return city;
 	}
-
-	/**
-	 * Set the city
-	 * @param city new value 
-	 */
+	
 	public void setCity(String city) {
 		this.city = city;
 	}
@@ -116,8 +103,6 @@ public class Location extends AndroidAbstractBean implements Serializable {
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
 		currentSoapObject.addProperty("sunLightHours", ""+this.sunLightHours);
 		currentSoapObject.addSoapObject(this.roof.getSoapObject(-1));		
-		currentSoapObject.addProperty("region", ""+this.region);
-		currentSoapObject.addProperty("city", ""+this.city);
 		return currentSoapObject;
 	}
 

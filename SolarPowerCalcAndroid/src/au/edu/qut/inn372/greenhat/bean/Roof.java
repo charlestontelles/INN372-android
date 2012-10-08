@@ -23,6 +23,27 @@ public class Roof extends AndroidAbstractBean implements Serializable {
 	
 	private ArrayList<Bank> banks;
 	
+	public Roof(SoapObject soapObject, int soapOperation){
+		if (soapObject != null)
+			switch (soapOperation) {
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+			default:
+				this.width = new Double(soapObject.getProperty("width").toString());
+				this.height = new Double(soapObject.getProperty("height").toString());
+				this.percentageNorth = new Double(soapObject.getProperty("percentageNorth").toString());
+				this.percentageWest = new Double(soapObject.getProperty("percentageWest").toString());
+				this.efficiencyLossNorth = new Double(soapObject.getProperty("efficiencyLossNorth").toString());
+				this.efficiencyLossWest = new Double(soapObject.getProperty("efficiencyLossWest").toString());
+				//Assume first two properties are banks
+				banks = new ArrayList<Bank>();
+				for(int i = 0; i < 2; i++) {
+					SoapObject curBank = (SoapObject)soapObject.getProperty(i);
+					banks.add(new Bank(curBank, soapOperation));
+				}
+				break;
+			}
+	}
+	
 	public Roof(){
 		banks = new ArrayList<Bank>();
 		for (int i=0; i < 2; i++){

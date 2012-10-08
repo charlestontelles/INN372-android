@@ -24,10 +24,11 @@ public class ElectricityUsage extends AndroidAbstractBean implements Serializabl
 		if (soapObject != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
-				this.dailyAverageUsage = new Double(((SoapObject)soapObject.getProperty("dailyAverageUsage")).toString());
-				this.dayTimeHourlyUsage = new Double(((SoapObject)soapObject.getProperty("dayTimeHourlyUsage")).toString());
-				this.dayLightElectricityUsage = new Double(((SoapObject)soapObject.getProperty("dayLightElectricityUsage")).toString());
-				
+			default:
+				this.dailyAverageUsage = new Double(soapObject.getProperty("dailyAverageUsage").toString());
+				this.dayTimeHourlyUsage = new Double(soapObject.getProperty("dayTimeHourlyUsage").toString());
+				this.dayLightElectricityUsage = new Double(soapObject.getProperty("dayLightElectricityUsage").toString());
+				break;
 			}
 	}
 	

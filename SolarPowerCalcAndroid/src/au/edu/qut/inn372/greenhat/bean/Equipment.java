@@ -28,6 +28,8 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 		if (equipmentSoap != null)
 			switch (soapOperation) {
 			case AndroidAbstractBean.OPERATION_GET_EQUIPMENTS:
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+			default:
 				this.cost = new Double(((equipmentSoap.getProperty("cost"))).toString());
 				this.size = new Double(((equipmentSoap.getProperty("size"))).toString());
 				this.kitName = new String(((equipmentSoap.getProperty("kitName"))).toString());
@@ -38,8 +40,6 @@ public class Equipment extends AndroidAbstractBean implements Serializable {
 				for (int curPanelIndex = 0; curPanelIndex < equipmentSoap.getPropertyCount() - 5; curPanelIndex++) {
 					this.panels.add(new Panel(panels, soapOperation));
 				}
-				break;
-			default:
 				break;
 			}		
 	}

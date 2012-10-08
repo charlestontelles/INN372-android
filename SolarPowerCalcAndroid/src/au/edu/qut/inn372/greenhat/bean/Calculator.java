@@ -3,6 +3,7 @@ package au.edu.qut.inn372.greenhat.bean;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
@@ -40,6 +41,11 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	 * 2 = template
 	 */
 	private int status = 0; //0=incomplete, 1=complete, 2=template
+	
+	/**
+	 * Unique identifier used by Google data store
+	 */
+	private String key;
 	
 	/**
 	 * Return the Calculator status name
@@ -119,10 +125,20 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 			case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 				break;
 			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
-				//chart not needed
-				//customer
+				//To save time, for now we don't unmarshal the calculations in this operation because loading a calculation to edit it means you only need the inputs - the calculations will be reperformed if the user wants to look at the output
+				//chart field not needed
 				this.customer = new Customer((SoapObject)soapObject.getProperty("customer"), soapOperation);
-				
+				try {
+					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aaa");
+					dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+10:00"));//Brisbane TimeZone
+					this.datetime = dateFormat.parse(soapObject.getProperty("datetime").toString());
+				} catch (ParseException e) {
+					System.out.println("Error parsing datetime");
+				}
+				this.equipment = new Equipment((SoapObject)soapObject.getProperty("equipment"), soapOperation);
+				this.key = soapObject.getProperty("key").toString();
+				this.name = soapObject.getProperty("name").toString();
+				this.status = new Integer(soapObject.getProperty("status").toString());
 				break;
 			default:
 				break;
@@ -230,6 +246,21 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+	/**
+	 * Gets the calculator's database key
+	 * @return database key
+	 */
+	public String getKey() {
+		return key;
+	}
+	/**
+	 * Sets the calculator's database key
+	 * @param key
+	 */
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 
 	/**
@@ -276,6 +307,8 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 		currentSoapObject.addSoapObject(customer.getSoapObject(-1));
 		currentSoapObject.addProperty("name", ""+this.name);
 		currentSoapObject.addProperty("status", ""+this.status);
+		currentSoapObject.addProperty("key", ""+this.key);
+		//Check the right way of marshalling this
 		//for(Calculation curCalculation : this.getCalculations()) {
 		//	currentSoapObject.addSoapObject(curCalculation.getSoapObject(-1));
 		//}
