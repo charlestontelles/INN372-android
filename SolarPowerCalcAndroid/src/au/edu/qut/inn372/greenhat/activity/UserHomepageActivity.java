@@ -17,6 +17,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
+import au.edu.qut.inn372.greenhat.bean.Calculator;
 import android.graphics.Typeface;
 
 
@@ -68,7 +69,7 @@ public class UserHomepageActivity extends Activity {
     public void buildCalculationTable(){
     	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
     	//Get the latest calculations list
-    	List<Calculation> allCalculations = parentTabbedActivity.getCalculations();
+    	List<Calculator> allCalculations = parentTabbedActivity.getCalculations();
     	
     	//Get the table
     	TableLayout calcTable = (TableLayout) findViewById(R.id.tableUserHomepage_Calulations);

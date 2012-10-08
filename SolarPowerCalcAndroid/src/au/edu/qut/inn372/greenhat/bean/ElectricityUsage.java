@@ -17,6 +17,20 @@ public class ElectricityUsage extends AndroidAbstractBean implements Serializabl
 	private double dayTimeHourlyUsage;
 	private double dayLightElectricityUsage; //electricity used during day light hours	
 	
+	public ElectricityUsage(){
+	}
+	
+	public ElectricityUsage(SoapObject soapObject, int soapOperation){
+		if (soapObject != null)
+			switch (soapOperation) {
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+				this.dailyAverageUsage = new Double(((SoapObject)soapObject.getProperty("dailyAverageUsage")).toString());
+				this.dayTimeHourlyUsage = new Double(((SoapObject)soapObject.getProperty("dayTimeHourlyUsage")).toString());
+				this.dayLightElectricityUsage = new Double(((SoapObject)soapObject.getProperty("dayLightElectricityUsage")).toString());
+				
+			}
+	}
+	
 	/**
 	 * Get the daily electricity usage
 	 * @return the dailyAverageUsage value of the daily average electricity usage

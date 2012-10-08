@@ -29,6 +29,14 @@ public class Customer extends AndroidAbstractBean implements Serializable {
 		userProfile = new UserProfile();
 	}
 	
+	public Customer(SoapObject soapObject, int soapOperation){
+		if (soapObject != null)
+			switch (soapOperation) {
+			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+				this.electricityUsage = new ElectricityUsage((SoapObject)soapObject.getProperty("electricityUsage"), soapOperation);
+			}
+	}
+	
 	/**
 	 * Get the location
 	 * @return location value of the location property

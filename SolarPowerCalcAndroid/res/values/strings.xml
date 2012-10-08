@@ -165,5 +165,10 @@
 	<string name="userhomepage_button_compare">Compare Calculations</string>
 	<string name="userhomepage_button_template">Template</string>
 	
+	<!-- Menu -->
+	<string name="menu_input_save">Save</string>
+	<string name="menu_input_export">Export</string>
+	<string name="menu_input_print">Print</string>
+	
 	
 </resources>

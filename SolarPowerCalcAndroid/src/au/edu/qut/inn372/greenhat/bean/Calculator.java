@@ -1,7 +1,11 @@
 package au.edu.qut.inn372.greenhat.bean;
 
 import java.io.Serializable;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 
 import org.ksoap2.serialization.SoapObject;
 
@@ -16,6 +20,66 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	private Calculation [] calculations;
 	
 	private Calculation calculation;
+	
+	/**
+	 * Datetime of the latest calculator's update
+	 */
+	private Date datetime;
+	
+	/**
+	 * Calculator's Name.
+	 * For example sellers can name a calculator using customer name, e.g. Calc_John
+	 * Customer can use names to remember the calculator, e.g. Calc01, MyCalc, etc
+	 */
+	private String name;
+	
+	/**
+	 * Calculator status.
+	 * 0 = incomplete
+	 * 1 = complete
+	 * 2 = template
+	 */
+	private int status = 0; //0=incomplete, 1=complete, 2=template
+	
+	/**
+	 * Return the Calculator status name
+	 * 0 = incomplete
+	 * 1 = complete
+	 * 2 = template
+	 * @return
+	 */
+	public String getStatusName(){
+		switch (this.status) {
+		case 0:
+			return "Incomplete";
+		case 1:
+			return "Complete";
+		case 2:
+			return "Template";
+		default:
+			return "unknow";
+		}
+	}
+	
+	/**
+	 * Formats the date time to Brisbane TimeZone
+	 * 
+	 * TODO: date format should be based on customer location
+	 * 
+	 * @return
+	 */
+	public String getFormatedDateTime(){
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aaa");
+		try {
+			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+10:00"));//Brisbane TimeZone
+			return dateFormat.format(this.datetime);			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "unknow";
+		}
+	}
+	
+	
 	
 	
 	public Calculator() {
@@ -55,6 +119,10 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 			case AndroidAbstractBean.OPERATION_SAVE_CALCULATION:
 				break;
 			case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+				//chart not needed
+				//customer
+				this.customer = new Customer((SoapObject)soapObject.getProperty("customer"), soapOperation);
+				
 				break;
 			default:
 				break;
@@ -128,6 +196,42 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	}
 	
 
+	public Date getDatetime() {
+		return datetime;
+	}
+
+
+	public void setDatetime(Date datetime) {
+		this.datetime = datetime;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	/**
+	 * Gets the calculator's status
+	 * @return status
+	 */
+	public int getStatus() {
+		return status;
+	}
+	
+	/**
+	 * Sets the calculator's status
+	 * @param status
+	 */
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+
 	/**
 	 * ATTENTION: ALL VALUES MUST BE CONVERTED TO STRING
 	 */
@@ -170,6 +274,8 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	private SoapObject setDefaultSoapObject(SoapObject currentSoapObject) {
 		currentSoapObject.addSoapObject(equipment.getSoapObject(-1));
 		currentSoapObject.addSoapObject(customer.getSoapObject(-1));
+		currentSoapObject.addProperty("name", ""+this.name);
+		currentSoapObject.addProperty("status", ""+this.status);
 		//for(Calculation curCalculation : this.getCalculations()) {
 		//	currentSoapObject.addSoapObject(curCalculation.getSoapObject(-1));
 		//}

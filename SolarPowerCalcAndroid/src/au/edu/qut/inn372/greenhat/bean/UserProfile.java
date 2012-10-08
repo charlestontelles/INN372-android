@@ -150,6 +150,12 @@ public class UserProfile extends AndroidAbstractBean implements Serializable {
 			profileElement = setDefaultSoapObject(profileElement);
 			this.soapObject.addSoapObject(profileElement);
 			break;
+		case AndroidAbstractBean.OPERATION_GET_CALCULATIONS:
+			this.soapObject = new SoapObject(AndroidAbstractBean.NAMESPACE,AndroidAbstractBean.OPERATION_GET_CALCULATIONS_NAME);
+			SoapObject userProfileElement = new SoapObject("", "userProfile");
+			userProfileElement = setDefaultSoapObject(userProfileElement); 
+			this.soapObject.addSoapObject(userProfileElement);
+			break;
 		default:
 			this.soapObject = new SoapObject("", "userProfile");
 			this.soapObject = setDefaultSoapObject(this.soapObject);

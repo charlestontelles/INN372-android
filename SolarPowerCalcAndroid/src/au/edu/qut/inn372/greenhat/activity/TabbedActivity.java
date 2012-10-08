@@ -148,7 +148,7 @@ public class TabbedActivity extends TabActivity {
 	/**
 	 * Retrieve the list of calculations obtained from the WS call
 	 */
-	public List<Calculation> getCalculations(){
+	public List<Calculator> getCalculations(){
 		return calcMediator.getCalculationList();
 	}
 	
