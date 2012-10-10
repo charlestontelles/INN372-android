@@ -193,5 +193,10 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 			// TODO Auto-generated method stub
 			
 		}
+		
+		public void homeButton (View view){
+			TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+			parentTabbedActivity.finish();
+		}
 }
 

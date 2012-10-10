@@ -7,6 +7,8 @@ import org.ksoap2.serialization.SoapObject;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -33,6 +36,7 @@ public class UserHomepageActivity extends Activity {
 	private UserProfile userProfile;
 	private boolean[] checkBoxSelected;
 	private List<Calculator> allCalculations;
+	private TableLayout calcTable;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,7 @@ public class UserHomepageActivity extends Activity {
     	allCalculations = getCalculationList();
     	checkBoxSelected = new boolean[allCalculations.size()];
 		
-		buildCalculationTable(); 
+		 
     }
 	
 	public List<Calculator> getCalculationList(){
@@ -68,8 +72,7 @@ public class UserHomepageActivity extends Activity {
      * @param view
      */
     public void viewBack(View view){	    	
-    	Intent intent = new Intent(this, LoginActivity.class);
-    	startActivity(intent);
+    	finish();
     }
     
     @Override
@@ -79,19 +82,51 @@ public class UserHomepageActivity extends Activity {
 		TextView welcomeUserName = (TextView)findViewById(R.id.textUserHomepage_WelcomeName);
 		welcomeUserName.setText(new String(userProfile.getName()).toString());
 		
+		cleanTable();
+		allCalculations = getCalculationList();
+		buildCalculationTable();
 	}
+    
+    /**
+     * Removes the table from the linear layout
+     */
+    private void cleanTable(){
+    	LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayoutUserHomepage_table);
+    	linearLayout.removeViewInLayout(calcTable);	
+    }
     
     /**
      * Builds the table of calculators
      */
-    private void buildCalculationTable(){    	
-    	//Get the table
-    	TableLayout calcTable = (TableLayout) findViewById(R.id.tableUserHomepage_Calulations);
+    private void buildCalculationTable(){
+    	//Get LinearLayout
+    	LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayoutUserHomepage_table);
+    	//Create the table
+    	calcTable = new TableLayout(this);
     	
-    	//Create rows and fill them with content
+    	linearLayout.addView(calcTable);
+    	
+    	//Table completely generated in Java-Code, TODO: take a look at TabbedOutput for layout
+    	
+    	//Create head row
+    	TableRow tableHeadRow = new TableRow(this);
+    	TextView columnHeadCheckbox = new TextView(this);
+		TextView columnHeadName = new TextView(this);
+		columnHeadName.setText("Name");
+		TextView columnHeadDateTime = new TextView(this);
+		columnHeadDateTime.setText("Date");
+		TextView columnHeadStatus = new TextView(this);
+		columnHeadStatus.setText("Status");
+		tableHeadRow.addView(columnHeadCheckbox);
+		tableHeadRow.addView(columnHeadName);
+		tableHeadRow.addView(columnHeadDateTime);
+		tableHeadRow.addView(columnHeadStatus);
+		calcTable.addView(tableHeadRow);
+    	
     	int i = 0;
+    	//Create rows and fill them with content
     	while (i < allCalculations.size()){ 
-    	
+    		
     		//Parameters for one row
     		TableRow tableRow = new TableRow(this);
     		TextView columnName = new TextView(this);
@@ -109,12 +144,13 @@ public class UserHomepageActivity extends Activity {
     		checkBox.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					if (((CheckBox) v).isChecked()) {
-						if (checkBoxSelected[v.getId()]== true){
-							checkBoxSelected[v.getId()] = false;
+					//checkBoxSelected[v.getId()] = !checkBoxSelected[v.getId()];
+					
+						if (checkBoxSelected[v.getId()]== false){
+							checkBoxSelected[v.getId()] = true;
 						}
-						else {checkBoxSelected[v.getId()] = true;}
-    				}
+						else {checkBoxSelected[v.getId()] = false;}
+    				
 				}
 			});
     		
@@ -146,26 +182,130 @@ public class UserHomepageActivity extends Activity {
      * Loads the selected calculation
      */
     public void editCalculation(View view){
-    	//Create intent to start TabbedActivity
+    	//Create int to pass on to TabbedActivity 
     	int type = 1; //1 = editCalculation
+    	
+    	//TODO Check for several selected calculations and throw exception of not correct selected
+    	try {
+			if (getSelectedCalculation().size()!=1){
+				if (getSelectedCalculation().size()==0){
+				//no calc selected
+					throw new NoneSelectedException();
+				}
+				else{
+				//more than one calc selected
+					throw new TooMuchSelectedException();
+				}
+			}
+		
     	
     	Intent intent = new Intent(this, TabbedActivity.class);
 		intent.putExtra("UserProfile", userProfile);
 		intent.putExtra("Type", type);
-		intent.putExtra("Calculator", allCalculations.get(getSelectedCalculator())); //passes the selected calculator from table to TabbedActivity
+		intent.putExtra("Calculator", getSelectedCalculation().get(0)); //passes the selected calculator from table to TabbedActivity
 		
     	startActivity(intent);
+    	
+    	} catch (NoneSelectedException e) {
+			// TODO Auto-generated catch block
+			// 1. Instantiate an AlertDialog.Builder with its constructor
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setPositiveButton(R.string.userhomepage_button_ok, new DialogInterface.OnClickListener() {
+		           public void onClick(DialogInterface dialog, int id) {
+		               // User clicked OK button
+		           }
+		       });
+
+			// 2. Chain together various setter methods to set the dialog characteristics
+			builder.setMessage(e.getMessage())
+			       .setTitle("No Calculation selected!");
+
+			// 3. Get the AlertDialog from create()
+			AlertDialog dialog = builder.create();
+			dialog.show();	
+			
+			e.printStackTrace();
+		} catch (TooMuchSelectedException e) {
+			// TODO Auto-generated catch block
+			
+			// 1. Instantiate an AlertDialog.Builder with its constructor
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setPositiveButton(R.string.userhomepage_button_ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int id) {
+	               // User clicked OK button
+	           }
+			});
+
+			// 2. Chain together various setter methods to set the dialog characteristics
+			builder.setMessage(e.getMessage())
+			       .setTitle("Too much Calculations selected!");
+
+			// 3. Get the AlertDialog from create()
+			AlertDialog dialog = builder.create();
+			dialog.show();	
+			
+			e.printStackTrace();
+		}
     }
     
-    /**TODO: Needs to be completed
+    /**
      * Let the user delete one calculation TODO: implement the possibility to delete several calculations
      */
     public void deleteCalculation(View view){
-    	soapClient.synchronousRequest(allCalculations.get(getSelectedCalculator()).getSoapObject(AndroidAbstractBean.OPERATION_DELETE_CALCULATION));
-    	//update allCalculations and refresh the table 
-    	allCalculations = getCalculationList();
-    	buildCalculationTable();    	
-    }
+    	try {
+			//remove locally
+			if (getSelectedCalculation().size() == 1){
+				//only one selected, then remove first of the list
+				allCalculations.remove(getSelectedCalculation().get(0));
+			} 
+			else{
+				if (getSelectedCalculation().size() != 0){
+				//several selected, iterate through list
+					for (int i=0; i < getSelectedCalculation().size(); i++ ){
+						allCalculations.remove(getSelectedCalculation().get(i));
+					}
+				}
+				else { //none selected 
+					throw new NoneSelectedException();
+				}
+			}
+			//remove cloud
+			if (getSelectedCalculation().size() == 1){
+				//only one selected, then remove first of the list
+				Calculator selCalc = getSelectedCalculation().get(0);
+				soapClient.synchronousRequest(selCalc.getSoapObject(AndroidAbstractBean.OPERATION_DELETE_CALCULATION));allCalculations.remove(getSelectedCalculation().get(0));
+			} 
+			else{
+				//several selected, iterate through list
+				for (int i=0; i < getSelectedCalculation().size(); i++ ){
+					Calculator selCalc = getSelectedCalculation().get(i);
+					soapClient.synchronousRequest(selCalc.getSoapObject(AndroidAbstractBean.OPERATION_DELETE_CALCULATION));allCalculations.remove(getSelectedCalculation().get(i));
+				}
+			}
+			//clean and refresh the table 
+			cleanTable();
+			buildCalculationTable();
+			
+			} catch (NoneSelectedException e) {
+				// TODO Auto-generated catch block
+				// 1. Instantiate an AlertDialog.Builder with its constructor
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				builder.setPositiveButton(R.string.userhomepage_button_ok, new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+			               // User clicked OK button
+					}
+				});
+	
+				// 2. Chain together various setter methods to set the dialog characteristics
+				builder.setMessage(e.getMessage())
+				       .setTitle("No Calculation selected!");
+	
+				// 3. Get the AlertDialog from create()
+				AlertDialog dialog = builder.create();
+				dialog.show();
+				e.printStackTrace();
+			}    	
+	    }
     
     /**TODO: Needs to be completed
      * Let the user compare different calculations with each other
@@ -183,13 +323,33 @@ public class UserHomepageActivity extends Activity {
     
     
     /**
-     * Finds the ID of the checked calculation
+     * Returns a list with the selected calculators
      * @return
      */
-    private int getSelectedCalculator(){
-    	int selectedID = 0;
-    	while(checkBoxSelected[selectedID]== false){selectedID++;}
-    	return selectedID;
+    private List<Calculator> getSelectedCalculation(){
+    	//TODO: check for no selected
+    	List <Calculator> selectedCalculators = new ArrayList<Calculator>();
+    	
+			for (int i =0; i < allCalculations.size(); i++ ){
+				if (checkBoxSelected[i] == true){
+					selectedCalculators.add(allCalculations.get(i));
+				}		
+			}
+			return selectedCalculators;
+    }
+    	
+ }
+    
+    class NoneSelectedException extends Exception{
+    	NoneSelectedException(){
+    		super("Please select a calculation");
+    	}
+    }
+    
+    class TooMuchSelectedException extends Exception{
+    	TooMuchSelectedException(){
+    		super("Please select only one calculation");
+    	}
     }
 
-}
+

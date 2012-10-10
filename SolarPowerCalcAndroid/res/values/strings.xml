@@ -170,6 +170,8 @@
 	<string name="userhomepage_tablehead_name">Name</string>
 	<string name="userhomepage_tablehead_datetime">Date</string>
 	<string name="userhomepage_tablehead_status">Status</string>
+	<string name="userhomepage_button_ok">OK</string>
+	
 	
 	<!-- Menu -->
 	<string name="menu_input_save">Save</string>
