@@ -75,7 +75,15 @@
 	<string name="equipment_inverterBrand">Inverter Brands</string>
 	<string name="equipment_inverter_array_prompt">Select the brand</string>
 	<string-array name="equipment_inverterBrand_array">
-	    <item>Empty</item>
+	    <item>BP Solar Inverters</item>
+	    <item>Sunlinq Portable Solar Inverters</item>
+	    <item>SunPower Solar Inverters</item>
+	    <item>SunTech Solar Inverters</item>
+	    <item>Powerfilm Flexible Solar Inverters</item>
+	    <item>Sanyo Solar Inverters</item>
+	    <item>Global Solar Inverters</item>
+	    <item>Solarfun Inverters</item>
+	    <item>REC Solar Inverters</item>
 	    
 	</string-array>
 	

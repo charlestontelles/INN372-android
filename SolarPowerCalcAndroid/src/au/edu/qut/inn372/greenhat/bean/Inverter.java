@@ -21,6 +21,8 @@ public class Inverter extends AndroidAbstractBean implements Serializable {
 	private double replacementCost;
 	private double cost;
 	private double efficiencyLoss;
+	private String brand;
+	private int id;
 	
 	public Inverter(SoapObject inverterSoap, int soapOperation) {
 		if (inverterSoap != null)
@@ -37,6 +39,22 @@ public class Inverter extends AndroidAbstractBean implements Serializable {
 	}
 	
 	public Inverter() {
+	}
+	
+	/**
+	 * Get the inverter id
+	 * @return id of the inverter
+	 */
+	public int getId() {
+		return id;
+	}
+	
+	/**
+	 * Set the inverter id
+	 * @param id new value for the inverter id
+	 */
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
@@ -113,6 +131,20 @@ public class Inverter extends AndroidAbstractBean implements Serializable {
 	 */
 	public void setEfficiencyLoss(double efficiencyLoss) {
 		this.efficiencyLoss = efficiencyLoss;
+	}
+	
+	/**
+	 * @return the brand
+	 */
+	public String getBrand() {
+		return brand;
+	}
+
+	/**
+	 * @param brand the brand to set
+	 */
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 	
 	/**

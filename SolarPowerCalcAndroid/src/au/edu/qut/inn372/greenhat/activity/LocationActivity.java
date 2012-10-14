@@ -32,7 +32,7 @@ import android.widget.Toast;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Location;
 
-public class LocationActivity extends Activity implements OnItemSelectedListener, LocationListener {
+public class LocationActivity extends Activity implements OnItemSelectedListener, LocationListener {//need to comment LocationListener for emulator
 	
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
@@ -50,7 +50,7 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	        setupSpinner();
 	        TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 	        calculator = parentTabbedActivity.getCalculator();
-	        
+	        //need to comment from here for emulator
 	        //Initializing fields for location
 	        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 	        geocoder = new Geocoder(this);
@@ -66,7 +66,7 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	    	android.location.Location location = locationManager.getLastKnownLocation(provider.getName());
 	    	
 	    	//call method to get location details and show them
-	    	this.onLocationChanged(location);
+	    	this.onLocationChanged(location); //to here
 	    }
 	    
 	    
@@ -176,7 +176,7 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 			super.onPause();
 			saveData();
 			//removes the locationManager to save battery
-			locationManager.removeUpdates(this);
+			locationManager.removeUpdates(this);//need to comment for emulator
 			state = STATE_PAUSED;
 		}
 		
@@ -184,7 +184,7 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		public void onResume() {
 			super.onResume();
 			//refreshes the locationManager
-			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, this);
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, this);//need to comment this for emulator
 			loadData();
 			state = STATE_NORMAL;
 		}

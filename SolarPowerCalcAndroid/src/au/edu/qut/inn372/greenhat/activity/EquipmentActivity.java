@@ -1,6 +1,7 @@
 package au.edu.qut.inn372.greenhat.activity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
+import au.edu.qut.inn372.greenhat.bean.Inverter;
+import au.edu.qut.inn372.greenhat.bean.Location;
 import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.Roof;
 
@@ -23,6 +26,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	public final static int DEFAULT = 0;
 	private int state;
 	private int equipKitPos = 0;
+	private List<Inverter> inverters = new ArrayList<Inverter>();
 
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,106 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 		spinner.setOnItemSelectedListener(this); 
 		Spinner panelBrandSpinner = (Spinner)findViewById(R.id.spinnerRoof__panelBrand);
 		panelBrandSpinner.setOnItemSelectedListener(this);
+		setupInverterBrands();
+		setupSpinner();
+    }
+	
+	private void setupInverterBrands(){
+		Inverter bPSolarInverter = new Inverter();
+		bPSolarInverter.setId(1);
+		bPSolarInverter.setBrand("BP Solar Inverters");
+		bPSolarInverter.setCost(500);
+		bPSolarInverter.setEfficiency(85);
+		bPSolarInverter.setEfficiencyLoss(0.5);
+		
+		Inverter sharpSolarInverter = new Inverter();
+		sharpSolarInverter.setId(1);
+		sharpSolarInverter.setBrand("Sharp Solar Inverters");
+		sharpSolarInverter.setCost(600);
+		sharpSolarInverter.setEfficiency(95);
+		sharpSolarInverter.setEfficiencyLoss(0.7);
+		
+		Inverter sunlinqSolarInverter = new Inverter();
+		sunlinqSolarInverter.setId(1);
+		sunlinqSolarInverter.setBrand("Sunlinq Portable Solar Inverters");
+		sunlinqSolarInverter.setCost(400);
+		sunlinqSolarInverter.setEfficiency(93);
+		sunlinqSolarInverter.setEfficiencyLoss(0.7);
+		
+		Inverter sunPowerSolarInverter = new Inverter();
+		sunPowerSolarInverter.setId(1);
+		sunPowerSolarInverter.setBrand("SunPower Solar Inverters");
+		sunPowerSolarInverter.setCost(400);
+		sunPowerSolarInverter.setEfficiency(95);
+		sunPowerSolarInverter.setEfficiencyLoss(0.8);
+		
+		Inverter sunTechSolarInverter = new Inverter();
+		sunTechSolarInverter.setId(1);
+		sunTechSolarInverter.setBrand("SunTech Solar Inverters");
+		sunTechSolarInverter.setCost(400);
+		sunTechSolarInverter.setEfficiency(95);
+		sunTechSolarInverter.setEfficiencyLoss(0.7);
+		
+		Inverter powerFirmSolarPanel = new Inverter();
+		powerFirmSolarPanel.setId(1);
+		powerFirmSolarPanel.setBrand("Powerfilm Flexible Solar Inverters");
+		powerFirmSolarPanel.setCost(400);
+		powerFirmSolarPanel.setEfficiency(97);
+		powerFirmSolarPanel.setEfficiencyLoss(0.7);
+
+		Inverter sanyoSolarPanel = new Inverter();
+		sanyoSolarPanel.setId(1);
+		sanyoSolarPanel.setBrand("Sanyo Solar Inverters");
+		sanyoSolarPanel.setCost(450);
+		sanyoSolarPanel.setEfficiency(95);
+		sanyoSolarPanel.setEfficiencyLoss(0.8);
+		
+		Inverter globalSolarPanel = new Inverter();
+		globalSolarPanel.setId(1);
+		globalSolarPanel.setBrand("Global Solar Inverters");
+		globalSolarPanel.setCost(400);
+		globalSolarPanel.setEfficiency(99);
+		globalSolarPanel.setEfficiencyLoss(0.7);
+		
+		Inverter solarFunSolarPanel = new Inverter();
+		solarFunSolarPanel.setId(1);
+		solarFunSolarPanel.setBrand("Solarfun Inverters");
+		solarFunSolarPanel.setCost(400);
+		solarFunSolarPanel.setEfficiency(95);
+		solarFunSolarPanel.setEfficiencyLoss(0.7);
+		
+		Inverter recSolarPanel = new Inverter();
+		recSolarPanel.setId(1);
+		recSolarPanel.setBrand("REC Solar Inverters");
+		recSolarPanel.setCost(400);
+		recSolarPanel.setEfficiency(95);
+		recSolarPanel.setEfficiencyLoss(0.7);
+	    
+		inverters.add(bPSolarInverter);
+		inverters.add(sharpSolarInverter);
+		inverters.add(sunlinqSolarInverter);
+		inverters.add(sunPowerSolarInverter);
+		inverters.add(sunTechSolarInverter);
+		inverters.add(powerFirmSolarPanel);
+		inverters.add(sanyoSolarPanel);
+		inverters.add(globalSolarPanel);
+		inverters.add(solarFunSolarPanel);
+		inverters.add(recSolarPanel);
+	}
+	
+	/**
+     * Sets up the inverter spinner with a list of brands
+     */
+    private void setupSpinner() {
+		Spinner inverterSpinner = (Spinner)findViewById(R.id.spinnerRoof_inverterBrand);
+
+		ArrayList<String> spinnerArray = new ArrayList<String>();
+		for(Inverter curInverter : inverters) {
+			spinnerArray.add(curInverter.getBrand());
+		}
+		ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
+		inverterSpinner.setAdapter(spinnerArrayAdapter);
+		inverterSpinner.setOnItemSelectedListener(this); 
     }
 	
 	/**
@@ -111,7 +215,16 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	        TextView systemCost = (TextView)findViewById(R.id.textEquipment_ViewSystemCost);
 	        systemCost.setText(new Double(equipmentKits.get(equipKitPos).getCost()).toString());
 	    }
+	    else if(spnir.getId() == R.id.spinnerRoof_inverterBrand){
+	    	TextView inverterEfficiency = (TextView)findViewById(R.id.textEquipment_ViewInverterEfficieny);
+	    	inverterEfficiency.setText(new Double(getInverters(pos)).toString());
+	    }
     }
+	
+	
+	private double getInverters(int pos) {
+		return inverters.get(pos).getEfficiency();
+	}
 	
 	/**
 	 * Must be implemented because of the interface - unused
