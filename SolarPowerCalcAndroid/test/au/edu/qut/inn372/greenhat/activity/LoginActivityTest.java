@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import android.test.ActivityInstrumentationTestCase2;
 import android.widget.Button;
+import android.widget.EditText;
 import android.app.Activity;
 import android.app.Instrumentation.ActivityMonitor;
 
@@ -30,11 +31,13 @@ public class LoginActivityTest extends
 	}
 	
 	/**
-	 * Tests that the login button launches a tabbedActivity
+	 * Tests that the login button launches a UserHomepageActivity
 	 */
 	public void testLogin() {
-		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(TabbedActivity.class.getName(), null, false);
+		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(UserHomepageActivity.class.getName(), null, false);
 		final Button button = (Button) activity.findViewById(R.id.buttonLogin);
+		final EditText edit = (EditText) activity.findViewById(R.id.editPassword);
+		edit.setText("1234");
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
 				button.performClick();

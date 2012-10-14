@@ -47,8 +47,6 @@ public class UserHomepageActivity extends Activity {
       //Get the latest calculations list
     	allCalculations = getCalculationList();
     	checkBoxSelected = new boolean[allCalculations.size()];
-		
-		 
     }
 	
 	public List<Calculator> getCalculationList(){
@@ -178,14 +176,13 @@ public class UserHomepageActivity extends Activity {
     	startActivity(intent);
     }
     
-    /**TODO: needs to be completed, is not working properly
+    /**
      * Loads the selected calculation
      */
     public void editCalculation(View view){
     	//Create int to pass on to TabbedActivity 
     	int type = 1; //1 = editCalculation
     	
-    	//TODO Check for several selected calculations and throw exception of not correct selected
     	try {
 			if (getSelectedCalculation().size()!=1){
 				if (getSelectedCalculation().size()==0){
@@ -207,7 +204,6 @@ public class UserHomepageActivity extends Activity {
     	startActivity(intent);
     	
     	} catch (NoneSelectedException e) {
-			// TODO Auto-generated catch block
 			// 1. Instantiate an AlertDialog.Builder with its constructor
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setPositiveButton(R.string.userhomepage_button_ok, new DialogInterface.OnClickListener() {
@@ -249,10 +245,34 @@ public class UserHomepageActivity extends Activity {
     }
     
     /**
-     * Let the user delete one calculation TODO: implement the possibility to delete several calculations
+     * Let the user delete one calculation TODO: implement dialog to confirm the delete
      */
     public void deleteCalculation(View view){
     	try {
+    		// 1. Instantiate an AlertDialog.Builder with its constructor
+    		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+    		builder.setPositiveButton(R.string.userhomepage_button_ok, new DialogInterface.OnClickListener() {
+    		public void onClick(DialogInterface dialog, int id) {
+                   // User clicked OK button
+    				
+               }
+    		});
+    		
+    		builder.setNegativeButton(R.string.userhomepage_button_cancel, new DialogInterface.OnClickListener() {
+    	           public void onClick(DialogInterface dialog, int id) {
+    	               // User cancelled the dialog
+    	        	   dialog.dismiss();  //TODO not yet implemented correctly
+    	           }
+    	       });
+
+    		// 2. Chain together various setter methods to set the dialog characteristics
+    		builder.setMessage(R.string.userhomepage_dialog_deleteconfirmation)
+    		       .setTitle("Confirm Delete");
+
+    		// 3. Get the AlertDialog from create()
+    		AlertDialog dialog = builder.create();
+    		dialog.show();
+    		
 			//remove locally
 			if (getSelectedCalculation().size() == 1){
 				//only one selected, then remove first of the list
@@ -304,7 +324,8 @@ public class UserHomepageActivity extends Activity {
 				AlertDialog dialog = builder.create();
 				dialog.show();
 				e.printStackTrace();
-			}    	
+				
+			} 
 	    }
     
     /**TODO: Needs to be completed
@@ -327,7 +348,7 @@ public class UserHomepageActivity extends Activity {
      * @return
      */
     private List<Calculator> getSelectedCalculation(){
-    	//TODO: check for no selected
+    	
     	List <Calculator> selectedCalculators = new ArrayList<Calculator>();
     	
 			for (int i =0; i < allCalculations.size(); i++ ){
@@ -337,6 +358,8 @@ public class UserHomepageActivity extends Activity {
 			}
 			return selectedCalculators;
     }
+    
+    
     	
  }
     
@@ -351,5 +374,5 @@ public class UserHomepageActivity extends Activity {
     		super("Please select only one calculation");
     	}
     }
-
+    
 

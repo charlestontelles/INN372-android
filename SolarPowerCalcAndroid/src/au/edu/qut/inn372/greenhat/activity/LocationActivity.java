@@ -1,27 +1,46 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import com.itextpdf.text.pdf.TextField;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Criteria;
+import android.location.Geocoder;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Location;
 
-public class LocationActivity extends Activity implements OnItemSelectedListener {
+public class LocationActivity extends Activity implements OnItemSelectedListener, LocationListener {
 	
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
 		private int state;
 		private List<Location> locations = new ArrayList<Location>();
 		private Calculator calculator;
+		private LocationManager locationManager;
+		private Geocoder geocoder;
 			
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -31,7 +50,25 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	        setupSpinner();
 	        TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 	        calculator = parentTabbedActivity.getCalculator();
+	        
+	        //Initializing fields for location
+	        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+	        geocoder = new Geocoder(this);
+	        
+	        //TODO: Enter criteria to find a suitable provider
+	        LocationProvider provider = locationManager.getProvider(LocationManager.NETWORK_PROVIDER);
+	        
+	    	//TODO implement message to show when no provider available
+	    	
+	    	//TODO verify location provider is enabled
+	    	
+	        //get the last know location
+	    	android.location.Location location = locationManager.getLastKnownLocation(provider.getName());
+	    	
+	    	//call method to get location details and show them
+	    	this.onLocationChanged(location);
 	    }
+	    
 	    
 	    /**
 	     * Sets up the local locations list with a set of location and corresponding sunlight hours
@@ -99,9 +136,9 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		 * @param view
 		 */
 		public void viewBack(View view){
-			Intent intent = new Intent(this, UserHomepageActivity.class);
-			intent.putExtra("UserProfile", calculator.getCustomer().getUserProfile());
-		    startActivity(intent);
+			//TODO: implement dialog that asks before leaving
+			
+			finish();
 		}
 	    
 		/**
@@ -138,12 +175,16 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		public void onPause() {
 			super.onPause();
 			saveData();
+			//removes the locationManager to save battery
+			locationManager.removeUpdates(this);
 			state = STATE_PAUSED;
 		}
 		
 		@Override
 		public void onResume() {
 			super.onResume();
+			//refreshes the locationManager
+			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, this);
 			loadData();
 			state = STATE_NORMAL;
 		}
@@ -198,5 +239,54 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 			TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 			parentTabbedActivity.finish();
 		}
+		
+		/**
+		 * Gets the latest location details and shows them
+		 */
+		public void onLocationChanged(android.location.Location location) {
+			// TODO Auto-generated method stub
+			double lat = (double) location.getLatitude();
+			double lon = (double) location.getLongitude();
+			TextView locationLat = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Latitude);
+			TextView locationLon = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Longitude);
+			TextView locationShow = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Zip);
+			
+		    
+		    locationLat.setText(""+lat);
+		    locationLon.setText(""+lon);
+			
+			try {
+		      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10); //<10>
+		      
+		      Address address = addresses.get(0);
+		      
+		      //locationShow.setText(address.getAddressLine(1));
+		      locationShow.setText(address.getPostalCode());
+		      
+		    } catch (IOException e) {
+		    	e.getStackTrace();
+		    	//Log.e("LocateMe", "Could not get Geocoder data", e);
+		    }
+		}
+
+		 
+		public void onProviderEnabled(String provider) {
+			Toast.makeText(this, "Enabled new provider " + provider,
+	        Toast.LENGTH_SHORT).show();
+	  	}
+
+	  
+	 	public void onProviderDisabled(String provider) {
+	 		Toast.makeText(this, "Disabled provider " + provider,
+	        Toast.LENGTH_SHORT).show();
+	 	}
+
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 }
+
+
 
