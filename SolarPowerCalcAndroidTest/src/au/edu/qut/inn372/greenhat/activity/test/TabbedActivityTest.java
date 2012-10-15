@@ -18,4 +18,7 @@ public class TabbedActivityTest extends SetupTabbedActivityTest {
 		assertTrue(switchTab(TabbedActivity.INPUT_ID));
 		assertTrue(switchTab(TabbedActivity.LOCATION_ID));
 	}
+	
+	//Should add a test here for the 'save' button in the menu, see solo.pressMenuItem or solo.clickOnMenuItem
+	
 }
