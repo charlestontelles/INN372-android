@@ -9,6 +9,8 @@ public class SetupTabbedActivityTest extends SetupHomepageActivityTest {
 	protected static final int NEW_CALCULATOR = 0;
 	protected static final int EXISTING_CALCULATOR = 1;
 	protected TabbedActivity tabbedActivity;
+	protected String backButtonString = "<< Back";
+	protected String nextButtonString = "Next >>";
 	
 
 	protected SetupTabbedActivityTest(int calculatorState) {

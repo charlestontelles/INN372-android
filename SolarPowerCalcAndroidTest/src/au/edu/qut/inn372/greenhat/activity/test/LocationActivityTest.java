@@ -32,7 +32,7 @@ public class LocationActivityTest extends SetupTabbedActivityTest {
 		solo.clearEditText(roofHeightEdit);
 		solo.enterText(roofWidthEdit, roofWidth.toString());
 		solo.enterText(roofHeightEdit, roofHeight.toString());
-		tabbedActivity.switchTab(TabbedActivity.USAGE_ID); //swapping to a different tab triggers the save
+		switchTab(TabbedActivity.USAGE_ID); //swapping to a different tab triggers the save
 		assertEquals(roofWidth, tabbedActivity.getCalculator().getCustomer().getLocation().getRoof().getWidth(), 1e-4);
 		assertEquals(roofHeight, tabbedActivity.getCalculator().getCustomer().getLocation().getRoof().getHeight(), 1e-4);
 	}
@@ -41,12 +41,25 @@ public class LocationActivityTest extends SetupTabbedActivityTest {
 		//test saving by setting calculator properties then switching back to the tab
 		Double roofWidth = 1234.0;
 		Double roofHeight = 1234.0;
-		tabbedActivity.switchTab(TabbedActivity.USAGE_ID);
+		switchTab(TabbedActivity.USAGE_ID);
 		tabbedActivity.getCalculator().getCustomer().getLocation().getRoof().setWidth(roofWidth);
 		tabbedActivity.getCalculator().getCustomer().getLocation().getRoof().setHeight(roofHeight);
-		tabbedActivity.switchTab(TabbedActivity.LOCATION_ID);
+		switchTab(TabbedActivity.LOCATION_ID);
 		assertEquals(roofWidthEdit.getText().toString(), roofWidth.toString());
 		assertEquals(roofHeightEdit.getText().toString(), roofHeight.toString());
 	}
 	
+	public void testBack() {
+		solo.clickOnButton("Back to Home");
+		assertTrue(solo.waitForActivity("UserHomepageActivity"));
+	}
+
+	public void testNext() {
+		solo.clickOnButton(nextButtonString);
+		assertTrue(solo.waitForActivity("CustomerUsageActivity"));
+	}
+	
+	//TODO add test for spinner - check that it updates the daylight hours - do this later as it might change or be removed
+	
+	//TODO add test for automatic location detection - do this later as we don't know how it will end up looking
 }
