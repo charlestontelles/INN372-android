@@ -1,6 +1,7 @@
 package au.edu.qut.inn372.greenhat.activity;
 
 import java.io.IOException;
+import java.security.Provider;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -8,7 +9,11 @@ import java.util.Locale;
 import com.itextpdf.text.pdf.TextField;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
@@ -20,6 +25,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -31,11 +38,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Location;
+//import com.google.android.maps.MapActivity;
+//import com.google.android.maps.MapView;
 
 public class LocationActivity extends Activity implements OnItemSelectedListener, LocationListener {//need to comment LocationListener for emulator
 	
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
+		public final static int DIALOG_ENABLE_LOCATION = 1;
+		public final static int NO_LOCATION_SERVICE_AVAILABLE = 2;
 		private int state;
 		private List<Location> locations = new ArrayList<Location>();
 		private Calculator calculator;
@@ -60,13 +71,28 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	        
 	    	//TODO implement message to show when no provider available
 	    	
-	    	//TODO verify location provider is enabled
-	    	
+	        
+	        //writes the status of Locatio_Provider into a string, which content than can be checked
+	        String providerEnabled = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
+	        if (providerEnabled.contains("network") == true){   		
+	        	}
+        	else{
+        		System.out.println("Set Network Provider = False");
+        		showDialog(DIALOG_ENABLE_LOCATION);
+        	}
+	        
+	        
 	        //get the last know location
 	    	android.location.Location location = locationManager.getLastKnownLocation(provider.getName());
 	    	
 	    	//call method to get location details and show them
-	    	this.onLocationChanged(location); //to here
+	    	if (location != null){
+	    		this.onLocationChanged(location); 
+	    	}
+	    	else{
+	    		//Inform about manually location input
+	    		showDialog(NO_LOCATION_SERVICE_AVAILABLE);
+	    	}//to here
 	    }
 	    
 	    
@@ -285,6 +311,81 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 			// TODO Auto-generated method stub
 			
 		}
+		
+		/**
+		 * Starts the location service, used when it is not enabled
+		 */
+		private void enableLocationSettings() {
+		    Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+		    startActivity(settingsIntent);
+		}
+		
+		
+		/**
+		 * Creates different types of dialog selected with id
+		 */
+		@Override
+		  protected Dialog onCreateDialog(int id) {
+			Dialog dialog;
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		    switch (id) {
+		    case DIALOG_ENABLE_LOCATION:
+			    // Create out AlterDialog
+			    
+			    builder.setMessage("To find your location with your device please enable your location service.");
+			    builder.setCancelable(true);
+			    builder.setPositiveButton("Enable Location Service", new EnableLocationServiceListener());
+			    builder.setNegativeButton("Enter Location Manually", new EnterLocationManuallyListener());
+			    dialog = builder.create();
+		      	break;
+		    case NO_LOCATION_SERVICE_AVAILABLE:
+			    builder.setMessage("No Locationservice enabled! Please Enter Your Location Manually");
+			    builder.setCancelable(true);
+			    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+						dialog.cancel();
+					}
+				});
+			    dialog = builder.create();
+			    break;
+		    default:
+		    	dialog = null;
+		    	break;
+		    }
+		    return dialog;
+		  }
+		
+		/**
+		 * Inner class to react on user input within dialog
+		 * Shows a toast to inform about manual input options
+		 * @author FK
+		 *
+		 */
+		private final class EnterLocationManuallyListener implements
+	      DialogInterface.OnClickListener {
+	    public void onClick(DialogInterface dialog, int which) {
+	      Toast.makeText(getApplicationContext(), "Use the map or predefined cities to enter your Location.",
+	          Toast.LENGTH_LONG).show();
+	    }
+	  }
+
+	  /**
+	   * Inner class to react on user input within dialog
+	   * Launches location settings menu to give the user the possibility to enable location services
+	   * @author FK
+	   *
+	   */
+	  private final class EnableLocationServiceListener implements
+	      DialogInterface.OnClickListener {
+	    public void onClick(DialogInterface dialog, int which) {
+	      LocationActivity.this.enableLocationSettings();
+	    }
+	  }
+	  
+//	  @Override
+//	    protected boolean isRouteDisplayed() {
+//	        return false;
+//	    }
 		
 }
 
