@@ -52,6 +52,7 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		private Calculator calculator;
 		private LocationManager locationManager;
 		private Geocoder geocoder;
+		private boolean locationProviderEnabled = false;
 			
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -61,40 +62,47 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	        setupSpinner();
 	        TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 	        calculator = parentTabbedActivity.getCalculator();
+	        
 	        //need to comment from here for emulator
 	        //Initializing fields for location
 	        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 	        geocoder = new Geocoder(this);
-	        
-	        //TODO: Enter criteria to find a suitable provider
-	        LocationProvider provider = locationManager.getProvider(LocationManager.NETWORK_PROVIDER);
-	        
-	    	//TODO implement message to show when no provider available
 	    	
-	        
-	        //writes the status of Locatio_Provider into a string, which content than can be checked
+
+	    }
+	    
+	    /**
+	     * Checks if the location provider is valid.
+	     * Sets the locationProviderEnabled variable
+	     * Launches a dialog for user action if the location provider is not present
+	     */
+	    private void hasLocationProvider() {
+	    	//writes the status of Locatio_Provider into a string, which content than can be checked
+
 	        String providerEnabled = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
-	        if (providerEnabled.contains("network") == true){   		
+	        if (providerEnabled.contains("network") == true){
+	        	locationProviderEnabled = true;
 	        	}
         	else{
+        		locationProviderEnabled = false;
         		System.out.println("Set Network Provider = False");
         		showDialog(DIALOG_ENABLE_LOCATION);
         	}
-	        
-	        
-	        //get the last know location
-	    	android.location.Location location = locationManager.getLastKnownLocation(provider.getName());
-	    	
-	    	//call method to get location details and show them
-	    	if (location != null){
-	    		this.onLocationChanged(location); 
-	    	}
-	    	else{
-	    		//Inform about manually location input
-	    		showDialog(NO_LOCATION_SERVICE_AVAILABLE);
-	    	}//to here
 	    }
 	    
+	    /**
+	     * Checks that the location object is valid
+	     * @return true if the location can be retrieved
+	     */
+	    private void launchLocationUpdate() {
+	    	//TODO: Enter criteria to find a suitable provider
+	        LocationProvider provider = locationManager.getProvider(LocationManager.NETWORK_PROVIDER);
+	        //TODO implement message to show when no provider available
+	    	//get the last know location
+	    	android.location.Location location = locationManager.getLastKnownLocation(provider.getName());
+	    	//call method to get location details and show them
+	    	this.onLocationChanged(location);
+	    }
 	    
 	    /**
 	     * Sets up the local locations list with a set of location and corresponding sunlight hours
@@ -202,7 +210,9 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 			super.onPause();
 			saveData();
 			//removes the locationManager to save battery
-			locationManager.removeUpdates(this);//need to comment for emulator
+			if (locationProviderEnabled) {
+				locationManager.removeUpdates(this);//need to comment for emulator
+			}
 			state = STATE_PAUSED;
 		}
 		
@@ -210,7 +220,11 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		public void onResume() {
 			super.onResume();
 			//refreshes the locationManager
-			locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, this);//need to comment this for emulator
+			hasLocationProvider(); //Need to check if the user has disabled or enabled the location provider while activity has been paused
+			if (locationProviderEnabled) {
+				locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 10, this);//need to comment this for emulator
+				launchLocationUpdate();
+			}
 			loadData();
 			state = STATE_NORMAL;
 		}
@@ -270,39 +284,49 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 		 * Gets the latest location details and shows them
 		 */
 		public void onLocationChanged(android.location.Location location) {
-			// TODO Auto-generated method stub
-			double lat = (double) location.getLatitude();
-			double lon = (double) location.getLongitude();
-			TextView locationLat = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Latitude);
-			TextView locationLon = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Longitude);
-			TextView locationShow = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Zip);
-			
-		    
-		    locationLat.setText(""+lat);
-		    locationLon.setText(""+lon);
-			
-			try {
-		      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10); //<10>
-		      
-		      Address address = addresses.get(0);
-		      
-		      //locationShow.setText(address.getAddressLine(1));
-		      locationShow.setText(address.getPostalCode());
-		      
-		    } catch (IOException e) {
-		    	e.getStackTrace();
-		    	//Log.e("LocateMe", "Could not get Geocoder data", e);
-		    }
+			if (locationProviderEnabled) {
+				if (location != null) {
+					// TODO Auto-generated method stub
+					double lat = (double) location.getLatitude();
+					double lon = (double) location.getLongitude();
+					TextView locationLat = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Latitude);
+					TextView locationLon = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Longitude);
+					TextView locationShow = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Zip);
+					
+				    
+				    locationLat.setText(""+lat);
+				    locationLon.setText(""+lon);
+					
+					try {
+				      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10); //<10>
+				      
+				      Address address = addresses.get(0);
+				      
+				      //locationShow.setText(address.getAddressLine(1));
+				      locationShow.setText(address.getPostalCode());
+				      
+				    } catch (IOException e) {
+				    	e.getStackTrace();
+				    	//Log.e("LocateMe", "Could not get Geocoder data", e);
+				    }
+				}
+				else {
+					//If location could not be retrieved, display an error
+					showDialog(NO_LOCATION_SERVICE_AVAILABLE);
+				}
+			}
 		}
 
 		 
 		public void onProviderEnabled(String provider) {
+			locationProviderEnabled = true;
 			Toast.makeText(this, "Enabled new provider " + provider,
 	        Toast.LENGTH_SHORT).show();
 	  	}
 
 	  
 	 	public void onProviderDisabled(String provider) {
+	 		locationProviderEnabled = false;
 	 		Toast.makeText(this, "Disabled provider " + provider,
 	        Toast.LENGTH_SHORT).show();
 	 	}
