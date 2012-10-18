@@ -55,6 +55,18 @@
             android:text="@string/location_picklocationdevice" />
     </LinearLayout>
     
+    <LinearLayout
+        android:layout_width="fill_parent"
+	    android:layout_height="fill_parent">
+	    <com.google.android.maps.MapView
+		    android:id="@+id/mapview"
+		    android:layout_width="fill_parent"
+		    android:layout_height="fill_parent"
+		    android:clickable="true"
+		    android:apiKey="0jLlCfvaIy3eqG8k0IJs-zc5caBWRL8Q42e6kNQ"
+		/>
+    </LinearLayout>
+    
     
     <LinearLayout
         android:layout_width="match_parent"

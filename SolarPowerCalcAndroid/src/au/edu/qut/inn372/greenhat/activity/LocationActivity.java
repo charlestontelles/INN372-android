@@ -38,10 +38,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Location;
-//import com.google.android.maps.MapActivity;
-//import com.google.android.maps.MapView;
+import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapView;
 
-public class LocationActivity extends Activity implements OnItemSelectedListener, LocationListener {//need to comment LocationListener for emulator
+public class LocationActivity extends MapActivity implements OnItemSelectedListener, LocationListener {//need to comment LocationListener for emulator
 	
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
@@ -63,12 +63,13 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	        TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 	        calculator = parentTabbedActivity.getCalculator();
 	        
-	        //need to comment from here for emulator
+	        
 	        //Initializing fields for location
 	        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 	        geocoder = new Geocoder(this);
 	    	
-
+	        MapView mapView = (MapView) findViewById(R.id.mapview);
+	        mapView.setBuiltInZoomControls(true);
 	    }
 	    
 	    /**
@@ -77,15 +78,13 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	     * Launches a dialog for user action if the location provider is not present
 	     */
 	    private void hasLocationProvider() {
-	    	//writes the status of Locatio_Provider into a string, which content than can be checked
-
+	    	//writes the status of Location_Provider into a string, which content than can be checked
 	        String providerEnabled = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 	        if (providerEnabled.contains("network") == true){
 	        	locationProviderEnabled = true;
 	        	}
         	else{
         		locationProviderEnabled = false;
-        		System.out.println("Set Network Provider = False");
         		showDialog(DIALOG_ENABLE_LOCATION);
         	}
 	    }
@@ -98,7 +97,7 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	    	//TODO: Enter criteria to find a suitable provider
 	        LocationProvider provider = locationManager.getProvider(LocationManager.NETWORK_PROVIDER);
 	        //TODO implement message to show when no provider available
-	    	//get the last know location
+	    	//get the last known location
 	    	android.location.Location location = locationManager.getLastKnownLocation(provider.getName());
 	    	//call method to get location details and show them
 	    	this.onLocationChanged(location);
@@ -406,10 +405,10 @@ public class LocationActivity extends Activity implements OnItemSelectedListener
 	    }
 	  }
 	  
-//	  @Override
-//	    protected boolean isRouteDisplayed() {
-//	        return false;
-//	    }
+	  @Override
+	    protected boolean isRouteDisplayed() {
+	        return false;
+	    }
 		
 }
 
