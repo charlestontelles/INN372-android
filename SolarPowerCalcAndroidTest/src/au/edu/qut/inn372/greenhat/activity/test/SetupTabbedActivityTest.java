@@ -1,5 +1,8 @@
 package au.edu.qut.inn372.greenhat.activity.test;
 
+import java.util.concurrent.Callable;
+
+import android.widget.EditText;
 import au.edu.qut.inn372.greenhat.activity.TabbedActivity;
 
 
@@ -59,4 +62,17 @@ public class SetupTabbedActivityTest extends SetupHomepageActivityTest {
 		}
 		return solo.waitForActivity(activityName, TIMEOUT);
 	}
+	
+	protected void testSaveAttributeDouble(EditText editTextField, Double testValue, int targetTab, int currentTab, Callable<Double> calculatorAttribute) {
+		solo.clearEditText(editTextField);
+		solo.enterText(editTextField, testValue.toString());
+		switchTab(targetTab);
+		try {
+			assertEquals(testValue, calculatorAttribute.call(), 1e-4);
+		} catch (Exception e) {
+			fail("Could not call calculator attribute");
+		}
+		switchTab(currentTab);
+	}
+	
 }
