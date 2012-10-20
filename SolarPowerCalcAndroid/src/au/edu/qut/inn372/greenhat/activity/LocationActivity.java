@@ -31,6 +31,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -432,6 +433,11 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 	        return false;
 	    }
 	  
+	  /**
+	   * Private inner class to create an overlay for google maps
+	   * @author FK
+	   *
+	   */
 	  private class MapOverlay extends com.google.android.maps.Overlay
 	    {
 		  	private GeoPoint geoPoint;
@@ -456,6 +462,25 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 	            canvas.drawBitmap(bmp, screenPts.x, screenPts.y-50, null);         
 	            return true;
 	        }
+		  	
+		  	@Override
+	        public boolean onTouchEvent(MotionEvent event, MapView mapView) 
+	        {   
+		  		
+		  		
+
+	            //---when user lifts his finger---
+	            if (event.getAction() == 1) {                
+	                GeoPoint p = mapView.getProjection().fromPixels(
+	                    (int) event.getX(),
+	                    (int) event.getY());
+	                    Toast.makeText(getBaseContext(), 
+	                        p.getLatitudeE6() / 1E6 + "," + 
+	                        p.getLongitudeE6() /1E6 , 
+	                        Toast.LENGTH_SHORT).show();
+	            }                            
+	            return false;
+	        }  
 	    } 
 		
 }
