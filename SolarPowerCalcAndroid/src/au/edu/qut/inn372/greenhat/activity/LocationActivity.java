@@ -15,6 +15,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Point;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -38,8 +42,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Location;
+
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
+import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
+import com.google.android.maps.Overlay;
 
 public class LocationActivity extends MapActivity implements OnItemSelectedListener, LocationListener {//need to comment LocationListener for emulator
 	
@@ -295,6 +303,20 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 				    
 				    locationLat.setText(""+lat);
 				    locationLon.setText(""+lon);
+				    
+				    MapView mapView = (MapView) findViewById(R.id.mapview);
+				    MapController mapController = mapView.getController();
+				    GeoPoint geoPoint = new GeoPoint((int) (lat* 1E6), (int) (lon * 1E6));
+				    mapController.animateTo(geoPoint);
+				    mapController.setZoom(17);
+				    
+				  //---Add a location marker---
+			        MapOverlay mapOverlay = new MapOverlay(geoPoint);
+			        List<Overlay> listOfOverlays = mapView.getOverlays();
+			        listOfOverlays.clear();
+			        listOfOverlays.add(mapOverlay);  
+				    mapView.invalidate();
+				    
 					
 					try {
 				      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10); //<10>
@@ -409,6 +431,32 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 	    protected boolean isRouteDisplayed() {
 	        return false;
 	    }
+	  
+	  private class MapOverlay extends com.google.android.maps.Overlay
+	    {
+		  	private GeoPoint geoPoint;
+		  
+		  	public MapOverlay(GeoPoint geoPoint){
+		  		this.geoPoint = geoPoint;
+		  	}
+		  	
+		  	@Override
+	        public boolean draw(Canvas canvas, MapView mapView, 
+	        boolean shadow, long when) //added geoPoint
+	        {
+	            super.draw(canvas, mapView, shadow);                   
+	 
+	            //---translate the GeoPoint to screen pixels---
+	            Point screenPts = new Point();
+	            mapView.getProjection().toPixels(geoPoint, screenPts);
+	 
+	            //---add the marker---
+	            Bitmap bmp = BitmapFactory.decodeResource(
+	                getResources(), R.drawable.push_pin);            
+	            canvas.drawBitmap(bmp, screenPts.x, screenPts.y-50, null);         
+	            return true;
+	        }
+	    } 
 		
 }
 
