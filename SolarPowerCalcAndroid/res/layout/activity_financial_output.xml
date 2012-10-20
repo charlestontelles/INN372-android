@@ -3,86 +3,84 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TableLayout
-        android:id="@+id/TableLayoutOutput"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:shrinkColumns="*"
-        android:stretchColumns="*" >
-        
-        <TableRow>
-            
-            <Button
-	        android:id="@+id/buttonFinancial_Back"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:text="@string/outputBack_button_navigation_back" 
-	        android:onClick="viewBackOutput"/>
-            
-            <Button
-                android:id="@+id/buttonFinancial_Next"
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="95dp"
-                android:layout_height="34dp"
-                android:onClick="viewMoreInfo"
-                android:text="@string/output_button_navigation_next" />
+    <HorizontalScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
 
-        </TableRow>
+        <TableLayout
+            android:id="@+id/TableLayoutOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:stretchColumns="*" >
 
-        <TableRow
-            android:id="@+id/tableRowFinancialOutput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
+            <TableRow>
 
-            <TextView
-                android:id="@+id/textViewFinancialOutputHeading"
+                <Button
+                    android:id="@+id/buttonFinancial_Back"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="95dp"
+                    android:layout_height="34dp"
+                    android:onClick="viewBackOutput"
+                    android:text="@string/outputBack_button_navigation_back" />
+
+                <Button
+                    android:id="@+id/buttonFinancial_Next"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="95dp"
+                    android:layout_height="34dp"
+                    android:onClick="viewMoreInfo"
+                    android:text="@string/output_button_navigation_next" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRowFinancialOutput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="4"
-                android:gravity="center"
-                android:text="Financial Calculations"
-                android:textSize="20dp"
-                android:textStyle="bold" >
-            </TextView>
-        </TableRow>
+                android:gravity="center_horizontal" >
 
-        <TableRow>
+                <TextView
+                    android:id="@+id/textViewFinancialOutputHeading"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_span="4"
+                    android:gravity="center"
+                    android:text="Financial Calculations"
+                    android:textSize="20dp"
+                    android:textStyle="bold" >
+                </TextView>
+            </TableRow>
 
-            <TextView
-                android:id="@+id/TextViewYearHeading"
-                android:gravity="left"
-                android:text="Year"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
+            <TableRow>
 
-            <TextView
-                android:id="@+id/TextViewCumulativeSavings"
-                android:gravity="left"
-                android:text="Cumulative Savings ($)"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
+                <TextView
+                    android:id="@+id/TextViewYearHeading"
+                    android:gravity="left"
+                    android:text="Year"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:typeface="serif" >
+                </TextView>
 
-            <TextView
-                android:id="@+id/TextViewROI"
-                android:gravity="left"
-                android:text="ROI"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-        </TableRow>
+                <TextView
+                    android:id="@+id/TextViewCumulativeSavings"
+                    android:gravity="left"
+                    android:text="Cumulative Savings ($)"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:typeface="serif" >
+                </TextView>
 
-    </TableLayout>
-
-   
-	    
-	    
-   
+                <TextView
+                    android:id="@+id/TextViewROI"
+                    android:gravity="left"
+                    android:text="ROI"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:typeface="serif" >
+                </TextView>
+            </TableRow>
+        </TableLayout>
+    </HorizontalScrollView>
 
 </ScrollView>

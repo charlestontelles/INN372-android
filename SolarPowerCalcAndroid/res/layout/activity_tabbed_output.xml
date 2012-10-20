@@ -2,23 +2,55 @@
 <TabHost xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@android:id/tabhost"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent" >
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        <HorizontalScrollView android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            android:scrollbars="none">
-        <TabWidget
-            android:id="@android:id/tabs"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
-        </HorizontalScrollView>
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/outputButtonLeft"
+                android:layout_width="40sp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:onClick="clickTabLeft"
+                android:text="@string/tab_left" />
+
+            <Button
+                android:id="@+id/outputButtonRight"
+                android:layout_width="40sp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:onClick="clickTabRight"
+                android:text="@string/tab_right" />
+
+            <HorizontalScrollView
+                android:id="@+id/TabsOutputScrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/outputButtonRight"
+                android:layout_toRightOf="@+id/outputButtonLeft"
+                android:fillViewport="true"
+                android:scrollbars="none" >
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </HorizontalScrollView>
+        </RelativeLayout>
+
         <FrameLayout
             android:id="@android:id/tabcontent"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
-	</LinearLayout>
+            android:layout_height="fill_parent" >
+        </FrameLayout>
+    </LinearLayout>
+
 </TabHost>
