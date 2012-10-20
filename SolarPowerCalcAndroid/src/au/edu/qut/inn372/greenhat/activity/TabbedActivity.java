@@ -197,6 +197,7 @@ public class TabbedActivity extends TabActivity {
 	 */
 	public void calcEnergyProduction() {
 		calcMediator.calcEnergyProduction();
+		calcMediator.getCalculator().setStatus(1);
 	}
 	
 	/**
