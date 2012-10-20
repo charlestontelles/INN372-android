@@ -19,7 +19,7 @@ import au.edu.qut.inn372.greenhat.bean.Location;
 import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.Roof;
 
-public class EquipmentActivity extends Activity implements OnItemSelectedListener{
+public class EquipmentActivity extends Activity implements OnItemSelectedListener, InputActivity{
 	
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
@@ -236,7 +236,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	/**
 	 * Saves current input data to the calculator bean
 	 */
-	private void saveData() {
+	public void saveData() {
 		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
 		Calculator calculator = parentTabbedActivity.getCalculator();

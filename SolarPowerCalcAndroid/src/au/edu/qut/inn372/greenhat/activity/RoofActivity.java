@@ -8,7 +8,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 
-public class RoofActivity extends Activity{
+public class RoofActivity extends Activity implements InputActivity {
 	
 	public final static int STATE_NORMAL = 0;
 	public final static int STATE_PAUSED = 1;
@@ -47,7 +47,7 @@ public class RoofActivity extends Activity{
 	/**
 	 * Saves current input data to the calculator bean
 	 */
-	private void saveData() {
+	public void saveData() {
 		Calculator calculator = parentTabbedActivity.getCalculator();
 	
 		calculator.getCustomer().getLocation().getRoof().getBanks().get(0).setNumberOfPanels(new Integer((int)Math.round(new Double(((EditText)findViewById(R.id.editRoof_Banks_PanelsBank1)).getText().toString()))));

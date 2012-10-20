@@ -16,7 +16,7 @@ import android.support.v4.app.NavUtils;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Roof;
 
-public class BasicInputActivity extends Activity {
+public class BasicInputActivity extends Activity implements InputActivity {
 	// Constant for identifying the dialog
 	
 	public final static int STATE_NORMAL = 0;
@@ -81,7 +81,7 @@ public class BasicInputActivity extends Activity {
 	/**
 	 * Saves current input data to the calculator bean
 	 */
-	private void saveData() {
+	public void saveData() {
 
 		Calculator calculator = parentTabbedActivity.getCalculator();
 

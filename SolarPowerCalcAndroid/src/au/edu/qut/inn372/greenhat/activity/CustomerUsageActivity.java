@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 
-public class CustomerUsageActivity extends Activity {
+public class CustomerUsageActivity extends Activity implements InputActivity {
 	
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
@@ -44,7 +44,7 @@ public class CustomerUsageActivity extends Activity {
 		/**
 		 * Saves current input data to the calculator bean
 		 */
-		private void saveData() {
+		public void saveData() {
 			Calculator calculator = parentTabbedActivity.getCalculator();
 			calculator.getCustomer().getElectricityUsage().setDailyAverageUsage(new Double(((EditText)findViewById(R.id.editCustomerUsage_CurrentUsage_UsagePerDay)).getText().toString()));
 			calculator.getCustomer().getElectricityUsage().setDayTimeHourlyUsage(new Double(((EditText)findViewById(R.id.editCustomerUsage_CurrentUsage_UsagePerHour)).getText().toString()));

@@ -48,33 +48,31 @@ public class TabbedActivity extends TabActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed);
         
-        //Switch to check for new or old calculator
-        int type = (Integer) getIntent().getSerializableExtra("Type");
-        switch(type){
-        	case 0: //new calculation
-        		calcMediator = new CalculatorMediator();
-        		//TODO Add user profile
-        		break;
-        	case 1: //load a calculation
-        		calcMediator = new CalculatorMediator((Calculator)getIntent().getSerializableExtra("Calculator"));
-        		break;
-        	case 2: //compare calculations TODO: needs to be completed
-        		break;
-        	
-        }
-        
-        
         equipKitsMediator = new EquipmentKitsMediator();
         equipKitsMediator.getEquipments(); //This is a WS call - might be better to move it to be part of the login process later
         panelMediator = new PanelMediator(); //WS call
         panelMediator.getPanels();
         
+        //Switch to check for new or old calculator
+        int type = (Integer) getIntent().getSerializableExtra("Type");
+        calcMediator = new CalculatorMediator();
+        switch(type){
+        	case 1: //load a calculation
+        		calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
+        		break;
+        	case 0: //new calculation
+        	default:
+        		setupCalculatorDefaults();
+        		//TODO Add user profile
+        		break;
+        }
+
         UserProfile userProfile = (UserProfile)getIntent().getSerializableExtra("UserProfile");
         calcMediator.getCalculator().getCustomer().setUserProfile(userProfile);
         
         tabHost = getTabHost();
         
-        setupCalculatorDefaults();
+        //setupCalculatorDefaults();
         
         
         addTab("Location", this, LocationActivity.class); 
@@ -206,6 +204,7 @@ public class TabbedActivity extends TabActivity {
 	 */
 	public void saveCalculation() {
 		//TODO: call the selected tab save data method
+		((InputActivity)getLocalActivityManager().getCurrentActivity()).saveData(); //force child tab to 'save'
 		String result = calcMediator.saveCalculation();
 		if(result.equals("ok")) {
 			showDialog(DIALOG_ALERT);
