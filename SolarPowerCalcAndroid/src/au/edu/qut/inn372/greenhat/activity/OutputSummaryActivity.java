@@ -59,17 +59,17 @@ public class OutputSummaryActivity extends Activity {
     	
     	TextView systemSizeTitle = (TextView) getLayoutInflater().inflate(
 				R.layout.output_text_view, null);
-    	systemSizeTitle.setText("System Size (kW)");
+    	systemSizeTitle.setText("System Size\n(kW)");
 		systemSize.addView(systemSizeTitle);
 		
 		TextView systemCostTitle = (TextView) getLayoutInflater().inflate(
 				R.layout.output_text_view, null);
-    	systemCostTitle.setText("System Cost ($)");
+    	systemCostTitle.setText("System Cost\n($)");
 		systemCost.addView(systemCostTitle);
     	
 		TextView paybackPeriodTitle = (TextView) getLayoutInflater().inflate(
 				R.layout.output_text_view, null);
-    	paybackPeriodTitle.setText("Payback Period (years)");
+    	paybackPeriodTitle.setText("Payback Period\n(years)");
 		paybackPeriod.addView(paybackPeriodTitle);
 		
 		for(Calculator curCalculator : calculatorList) {
