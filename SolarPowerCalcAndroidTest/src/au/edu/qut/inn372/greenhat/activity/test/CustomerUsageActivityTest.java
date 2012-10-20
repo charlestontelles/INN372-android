@@ -8,7 +8,7 @@ import au.edu.qut.inn372.greenhat.activity.TabbedActivity;
 
 //import au.edu.qut.inn372.greenhat.activity.R;
 
-public class CustomerUsageActivityTest extends SetupTabbedActivityTest {
+public class CustomerUsageActivityTest extends SetupCalculationTest {
 	
 	private EditText dailyUsageEdit;
 	private EditText daylightHoursUsageEdit;
@@ -22,7 +22,7 @@ public class CustomerUsageActivityTest extends SetupTabbedActivityTest {
 	private int targetTab = TabbedActivity.EQUIPMENT_ID;
 
 	public CustomerUsageActivityTest() {
-		super(SetupTabbedActivityTest.NEW_CALCULATOR); //These tests are based on a new calculator
+		super(SetupCalculationTest.NEW_CALCULATOR); //These tests are based on a new calculator
 	}
 	
 	public void setUp() throws Exception {

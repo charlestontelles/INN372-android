@@ -9,7 +9,7 @@ import au.edu.qut.inn372.greenhat.activity.TabbedActivity;
 
 //import au.edu.qut.inn372.greenhat.activity.R;
 
-public class LocationActivityTest extends SetupTabbedActivityTest {
+public class LocationActivityTest extends SetupCalculationTest {
 
 	private EditText sunlightHoursEdit;
 	private EditText roofWidthEdit;
@@ -20,7 +20,7 @@ public class LocationActivityTest extends SetupTabbedActivityTest {
 	private int targetTab = TabbedActivity.USAGE_ID;
 	
 	public LocationActivityTest() {
-		super(SetupTabbedActivityTest.NEW_CALCULATOR); //These tests are based on a new calculator
+		super(SetupCalculationTest.NEW_CALCULATOR); //These tests are based on a new calculator
 		
 	}
 	
