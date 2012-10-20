@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.util.List;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -19,6 +20,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,7 +29,7 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 
 public class FinancialOutputActivity extends Activity {
 
-	private Calculator calculator;
+	private List<Calculator> calculatorList;
 	private TabbedOutputActivity parentTabbedActivity;
 	DecimalFormat df = new DecimalFormat("#.##");
 
@@ -37,7 +39,7 @@ public class FinancialOutputActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_financial_output);
 		parentTabbedActivity = (TabbedOutputActivity) getParent();
-		calculator = parentTabbedActivity.getCalculator();
+		calculatorList = parentTabbedActivity.getCalculators();
 		generateView();
 
 	}
@@ -48,53 +50,97 @@ public class FinancialOutputActivity extends Activity {
 	 * views)
 	 */
 	private void generateView() {
-		TableLayout table = (TableLayout) findViewById(R.id.TableLayoutOutput);
-		// add a new table row for each year of calculation data
-		for (Calculation curCalculation : calculator.getCalculations()) {
-			TableRow newRow = new TableRow(this);
-
-			// Add entries to the row
-			TextView yearView = (TextView) getLayoutInflater().inflate(
-					R.layout.output_text_view, null);
-			yearView.setText("" + df.format(curCalculation.getYear() + 1));
-			yearView.setId(curCalculation.getYear() * 3);
-			newRow.addView(yearView);
-
-			TextView savingsView = (TextView) getLayoutInflater().inflate(
-					R.layout.output_text_view, null);
-			savingsView.setText(""
-					+ df.format(curCalculation.getCumulativeSaving()));
-			savingsView.setId(curCalculation.getYear() * 3 + 1);
-			newRow.addView(savingsView);
-
-			TextView ROIView = (TextView) getLayoutInflater().inflate(
-					R.layout.output_text_view, null);
-			ROIView.setText(""
-					+ df.format(curCalculation.getCumulativeSaving()
-							/ calculator.getEquipment().getCost()));
-			ROIView.setId(curCalculation.getYear() * 3 + 2);
-			newRow.addView(ROIView);
-
-			table.addView(newRow);
-		}
-
+		
+    	TableLayout table = (TableLayout) findViewById(R.id.TableLayoutOutputFinancial);
+    	
+    	//blank row at the top
+    	TableRow blankRow = new TableRow(this);
+    	for(int i = 0; i < 5; i++) {
+    		blankRow.addView(new TextView(this));
+    	}
+    	table.addView(blankRow);
+    	
+    	//Heading (Calculator labels)
+    	TableRow titleRow = new TableRow(this);
+    	
+    	titleRow.addView(new LinearLayout(this)); //Blank view to fill up the first cell
+    	
+    	for(Calculator curCalculation : calculatorList) {
+    		TextView calcHeadingView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
+    		calcHeadingView.setText(curCalculation.getName());
+    		TableRow.LayoutParams params = new TableRow.LayoutParams();
+    		params.span = 2; // set the title to span 2 columns (i.e. savings + roi)
+    		titleRow.addView(calcHeadingView, params);
+    		//titleRow.addView(new TextView(this));
+    	}
+    	
+    	table.addView(titleRow);
+    	
+    	//column names
+    	TableRow columnHeadingRow = new TableRow(this);
+    	
+    	addHeadingView(columnHeadingRow, "Year");
+    	
+    	for(Calculator curCalculation : calculatorList) {
+    		addHeadingView(columnHeadingRow, "Savings ($)");
+    		addHeadingView(columnHeadingRow, "ROI");
+    	}
+    	
+    	table.addView(columnHeadingRow);
+    	
+    	
+    	//data
+    	//get total number of years required to process
+    	int maxYears = 0;
+    	Calculator maxYearsCalculator = null;
+    	for(Calculator curCalculator : calculatorList) {
+    		if(curCalculator.getCalculations().length > maxYears) {
+    			maxYears = curCalculator.getCalculations().length;
+    			maxYearsCalculator = curCalculator;
+    		}
+    	}
+    	
+    	//create a new row for each year
+    	for(int year = 0; year < maxYears; year++) {
+    		TableRow newRow = new TableRow(this);
+    		
+    		addHeadingView(newRow, "" + df.format(maxYearsCalculator.getCalculations()[year].getYear() + 1));
+    		
+    		for(Calculator curCalculator : calculatorList) {
+    			//check that the year exists for this calculator
+    			if(year < curCalculator.getCalculations().length) {
+	    			//savings
+	    			addDataView(newRow, "" + df.format(curCalculator.getCalculations()[year].getCumulativeSaving()));
+	    			//ROI
+	    			addDataView(newRow, "" + df.format(curCalculator.getCalculations()[year].getCumulativeSaving()
+	    									/ curCalculator.getEquipment().getCost()));
+    			}
+    			else {
+    				addDataView(newRow, ""); //blank savings
+    				addDataView(newRow, ""); //blank ROI
+    			}
+    		}
+    		table.addView(newRow);
+    	}
 	}
-
-	/**
-	 * Refers to the preceding Tab
-	 * 
-	 * @param view
-	 */
-	public void viewBackOutput(View view) {
-		TabbedOutputActivity parentOutputTabbedActivity = (TabbedOutputActivity) this.getParent();
-		int targetActivity = TabbedOutputActivity.POWER_GEN_ID;
-		parentOutputTabbedActivity.switchTab(targetActivity);
-	}
-
-	public void viewMoreInfo(View view){
-    	TabbedOutputActivity parentTabbedOutputActivity = (TabbedOutputActivity)this.getParent();
-    	int targetActivity = TabbedOutputActivity.SAVINGS_GRAPH_ID;
-    	parentTabbedOutputActivity.switchTab(targetActivity);
+	
+	private void addHeadingView(TableRow row, String heading) {
+    	TextView newView = (TextView) getLayoutInflater().inflate(
+				R.layout.output_text_view, null);
+    	newView.setText(heading);
+		row.addView(newView);
+    }
+    
+    /**
+     * Add a new TextView contain a string to a row. This is separate from addHeadingView so that a different textview layout can be used if needed
+     * @param row
+     * @param heading
+     */
+    private void addDataView(TableRow row, String value) {
+    	TextView newView = (TextView) getLayoutInflater().inflate(
+				R.layout.output_text_view, null);
+    	newView.setText(value);
+		row.addView(newView);
     }
 		
 }
