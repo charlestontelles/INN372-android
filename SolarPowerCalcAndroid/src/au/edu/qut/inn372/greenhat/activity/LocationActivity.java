@@ -293,6 +293,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		 * Gets the latest location details and shows them
 		 */
 		public void onLocationChanged(android.location.Location location) {
+			Boolean mapViewInitialised;
 			if (locationProviderEnabled) {
 				if (location != null) {
 					// TODO Auto-generated method stub
@@ -307,6 +308,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 				    locationLat.setText(""+lat);
 				    locationLon.setText(""+lon);
 				    
+				    if (mapViewInitialised == false){
 				    MapView mapView = (MapView) findViewById(R.id.mapview);
 				    MapController mapController = mapView.getController();
 				    GeoPoint geoPoint = new GeoPoint((int) (lat* 1E6), (int) (lon * 1E6));
@@ -319,6 +321,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 			        listOfOverlays.clear();
 			        listOfOverlays.add(mapOverlay);  
 				    mapView.invalidate();
+				    mapViewInitialised=true;}
 				    
 					
 					try {
@@ -492,6 +495,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	                    }
 	                    
 	                  //---Add a location marker---
+	                    GeoPoint geoPoint = new GeoPoint((int) (p.getLatitudeE6()* 1E6), (int) (p.getLongitudeE6() * 1E6));
 				        MapOverlay mapOverlay = new MapOverlay(geoPoint);
 				        List<Overlay> listOfOverlays = mapView.getOverlays();
 				        listOfOverlays.clear();
