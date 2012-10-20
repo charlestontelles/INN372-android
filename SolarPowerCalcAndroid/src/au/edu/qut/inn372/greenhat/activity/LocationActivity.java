@@ -50,7 +50,7 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
-public class LocationActivity extends MapActivity implements OnItemSelectedListener, LocationListener {//need to comment LocationListener for emulator
+public class LocationActivity extends MapActivity implements OnItemSelectedListener, LocationListener, InputActivity {//need to comment LocationListener for emulator
 	
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
@@ -186,7 +186,7 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 		/**
 		 * Saves current input data to the calculator bean
 		 */
-		private void saveData() {
+		public void saveData() {
 			Spinner citySpinner = (Spinner)findViewById(R.id.city_spinner);
 			EditText sunlightHours = (EditText)findViewById(R.id.editLocation_Sunlight);
 			EditText roofWidth = (EditText)findViewById(R.id.editLocation_RoofWidth);
