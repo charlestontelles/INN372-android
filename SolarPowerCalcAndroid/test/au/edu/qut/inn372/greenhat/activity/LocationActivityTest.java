@@ -44,10 +44,10 @@ public class LocationActivityTest extends
 		});
 		activity = (LocationActivity) activityMonitor.waitForActivityWithTimeout(TIMEOUT);
 		
-		citySpinner = (Spinner)activity.findViewById(R.id.city_spinner);
-		sunlightHoursEdit = (EditText)activity.findViewById(R.id.editLocation_Sunlight);
-		roofWidthEdit = (EditText)activity.findViewById(R.id.editLocation_RoofWidth);
-		roofHeightEdit = (EditText)activity.findViewById(R.id.editLocation_RoofHeight);
+//		citySpinner = (Spinner)activity.findViewById(R.id.city_spinner);
+//		sunlightHoursEdit = (EditText)activity.findViewById(R.id.editLocation_Sunlight);
+//		roofWidthEdit = (EditText)activity.findViewById(R.id.editLocation_RoofWidth);
+//		roofHeightEdit = (EditText)activity.findViewById(R.id.editLocation_RoofHeight);
 	}
 	
 	@Override

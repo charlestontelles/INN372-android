@@ -38,6 +38,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,7 +51,7 @@ import com.google.android.maps.MapController;
 import com.google.android.maps.MapView;
 import com.google.android.maps.Overlay;
 
-public class LocationActivity extends MapActivity implements OnItemSelectedListener, LocationListener, InputActivity {//need to comment LocationListener for emulator
+public class LocationActivity extends MapActivity implements LocationListener, InputActivity {//need to comment LocationListener for emulator
 	
 		public final static int STATE_NORMAL = 0;
 		public final static int STATE_PAUSED = 1;
@@ -67,8 +68,8 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.activity_location_input);
-	        setupLocations();
-	        setupSpinner();
+	        //setupLocations();
+	        //setupSpinner();
 	        TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 	        calculator = parentTabbedActivity.getCalculator();
 	        
@@ -148,20 +149,20 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 			locations.add(darwin);
 	    }
 	    
-	    /**
-	     * Sets up the location spinner with a list of locations
-	     */
-	    private void setupSpinner() {
-			Spinner citySpinner = (Spinner)findViewById(R.id.city_spinner);
-
-			ArrayList<String> spinnerArray = new ArrayList<String>();
-			for(Location curLocation : locations) {
-				spinnerArray.add(curLocation.getCity());
-			}
-			ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
-			citySpinner.setAdapter(spinnerArrayAdapter);
-			citySpinner.setOnItemSelectedListener(this); 
-	    }
+//	    /**
+//	     * Sets up the location spinner with a list of locations
+//	     */
+//	    private void setupSpinner() {
+//			Spinner citySpinner = (Spinner)findViewById(R.id.city_spinner);
+//
+//			ArrayList<String> spinnerArray = new ArrayList<String>();
+//			for(Location curLocation : locations) {
+//				spinnerArray.add(curLocation.getCity());
+//			}
+//			ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, spinnerArray);
+//			citySpinner.setAdapter(spinnerArrayAdapter);
+//			citySpinner.setOnItemSelectedListener(this); 
+//	    }
 	    
 	    /**
 	     * Refers to the succeding tab
@@ -187,30 +188,30 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 		 * Saves current input data to the calculator bean
 		 */
 		public void saveData() {
-			Spinner citySpinner = (Spinner)findViewById(R.id.city_spinner);
-			EditText sunlightHours = (EditText)findViewById(R.id.editLocation_Sunlight);
-			EditText roofWidth = (EditText)findViewById(R.id.editLocation_RoofWidth);
-			EditText roofHeight = (EditText)findViewById(R.id.editLocation_RoofHeight);
+			//Spinner citySpinner = (Spinner)findViewById(R.id.city_spinner);
+			//EditText sunlightHours = (EditText)findViewById(R.id.editLocation_Sunlight);
+			//EditText roofWidth = (EditText)findViewById(R.id.editLocation_RoofWidth);
+			//EditText roofHeight = (EditText)findViewById(R.id.editLocation_RoofHeight);
 			Location location = calculator.getCustomer().getLocation();
-			location.setCity((String)citySpinner.getSelectedItem());
-			location.setSunLightHours(new Double(sunlightHours.getText().toString()));
-			location.getRoof().setWidth(new Double(roofWidth.getText().toString()));
-			location.getRoof().setHeight(new Double(roofHeight.getText().toString()));
+			//location.setCity((String)citySpinner.getSelectedItem());
+			location.setSunLightHours(new Double("4.5"));
+			//location.getRoof().setWidth(new Double(roofWidth.getText().toString()));
+			//location.getRoof().setHeight(new Double(roofHeight.getText().toString()));
 		}
 		
 		/**
 		 * Populates input fields with data in the calculator bean
 		 */
 		private void loadData() {
-			Spinner citySpinner = (Spinner)findViewById(R.id.city_spinner);
-			EditText sunlightHours = (EditText)findViewById(R.id.editLocation_Sunlight);
-			EditText roofWidth = (EditText)findViewById(R.id.editLocation_RoofWidth);
-			EditText roofHeight = (EditText)findViewById(R.id.editLocation_RoofHeight);
+			//Spinner citySpinner = (Spinner)findViewById(R.id.city_spinner);
+			//EditText sunlightHours = (EditText)findViewById(R.id.editLocation_Sunlight);
+			//EditText roofWidth = (EditText)findViewById(R.id.editLocation_RoofWidth);
+			//EditText roofHeight = (EditText)findViewById(R.id.editLocation_RoofHeight);
 			Location location = calculator.getCustomer().getLocation();
-			citySpinner.setSelection(getCityPosition(location.getCity()));
-			sunlightHours.setText(new Double(location.getSunLightHours()).toString());
-			roofWidth.setText(new Double(location.getRoof().getWidth()).toString());
-			roofHeight.setText(new Double(location.getRoof().getHeight()).toString());
+			//citySpinner.setSelection(getCityPosition(location.getCity()));
+			//sunlightHours.setText(new Double(location.getSunLightHours()).toString());
+			//roofWidth.setText(new Double(location.getRoof().getWidth()).toString());
+			//roofHeight.setText(new Double(location.getRoof().getHeight()).toString());
 		}
 		
 		@Override
@@ -245,14 +246,14 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 			return state;
 		}
 
-		/**
-		 * Updates the sunlight hours when a location is selected
-		 */
-		public void onItemSelected(AdapterView<?> parent, View view, int pos,
-				long id) {
-			EditText sunlightHours = (EditText)findViewById(R.id.editLocation_Sunlight);
-			sunlightHours.setText(new Double(getSunlightHours(pos)).toString());
-		}
+//		/**
+//		 * Updates the sunlight hours when a location is selected
+//		 */
+//		public void onItemSelected(AdapterView<?> parent, View view, int pos,
+//				long id) {
+//			EditText sunlightHours = (EditText)findViewById(R.id.editLocation_Sunlight);
+//			sunlightHours.setText(new Double(getSunlightHours(pos)).toString());
+//		}
 
 		/**
 		 * Looks up the sunlight hours corresponding to a city
@@ -299,7 +300,8 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 					double lon = (double) location.getLongitude();
 					TextView locationLat = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Latitude);
 					TextView locationLon = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Longitude);
-					TextView locationShow = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Zip);
+					TextView locationShow = (TextView)findViewById(R.id.textLocation_Currentlocation_Zip);
+					TextView locationStreet = (TextView)findViewById(R.id.textLocation_Currentlocation_Street); 
 					
 				    
 				    locationLat.setText(""+lat);
@@ -320,12 +322,13 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 				    
 					
 					try {
-				      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 10); //<10>
+				      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1); //<10>
 				      
 				      Address address = addresses.get(0);
 				      
 				      //locationShow.setText(address.getAddressLine(1));
 				      locationShow.setText(address.getPostalCode());
+				      locationStreet.setText(address.getAddressLine(0),TextView.BufferType.EDITABLE);
 				      
 				    } catch (IOException e) {
 				    	e.getStackTrace();
@@ -466,21 +469,45 @@ public class LocationActivity extends MapActivity implements OnItemSelectedListe
 		  	@Override
 	        public boolean onTouchEvent(MotionEvent event, MapView mapView) 
 	        {   
-		  		
-		  		
-
 	            //---when user lifts his finger---
 	            if (event.getAction() == 1) {                
 	                GeoPoint p = mapView.getProjection().fromPixels(
 	                    (int) event.getX(),
 	                    (int) event.getY());
-	                    Toast.makeText(getBaseContext(), 
-	                        p.getLatitudeE6() / 1E6 + "," + 
-	                        p.getLongitudeE6() /1E6 , 
-	                        Toast.LENGTH_SHORT).show();
-	            }                            
-	            return false;
-	        }  
+	 
+	                Geocoder geoCoder = new Geocoder(
+	                    getBaseContext(), Locale.getDefault());
+	                try {
+	                    List<Address> addresses = geoCoder.getFromLocation(
+	                        p.getLatitudeE6()  / 1E6, 
+	                        p.getLongitudeE6() / 1E6, 1);
+	 
+	                    String add = "";
+	                    if (addresses.size() > 0) 
+	                    {
+	                        for (int i=0; i<addresses.get(0).getMaxAddressLineIndex(); 
+	                             i++)
+	                        { System.out.println(""+i+" = "+addresses.get(0).getAddressLine(i));
+	                           add += addresses.get(0).getAddressLine(i) + "\n";}
+	                    }
+	                    
+	                  //---Add a location marker---
+				        MapOverlay mapOverlay = new MapOverlay(geoPoint);
+				        List<Overlay> listOfOverlays = mapView.getOverlays();
+				        listOfOverlays.clear();
+				        listOfOverlays.add(mapOverlay);  
+					    mapView.invalidate();
+	 
+	                    Toast.makeText(getBaseContext(), add, Toast.LENGTH_SHORT).show();
+	                }
+	                catch (IOException e) {                
+	                    e.printStackTrace();
+	                }   
+	                return true;
+	            }
+	            else                
+	                return false;
+	        }     
 	    } 
 		
 }
