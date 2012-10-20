@@ -53,6 +53,7 @@ public class TabbedActivity extends TabActivity {
         switch(type){
         	case 0: //new calculation
         		calcMediator = new CalculatorMediator();
+        		//TODO Add user profile
         		break;
         	case 1: //load a calculation
         		calcMediator = new CalculatorMediator((Calculator)getIntent().getSerializableExtra("Calculator"));

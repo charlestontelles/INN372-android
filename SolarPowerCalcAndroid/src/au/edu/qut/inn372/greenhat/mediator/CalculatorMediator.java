@@ -11,7 +11,7 @@ import au.edu.qut.inn372.greenhat.bean.Calculation;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
-import au.edu.qut.inn372.greenhat.ws.CalculatorSoapClient;
+import au.edu.qut.inn372.greenhat.ws.SoapClient;
 /**
  * 
  * @author Charleston Telles
@@ -21,7 +21,7 @@ public class CalculatorMediator implements Serializable{
 
 	private static final long serialVersionUID = 8900672707083642377L;
 
-	private CalculatorSoapClient soapClient = new CalculatorSoapClient();
+	private SoapClient soapClient = new SoapClient();
 	private Calculator calculator;
 	
 	/**
