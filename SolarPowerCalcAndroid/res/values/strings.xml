@@ -7,6 +7,8 @@
     <string name="button_navigation_back">&lt;&lt; Back</string>
     <string name="button_navigation_logout">&lt;&lt; Logout</string>
     <string name="button_navigation_back_home">Back to Home</string>
+    <string name="tab_left">&lt;</string>
+    <string name="tab_right">&gt;</string>
     
     <!-- Activity Titles -->
     <string name="title_activity_login">Solar Power Calc</string>

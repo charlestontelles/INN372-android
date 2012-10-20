@@ -1,5 +1,9 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -60,9 +64,12 @@ public class BasicInputActivity extends Activity implements InputActivity {
 		saveData();
 
 		parentTabbedActivity.calcEnergyProduction();
+		
+		List<Calculator> calculatorResultList = new ArrayList<Calculator>();
+		calculatorResultList.add(parentTabbedActivity.getCalculator());
 
 		Intent intent = new Intent(this, TabbedOutputActivity.class);
-		intent.putExtra("Calculator", parentTabbedActivity.getCalculator());
+		intent.putExtra("Calculators", (Serializable)calculatorResultList);
 
 		startActivity(intent);
 

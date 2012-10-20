@@ -2,6 +2,8 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import java.io.FileOutputStream;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
@@ -37,13 +39,18 @@ public class TabbedOutputActivity extends TabActivity {
 	public static final int FINANCIAL_ID = 2;
 	public static final int SAVINGS_GRAPH_ID = 3;
 	public static final int COST_GRAPH_ID = 4;
+	public static final int MAX_TAB = COST_GRAPH_ID;
+	public static final int MIN_TAB = SUMMARY_ID;
+	
+	private int currentTab;
 	DecimalFormat df = new DecimalFormat("#.##");
 	// Constant for identifying the dialog
 	private static final int DIALOG_ALERT = 10;
 	private static final int DIALOG_FAILED = 11;
 	private static final int DIALOG_GENERATE_PDF = 12;
 	
-	private CalculatorMediator calcMediator;
+	private CalculatorMediator calcMediator; //only needed for saving when displaying a single calculator
+	private List<Calculator> calculatorList;
 	private Calculator calculator;
 	
 	/**
@@ -54,8 +61,14 @@ public class TabbedOutputActivity extends TabActivity {
         setContentView(R.layout.activity_tabbed_output);
         
         calcMediator = new CalculatorMediator();
-        calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
-        calculator = calcMediator.getCalculator();
+        
+        calculatorList = (ArrayList<Calculator>)getIntent().getSerializableExtra("Calculators");
+        System.out.println(calculatorList.size());
+        
+        calculator = calculatorList.get(0); //TODO Remove
+        
+        //calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
+        //calculator = calcMediator.getCalculator();
  
         tabHost = getTabHost();
         
@@ -64,6 +77,8 @@ public class TabbedOutputActivity extends TabActivity {
         addTab("Financial", this, FinancialOutputActivity.class);
         addTab("Savings Chart", this, SavingsGraphActivity.class);
         addTab("Cost Chart", this, CostGraphActivity.class);
+        
+        currentTab = MIN_TAB;
     }
 	
 	/**
@@ -83,6 +98,9 @@ public class TabbedOutputActivity extends TabActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_tabbed_output_menu, menu);
+        if(calculatorList.size() > 1) {
+        	menu.removeItem(R.id.menu_tabbed_output_save); //can't save if comparing
+        }
         return true;
     }
     
@@ -104,7 +122,6 @@ public class TabbedOutputActivity extends TabActivity {
     }
     
     private void saveCalculations() {
-		
 		String result = calcMediator.saveCalculation();
 		if(result.equals("ok")) {
 			showDialog(DIALOG_ALERT);
@@ -241,10 +258,31 @@ public class TabbedOutputActivity extends TabActivity {
 	}
 	
 	/**
+	 * Returns the list of calculators being compared
+	 * @return
+	 */
+	public List<Calculator> getCalculators() {
+		return calculatorList;
+	}
+	
+	/**
 	 * Switches to the specified tab
 	 * @param tabID ID of the tab to be switched to - ID's are public fields for this class
 	 */
 	public void switchTab(int tabID) {
 		tabHost.setCurrentTab(tabID);
+		currentTab = tabID;
+	}
+	
+	public void clickTabLeft(View view) {
+		if(currentTab > MIN_TAB) {
+			switchTab(currentTab-1);
+		}
+	}
+	
+	public void clickTabRight(View view) {
+		if(currentTab < MAX_TAB) {
+			switchTab(currentTab+1);
+		}
 	}
 }

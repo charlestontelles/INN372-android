@@ -1,5 +1,6 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.mediator.AllCalculationsMediator;
+import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 
 
 public class UserHomepageActivity extends Activity {
@@ -206,16 +208,9 @@ public class UserHomepageActivity extends Activity {
     		showDialog(TOO_MANY_CALCULATORS_SELECTED);
     		return;
     	}
+    	//TODO Add a check to only accept calculators marked as "Completed"
     	
-    	//startActivity(2);
-    	//TODO Compare calculations activity called here
-    	/*
-    	Intent intent = new Intent(this, TabbedActivity.class);
-		intent.putExtra("UserProfile", userProfile);
-		intent.putExtra("Type", type);
-		
-    	startActivity(intent);
-    	*/
+    	startActivity(2);
     }
     
     private void startActivity(int type) {
@@ -224,9 +219,17 @@ public class UserHomepageActivity extends Activity {
     	Intent intent;
     	switch(type) {
     	case 2: //compare calculations
-    		intent = null;
-    		//TODO
-    		//Intent intent = new Intent(this, CompareOutputActivity.class);
+    		intent = new Intent(this, TabbedOutputActivity.class);
+    		List<Calculator> calculatorResultList = new ArrayList<Calculator>();
+    		for(Calculator curCalculator : getSelectedCalculation()) {
+    			//TODO Remove this when functionality is implemented correctly
+    			//re-perform calculations until ws call and unmarshalling is functional for completed calculation retrieval
+    			CalculatorMediator calcMediator = new CalculatorMediator(curCalculator);
+    			calcMediator.calcEnergyProduction();
+    			curCalculator = calcMediator.getCalculator();
+    			calculatorResultList.add(curCalculator);
+    		}
+    		intent.putExtra("Calculators", (Serializable)calculatorResultList);
     		break;
     	case 1: //edit calculation
     		intent = new Intent(this, TabbedActivity.class);
