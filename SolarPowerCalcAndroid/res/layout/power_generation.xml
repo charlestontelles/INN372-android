@@ -3,231 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TableLayout
-        android:id="@+id/TableLayoutOutput"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:shrinkColumns="*"
-        android:stretchColumns="*" >
+    <HorizontalScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
 
-        <TableRow
-            android:id="@+id/tableRowSolarPowerOutput"
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/textView1SolarPowerGeneration"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_span="4"
                 android:gravity="center"
                 android:text="Average Solar Power Generation"
                 android:textSize="20dp"
                 android:textStyle="bold" >
-
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewDaily"
-                android:gravity="left"
-                android:text="Daily"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
             </TextView>
 
-            <TextView
-                android:id="@+id/TextViewDailyField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewKwh1"
-                android:gravity="left"
-                android:text="KWh"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewAnnual"
-                android:gravity="left"
-                android:text="Annual"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewAnnualField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewKwh2"
-                android:gravity="left"
-                android:text="KWh"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewQuaterly"
-                android:gravity="left"
-                android:text="Quaterly"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewQuaterlyField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewKwh3"
-                android:gravity="left"
-                android:text="KWh"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewNet"
-                android:gravity="left"
-                android:text="Daily Net"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewNetField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewKwh4"
-                android:gravity="left"
-                android:text="KWh"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewQuaterlyNet"
-                android:gravity="left"
-                android:text="Quaterly Net"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewQuaterlyNetField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewKwh5"
-                android:gravity="left"
-                android:text="KWh"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewAnnualNet"
-                android:gravity="left"
-                android:text="Annual Net"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewAnnualNetField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewKwh6"
-                android:gravity="left"
-                android:text="KWh"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-            </TextView>
-        </TableRow>
-        
-        <TableRow>
-            
-            <Button
-	        android:id="@+id/buttonPower_Back"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:text="@string/outputBack_button_navigation_back" 
-	        android:onClick="viewBackOutput"/>
-            
-            <Button
-	        android:id="@+id/buttonPower_Next"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:text="@string/output_button_navigation_next" 
-	        android:onClick="viewMoreInfo"/>
-        </TableRow>
-    </TableLayout>
+            <TableLayout
+                android:id="@+id/TableLayoutOutputPowerGen"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:stretchColumns="*" >
+            </TableLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
 
 </ScrollView>

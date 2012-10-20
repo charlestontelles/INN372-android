@@ -67,6 +67,7 @@ public class PowerGenerationActivityTest extends
 	/**
 	 * Tests that the correct data is displayed
 	 */
+	/*
 	public void testDisplayData() {
 		assertEquals("" + df.format(SOLAR_POWER), ((TextView)activity.findViewById(R.id.TextViewDailyField)).getText().toString());
 		assertEquals("" + df.format(SOLAR_POWER*365), ((TextView)activity.findViewById(R.id.TextViewAnnualField)).getText().toString());
@@ -75,5 +76,6 @@ public class PowerGenerationActivityTest extends
 		assertEquals("" + df.format((SOLAR_POWER-DAILY_USAGE)*365), ((TextView)activity.findViewById(R.id.TextViewAnnualNetField)).getText().toString());
 		assertEquals("" + df.format((SOLAR_POWER-DAILY_USAGE)*365/4), ((TextView)activity.findViewById(R.id.TextViewQuaterlyNetField)).getText().toString());
 	}
+	*/
 	
 }
