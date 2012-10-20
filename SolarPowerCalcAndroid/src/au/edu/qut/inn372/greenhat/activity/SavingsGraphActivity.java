@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.achartengine.ChartFactory;
@@ -26,14 +27,15 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 public class SavingsGraphActivity extends Activity {
 	
 	private TabbedOutputActivity parentTabbedActivity;
-	private Calculator calculator;
+	private List<Calculator> calculatorList;
+	private static final int COLOR_LIST[] = {Color.BLUE, Color.GREEN, Color.BLACK, Color.RED, Color.CYAN, Color.YELLOW, Color.MAGENTA, Color.rgb(224, 115, 27)};
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_savings_graph);
 		parentTabbedActivity = (TabbedOutputActivity) getParent();
-		calculator = parentTabbedActivity.getCalculator();
+		calculatorList = parentTabbedActivity.getCalculators();
 		
 		GraphicalView savingsChart = ChartFactory.getLineChartView(this, getSavingsDataset(), getSavingsRenderer());
 		setContentView(savingsChart);
@@ -41,37 +43,46 @@ public class SavingsGraphActivity extends Activity {
 	
 	private XYMultipleSeriesDataset getSavingsDataset() {
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-		Calculation[] calculations = calculator.getCalculations();
-		XYSeries savings = new XYSeries("Cumulative Savings");
-		for(Calculation curCalculation : calculations) {
-			savings.add(curCalculation.getYear(), curCalculation.getCumulativeSaving());
+		for(Calculator curCalculator : calculatorList) {
+			XYSeries savings = new XYSeries("Cumulative Savings - " + curCalculator.getName());
+			Calculation[] calculations = curCalculator.getCalculations();
+			for(Calculation curCalculation : calculations) {
+				savings.add(curCalculation.getYear(), curCalculation.getCumulativeSaving());
+			}
+			dataset.addSeries(savings);
+			
+			//payback period
+			XYSeries paybackPeriod = new XYSeries("Initial Investment - " + curCalculator.getName());
+			//start point
+			double systemCost = curCalculator.getEquipment().getCost();
+			paybackPeriod.add(calculations[0].getYear(), systemCost);
+			paybackPeriod.add(calculations[calculations.length-1].getYear(), systemCost);
+			dataset.addSeries(paybackPeriod);
 		}
-		dataset.addSeries(savings);
 		
-		//payback period
-		XYSeries paybackPeriod = new XYSeries("Initial Investment");
-		//start point
-		double systemCost = calculator.getEquipment().getCost();
-		paybackPeriod.add(calculations[0].getYear(), systemCost);
-		paybackPeriod.add(calculations[calculations.length-1].getYear(), systemCost);
-		dataset.addSeries(paybackPeriod);
 		return dataset;
 	}
 	
 	private XYMultipleSeriesRenderer getSavingsRenderer() {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		XYSeriesRenderer savings = new XYSeriesRenderer();
-		savings.setColor(Color.BLUE);
-		savings.setPointStyle(PointStyle.POINT);
-		savings.setLineWidth(3.0f);
-		renderer.addSeriesRenderer(savings);
-		
-		XYSeriesRenderer paybackPeriod = new XYSeriesRenderer();
-		paybackPeriod.setColor(Color.GREEN);
-		paybackPeriod.setPointStyle(PointStyle.POINT);
-		paybackPeriod.setLineWidth(3.0f);
-		renderer.addSeriesRenderer(paybackPeriod);
-		
+		int renderCount = 0; //which color to use for the current render
+		for(Calculator curCalculator : calculatorList) {
+			XYSeriesRenderer savings = new XYSeriesRenderer();
+			savings.setColor(COLOR_LIST[renderCount]);
+			savings.setPointStyle(PointStyle.POINT);
+			savings.setLineWidth(3.0f);
+			renderer.addSeriesRenderer(savings);
+			
+			renderCount = incrementRenderCount(renderCount);
+			
+			XYSeriesRenderer paybackPeriod = new XYSeriesRenderer();
+			paybackPeriod.setColor(COLOR_LIST[renderCount]);
+			paybackPeriod.setPointStyle(PointStyle.POINT);
+			paybackPeriod.setLineWidth(3.0f);
+			renderer.addSeriesRenderer(paybackPeriod);
+			
+			renderCount = incrementRenderCount(renderCount);
+		}
 		renderer.setAxesColor(Color.BLACK);
 		renderer.setLabelsColor(Color.BLACK);
 		renderer.setXLabelsColor(Color.BLACK);
@@ -83,5 +94,15 @@ public class SavingsGraphActivity extends Activity {
 		renderer.setPanEnabled(false); //don't think this is working as expected
 		renderer.setZoomEnabled(false); //don't think this is working as expected
 		return renderer;
+	}
+	
+	private int incrementRenderCount(int curRenderCount) {
+		if (curRenderCount == COLOR_LIST.length - 1) {
+			curRenderCount = 0;
+		}
+		else {
+			curRenderCount += 1;
+		}
+		return curRenderCount;
 	}
 }
