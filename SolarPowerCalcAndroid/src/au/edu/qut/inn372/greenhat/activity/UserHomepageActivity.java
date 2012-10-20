@@ -204,10 +204,6 @@ public class UserHomepageActivity extends Activity {
     		showDialog(TOO_FEW_CALCULATORS_SELECTED);
     		return;
     	}
-    	else if (selectedCalculations.size()>2) {
-    		showDialog(TOO_MANY_CALCULATORS_SELECTED);
-    		return;
-    	}
     	//TODO Add a check to only accept calculators marked as "Completed"
     	
     	startActivity(2);

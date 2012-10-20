@@ -3,149 +3,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    
-    <TableLayout
-        android:id="@+id/TableLayoutOutput"
+    <HorizontalScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+        
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:shrinkColumns="*"
-        android:stretchColumns="*" >
-
-        <TableRow
-            android:id="@+id/tableRowGeneralOutput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal" >
-
+        android:orientation="vertical">
+        
             <TextView
-                android:id="@+id/textViewGeneralOutput"
+                android:id="@+id/textView1Summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_span="4"
                 android:gravity="center"
-                android:text="General System Description"
+                android:text="System Summary"
                 android:textSize="20dp"
                 android:textStyle="bold" >
 
             </TextView>
-        </TableRow>
 
-        <TableRow>
+        <TableLayout
+            android:id="@+id/TableLayoutOutputSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:stretchColumns="*" >
+        </TableLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
 
-            <TextView
-                android:id="@+id/TextViewSystemSize"
-                android:gravity="left"
-                android:text="System Size"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewSystemSizeField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewSystemSizeUnits"
-                android:gravity="left"
-                android:text="kW"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewSystemCost"
-                android:gravity="left"
-                android:text="System Cost"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewSystemCostField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewSystemCostUnits"
-                android:gravity="left"
-                android:text="  "
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/TextViewPaybackPeriod"
-                android:gravity="left"
-                android:text="Payback Period"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewPaybackPeriodField"
-                android:gravity="right"
-                android:text=""
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif" >
-
-            </TextView>
-
-            <TextView
-                android:id="@+id/TextViewPaybackPeriodUnits"
-                android:gravity="left"
-                android:text="years"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                android:typeface="serif"
-                android:width="1dp" >
-
-            </TextView>
-        </TableRow>
-        
-        <TableRow>
-            
-            
-            
-            <Button
-	        android:id="@+id/buttonSummary_Next"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:text="@string/output_button_navigation_next" 
-	        android:onClick="viewMoreInfo"/>
-        </TableRow>
-        
-    </TableLayout>
-
- 
-    
 </ScrollView>
-
