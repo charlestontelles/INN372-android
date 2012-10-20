@@ -6,14 +6,14 @@ import org.ksoap2.serialization.SoapObject;
 
 import au.edu.qut.inn372.greenhat.bean.AndroidAbstractBean;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
-import au.edu.qut.inn372.greenhat.ws.CalculatorSoapClient;
+import au.edu.qut.inn372.greenhat.ws.SoapClient;
 
 
 public class UserProfileMediator implements Serializable{
 
 	private static final long serialVersionUID = 8900672707083642377L;
 
-	private CalculatorSoapClient soapClient = new CalculatorSoapClient();
+	private SoapClient soapClient = new SoapClient();
 	private UserProfile userProfile;
 	
 	/**

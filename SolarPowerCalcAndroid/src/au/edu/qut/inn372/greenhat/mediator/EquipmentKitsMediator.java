@@ -6,12 +6,12 @@ import org.ksoap2.serialization.SoapObject;
 
 import au.edu.qut.inn372.greenhat.bean.AndroidAbstractBean;
 import au.edu.qut.inn372.greenhat.bean.Equipment;
-import au.edu.qut.inn372.greenhat.ws.CalculatorSoapClient;
+import au.edu.qut.inn372.greenhat.ws.SoapClient;
 /**
  *
  */
 public class EquipmentKitsMediator {
-	private CalculatorSoapClient soapClient = new CalculatorSoapClient();
+	private SoapClient soapClient = new SoapClient();
 	private ArrayList<Equipment> equipmentKits;
 	
 	/**

@@ -11,7 +11,7 @@ import org.ksoap2.transport.HttpTransportSE;
  * @author Charleston Telles
  *
  */
-public class CalculatorSoapClient implements Serializable {
+public class SoapClient implements Serializable {
 	/**
 	 * 
 	 */
@@ -29,7 +29,7 @@ public class CalculatorSoapClient implements Serializable {
     private HttpTransportSE androidHttpTransport;
     private SoapObject responseObject;
     
-   public CalculatorSoapClient(){
+   public SoapClient(){
 	   envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
    	   envelope.dotNet = false;
    	   androidHttpTransport = new HttpTransportSE(URL);
