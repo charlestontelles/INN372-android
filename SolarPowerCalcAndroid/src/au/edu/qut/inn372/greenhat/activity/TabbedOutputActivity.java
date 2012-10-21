@@ -92,7 +92,9 @@ public class TabbedOutputActivity extends TabActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_tabbed_output_menu, menu);
         if(calculatorList.size() > 1) {
-        	menu.removeItem(R.id.menu_tabbed_output_save); //can't save if comparing
+        	//can't save if comparing two calculators
+        	menu.removeItem(R.id.menu_tabbed_output_save);
+        	menu.removeItem(R.id.menu_tabbed_output_save_template);
         }
         return true;
     }
@@ -100,11 +102,20 @@ public class TabbedOutputActivity extends TabActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
     	switch (item.getItemId()) {
-        	case R.id.menu_tabbed_save:
-        		saveCalculations();
-        		return true;
         	case R.id.menu_tabbed_output_save:
         		saveCalculations();
+        		return true;
+        	case R.id.menu_tabbed_output_save_template:
+        		String oldName = calcMediator.getCalculator().getName();
+        		String oldKey = calcMediator.getCalculator().getKey();
+        		int oldStatus = calcMediator.getCalculator().getStatus();
+        		calcMediator.getCalculator().setName(null);
+        		calcMediator.getCalculator().setKey(null);
+        		calcMediator.getCalculator().setStatus(2);//template status
+        		saveCalculations();
+        		calcMediator.getCalculator().setName(oldName);
+        		calcMediator.getCalculator().setKey(oldKey);
+        		calcMediator.getCalculator().setStatus(oldStatus);
         		return true;
         	case R.id.menu_tabbed_output_generate_pdf:
         		generatePDF();

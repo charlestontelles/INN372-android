@@ -194,7 +194,9 @@
 	<string name="menu_input_export">Export</string>
 	<string name="menu_input_print">Print</string>
 	<string name="menu_tabbed_save">Save Calculation Inputs</string>
+	<string name="menu_tabbed_save_template">Save as Template</string>
 	<string name="menu_tabbed_output_save">Save Calculation</string>
+	<string name="menu_tabbed_output_save_template">Save as Template</string>
 	<string name="menu_tabbed_output_generate_pdf">Generate Pdf</string>
 	
 	

@@ -1,6 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/menu_tabbed_save"
         android:title="@string/menu_tabbed_save"
-        android:orderInCategory="100"
+        android:showAsAction="never" />
+    <item android:id="@+id/menu_tabbed_save_template"
+        android:title="@string/menu_tabbed_save_template"
         android:showAsAction="never" />
 </menu>

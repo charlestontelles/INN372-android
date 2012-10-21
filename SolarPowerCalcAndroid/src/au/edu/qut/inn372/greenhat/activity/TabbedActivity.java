@@ -62,7 +62,14 @@ public class TabbedActivity extends TabActivity {
         		calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
         		//If the calculation is complete, go to the output screen and calculate the result
         		if(calcMediator.getCalculator().getStatus() == 1) {
+        			//if it is a complete calculation, go straight to results
         			calculate();
+        		}
+        		if(calcMediator.getCalculator().getStatus() == 2) {
+        			//if it is a template, delete the key so when saving it will save a new calculation
+        			calcMediator.getCalculator().setKey(null);
+        			calcMediator.getCalculator().setName(null);
+        			calcMediator.getCalculator().setStatus(0);
         		}
         		break;
         	case 0: //new calculation
@@ -136,6 +143,18 @@ public class TabbedActivity extends TabActivity {
     	switch (item.getItemId()) {
         	case R.id.menu_tabbed_save:
         		saveCalculation();
+        		return true;
+        	case R.id.menu_tabbed_save_template:
+        		String oldName = calcMediator.getCalculator().getName();
+        		String oldKey = calcMediator.getCalculator().getKey();
+        		int oldStatus = calcMediator.getCalculator().getStatus();
+        		calcMediator.getCalculator().setName(null);
+        		calcMediator.getCalculator().setKey(null);
+        		calcMediator.getCalculator().setStatus(2);//template status
+        		saveCalculation();
+        		calcMediator.getCalculator().setName(oldName);
+        		calcMediator.getCalculator().setKey(oldKey);
+        		calcMediator.getCalculator().setStatus(oldStatus);
         		return true;
         	default:
         		return super.onOptionsItemSelected(item);
