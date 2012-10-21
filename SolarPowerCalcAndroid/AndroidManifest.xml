@@ -26,7 +26,8 @@
 
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,89 +36,103 @@
         </activity>
         <activity
             android:name=".BasicInputActivity"
-            android:label="@string/title_activity_basic_input" >
+            android:label="@string/title_activity_basic_input" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity" />
         </activity>
         <activity
             android:name=".PowerGeneration"
-            android:label="@string/title_power_generation" >
+            android:label="@string/title_power_generation" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.BasicInputActivity" />
         </activity>
         <activity
             android:name=".LocationActivity"
-            android:label="@string/title_activity_location" >
+            android:label="@string/title_activity_location" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity" />
         </activity>
         <activity
             android:name=".EquipmentActivity"
-            android:label="@string/title_activity_equipment" >
+            android:label="@string/title_activity_equipment" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.LocationActivity" />
         </activity>
         <activity
             android:name=".RoofActivity"
-            android:label="@string/title_activity_roof" >
+            android:label="@string/title_activity_roof" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.EquipmentActivity" />
         </activity>
         <activity
             android:name=".CustomerUsageActivity"
-            android:label="@string/title_activity_customerusage" >
+            android:label="@string/title_activity_customerusage" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.RoofActivity" />
         </activity>
         <activity
             android:name=".TabbedActivity"
-            android:label="@string/title_activity_tabbed" >
+            android:label="@string/title_activity_tabbed" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.LoginActivity" />
         </activity>
         <activity
             android:name=".TabbedOutputActivity"
-            android:label="@string/title_activity_tabbed_output" >
+            android:label="@string/title_activity_tabbed_output" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
         </activity>
         <activity
             android:name=".OutputSummaryActivity"
-            android:label="@string/title_activity_output_summary" >
+            android:label="@string/title_activity_output_summary" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
         </activity>
         <activity
             android:name=".FinancialOutputActivity"
-            android:label="@string/title_activity_output_financial" >
+            android:label="@string/title_activity_output_financial" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
         </activity>
         <activity
             android:name=".RegistrationActivity"
-            android:label="@string/title_activity_registration" >
+            android:label="@string/title_activity_registration" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
         </activity>
         <activity
             android:name=".UserHomepageActivity"
-            android:label="@string/title_activity_userhomepage" >
+            android:label="@string/title_activity_userhomepage" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
         </activity>
         <activity
             android:name=".SavingsGraphActivity"
-            android:label="@string/title_activity_savings_graph" >
+            android:label="@string/title_activity_savings_graph" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />
         </activity>
         <activity
             android:name=".CostGraphActivity"
-            android:label="@string/title_activity_cost_graph" >
+            android:label="@string/title_activity_cost_graph" 
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="au.edu.qut.inn372.greenhat.activity.TabbedActivity" />

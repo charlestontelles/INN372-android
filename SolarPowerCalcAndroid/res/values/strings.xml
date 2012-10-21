@@ -175,10 +175,10 @@
 	<!--  User Homepage -->
 	<string name="userhomepage_title">Home</string>
 	<string name="userhomepage_welcome">Welcome </string>
-	<string name="userhomepage_button_new">New Calculation</string>
-	<string name="userhomepage_button_edit">Load Calculation</string>
-	<string name="userhomepage_button_delete">Delete Calculation</string>
-	<string name="userhomepage_button_compare">Compare Calculations</string>
+	<string name="userhomepage_button_new">New</string>
+	<string name="userhomepage_button_edit">Load</string>
+	<string name="userhomepage_button_delete">Delete</string>
+	<string name="userhomepage_button_compare">Compare</string>
 	<string name="userhomepage_button_template">Template</string>
 	<string name="userhomepage_tablehead_checkbox"> </string>
 	<string name="userhomepage_tablehead_name">Name</string>

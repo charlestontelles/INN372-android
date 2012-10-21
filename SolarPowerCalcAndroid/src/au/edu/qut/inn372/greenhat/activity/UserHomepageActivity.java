@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -58,8 +59,8 @@ public class UserHomepageActivity extends Activity {
 	public void onResume() {
 		super.onResume();
 		//adds the user name to the welcome message
-		TextView welcomeUserName = (TextView)findViewById(R.id.textUserHomepage_WelcomeName);
-		welcomeUserName.setText(new String(userProfile.getName()).toString());
+		TextView welcomeUserName = (TextView)findViewById(R.id.textUserHomepage_Welcome);
+		welcomeUserName.setText("Welcome " + userProfile.getName().toString());
 		
 		//TODO Loading dialog
 		//retrieve calculation list
