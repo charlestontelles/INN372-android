@@ -53,20 +53,13 @@ public class FinancialOutputActivity extends Activity {
 		
     	TableLayout table = (TableLayout) findViewById(R.id.TableLayoutOutputFinancial);
     	
-    	//blank row at the top
-    	TableRow blankRow = new TableRow(this);
-    	for(int i = 0; i < 5; i++) {
-    		blankRow.addView(new TextView(this));
-    	}
-    	table.addView(blankRow);
-    	
     	//Heading (Calculator labels)
     	TableRow titleRow = new TableRow(this);
     	
     	titleRow.addView(new LinearLayout(this)); //Blank view to fill up the first cell
     	
     	for(Calculator curCalculation : calculatorList) {
-    		TextView calcHeadingView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
+    		TextView calcHeadingView = (TextView) getLayoutInflater().inflate(R.layout.output_text_heading_view, null);
     		calcHeadingView.setText(curCalculation.getName());
     		TableRow.LayoutParams params = new TableRow.LayoutParams();
     		params.span = 2; // set the title to span 2 columns (i.e. savings + roi)
@@ -126,7 +119,7 @@ public class FinancialOutputActivity extends Activity {
 	
 	private void addHeadingView(TableRow row, String heading) {
     	TextView newView = (TextView) getLayoutInflater().inflate(
-				R.layout.output_text_view, null);
+				R.layout.output_text_heading_view, null);
     	newView.setText(heading);
 		row.addView(newView);
     }
