@@ -15,8 +15,4 @@ public class RoofActivityTest extends SetupCalculationTest {
 		switchTab(TabbedActivity.ROOF_ID);
 	}
 	
-	public void dummyTest() {
-		assertTrue(true);
-	}
-	
 }
