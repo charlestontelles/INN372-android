@@ -77,7 +77,7 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	 * @return
 	 */
 	public String getFormatedDateTime(){
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd kk:mm");
+		DateFormat dateFormat = new SimpleDateFormat("dd/MM kk:mm");
 		try {
 			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+10:00"));//Brisbane TimeZone
 			return dateFormat.format(this.datetime);			
