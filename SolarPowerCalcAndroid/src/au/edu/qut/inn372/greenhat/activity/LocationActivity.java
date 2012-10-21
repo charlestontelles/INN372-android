@@ -483,7 +483,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	                    }
 	                    
 	                  //---Add a location marker---
-	                    GeoPoint geoPoint = new GeoPoint((int) (p.getLatitudeE6()* 1E6), (int) (p.getLongitudeE6() * 1E6));
+	                    GeoPoint geoPoint = new GeoPoint((int) (addresses.get(0).getLatitude()*1E6), (int) (addresses.get(0).getLongitude()*1E6));
 				        MapOverlay mapOverlay = new MapOverlay(geoPoint);
 				        List<Overlay> listOfOverlays = mapView.getOverlays();
 				        listOfOverlays.clear();
