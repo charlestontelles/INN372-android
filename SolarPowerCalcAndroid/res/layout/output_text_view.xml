@@ -2,5 +2,6 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android" 
     android:text="" 
     android:textSize="12dp"
+    android:padding="4dp"
     android:gravity="center_horizontal"
     style="@style/OutputText"/>

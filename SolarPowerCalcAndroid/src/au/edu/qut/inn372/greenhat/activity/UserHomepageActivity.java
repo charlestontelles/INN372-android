@@ -101,20 +101,13 @@ public class UserHomepageActivity extends Activity {
     	
     	//Create head row
     	TableRow tableHeadRow = new TableRow(this);
+    	
     	TextView columnHeadCheckbox = new TextView(this);
-		TextView columnHeadName = new TextView(this);
-		
-		columnHeadName.setText("Name");
-		TextView columnHeadDateTime = new TextView(this);
-		columnHeadDateTime.setText("Date");
-		TextView columnHeadStatus = new TextView(this);
-		columnHeadStatus.setText("Status");
-		
-		tableHeadRow.addView(columnHeadCheckbox);
-		tableHeadRow.addView(columnHeadName);
-		tableHeadRow.addView(columnHeadDateTime);
-		tableHeadRow.addView(columnHeadStatus);
-		
+    	tableHeadRow.addView(columnHeadCheckbox);
+    	addHeadingView(tableHeadRow, "Name");
+    	addHeadingView(tableHeadRow, "Date");
+    	addHeadingView(tableHeadRow, "Status");
+
 		calcTable.addView(tableHeadRow);
     	
     	//Create rows and fill them with content
@@ -122,28 +115,20 @@ public class UserHomepageActivity extends Activity {
     		
     		//Parameters for one row
     		TableRow tableRow = new TableRow(this);
-    		TextView columnName = new TextView(this);
-    		TextView columnDateTime = new TextView(this);
-    		TextView columnStatus = new TextView(this);
-    		CheckBox checkBox = new CheckBox(this);
-    		
-    		//Fill in the content
-    		columnName.setText(new String(allCalculations.get(i).getName())); 
-    		columnDateTime.setText(allCalculations.get(i).getFormatedDateTime()); 
-    		columnStatus.setText(allCalculations.get(i).getStatusName()); 
     		
     		//Prepare checkboxes
+    		CheckBox checkBox = new CheckBox(this);
     		checkBox.setId(i);
     		checkBox.setOnClickListener(new OnClickListener() {
 				public void onClick(View v) {
 					checkBoxSelected[v.getId()] = !checkBoxSelected[v.getId()];
 				}
 			});
-    		
     		tableRow.addView(checkBox);
-    		tableRow.addView(columnName);
-    		tableRow.addView(columnDateTime);
-    		tableRow.addView(columnStatus);
+    		
+    		addDataView(tableRow, allCalculations.get(i).getName());
+    		addDataView(tableRow, allCalculations.get(i).getFormatedDateTime());
+    		addDataView(tableRow, allCalculations.get(i).getStatusName());
     		
     		calcTable.addView(tableRow);
     	}
@@ -333,6 +318,25 @@ public class UserHomepageActivity extends Activity {
 		}
 		return dialog;
 	}
+	
+	private void addHeadingView(TableRow row, String heading) {
+    	TextView newView = (TextView) getLayoutInflater().inflate(
+				R.layout.output_text_heading_view, null);
+    	newView.setText(heading);
+		row.addView(newView);
+    }
+	
+    /**
+     * Add a new TextView contain a string to a row. This is separate from addHeadingView so that a different textview layout can be used if needed
+     * @param row
+     * @param heading
+     */
+    private void addDataView(TableRow row, String value) {
+    	TextView newView = (TextView) getLayoutInflater().inflate(
+				R.layout.output_text_view, null);
+    	newView.setText(value);
+		row.addView(newView);
+    }
 }
     
 
