@@ -77,13 +77,13 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 	 * @return
 	 */
 	public String getFormatedDateTime(){
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aaa");
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd kk:mm");
 		try {
 			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+10:00"));//Brisbane TimeZone
 			return dateFormat.format(this.datetime);			
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "unknow";
+			return "unknown";
 		}
 	}
 	
@@ -131,11 +131,12 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 				//chart field not needed
 				this.customer = new Customer((SoapObject)soapObject.getProperty("customer"), soapOperation);
 				try {
-					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm aaa");
+					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
 					dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+10:00"));//Brisbane TimeZone
 					this.datetime = dateFormat.parse(soapObject.getProperty("datetime").toString());
 				} catch (ParseException e) {
 					System.out.println("Error parsing datetime");
+					e.printStackTrace();
 				}
 				this.equipment = new Equipment((SoapObject)soapObject.getProperty("equipment"), soapOperation);
 				this.key = soapObject.getProperty("key").toString();
