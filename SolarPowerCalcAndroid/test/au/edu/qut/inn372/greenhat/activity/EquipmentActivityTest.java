@@ -127,33 +127,33 @@ public class EquipmentActivityTest extends
 	/**
 	 * Tests that the next button launches the next activity
 	 */
-	public void testNextActivity() {
-		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(RoofActivity.class.getName(), null, false);
-		final Button button = (Button) activity.findViewById(R.id.buttonEquipment_Next);
-		activity.runOnUiThread(new Runnable() {
-			public void run() {
-				button.performClick();
-			}
-		});
-		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
-		assertNotNull(nextActivity);
-		nextActivity.finish();
-	}
+//	public void testNextActivity() {
+//		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(RoofActivity.class.getName(), null, false);
+//		final Button button = (Button) activity.findViewById(R.id.buttonEquipment_Next);
+//		activity.runOnUiThread(new Runnable() {
+//			public void run() {
+//				button.performClick();
+//			}
+//		});
+//		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
+//		assertNotNull(nextActivity);
+//		nextActivity.finish();
+//	}
 	
 	
 	/**
 	 * Tests that the back button returns to the previous activity
 	 */
-	public void testBackActivity() {
-		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(CustomerUsageActivity.class.getName(), null, false);
-		final Button button = (Button) activity.findViewById(R.id.buttonEquipment_Back);
-		activity.runOnUiThread(new Runnable() {
-			public void run() {
-				button.performClick();
-			}
-		});
-		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
-		assertNotNull(nextActivity);
-		nextActivity.finish();
-	}
+//	public void testBackActivity() {
+//		ActivityMonitor activityMonitor = getInstrumentation().addMonitor(CustomerUsageActivity.class.getName(), null, false);
+//		final Button button = (Button) activity.findViewById(R.id.buttonEquipment_Back);
+//		activity.runOnUiThread(new Runnable() {
+//			public void run() {
+//				button.performClick();
+//			}
+//		});
+//		Activity nextActivity = activityMonitor.waitForActivityWithTimeout(TIMEOUT);
+//		assertNotNull(nextActivity);
+//		nextActivity.finish();
+//	}
 }

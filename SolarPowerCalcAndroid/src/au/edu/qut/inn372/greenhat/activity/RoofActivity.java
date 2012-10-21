@@ -24,27 +24,6 @@ public class RoofActivity extends Activity implements InputActivity {
     }
 	
 	/**
-	 *
-	 * Refers to the succeding tab
-	 * @param view
-	 */
-	public void viewNext(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.INPUT_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
-	}
-	
-	/**
-	 * Refers to the preceding Tab
-	 * @param view
-	 */
-	public void viewBack(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.EQUIPMENT_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
-	}
-	
-	/**
 	 * Saves current input data to the calculator bean
 	 */
 	public void saveData() {
@@ -103,6 +82,7 @@ public class RoofActivity extends Activity implements InputActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
+		((TabbedActivity)this.getParent()).setTabId(TabbedActivity.ROOF_ID);
 		loadData();
 		state = STATE_NORMAL;
 	}

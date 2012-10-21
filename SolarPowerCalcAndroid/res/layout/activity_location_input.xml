@@ -166,29 +166,6 @@
 		    android:apiKey="0jLlCfvaIy3eqG8k0IJs-zc5caBWRL8Q42e6kNQ"
 		/>
     </LinearLayout>
-    
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        
-    <Button
-	        android:id="@+id/buttonLocation_Back"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="wrap_content"
-	        android:layout_height="34dp"
-	        android:text="@string/button_navigation_back_home" 
-	        android:onClick="viewBack"/>        
-        
-	    <Button
-	        android:id="@+id/buttonLocation_Next"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:text="@string/button_navigation_next" 
-	        android:onClick="viewNext"/>
-    </LinearLayout>
 
 </LinearLayout>    
     

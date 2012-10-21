@@ -120,27 +120,5 @@
             android:ems="@string/entryfieldlength"
             android:inputType="number"/>
     </LinearLayout>
-    
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        
-	    <Button
-	        android:id="@+id/buttonCustomerUsage_Back"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:onClick="viewBack"
-	        android:text="@string/button_navigation_back" />
-	    
-	    <Button
-	        android:id="@+id/buttonCustomerUsage_Next"
-	        style="?android:attr/buttonStyleSmall"
-	        android:layout_width="95dp"
-	        android:layout_height="34dp"
-	        android:text="@string/button_navigation_next" 
-	        android:onClick="viewNext"/>
-    </LinearLayout>
 
 </LinearLayout>

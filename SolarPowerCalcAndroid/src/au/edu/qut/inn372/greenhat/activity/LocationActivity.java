@@ -164,26 +164,6 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 //			citySpinner.setOnItemSelectedListener(this); 
 //	    }
 	    
-	    /**
-	     * Refers to the succeding tab
-	     * @param view
-	     */
-	    public void viewNext(View view){
-	    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-	    	int targetActivity = TabbedActivity.USAGE_ID;
-	    	parentTabbedActivity.switchTab(targetActivity);
-	    }
-	    
-	    /**
-		 * Refers to the preceding Tab
-		 * @param view
-		 */
-		public void viewBack(View view){
-			//TODO: implement dialog that asks before leaving
-			
-			finish();
-		}
-	    
 		/**
 		 * Saves current input data to the calculator bean
 		 */
@@ -228,6 +208,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		@Override
 		public void onResume() {
 			super.onResume();
+			((TabbedActivity)this.getParent()).setTabId(TabbedActivity.LOCATION_ID);
 			//refreshes the locationManager
 			hasLocationProvider(); //Need to check if the user has disabled or enabled the location provider while activity has been paused
 			if (locationProviderEnabled) {
@@ -282,11 +263,6 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		public void onNothingSelected(AdapterView<?> arg0) {
 			// TODO Auto-generated method stub
 			
-		}
-		
-		public void homeButton (View view){
-			TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-			parentTabbedActivity.finish();
 		}
 		
 		/**

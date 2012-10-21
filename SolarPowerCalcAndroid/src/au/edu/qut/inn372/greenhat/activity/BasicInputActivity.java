@@ -48,17 +48,6 @@ public class BasicInputActivity extends Activity implements InputActivity {
 		saveData();
 		parentTabbedActivity.calculate();
 	}
-	
-
-	/**
-	 * Performed when the reset button is pressed This functionality should be
-	 * changed to reset all values to defaults rather than just reloading data
-	 * 
-	 * @param view
-	 */
-	public void reset(View view) {
-		loadData();
-	}
 
 	/**
 	 * Saves current input data to the calculator bean
@@ -210,6 +199,7 @@ public class BasicInputActivity extends Activity implements InputActivity {
 	@Override
 	public void onResume() {
 		super.onResume();
+		((TabbedActivity)this.getParent()).setTabId(TabbedActivity.INPUT_ID);
 		loadData();
 		state = STATE_NORMAL;
 	}

@@ -16,6 +16,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
@@ -36,12 +38,16 @@ public class TabbedActivity extends TabActivity {
 	public static final int EQUIPMENT_ID = 2;
 	public static final int ROOF_ID = 3;
 	public static final int INPUT_ID = 4;
+	public static final int MIN_TAB = LOCATION_ID;
+	public static final int MAX_TAB = INPUT_ID;
 	private static final int DIALOG_ALERT = 10;
 	private static final int DIALOG_FAILED = 11;
 	
 	private CalculatorMediator calcMediator;
 	private EquipmentKitsMediator equipKitsMediator;
 	private PanelMediator panelMediator;
+
+	private int currentTab;
 	/**
 	 * Constructor - sets up tabs
 	 */
@@ -93,6 +99,7 @@ public class TabbedActivity extends TabActivity {
         addTab("Banks", this, RoofActivity.class); 
         addTab("Summary", this, BasicInputActivity.class);
         
+        currentTab = MIN_TAB;
     }
 	
 	/**
@@ -267,6 +274,41 @@ public class TabbedActivity extends TabActivity {
 	 */
 	public void switchTab(int tabID) {
 		tabHost.setCurrentTab(tabID);
+		setTabId(tabID);
+	}
+	
+	public void setTabId(int tabID) {
+		currentTab = tabID;
+		correctButtonLabels();
+	}
+	
+	public void clickTabLeft(View view) {
+		if(currentTab > MIN_TAB) {
+			switchTab(currentTab-1);
+		}
+	}
+	
+	public void clickTabRight(View view) {
+		if(currentTab < MAX_TAB) {
+			switchTab(currentTab+1);
+		}
+	}
+	
+	private void correctButtonLabels() {
+		Button leftButton = (Button)findViewById(R.id.inputButtonLeft);
+		Button rightButton = (Button)findViewById(R.id.inputButtonRight);
+		if(currentTab>MIN_TAB) {
+			leftButton.setText(R.string.tab_left);
+		}
+		else {
+			leftButton.setText("");
+		}
+		if(currentTab<MAX_TAB) {
+			rightButton.setText(R.string.tab_right);
+		}
+		else {
+			rightButton.setText("");
+		}
 	}
 	
 	/**

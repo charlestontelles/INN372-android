@@ -139,26 +139,6 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
     }
 	
 	/**
-	 * Refers to the succeeding tab
-	 * @param view
-	 */
-	public void viewNext(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.ROOF_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
-	}
-	
-	/**
-	 * Refers to the preceding Tab
-	 * @param view
-	 */
-	public void viewBack(View view){
-    	TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
-    	int targetActivity = TabbedActivity.USAGE_ID;
-    	parentTabbedActivity.switchTab(targetActivity);
-	}
-	
-	/**
 	 * Refresh the values of System cost, -size & Inverter efficiency after the Spinner was used
 	 */
 	public void onItemSelected(AdapterView<?> parent, View view, 
@@ -334,6 +314,7 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 	@Override
 	public void onResume() {
 		super.onResume();
+		((TabbedActivity)this.getParent()).setTabId(TabbedActivity.EQUIPMENT_ID);
 		loadData();
 		state = STATE_NORMAL;
 	}
