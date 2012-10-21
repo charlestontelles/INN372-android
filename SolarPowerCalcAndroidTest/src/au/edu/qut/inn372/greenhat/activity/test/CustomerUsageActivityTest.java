@@ -69,15 +69,4 @@ public class CustomerUsageActivityTest extends SetupCalculationTest {
 			}
 		});
 	}
-
-	public void testBack() {
-		solo.clickOnButton(backButtonString);
-		assertTrue(solo.waitForActivity("LocationActivity"));
-	}
-
-	public void testNext() {
-		solo.clickOnButton(nextButtonString);
-		assertTrue(solo.waitForActivity("EquipmentActivity"));
-	}
-	
 }
