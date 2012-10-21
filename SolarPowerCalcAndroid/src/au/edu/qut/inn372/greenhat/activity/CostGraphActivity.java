@@ -2,6 +2,7 @@ package au.edu.qut.inn372.greenhat.activity;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.achartengine.ChartFactory;
@@ -26,14 +27,15 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 public class CostGraphActivity extends Activity {
 	
 	private TabbedOutputActivity parentTabbedActivity;
-	private Calculator calculator;
+	private List<Calculator> calculatorList;
+	private static final int COLOR_LIST[] = {Color.BLUE, Color.GREEN, Color.BLACK, Color.RED, Color.CYAN, Color.YELLOW, Color.MAGENTA, Color.rgb(224, 115, 27)};
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_cost_graph);
 		parentTabbedActivity = (TabbedOutputActivity) getParent();
-		calculator = parentTabbedActivity.getCalculator();
+		calculatorList = parentTabbedActivity.getCalculators();
 		
 		GraphicalView savingsChart = ChartFactory.getLineChartView(this, getCostsDataset(), getCostsRenderer());
 		setContentView(savingsChart);
@@ -41,33 +43,42 @@ public class CostGraphActivity extends Activity {
 	
 	private XYMultipleSeriesDataset getCostsDataset() {
 		XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-		Calculation[] calculations = calculator.getCalculations();
-		
-		XYSeries existingCosts = new XYSeries("Without Solar");
-		XYSeries solarCosts = new XYSeries("With Solar");
-		for(Calculation curCalculation : calculations) {
-			double annualCost = curCalculation.getTariff11Fee()*calculator.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;
-			existingCosts.add(curCalculation.getYear(), annualCost);
-			solarCosts.add(curCalculation.getYear(), annualCost - curCalculation.getAnnualSaving());
+		for(Calculator curCalculator : calculatorList) {
+			Calculation[] calculations = curCalculator.getCalculations();
+			XYSeries existingCosts = new XYSeries("Without Solar - " + curCalculator.getName());
+			XYSeries solarCosts = new XYSeries("With Solar - " + curCalculator.getName());
+			for(Calculation curCalculation : calculations) {
+				double annualCost = curCalculation.getTariff11Fee()*curCalculator.getCustomer().getElectricityUsage().getDailyAverageUsage()*365;
+				existingCosts.add(curCalculation.getYear(), annualCost);
+				solarCosts.add(curCalculation.getYear(), annualCost - curCalculation.getAnnualSaving());
+			}
+			dataset.addSeries(existingCosts);
+			dataset.addSeries(solarCosts);
 		}
-		dataset.addSeries(existingCosts);
-		dataset.addSeries(solarCosts);
-		
 		return dataset;
 	}
 	
 	private XYMultipleSeriesRenderer getCostsRenderer() {
 		XYMultipleSeriesRenderer renderer = new XYMultipleSeriesRenderer();
-		XYSeriesRenderer existingCosts = new XYSeriesRenderer();
-		existingCosts.setColor(Color.RED);
-		existingCosts.setPointStyle(PointStyle.POINT);
-		existingCosts.setLineWidth(3.0f);
-		renderer.addSeriesRenderer(existingCosts);
-		XYSeriesRenderer solarCosts = new XYSeriesRenderer();
-		solarCosts.setColor(Color.BLUE);
-		solarCosts.setPointStyle(PointStyle.POINT);
-		solarCosts.setLineWidth(3.0f);
-		renderer.addSeriesRenderer(solarCosts);
+		int renderCount = 0; //which color to use for the current render
+		for(Calculator curCalculator : calculatorList) {
+			XYSeriesRenderer existingCosts = new XYSeriesRenderer();
+			existingCosts.setColor(COLOR_LIST[renderCount]);
+			existingCosts.setPointStyle(PointStyle.POINT);
+			existingCosts.setLineWidth(3.0f);
+			renderer.addSeriesRenderer(existingCosts);
+			
+			renderCount = incrementRenderCount(renderCount);
+			
+			XYSeriesRenderer solarCosts = new XYSeriesRenderer();
+			solarCosts.setColor(COLOR_LIST[renderCount]);
+			solarCosts.setPointStyle(PointStyle.POINT);
+			solarCosts.setLineWidth(3.0f);
+			renderer.addSeriesRenderer(solarCosts);
+			
+			renderCount = incrementRenderCount(renderCount);
+		}
+		
 		
 		renderer.setAxesColor(Color.BLACK);
 		renderer.setLabelsColor(Color.BLACK);
@@ -80,5 +91,15 @@ public class CostGraphActivity extends Activity {
 		renderer.setPanEnabled(false); //don't think this is working as expected
 		renderer.setZoomEnabled(false); //don't think this is working as expected
 		return renderer;
+	}
+	
+	private int incrementRenderCount(int curRenderCount) {
+		if (curRenderCount == COLOR_LIST.length - 1) {
+			curRenderCount = 0;
+		}
+		else {
+			curRenderCount += 1;
+		}
+		return curRenderCount;
 	}
 }
