@@ -197,7 +197,7 @@ public class TabbedOutputActivity extends TabActivity {
 	 * @param view
 	 */
 	public void exportPDF(){
-		/*
+		
 		String FILE = "/SolarPowerReport.pdf";
 		try {
 			Document document = new Document();
@@ -240,10 +240,10 @@ public class TabbedOutputActivity extends TabActivity {
 		    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
 		    table.addCell(c1);
 		    table.setHeaderRows(1);
-			for (Calculation curCalculation : calculator.getCalculations()) {
+			for (Calculation curCalculation : calculatorList.get(0).getCalculations()) {
 			    table.addCell("" + df.format(curCalculation.getYear() + 1));
 			    table.addCell("" + df.format(curCalculation.getCumulativeSaving()));
-			    table.addCell("" + df.format(curCalculation.getCumulativeSaving() / calculator.getEquipment().getCost()));
+			    table.addCell("" + df.format(curCalculation.getCumulativeSaving() / calculatorList.get(0).getEquipment().getCost()));
 			}
 			document.add(table);
 			
@@ -253,7 +253,7 @@ public class TabbedOutputActivity extends TabActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		*/
+		
 	}
 	
 	/**
