@@ -15,7 +15,6 @@ import au.edu.qut.inn372.greenhat.bean.Calculator;
 public class OutputSummaryActivity extends Activity {
 	
 	private List<Calculator> calculatorList;
-	private Calculator calculator;
 	private TabbedOutputActivity parentTabbedActivity;
 	DecimalFormat df = new DecimalFormat("#.#");
 	
@@ -37,13 +36,9 @@ public class OutputSummaryActivity extends Activity {
     	//Heading (Calculator labels)
     	TableRow titleRow = new TableRow(this);
     	
-    	titleRow.addView(new LinearLayout(this));
-    	
-    	
+    	titleRow.addView(new LinearLayout(this)); //blank spacer view
     	for(Calculator curCalculation : calculatorList) {
-    		TextView calcHeadingView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
-    		calcHeadingView.setText(curCalculation.getName());
-    		titleRow.addView(calcHeadingView);
+    		addHeadingView(titleRow, curCalculation.getName());
     	}
     	
     	table.addView(titleRow);
@@ -70,7 +65,7 @@ public class OutputSummaryActivity extends Activity {
     
 	private void addHeadingView(TableRow row, String heading) {
     	TextView newView = (TextView) getLayoutInflater().inflate(
-				R.layout.output_text_view, null);
+				R.layout.output_text_heading_view, null);
     	newView.setText(heading);
 		row.addView(newView);
     }
