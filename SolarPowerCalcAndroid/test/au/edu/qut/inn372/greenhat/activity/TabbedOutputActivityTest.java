@@ -95,8 +95,10 @@ public class TabbedOutputActivityTest extends
 	/**
 	 * Test that the get calculator method returns a calculator object
 	 */
+	/*
 	public void testGetCalculator() {
 		Calculator calculator = activity.getCalculator();
 		assertNotNull(calculator);
 	}
+	*/
 }

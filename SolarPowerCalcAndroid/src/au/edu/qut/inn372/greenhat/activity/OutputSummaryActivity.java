@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -81,4 +82,10 @@ public class OutputSummaryActivity extends Activity {
     	newView.setText(value);
 		row.addView(newView);
     }
+    
+    @Override
+    public void onBackPressed() {
+    	parentTabbedActivity.onBackPressed();
+    }
+
 }

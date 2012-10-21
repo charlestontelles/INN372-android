@@ -38,22 +38,6 @@ public class BasicInputActivity extends Activity implements InputActivity {
 
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_basic_input, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
 
 	/**
 	 * Performs the calculations (Soap call) and changed to output activity
@@ -71,8 +55,17 @@ public class BasicInputActivity extends Activity implements InputActivity {
 		Intent intent = new Intent(this, TabbedOutputActivity.class);
 		intent.putExtra("Calculators", (Serializable)calculatorResultList);
 
-		startActivity(intent);
-
+		startActivityForResult(intent, 1); //Allows us to retrieve the save calculation key if the user saves the results then hits back
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		//allow us to get the calculator key if the user saved in the output
+		if (requestCode == 1) {
+			if(resultCode == 1) {
+				parentTabbedActivity.getCalculator().setKey(data.getStringExtra("key"));
+			}
+		}
 	}
 
 	/**

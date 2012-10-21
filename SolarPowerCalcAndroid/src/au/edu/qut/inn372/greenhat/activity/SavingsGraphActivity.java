@@ -105,4 +105,9 @@ public class SavingsGraphActivity extends Activity {
 		}
 		return curRenderCount;
 	}
+	
+    @Override
+    public void onBackPressed() {
+    	parentTabbedActivity.onBackPressed();
+    }
 }

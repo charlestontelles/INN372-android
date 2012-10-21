@@ -136,4 +136,8 @@ public class FinancialOutputActivity extends Activity {
 		row.addView(newView);
     }
 		
+    @Override
+    public void onBackPressed() {
+    	parentTabbedActivity.onBackPressed();
+    }
 }

@@ -51,7 +51,6 @@ public class TabbedOutputActivity extends TabActivity {
 	
 	private CalculatorMediator calcMediator; //only needed for saving when displaying a single calculator
 	private List<Calculator> calculatorList;
-	private Calculator calculator;
 	
 	/**
 	 * Constructor - sets up tabs
@@ -59,16 +58,10 @@ public class TabbedOutputActivity extends TabActivity {
 	public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabbed_output);
-        
-        calcMediator = new CalculatorMediator();
-        
+
         calculatorList = (ArrayList<Calculator>)getIntent().getSerializableExtra("Calculators");
-        System.out.println(calculatorList.size());
         
-        calculator = calculatorList.get(0); //TODO Remove
-        
-        //calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
-        //calculator = calcMediator.getCalculator();
+        calcMediator = new CalculatorMediator(calculatorList.get(0)); //if there is one calcalator then the user is allowed to save the result
  
         tabHost = getTabHost();
         
@@ -192,6 +185,7 @@ public class TabbedOutputActivity extends TabActivity {
 	 * @param view
 	 */
 	public void exportPDF(){
+		/*
 		String FILE = "/SolarPowerReport.pdf";
 		try {
 			Document document = new Document();
@@ -247,14 +241,7 @@ public class TabbedOutputActivity extends TabActivity {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
-    
-	/**
-	 * Retrieves the calculator bean object
-	 * @return The calculator bean
-	 */
-	public Calculator getCalculator() {
-		return calculator;
+		*/
 	}
 	
 	/**
@@ -284,5 +271,19 @@ public class TabbedOutputActivity extends TabActivity {
 		if(currentTab < MAX_TAB) {
 			switchTab(currentTab+1);
 		}
+	}
+	
+	@Override
+	public void onBackPressed() {
+		//if the user has saved a key, send it back to the input activity
+		Intent returnIntent = new Intent();
+		if(calcMediator.getCalculator().getKey() != null) {
+			returnIntent.putExtra("key", calcMediator.getCalculator().getKey());
+			setResult(1, returnIntent);
+		}
+		else {
+			setResult(0, returnIntent);
+		}
+		finish();
 	}
 }

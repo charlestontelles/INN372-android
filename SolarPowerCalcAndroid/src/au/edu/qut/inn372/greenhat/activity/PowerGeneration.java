@@ -95,4 +95,9 @@ public class PowerGeneration extends Activity {
     	newView.setText(value);
 		row.addView(newView);
     }
+    
+    @Override
+    public void onBackPressed() {
+    	parentTabbedActivity.onBackPressed();
+    }
 }
