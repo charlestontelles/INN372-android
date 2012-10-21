@@ -44,6 +44,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import au.edu.qut.inn372.greenhat.bean.Calculator;
 import au.edu.qut.inn372.greenhat.bean.Location;
+import au.edu.qut.inn372.greenhat.ws.SoapClient;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
@@ -65,6 +66,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		private boolean locationProviderEnabled = false;
 		private Boolean mapViewInitialised = false;
 		protected MapView mapView; 
+		
 		
 			
 	    @Override
@@ -300,6 +302,10 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 				        listOfOverlays.clear();
 				        listOfOverlays.add(mapOverlay);  
 					    mapView.invalidate();
+					    
+					    //get the average sunlight hours for the location
+					    
+					    
 					    mapViewInitialised=true;
 				    }
 				    
@@ -457,6 +463,12 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	            canvas.drawBitmap(bmp, screenPts.x, screenPts.y-50, null);         
 	            return true;
 	        }
+		  	
+//		  	TODO: Try different approach for updating location choosing
+//		  	@Override
+//		  	public boolean onTap(GeoPoint p, MapView mapView){
+//		  		
+//		  	}
 		  	
 		  	@Override
 	        public boolean onTouchEvent(MotionEvent event, MapView mapView) 
