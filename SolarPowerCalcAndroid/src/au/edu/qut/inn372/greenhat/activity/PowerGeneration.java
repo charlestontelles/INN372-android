@@ -36,14 +36,9 @@ public class PowerGeneration extends Activity {
 		
 		TableRow titleRow = new TableRow(this);
 		
-		TextView titleYearView = (TextView)getLayoutInflater().inflate(R.layout.output_text_view, null);
-    	titleYearView.setText("Power Generation\n(kWh)");
-    	titleRow.addView(titleYearView);
-    	
+		addHeadingView(titleRow, "Power Generation\n(kWh)");
     	for(Calculator curCalculation : calculatorList) {
-    		TextView calcHeadingView = (TextView) getLayoutInflater().inflate(R.layout.output_text_view, null);
-    		calcHeadingView.setText(curCalculation.getName());
-    		titleRow.addView(calcHeadingView);
+    		addHeadingView(titleRow, curCalculation.getName());
     	}
     	
     	table.addView(titleRow);
@@ -70,45 +65,21 @@ public class PowerGeneration extends Activity {
 			addDataView(annual, "" + df.format(dailySolarGen * 365));
 			addDataView(quarterly, "" + df.format(dailySolarGen * 365 / 4));
 			addDataView(dailyNet, "" + (df.format(dailyNetGen)));
-			addDataView(quarterlyNet, "" + (df.format((dailyNetGen) * 365)));
-			addDataView(annualNet, "" + (df.format((dailyNetGen) * 365 / 4)));
+			addDataView(quarterlyNet, "" + (df.format((dailyNetGen) * 365 / 4)));
+			addDataView(annualNet, "" + (df.format((dailyNetGen) * 365)));
 		}
 		
 		table.addView(daily);
-		table.addView(annual);
 		table.addView(quarterly);
+		table.addView(annual);
 		table.addView(dailyNet);
 		table.addView(quarterlyNet);
 		table.addView(annualNet);
-		
-		/*
-		TextView dailyField = (TextView) findViewById(R.id.TextViewDailyField);
-		TextView annualField = (TextView) findViewById(R.id.TextViewAnnualField);
-		TextView quaterlyField = (TextView) findViewById(R.id.TextViewQuaterlyField);
-		TextView netField = (TextView) findViewById(R.id.TextViewNetField);
-		TextView quaterlyNet = (TextView) findViewById(R.id.TextViewQuaterlyNetField);
-		TextView annualNet = (TextView) findViewById(R.id.TextViewAnnualNetField);
-		
-		Double dailySolar = new Double(calculator.getCalculations()[0].getDailySolarPower());
-		Double dailyNet = new Double(dailySolar - calculator.getCustomer().getElectricityUsage().getDailyAverageUsage());
-
-		
-		dailyField.setText("" + df.format(dailySolar));
-		annualField.setText("" + df.format(dailySolar * 365));
-		quaterlyField.setText(""
-				+ df.format(dailySolar * 365 / 4));
-		netField.setText(""
-				+ (df.format(dailyNet)));
-		annualNet.setText(""
-				+ (df.format((dailyNet) * 365)));
-		quaterlyNet.setText(""
-				+ (df.format((dailyNet) * 365 / 4)));
-		*/
 	}
 	
 	private void addHeadingView(TableRow row, String heading) {
     	TextView newView = (TextView) getLayoutInflater().inflate(
-				R.layout.output_text_view, null);
+				R.layout.output_text_heading_view, null);
     	newView.setText(heading);
 		row.addView(newView);
     }

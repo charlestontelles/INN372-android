@@ -3,26 +3,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <HorizontalScrollView
+    <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-        <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <TextView
+            android:id="@+id/textView1SolarPowerGeneration"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Average Solar Power Generation"
+            android:textSize="20dp"
+            android:textStyle="bold" >
+        </TextView>
 
-            <TextView
-                android:id="@+id/textView1SolarPowerGeneration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Average Solar Power Generation"
-                android:textSize="20dp"
-                android:textStyle="bold" >
-            </TextView>
+        <HorizontalScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" >
 
             <TableLayout
                 android:id="@+id/TableLayoutOutputPowerGen"
@@ -30,7 +30,7 @@
                 android:layout_height="match_parent"
                 android:stretchColumns="*" >
             </TableLayout>
-        </LinearLayout>
-    </HorizontalScrollView>
+        </HorizontalScrollView>
+    </LinearLayout>
 
 </ScrollView>
