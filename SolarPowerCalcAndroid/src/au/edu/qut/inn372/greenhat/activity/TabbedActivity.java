@@ -1,5 +1,6 @@
 package au.edu.qut.inn372.greenhat.activity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -59,6 +60,10 @@ public class TabbedActivity extends TabActivity {
         switch(type){
         	case 1: //load a calculation
         		calcMediator.setCalculator((Calculator)getIntent().getSerializableExtra("Calculator"));
+        		//If the calculation is complete, go to the output screen and calculate the result
+        		if(calcMediator.getCalculator().getStatus() == 1) {
+        			calculate();
+        		}
         		break;
         	case 0: //new calculation
         	default:
@@ -200,6 +205,28 @@ public class TabbedActivity extends TabActivity {
 		calcMediator.getCalculator().setStatus(1);
 	}
 	
+	public void calculate() {
+		calcEnergyProduction();
+		
+		List<Calculator> calculatorResultList = new ArrayList<Calculator>();
+		calculatorResultList.add(getCalculator());
+
+		Intent intent = new Intent(this, TabbedOutputActivity.class);
+		intent.putExtra("Calculators", (Serializable)calculatorResultList);
+
+		startActivityForResult(intent, 1); //Allows us to retrieve the save calculation key if the user saves the results then hits back
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		//allow us to get the calculator key if the user saved in the output
+		if (requestCode == 1) {
+			if(resultCode == 1) {
+				getCalculator().setKey(data.getStringExtra("key"));
+			}
+		}
+	}
+	
 	/**
 	 * Perform the WS call to save the calculation
 	 */
@@ -230,13 +257,6 @@ public class TabbedActivity extends TabActivity {
 	public ArrayList<Panel> getPanels() {
 		return panelMediator.getPanelList();
 	}
-	
-	/**
-	 * Retrieve the list of calculations obtained from the WS call
-	 */
-	/*public List<Calculator> getCalculations(){ //getCalculationList migrated to UserHomepageActivity
-		return calcMediator.getCalculationList();
-	}*/
 	
 	
 }

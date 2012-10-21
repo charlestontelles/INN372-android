@@ -46,27 +46,9 @@ public class BasicInputActivity extends Activity implements InputActivity {
 	 */
 	public void calculate(View view) {
 		saveData();
-
-		parentTabbedActivity.calcEnergyProduction();
-		
-		List<Calculator> calculatorResultList = new ArrayList<Calculator>();
-		calculatorResultList.add(parentTabbedActivity.getCalculator());
-
-		Intent intent = new Intent(this, TabbedOutputActivity.class);
-		intent.putExtra("Calculators", (Serializable)calculatorResultList);
-
-		startActivityForResult(intent, 1); //Allows us to retrieve the save calculation key if the user saves the results then hits back
+		parentTabbedActivity.calculate();
 	}
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		//allow us to get the calculator key if the user saved in the output
-		if (requestCode == 1) {
-			if(resultCode == 1) {
-				parentTabbedActivity.getCalculator().setKey(data.getStringExtra("key"));
-			}
-		}
-	}
 
 	/**
 	 * Performed when the reset button is pressed This functionality should be
