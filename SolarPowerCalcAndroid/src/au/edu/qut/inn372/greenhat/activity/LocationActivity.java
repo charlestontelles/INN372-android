@@ -63,6 +63,9 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		private LocationManager locationManager;
 		private Geocoder geocoder;
 		private boolean locationProviderEnabled = false;
+		private Boolean mapViewInitialised = false;
+		protected MapView mapView; 
+		
 			
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 	        geocoder = new Geocoder(this);
 	    	
-	        MapView mapView = (MapView) findViewById(R.id.mapview);
+	        mapView = (MapView) findViewById(R.id.mapview);
 	        mapView.setBuiltInZoomControls(true);
 	    }
 	    
@@ -269,45 +272,56 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		 * Gets the latest location details and shows them
 		 */
 		public void onLocationChanged(android.location.Location location) {
-			Boolean mapViewInitialised;
+			
 			if (locationProviderEnabled) {
 				if (location != null) {
 					// TODO Auto-generated method stub
 					double lat = (double) location.getLatitude();
 					double lon = (double) location.getLongitude();
-					TextView locationLat = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Latitude);
-					TextView locationLon = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Longitude);
-					TextView locationShow = (TextView)findViewById(R.id.textLocation_Currentlocation_Zip);
-					TextView locationStreet = (TextView)findViewById(R.id.textLocation_Currentlocation_Street); 
+					//TextView locationLat = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Latitude);
+					//TextView locationLon = (TextView)findViewById(R.id.textLocation_AutomaticLocationShow_Longitude);
+					//TextView locationShow = (TextView)findViewById(R.id.textLocation_Currentlocation_Zip);
+					TextView locationStreet = (TextView)findViewById(R.id.editLocation_Currentlocation_Street); 
 					
 				    
-				    locationLat.setText(""+lat);
-				    locationLon.setText(""+lon);
+				    //locationLat.setText(""+lat);
+				    //locationLon.setText(""+lon);
 				    
 				    if (mapViewInitialised == false){
-				    MapView mapView = (MapView) findViewById(R.id.mapview);
-				    MapController mapController = mapView.getController();
-				    GeoPoint geoPoint = new GeoPoint((int) (lat* 1E6), (int) (lon * 1E6));
-				    mapController.animateTo(geoPoint);
-				    mapController.setZoom(17);
-				    
-				  //---Add a location marker---
-			        MapOverlay mapOverlay = new MapOverlay(geoPoint);
-			        List<Overlay> listOfOverlays = mapView.getOverlays();
-			        listOfOverlays.clear();
-			        listOfOverlays.add(mapOverlay);  
-				    mapView.invalidate();
-				    mapViewInitialised=true;}
+					    //MapView mapView = (MapView) findViewById(R.id.mapview);
+					    MapController mapController = mapView.getController();
+					    GeoPoint geoPoint = new GeoPoint((int) (lat* 1E6), (int) (lon * 1E6));
+					    mapController.animateTo(geoPoint);
+					    mapController.setZoom(17);
+					    
+					  //---Add a location marker---
+				        MapOverlay mapOverlay = new MapOverlay(geoPoint);
+				        List<Overlay> listOfOverlays = mapView.getOverlays();
+				        listOfOverlays.clear();
+				        listOfOverlays.add(mapOverlay);  
+					    mapView.invalidate();
+					    mapViewInitialised=true;
+				    }
 				    
 					
 					try {
 				      List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1); //<10>
 				      
-				      Address address = addresses.get(0);
+				      //Address address = addresses.get(0);
+				      
+				      String add = "";
+	                    if (addresses.size() > 0) 
+	                    {
+	                        for (int i=0; i<addresses.get(0).getMaxAddressLineIndex(); 
+	                             i++)
+	                        { 
+	                        	System.out.println(""+i+" = "+addresses.get(0).getAddressLine(i));
+	                        	add += addresses.get(0).getAddressLine(i) + "\n";}
+	                    }
 				      
 				      //locationShow.setText(address.getAddressLine(1));
-				      locationShow.setText(address.getPostalCode());
-				      locationStreet.setText(address.getAddressLine(0),TextView.BufferType.EDITABLE);
+				      //locationShow.setText(address.getPostalCode());
+				      locationStreet.setText(add);
 				      
 				    } catch (IOException e) {
 				    	e.getStackTrace();
@@ -429,9 +443,8 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		  	}
 		  	
 		  	@Override
-	        public boolean draw(Canvas canvas, MapView mapView, 
-	        boolean shadow, long when) //added geoPoint
-	        {
+	        public boolean draw(Canvas canvas, MapView mapView, boolean shadow, long when){
+		  		
 	            super.draw(canvas, mapView, shadow);                   
 	 
 	            //---translate the GeoPoint to screen pixels---
@@ -454,20 +467,19 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	                    (int) event.getX(),
 	                    (int) event.getY());
 	 
-	                Geocoder geoCoder = new Geocoder(
-	                    getBaseContext(), Locale.getDefault());
+	                Geocoder geoCoder = new Geocoder(getBaseContext(), Locale.getDefault());
+	                
 	                try {
-	                    List<Address> addresses = geoCoder.getFromLocation(
-	                        p.getLatitudeE6()  / 1E6, 
-	                        p.getLongitudeE6() / 1E6, 1);
+	                    List<Address> addresses = geoCoder.getFromLocation(p.getLatitudeE6()/1E6,p.getLongitudeE6()/1E6, 1);
 	 
 	                    String add = "";
 	                    if (addresses.size() > 0) 
 	                    {
 	                        for (int i=0; i<addresses.get(0).getMaxAddressLineIndex(); 
 	                             i++)
-	                        { System.out.println(""+i+" = "+addresses.get(0).getAddressLine(i));
-	                           add += addresses.get(0).getAddressLine(i) + "\n";}
+	                        { 
+	                        	System.out.println(""+i+" = "+addresses.get(0).getAddressLine(i));
+	                        	add += addresses.get(0).getAddressLine(i) + "\n";}
 	                    }
 	                    
 	                  //---Add a location marker---
@@ -479,6 +491,9 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 					    mapView.invalidate();
 	 
 	                    Toast.makeText(getBaseContext(), add, Toast.LENGTH_SHORT).show();
+	                    
+	                    TextView changeLocation = (TextView) findViewById(R.id.editLocation_Currentlocation_Street);
+                		changeLocation.setText(add);
 	                }
 	                catch (IOException e) {                
 	                    e.printStackTrace();
