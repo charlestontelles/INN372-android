@@ -107,4 +107,10 @@ public class CostGraphActivity extends Activity {
     public void onBackPressed() {
     	parentTabbedActivity.onBackPressed();
     }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	parentTabbedActivity.setTabId(TabbedOutputActivity.COST_GRAPH_ID);
+    }
 }

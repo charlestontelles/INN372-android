@@ -110,4 +110,10 @@ public class SavingsGraphActivity extends Activity {
     public void onBackPressed() {
     	parentTabbedActivity.onBackPressed();
     }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	parentTabbedActivity.setTabId(TabbedOutputActivity.SAVINGS_GRAPH_ID);
+    }
 }

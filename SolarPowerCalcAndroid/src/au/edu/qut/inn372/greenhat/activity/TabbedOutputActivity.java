@@ -25,6 +25,7 @@ import android.os.Environment;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TabHost;
 import android.widget.TabHost.TabSpec;
 import au.edu.qut.inn372.greenhat.bean.Calculation;
@@ -269,7 +270,12 @@ public class TabbedOutputActivity extends TabActivity {
 	 */
 	public void switchTab(int tabID) {
 		tabHost.setCurrentTab(tabID);
+		setTabId(tabID);
+	}
+	
+	public void setTabId(int tabID) {
 		currentTab = tabID;
+		correctButtonLabels();
 	}
 	
 	public void clickTabLeft(View view) {
@@ -281,6 +287,23 @@ public class TabbedOutputActivity extends TabActivity {
 	public void clickTabRight(View view) {
 		if(currentTab < MAX_TAB) {
 			switchTab(currentTab+1);
+		}
+	}
+	
+	private void correctButtonLabels() {
+		Button leftButton = (Button)findViewById(R.id.outputButtonLeft);
+		Button rightButton = (Button)findViewById(R.id.outputButtonRight);
+		if(currentTab>MIN_TAB) {
+			leftButton.setText(R.string.tab_left);
+		}
+		else {
+			leftButton.setText("");
+		}
+		if(currentTab<MAX_TAB) {
+			rightButton.setText(R.string.tab_right);
+		}
+		else {
+			rightButton.setText("");
 		}
 	}
 	

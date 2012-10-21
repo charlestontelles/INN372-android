@@ -37,7 +37,7 @@ public class OutputSummaryActivity extends Activity {
     	//Heading (Calculator labels)
     	TableRow titleRow = new TableRow(this);
     	
-    	titleRow.addView(new LinearLayout(this)); //blank spacer view
+    	addHeadingView(titleRow, ""); //blank spacer view
     	for(Calculator curCalculation : calculatorList) {
     		addHeadingView(titleRow, curCalculation.getName());
     	}
@@ -86,6 +86,12 @@ public class OutputSummaryActivity extends Activity {
     @Override
     public void onBackPressed() {
     	parentTabbedActivity.onBackPressed();
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	parentTabbedActivity.setTabId(TabbedOutputActivity.SUMMARY_ID);
     }
 
 }
