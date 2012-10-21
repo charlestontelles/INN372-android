@@ -132,7 +132,7 @@ public class Calculator extends AndroidAbstractBean implements Serializable {
 				this.customer = new Customer((SoapObject)soapObject.getProperty("customer"), soapOperation);
 				try {
 					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss.SSS");
-					dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+10:00"));//Brisbane TimeZone
+					dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));//UTC
 					this.datetime = dateFormat.parse(soapObject.getProperty("datetime").toString());
 				} catch (ParseException e) {
 					System.out.println("Error parsing datetime");
