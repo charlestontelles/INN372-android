@@ -6,7 +6,7 @@ import android.widget.EditText;
 import au.edu.qut.inn372.greenhat.activity.R;
 import au.edu.qut.inn372.greenhat.activity.TabbedActivity;
 
-//import au.edu.qut.inn372.greenhat.activity.R;
+import au.edu.qut.inn372.greenhat.activity.R;
 
 public class CustomerUsageActivityTest extends SetupCalculationTest {
 	
