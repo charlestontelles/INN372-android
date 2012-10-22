@@ -12,7 +12,7 @@
         android:layout_y="143dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="123" />
+        android:text="" />
 
     <Button
         android:id="@+id/buttonLogin"
@@ -61,7 +61,7 @@
         android:layout_marginTop="83dp"
         android:layout_x="20dp"
         android:layout_y="120dp"
-        android:text="User:" />
+        android:text="Email:" />
 
     <EditText
         android:id="@+id/editUser"
@@ -72,7 +72,7 @@
         android:layout_y="109dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="charles@greenhat.com" >
+        android:text="" >
 
         <requestFocus />
     </EditText>

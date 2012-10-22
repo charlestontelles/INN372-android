@@ -39,11 +39,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         
-        <TextView 
+        <TextView
             android:id="@+id/textCustomerUsage_CurrentUsage_UsagePerDay"
-            android:text="@string/customerusage_currentusage_usageperday"
             android:layout_width="146dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="fill_parent"
+            android:text="@string/customerusage_currentusage_usageperday" />
         
         <EditText
             android:id="@+id/editCustomerUsage_CurrentUsage_UsagePerDay"
@@ -57,11 +57,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
         
-        <TextView 
+        <TextView
             android:id="@+id/textCustomerUsage_CurrentUsage_UsagePerHour"
-            android:text="@string/customerusage_currentusage_usageperhour"
             android:layout_width="146dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="fill_parent"
+            android:text="@string/customerusage_currentusage_usageperhour" />
         
         <EditText
             android:id="@+id/editCustomerUsage_CurrentUsage_UsagePerHour"

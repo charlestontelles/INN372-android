@@ -255,7 +255,7 @@
     <TextView
         android:id="@+id/textRoof_Sunlight_Daylight"
         android:layout_width="166dp"
-        android:layout_height="wrap_content"        
+        android:layout_height="match_parent"
         android:text="@string/basicinput_sunlight_dailyhours" />
     
     <EditText
@@ -288,10 +288,10 @@
         android:orientation="horizontal" >
     
 	   <TextView
-	        android:id="@+id/textRoof_Usage_UsagePerDay"
-	        android:layout_width="166dp"
-	        android:layout_height="wrap_content"	        
-	        android:text="@string/basicinput_usage_energyperday" />
+	       android:id="@+id/textRoof_Usage_UsagePerDay"
+	       android:layout_width="166dp"
+	       android:layout_height="match_parent"
+	       android:text="@string/basicinput_usage_energyperday" />
 	   
 	    <EditText
 	    	android:id="@+id/editRoof_Usage_UsagePerDay"
@@ -309,10 +309,10 @@
         android:orientation="horizontal" >
     
 	   <TextView
-	        android:id="@+id/textRoof_Usage_UsagePerDaylight"
-	        android:layout_width="166dp"
-	        android:layout_height="wrap_content"	        
-	        android:text="@string/basicinput_usage_energyperdaylight"/>
+	       android:id="@+id/textRoof_Usage_UsagePerDaylight"
+	       android:layout_width="166dp"
+	       android:layout_height="match_parent"
+	       android:text="@string/basicinput_usage_energyperdaylight" />
 	   
 	    <EditText
 	        android:id="@+id/editRoof_Usage_UsagePerDaylight"
