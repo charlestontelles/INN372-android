@@ -66,9 +66,6 @@ public class RoofActivity extends Activity implements InputActivity {
 		EditText angle2 = (EditText)findViewById(R.id.editRoof__AngleOfBank2);
 		angle2.setText(new Double(calculator.getCustomer().getLocation().getRoof().getBanks().get(1).getAngle()).toString());
 	
-	
-		
-		//TODO Load spinner state
 		
 	}
 	
