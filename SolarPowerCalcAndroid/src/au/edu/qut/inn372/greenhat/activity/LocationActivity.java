@@ -66,8 +66,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		private boolean locationProviderEnabled = false;
 		private Boolean mapViewInitialised = false;
 		protected MapView mapView; 
-		
-		
+		TabbedActivity parentTabbedActivity;
 			
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	        setContentView(R.layout.activity_location_input);
 	        //setupLocations();
 	        //setupSpinner();
-	        TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
+	        parentTabbedActivity = (TabbedActivity)this.getParent(); //made it global
 	        calculator = parentTabbedActivity.getCalculator();
 	        
 	        
@@ -179,7 +178,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 			//EditText roofHeight = (EditText)findViewById(R.id.editLocation_RoofHeight);
 			Location location = calculator.getCustomer().getLocation();
 			//location.setCity((String)citySpinner.getSelectedItem());
-			location.setSunLightHours(new Double("4.5"));
+			//location.setSunLightHours(new Double("4.5"));
 			//location.getRoof().setWidth(new Double(roofWidth.getText().toString()));
 			//location.getRoof().setHeight(new Double(roofHeight.getText().toString()));
 		}
@@ -202,6 +201,7 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 		@Override
 		public void onPause() {
 			super.onPause();
+			saveSunlightHours();
 			saveData();
 			//removes the locationManager to save battery
 			if (locationProviderEnabled) {
@@ -464,22 +464,10 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	            return true;
 	        }
 		  	
-//		  	TODO: Try different approach for updating location choosing
-//		  	@Override
-//		  	public boolean onTap(GeoPoint p, MapView mapView){
-//		  		
-//		  	}
-		  	
+		  	//TODO: Try different approach for updating location choosing
 		  	@Override
-	        public boolean onTouchEvent(MotionEvent event, MapView mapView) 
-	        {   
-	            //---when user lifts his finger---
-	            if (event.getAction() == 1) {                
-	                GeoPoint p = mapView.getProjection().fromPixels(
-	                    (int) event.getX(),
-	                    (int) event.getY());
-	 
-	                Geocoder geoCoder = new Geocoder(getBaseContext(), Locale.getDefault());
+		  	public boolean onTap(GeoPoint p, MapView mapView){
+		  		 Geocoder geoCoder = new Geocoder(getBaseContext(), Locale.getDefault());
 	                
 	                try {
 	                    List<Address> addresses = geoCoder.getFromLocation(p.getLatitudeE6()/1E6,p.getLongitudeE6()/1E6, 1);
@@ -505,17 +493,28 @@ public class LocationActivity extends MapActivity implements LocationListener, I
 	                    Toast.makeText(getBaseContext(), add, Toast.LENGTH_SHORT).show();
 	                    
 	                    TextView changeLocation = (TextView) findViewById(R.id.editLocation_Currentlocation_Street);
-                		changeLocation.setText(add);
+	                    changeLocation.setText(add);
+	                    
+	                    //save the current longitude and latitude in the LocationMediator 
+	                    parentTabbedActivity.getLocationMediator().setLatitude(new Double (addresses.get(0).getLatitude()));
+	          		    parentTabbedActivity.getLocationMediator().setLongitude(new Double (addresses.get(0).getLongitude()));
 	                }
 	                catch (IOException e) {                
 	                    e.printStackTrace();
-	                }   
+	                } 
+	                catch (IndexOutOfBoundsException e) {                
+	                    e.printStackTrace();
+	                    Toast.makeText(getBaseContext(), "No Location Data availabe!" ,Toast.LENGTH_SHORT).show(); //Catch exception thrown when user selects a point with no location data available
+	                } 
 	                return true;
-	            }
-	            else                
-	                return false;
-	        }     
-	    } 
+		  	}  
+	    }
+	  
+	  public void saveSunlightHours(){
+		  parentTabbedActivity.getLocationMediator().retrieveAverageSunlight();
+		  double averageSunlightHours = parentTabbedActivity.getLocationMediator().getAverageSunligthHours();
+		  calculator.getCustomer().getLocation().setSunLightHours(averageSunlightHours);
+	  }
 		
 }
 

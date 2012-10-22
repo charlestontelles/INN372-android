@@ -43,6 +43,9 @@
 	
 	<!-- Equipment -->
 	<string name="equipment_title">Equipment</string>
+	<string name="equipment_roofsize">Roof Size</string>
+	<string name="equipment_roofsize_width">Roof Width:</string>
+	<string name="equipment_roofsize_height">Roof Height:</string>
 	<string name="equipment_panelnumber">Number of Panels:</string>
 	<string name="equipment_systemcost">System Cost:</string>
 	<string name="equipment_systemsize">System Size (KW):</string>
