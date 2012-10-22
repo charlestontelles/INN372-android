@@ -96,6 +96,8 @@ public class TabbedOutputActivity extends TabActivity {
         	//can't save if comparing two calculators
         	menu.removeItem(R.id.menu_tabbed_output_save);
         	menu.removeItem(R.id.menu_tabbed_output_save_template);
+        	//haven't implemented pdf generation for comparisons so remove the pdf generation item as well
+        	menu.removeItem(R.id.menu_tabbed_output_generate_pdf);
         }
         return true;
     }

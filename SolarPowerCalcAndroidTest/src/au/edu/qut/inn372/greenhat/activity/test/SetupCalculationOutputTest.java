@@ -31,6 +31,7 @@ public class SetupCalculationOutputTest extends SetupHomepageActivityTest {
 			solo.clickOnCheckBox(COMPLETE_1_CHECKBOX);
 			solo.clickOnCheckBox(COMPLETE_2_CHECKBOX);
 			solo.clickOnButton("Compare");
+			break;
 		case(SINGLE_CALCULATOR):
 		default:
 			solo.clickOnCheckBox(COMPLETE_1_CHECKBOX);
