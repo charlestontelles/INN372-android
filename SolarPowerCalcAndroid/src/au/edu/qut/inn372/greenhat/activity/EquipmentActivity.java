@@ -222,6 +222,8 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 		Calculator calculator = parentTabbedActivity.getCalculator();
 		Spinner equipList = (Spinner)findViewById(R.id.spinnerEquipment_List);
 		
+		calculator.getCustomer().getLocation().getRoof().setHeight(new Double(((EditText)findViewById(R.id.editEquipment_roofsize_height)).getText().toString()));
+		calculator.getCustomer().getLocation().getRoof().setWidth(new Double(((EditText)findViewById(R.id.editEquipment_roofsize_width)).getText().toString()));
 		calculator.setEquipment(equipmentKits.get(equipList.getSelectedItemPosition()));
 	}
 	
@@ -232,6 +234,13 @@ public class EquipmentActivity extends Activity implements OnItemSelectedListene
 		TabbedActivity parentTabbedActivity = (TabbedActivity)this.getParent();
 		ArrayList<Equipment> equipmentKits = parentTabbedActivity.getEquipmentKits();
 		Spinner equipList = (Spinner)findViewById(R.id.spinnerEquipment_List);
+		Calculator calculator = parentTabbedActivity.getCalculator();
+		
+		
+		EditText inputHeight = (EditText)findViewById(R.id.editEquipment_roofsize_height);
+		inputHeight.setText(new Double(calculator.getCustomer().getLocation().getRoof().getHeight()).toString());
+		EditText inputWidth = (EditText)findViewById(R.id.editEquipment_roofsize_width);
+		inputWidth.setText(new Double(calculator.getCustomer().getLocation().getRoof().getWidth()).toString());
 		
 		//Set spinner to correct position
 		ArrayList<String> spinnerArray = new ArrayList<String>();

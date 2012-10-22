@@ -27,6 +27,7 @@ import au.edu.qut.inn372.greenhat.bean.Panel;
 import au.edu.qut.inn372.greenhat.bean.UserProfile;
 import au.edu.qut.inn372.greenhat.mediator.CalculatorMediator;
 import au.edu.qut.inn372.greenhat.mediator.EquipmentKitsMediator;
+import au.edu.qut.inn372.greenhat.mediator.LocationMediator;
 import au.edu.qut.inn372.greenhat.mediator.PanelMediator;
 
 public class TabbedActivity extends TabActivity {
@@ -46,6 +47,7 @@ public class TabbedActivity extends TabActivity {
 	private CalculatorMediator calcMediator;
 	private EquipmentKitsMediator equipKitsMediator;
 	private PanelMediator panelMediator;
+	private LocationMediator locationMediator;
 
 	private int currentTab;
 	/**
@@ -59,6 +61,7 @@ public class TabbedActivity extends TabActivity {
         equipKitsMediator.getEquipments(); //This is a WS call - might be better to move it to be part of the login process later
         panelMediator = new PanelMediator(); //WS call
         panelMediator.getPanels();
+        locationMediator = new LocationMediator();
         
         //Switch to check for new or old calculator
         int type = (Integer) getIntent().getSerializableExtra("Type");
@@ -317,6 +320,14 @@ public class TabbedActivity extends TabActivity {
 	 */
 	public ArrayList<Panel> getPanels() {
 		return panelMediator.getPanelList();
+	}
+
+	public LocationMediator getLocationMediator() {
+		return locationMediator;
+	}
+
+	public void setLocationMediator(LocationMediator locationMediator) {
+		this.locationMediator = locationMediator;
 	}
 	
 	
