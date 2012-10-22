@@ -78,4 +78,16 @@ public class SetupCalculationTest extends SetupHomepageActivityTest {
 		switchTab(currentTab);
 	}
 	
+	protected void testSaveAttributeInteger(EditText editTextField, Integer testValue, int targetTab, int currentTab, Callable<Integer> calculatorAttribute) {
+		solo.clearEditText(editTextField);
+		solo.enterText(editTextField, testValue.toString());
+		switchTab(targetTab);
+		try {
+			assertEquals(testValue, calculatorAttribute.call(), 1e-4);
+		} catch (Exception e) {
+			fail("Could not call calculator attribute");
+		}
+		switchTab(currentTab);
+	}
+	
 }
